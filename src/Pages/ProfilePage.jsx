@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Avatar1 from "../assets/Icons/avatar1.png";
 import Volume from "../assets/Icons/volume.png";
 import Radix from "../assets/Icons/radix.png";
@@ -14,17 +14,23 @@ import Leaderboard from "../assets/Icons/leaderboard.png";
 import Profile from "../assets/Icons/profile.png";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+
+  const handleViewLeaderboardClick = () => {
+    navigate("/leaderboard");
+  };
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-[100vh] bg-profile-gradient">
-        <div className="bg-darrk-gradient w-full h-[48%]">
-          <div className="flex justify-between items-center -mt-[40px]  gap-[107px]  ">
+      <div className="flex flex-col  justify-center items-center">
+        <div className="bg-[#FFCB05] w-full h-[143px] mx-0"></div>
+        <div className="bg-darrk-gradient min-h-screen lg:h-[100vh] xl:h-[900px] w-full">
+          <div className="flex justify-between items-center -mt-[47px]   ">
             <img
               src={Avatar1}
               alt="Avatar Icon"
-              className="w-[108px] h-[108px] rounded-full ml-[34px]"
+              className="w-[108px] h-[108px] rounded-full ml-[40px] md:ml-[170px]"
             />
-            <div className="flex space-x-4 mr-[28px]">
+            <div className="flex gap-[23px] mr-[31px] md:mr-[100px]">
               <img
                 src={Volume}
                 alt="Volume"
@@ -39,7 +45,7 @@ const ProfilePage = () => {
           </div>
 
           <div className="flex items-center justify-between mt-[11px]">
-            <div className="text-center text-white ml-[13px]">
+            <div className="text-center text-white ml-[13px] md:ml-[170px]">
               <p className="font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-center">
                 @+2348123433234
               </p>
@@ -47,14 +53,17 @@ const ProfilePage = () => {
                 Subscribed
               </p>
             </div>
-            <div className="mr-[24px] flex items-center justify-center border border-[#FFCB05] rounded-[30px] pl-[35px] pr-[44px] px-[12px] ">
+            <div className="mr-[24px] md:mr-[100px] flex items-center justify-center border border-[#FFCB05] rounded-[30px] pl-[35px] pr-[44px] px-[12px] ">
               <img src={Coins} alt="Coin" className="w-12 h-12" />
               <p className="text-[#FFFFFF] font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-center">
                 N10k
               </p>
             </div>
           </div>
-          <button className="bg-button-gradient color-[#000000] mx-auto mt-[20px] py-[14px] px-[33px]  flex items-center justify-center rounded-[42px] border border-[#00000033] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center">
+          <button
+            className="bg-button-gradient color-[#000000] mx-auto mt-[20px] py-[14px] px-[33px]  flex items-center justify-center rounded-[42px] border border-[#00000033] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center"
+            onClick={handleViewLeaderboardClick}
+          >
             <img src={Trophy} alt="trophy" />
             View Leaderboard
           </button>
@@ -140,12 +149,10 @@ const ProfilePage = () => {
               </div>
             </div>
           </div>
-          <div
-            className="relative  flex justify-center py-4"
-          >
+          <div className="relative  flex justify-center py-4">
             <div className="absolute backdrop-blur-sm bottom-[30px] w-[342px] h-[82px] flex justify-between items-center  bg-foot-nav-gradient rounded-b-[60px] pt-[12px] pb-[20px] px-[46px]  ">
               <Link
-                to="/"
+                to="/home"
                 className="bg-foot-nav-gradient rounded-[50px] w-[60px] h-[60px] flex items-center justify-center"
               >
                 <img src={Home} alt="home" />
@@ -176,8 +183,3 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
-
-
-
-
-

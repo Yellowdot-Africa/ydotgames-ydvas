@@ -15,6 +15,7 @@ export default {
         'foot-nav-gradient': 'linear-gradient(180deg, rgba(221, 221, 221, 0.4) 0%, rgba(241, 241, 241, 0.4) 100%)',
         'profile-gradient': 'linear-gradient(174.25deg, #FFCB05 9.24%, #000000 41.91%)',
         'button-gradient': 'linear-gradient(90deg, #4A3B0B 0%, #FFCB05 50%, #4A3B0B 100%)',
+        'background-avatar': 'linear-gradient(132.65deg, #000000 26.03%, #1D1D1D 90.9%)',
 
       },
       boxShadow: {
