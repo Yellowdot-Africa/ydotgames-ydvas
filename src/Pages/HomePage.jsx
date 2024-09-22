@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import CarouselSection from "../Components/CarouselSection";
 import Arrow from "../assets/Icons/Arrow.png";
@@ -23,12 +23,68 @@ import Avatar2 from "../assets/Icons/avatar2.png";
 import Avatar3 from "../assets/Icons/avatar3.png";
 import Avatar4 from "../assets/Icons/avatar4.png";
 import Avatar5 from "../assets/Icons/avatar5.png";
+import AuthContext from "../Context/AuthContext";
+import GameContext from "../Context/GameContext";
+import BigCashGame from "../Components/BigCashGame";
 
 const HomePage = () => {
   const avatars = [Avatar1, Avatar2, Avatar3, Avatar4, Avatar5];
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [showAvatarSelector, setShowAvatarSelector] = useState(false);
   const [currentAvatar, setCurrentAvatar] = useState(AvatarProfile);
+  const [scrollDirection, setScrollDirection] = useState("null");
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+  const { auth } = useContext(AuthContext);
+  const { games, loading } = useContext(GameContext);
+  const [categories, setCategories] = useState([]);
+
+
+
+  useEffect(() => {
+    if (games && games.length > 0) {
+      const uniqueCategories = [
+        ...new Set(games.map((game) => game.category[0])),
+      ];
+      setCategories(uniqueCategories);
+    }
+  }, [games]);
+
+  const truncateTitle = (title) => {
+    const maxLength = 15; 
+    if (title.length > maxLength) {
+      return title.substring(0, maxLength) + "...";
+    }
+    return title;
+  };
+  
+
+  useEffect(() => {
+    let lastScrollTop = 0;
+
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop) {
+        setScrollDirection("down");
+      } else {
+        setScrollDirection("up");
+      }
+      setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollTop]);
+
+  const navStyle = {
+    position: "fixed",
+    bottom: scrollDirection === "down" ? "0px" : "0px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    transition: "bottom 0.5s ease",
+  };
 
   const handleAvatarClick = () => {
     setShowAvatarSelector(!showAvatarSelector);
@@ -47,23 +103,24 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="relative">
+      <div className="relative ">
         <div
-          className={`flex flex-col min-h-screen bg-darrk-gradient  ${
+          className={`flex flex-col min-h-screen  h-[1240px] bg-darrk-gradient  ${
             showAvatarSelector ? " blur-[3px]" : ""
           }`}
         >
           <div className="bg-[#E2EEF60D] mt-[17px]">
             <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[265px] h-[49px]  mt-[21px] mx-auto">
               <div className="flex justify-between items-center w-[265px] h-[49px]">
-                <div className="flex items-center justify-between space-x-14  relative">
+                <div className="flex items-center justify-between space-x-12  relative">
                   <div
-                    className="w-[40px] h-[40px] shadow-box-shadow flex items-center justify-center cursor-pointer"
+                    className="w-[50px] h-[50px]  flex items-center justify-center cursor-pointer"
                     onClick={handleAvatarClick}
                   >
                     <img
                       src={currentAvatar || "/default-avatar.png"}
                       alt="Profile Avatar"
+                      className="-ml-[8px] -mb-[6px]"
                     />
                   </div>
 
@@ -90,10 +147,10 @@ const HomePage = () => {
               <p className="text-white mb-[17px] font-mtn-brighter-xtra-bold font-extrabold text-[24px] leading-[31.2px] text-center">
                 Play Now
               </p>
-              <CarouselSection />
+              {loading ? <p>Loading games...</p> : <CarouselSection />}
               <button className="bg-[#7F806266] border border-[#FFCB05]  -mb-[15px] rounded-[26px] flex items-center text-[#FFCB05] justify-center gap-[6px] mt-[29px] py-[5px] px-[16px] font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-center">
                 <img src={Arrow} alt="arrow" />
-                Discover More
+                FAQs
               </button>
             </div>
           </div>
@@ -103,108 +160,70 @@ const HomePage = () => {
               All Games
             </h2>
             <div className="space-x-[33px] mt-[17px] flex justify-center items-center mb-[20px]">
-              <button className="flex items-center justify-center text-white rounded-[26px] border border-[#D7E7F066] bg-[#EDF0F233] font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] gap-[6px] text-center px-[11px] py-[5px]">
-                <img src={Action} alt="action" />
-                Action
-              </button>
-              <button className="flex items-center justify-center text-white rounded-[26px] border border-[#D7E7F066] bg-[#EDF0F233] font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] gap-[6px] text-center px-[6px] py-[5px]">
-                <img src={Fantasy} alt="fantasy" />
-                Fantasy
-              </button>
-              <button className="flex items-center justify-center text-white rounded-[26px] border border-[#D7E7F066] bg-[#EDF0F233] font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] gap-[6px] text-center px-[9px] py-[5px]">
-                <img src={Racing} alt="racing" />
-                Racing
-              </button>
+              {categories.map((category, index) => (
+                <button
+                  key={index}
+                  className="flex items-center justify-center text-white rounded-[26px] border border-[#D7E7F066] bg-[#EDF0F233] font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] gap-[6px] text-center px-[9px] py-[5px]"
+                >
+                  {category === "Action" && <img src={Action} alt="action" />}
+                  {category === "Adventure" && (
+                    <img src={Fantasy} alt="fantasy" />
+                  )}
+                  {category === "Racing" && <img src={Racing} alt="racing" />}
+                  {category}
+                </button>
+              ))}
             </div>
+
             <div className="flex items-center justify-center">
-              <div className="grid grid-cols-2 gap-[35px] mb-4 ">
-                <div className="bg-custom-t-gradient flex flex-col items-center justify-center mt-[32px] rounded-[16px] w-[152px] h-[166px]">
-                  <img
-                    src={Forknite}
-                    alt="forknite"
-                    className="mb-[6px] -mt-[50px]"
-                  />
-                  <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
-                    Forknite
-                  </p>
-                  <div className="flex items-center justify-center mt-[9.8px]">
-                    <img src={StarYs} alt="start" />
-                    <img src={StarYs} alt="start" />
-                    <img src={StarYs} alt="start" />
-                    <img src={StarWs} alt="start" />
-                    <img src={StarWs} alt="start" />
+              <div className="grid grid-cols-2 gap-[35px] mb-4">
+                {games.map((game, index) => (
+
+                  <div
+                    key={game.gameId}
+                    className="bg-custom-t-gradient flex flex-col items-center justify-center mt-[32px] rounded-[16px] w-[152px] h-[166px]"
+                  >
+                    <img
+                     src={`data:image/png;base64,${game.base64}`}
+
+
+                      alt={game.title}
+                      className="mb-[6px] -mt-[50px] w-[60px] h-[60px] rounded-[12px] object-cover"
+                    />
+                    <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
+                    {truncateTitle(game.title)}
+                    </p>
+                    {/* Star rating logic */}
+                    <div className="flex items-center justify-center mt-[9.8px]">
+                      <img src={StarYs} alt="start" />
+                      <img src={StarYs} alt="start" />
+                      <img src={StarWs} alt="start" />
+                      <img src={StarWs} alt="start" />
+                      <img src={StarWs} alt="start" />
+                    </div>
+                    <button className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center px-[30px] py-[6px] mx-auto mt-[12.87px]">
+                      <a
+                        href={game.playUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Play
+                      </a>
+                    </button>
                   </div>
-                  <button className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center px-[30px] py-[6px] mx-auto mt-[12.87px]">
-                    Play
-                  </button>
-                </div>
-                <div className="bg-custom-t-gradient flex flex-col items-center justify-center mt-[32px] rounded-[16px] w-[152px] h-[166px]">
-                  <img
-                    src={Gumball}
-                    alt="gunball"
-                    className="mb-[6px] -mt-[50px]"
-                  />
-                  <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
-                    Gumball
-                  </p>
-                  <div className="flex items-center justify-center mt-[9.8px]">
-                    <img src={StarYs} alt="start" />
-                    <img src={StarYs} alt="start" />
-                    <img src={StarYs} alt="start" />
-                    <img src={StarWs} alt="start" />
-                    <img src={StarWs} alt="start" />
-                  </div>
-                  <button className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center px-[30px] py-[6px] mx-auto mt-[12.87px]">
-                    Play
-                  </button>
-                </div>
-                <div className="bg-custom-t-gradient flex flex-col items-center justify-center mt-[32px] rounded-[16px] w-[152px] h-[166px]">
-                  <img
-                    src={Taffy}
-                    alt="taffy"
-                    className="mb-[6px] -mt-[50px]"
-                  />
-                  <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
-                    Taffy Match Up
-                  </p>
-                  <div className="flex items-center justify-center mt-[9.8px]">
-                    <img src={StarYs} alt="start" />
-                    <img src={StarYs} alt="start" />
-                    <img src={StarWs} alt="start" />
-                    <img src={StarWs} alt="start" />
-                    <img src={StarWs} alt="start" />
-                  </div>
-                  <button className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center px-[30px] py-[6px] mx-auto mt-[12.87px]">
-                    Play
-                  </button>
-                </div>
-                <div className="bg-custom-t-gradient flex flex-col items-center justify-center mt-[32px] rounded-[16px] w-[152px] h-[166px]">
-                  <img
-                    src={XWinger}
-                    alt="xwinger"
-                    className="mb-[6px] -mt-[50px]"
-                  />
-                  <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
-                    X-Winger
-                  </p>
-                  <div className="flex items-center justify-center mt-[9.8px]">
-                    <img src={StarYs} alt="start" />
-                    <img src={StarYs} alt="start" />
-                    <img src={StarYs} alt="start" />
-                    <img src={StarWs} alt="start" />
-                    <img src={StarWs} alt="start" />
-                  </div>
-                  <button className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center px-[30px] py-[6px] mx-auto mt-[12.87px]">
-                    Play
-                  </button>
-                </div>
+                ))}
               </div>
             </div>
+            <BigCashGame />
+
           </section>
         </div>
 
-        <div className="relative w-full flex justify-center  ">
-          <div className="absolute bottom-[213px]  md:bottom-[238px] left-0px flex justify-between items-center w-[342px] h-[82px] bg-foot-nav-gradient rounded-b-[60px] pt-[12px] pb-[20px] px-[46px] ">
+        <div className="fixed w-full flex justify-center  ">
+          <div
+            style={navStyle}
+            className="bottom-0 backdrop-blur-sm mb-[15px] md:mb-[50px]   left-0px flex justify-between items-center w-[342px] h-[82px] bg-foot-nav-gradient rounded-b-[60px] pt-[12px] pb-[20px] px-[46px] "
+          >
             <Link
               to="/home"
               className="bg-foot-nav-gradient rounded-[50px] w-[60px] h-[60px] flex items-center justify-center"
@@ -284,3 +303,7 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+
+
+

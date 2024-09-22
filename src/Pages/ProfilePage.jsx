@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Avatar1 from "../assets/Icons/avatar1.png";
 import Volume from "../assets/Icons/volume.png";
@@ -12,18 +12,59 @@ import Taffy from "../assets/Images/match-up.png";
 import Home from "../assets/Icons/home.png";
 import Leaderboard from "../assets/Icons/leaderboard.png";
 import Profile from "../assets/Icons/profile.png";
+import GameContext from "../Context/GameContext";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
+  const [scrollDirection, setScrollDirection] = useState(null);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+  const { games, loading } = useContext(GameContext);
+
+  const truncateTitle = (title) => {
+    const maxLength = 10;
+    if (title.length > maxLength) {
+      return title.substring(0, maxLength) + "...";
+    }
+    return title;
+  };
+
+  useEffect(() => {
+    let lastScrollTop = 0;
+
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop) {
+        setScrollDirection("down");
+      } else {
+        setScrollDirection("up");
+      }
+      setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollTop]);
+
+  const navStyle = {
+    position: "fixed",
+    bottom: scrollDirection === "down" ? "0px" : "0px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    transition: "bottom 0.5s ease",
+  };
 
   const handleViewLeaderboardClick = () => {
     navigate("/leaderboard");
   };
   return (
     <>
-      <div className="flex flex-col  justify-center items-center">
-        <div className="bg-[#FFCB05] w-full h-[143px] mx-0"></div>
-        <div className="bg-darrk-gradient min-h-screen lg:h-[100vh] xl:h-[900px] w-full">
+      <div className="flex flex-col h-[1059px] md:h-[1390px] bg-profile-gradient   justify-center items-center">
+        {/* <div className="bg-[#FFCB05] w-full h-[143px] mx-0"></div> */}
+        <div className="bg-darrk-gradient h-[749px]   w-full">
           <div className="flex justify-between items-center -mt-[47px]   ">
             <img
               src={Avatar1}
@@ -34,12 +75,12 @@ const ProfilePage = () => {
               <img
                 src={Volume}
                 alt="Volume"
-                className=" bg-[#000000] border border-[#FFCB05] rounded-[26px] pt-[13.53px] pb-[15.55px] px-[16px]"
+                className=" bg-[#000000] grayscale border border-[#2C3035] rounded-[26px] pt-[13.53px] pb-[15.55px] px-[16px]"
               />
               <img
                 src={Radix}
                 alt="Mode"
-                className=" bg-[#000000] border border-[#FFCB05] rounded-[26px] pt-[13.53px] pb-[15.55px] px-[16px]"
+                className=" bg-[#000000] grayscale border border-[#2C3035] rounded-[26px] pt-[13.53px] pb-[15.55px] px-[16px]"
               />
             </div>
           </div>
@@ -96,61 +137,50 @@ const ProfilePage = () => {
           <p className="font-mtn-brighter-xtra-bold font-extrabold text-[24px] leading-[31.2px] text-center text-[#FFFFFF] mt-[40px]">
             Continue Playing
           </p>
+         
 
           <div className="flex flex-col items-center justify-center gap-[14px] mt-6 w-full ">
-            <div className="bg-[#2C3035] px-[25px] py-[13px] border-[1.5px] border-[#FFFFFF66] shadow-lg rounded-[12px] w-[342px] h-[71px] flex items-center ">
-              <img src={Gumball} alt="gumball" className="w-[47px] h-[46px]" />
-              <div className="block pl-[16px]  text-justify">
-                <p className="font-mtn-brighter-regular font-regular text-[16px] leading-[20.8px]  text-[#FFFFFF]">
-                  {" "}
-                  Gumball
-                </p>
-                <p className="font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-[#FFFFFF]">
-                  #200
-                </p>
-              </div>
-              <div className=" flex -mb-[22px] ml-[125px]">
-                <p className="text-[#FFCA00] font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-center ">
-                  Play
-                </p>
-              </div>
-            </div>
-            <div className="bg-[#2C3035] px-[25px] py-[13px] border-[1.5px] border-[#FFFFFF66] shadow-lg rounded-[12px] w-[342px] h-[71px] flex items-center ">
-              <img src={Temple} alt="temple" className="w-[47px] h-[46px]" />
-              <div className="block pl-[16px]  text-justify">
-                <p className="font-mtn-brighter-regular font-regular text-[16px] leading-[20.8px]  text-[#FFFFFF]">
-                  {" "}
-                  Temple Run
-                </p>
-                <p className="font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-[#FFFFFF]">
-                  #200
-                </p>
-              </div>
-              <div className=" flex -mb-[22px] ml-[59px]">
-                <p className="text-[#FFCA00] font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-center w-[184px]">
-                  Play
-                </p>
-              </div>
-            </div>
-            <div className="bg-[#2C3035] px-[25px] py-[13px] border-[1.5px] border-[#FFFFFF66] shadow-lg rounded-[12px] w-[342px] h-[71px] flex items-center ">
-              <img src={Taffy} alt="taffy" className="w-[47px] h-[46px]" />
-              <div className="block pl-[16px]  text-justify">
-                <p className="font-mtn-brighter-regular font-regular text-[16px] leading-[20.8px]  text-[#FFFFFF] w-[184px]">
-                  Taffy Match Up
-                </p>
-                <p className="font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-[#FFFFFF]">
-                  #200
-                </p>
-              </div>
-              <div className=" flex -mb-[22px] ml-[5px]">
-                <p className="text-[#FFCA00] font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-center ">
-                  Play
-                </p>
-              </div>
-            </div>
+            {games.length > 0 ? (
+              games.slice(0, 3).map((game, index) => (
+                <div
+                  key={game.gameId}
+                  className="bg-[#2C3035] px-[25px] py-[13px] border-[1.5px] border-[#FFFFFF66] shadow-lg rounded-[12px] w-[342px] h-[71px] flex items-center "
+                >
+                  <img
+                    src={`data:image/png;base64,${game.base64}`}
+                    alt={game.title}
+                    className="w-[47px] h-[46px] rounded-[10px] object-cover"
+                  />
+                  <div className="block pl-[16px]  text-justify">
+                    <p className="font-mtn-brighter-regular font-regular w-[184px] text-[16px] leading-[20.8px]  text-[#FFFFFF]">
+                      {truncateTitle(game.title)}
+                    </p>
+                    <p className="font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-[#FFFFFF]">
+                      #200
+                    </p>
+                  </div>
+                  <div className=" flex -mb-[22px] ">
+                    <a
+                      href={game.playUrl}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="text-[#FFCA00] font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-center "
+                    >
+                      Play
+                    </a>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>No games available.</p>
+            )}
           </div>
-          <div className="relative  flex justify-center py-4">
-            <div className="absolute backdrop-blur-sm bottom-[30px] w-[342px] h-[82px] flex justify-between items-center  bg-foot-nav-gradient rounded-b-[60px] pt-[12px] pb-[20px] px-[46px]  ">
+
+          <div className="fixed  flex justify-center py-4 ">
+            <div
+              style={navStyle}
+              className=" backdrop-blur-sm mb-[15px] md:mb-[90px]  w-[342px] h-[82px] flex justify-between items-center  bg-foot-nav-gradient rounded-b-[60px] pt-[12px] pb-[20px] px-[46px]  "
+            >
               <Link
                 to="/home"
                 className="bg-foot-nav-gradient rounded-[50px] w-[60px] h-[60px] flex items-center justify-center"
