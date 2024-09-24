@@ -906,3 +906,536 @@
 // };
 
 // export default ProfilePage;
+
+
+// import React, { useState, useEffect } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import AvatarProfile from "../assets/Images/avatar-prof.png";
+// import Coins from "../assets/Images/coins.png";
+// import Trophy from "../assets/Icons/trophy.png";
+// import Home from "../assets/Icons/home.png";
+// import Leaderboard from "../assets/Icons/leaderboard.png";
+// import Profile from "../assets/Icons/profile.png";
+// import Rank1 from "../assets/Icons/rank4.png";
+// import Rank2 from "../assets/Icons/rank1.png";
+// import Rank3 from "../assets/Icons/rank2.png";
+// import Rank4 from "../assets/Icons/rank3.png";
+// import Rank5 from "../assets/Icons/rank3.png";
+// import Rank6 from "../assets/Icons/rank3.png";
+// import Avatar1 from "../assets/Icons/avatar1.png";
+// import Avatar2 from "../assets/Icons/avatar2.png";
+// import Avatar3 from "../assets/Icons/avatar3.png";
+// import Avatar4 from "../assets/Icons/avatar4.png";
+// import Avatar5 from "../assets/Icons/avatar5.png";
+// import PlusIcon from "../assets/Icons/plus-icon.png";
+
+// const LeaderboardPage = () => {
+//   const leaderboardData = [
+//     { rank: 1, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
+//     { rank: 2, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
+//     { rank: 3, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
+//     { rank: 4, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
+//     { rank: 5, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
+//     { rank: 6, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
+//     { rank: 7, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
+//     { rank: 8, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
+//     { rank: 9, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
+//     { rank: 10, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
+//   ];
+//   const avatars = [Avatar1, Avatar2, Avatar3, Avatar4, Avatar5];
+//   const [selectedAvatar, setSelectedAvatar] = useState(null);
+//   const [showAvatarSelector, setShowAvatarSelector] = useState(false);
+//   const [currentAvatar, setCurrentAvatar] = useState(AvatarProfile);
+//   const navigate = useNavigate();
+
+//   const [scrollDirection, setScrollDirection] = useState(null);
+//   const [lastScrollTop, setLastScrollTop] = useState(0);
+
+//   useEffect(() => {
+//     let lastScrollTop = 0;
+
+//     const handleScroll = () => {
+//       const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+//       if (scrollTop > lastScrollTop) {
+//         setScrollDirection("down");
+//       } else {
+//         setScrollDirection("up");
+//       }
+//       setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
+//     };
+
+//     window.addEventListener("scroll", handleScroll);
+
+//     return () => {
+//       window.removeEventListener("scroll", handleScroll);
+//     };
+//   }, [lastScrollTop]);
+
+//   const navStyle = {
+//     position: "fixed",
+//     bottom: scrollDirection === "down" ? "0px" : "0px",
+//     left: "50%",
+//     transform: "translateX(-50%)",
+//     transition: "bottom 0.5s ease",
+//   };
+
+//   const handleViewPrizesClick = () => {
+//     navigate("/prizes");
+//   };
+
+//   const handleAvatarClick = () => {
+//     setShowAvatarSelector(!showAvatarSelector);
+//   };
+
+//   const handleAvatarSelect = (avatar) => {
+//     setSelectedAvatar(avatar);
+//   };
+
+//   const handleSave = () => {
+//     if (selectedAvatar) {
+//       setCurrentAvatar(selectedAvatar);
+//       setShowAvatarSelector(false);
+//     }
+//   };
+//   return (
+//     <>
+//       <div className="relative">
+//         <div
+//           className={`flex flex-col min-h-[1080px] md:h-[1430px] bg-darrk-gradient  ${
+//             showAvatarSelector ? " blur-[3px]" : ""
+//           }`}
+//         >
+//           <div className="bg-[#E2EEF60D] w-[342px] h-[933px] mt-[17px] mx-auto">
+//             <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[265px] h-[49px]  mt-[21px] mx-auto">
+//               <div className="flex justify-between items-center w-[265px] h-[49px]">
+//                 <div className="flex items-center justify-between space-x-12  relative">
+//                   <div
+//                     className="w-[50px] h-[50px]  flex items-center justify-center cursor-pointer"
+//                     onClick={handleAvatarClick}
+//                   >
+//                     <img
+//                       src={currentAvatar || "/default-avatar.png"}
+//                       alt="Profile Avatar"
+//                       className="-ml-[8px] -mb-[6px]"
+//                     />
+//                   </div>
+
+//                   <div className="flex items-center justify-center">
+//                     <img src={Coins} alt="coin" />
+//                     <p className="font-mtn-brighter-medium font-medium text-[12px] text-center leading-[15.6px] text-[#FFFFFF]">
+//                       R10k
+//                     </p>
+//                   </div>
+//                   <div className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center items-center mt-[12px] mb-[10px] mr-[10px]">
+//                     <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
+//                       T&C
+//                     </p>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+
+//             <div className="bg-background w-[140px] h-[28px] rounded-b-[26px] flex items-center justify-center m-auto shadow-box-shadow">
+//               <p className="font-mtn-brighter-medium font-medium text-[10px] leading-[13px] text-center text-[#FFFFFF]">
+//                 @+2778 414 2470
+//               </p>
+//             </div>
+
+//             <img src={Trophy} alt="trophy" className="mx-auto mt-[4px]" />
+//             <h1 className="font-mtn-brighter-xtra-bold font-extrabold text-[18px] text-center leading-[23.4px] mx-auto text-[#FFFFFF]">
+//               Leaderboard
+//             </h1>
+//             <p className="text-[#FFFFFF] mx-auto font-mtn-brighter-regular font-regular text-[18px] w-[274px] leading-[23.4px] text-center mt-[11px]">
+//               These are our{" "}
+//               <span className="font-mtn-brighter-bold font-bold text-[18px] leading-[23.4px] text-center">
+//                 Top Players
+//               </span>{" "}
+//               and you are currently #6
+//             </p>
+
+//             <div className="w-full   mt-6 ">
+//               <table className="table-auto  mx-auto md:mx-auto">
+//                 <thead>
+//                   <tr className="text-center">
+//                     <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+//                       Rank
+//                     </th>
+//                     <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+//                       Phone
+//                     </th>
+//                     <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+//                       Daily Score
+//                     </th>
+//                     <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+//                       Monthly Score
+//                     </th>
+//                   </tr>
+//                 </thead>
+
+//                 <tbody>
+//                   {leaderboardData.map((player, index) => {
+//                     const rankImage =
+//                       player.rank === 1
+//                         ? Rank1
+//                         : player.rank === 2
+//                         ? Rank2
+//                         : player.rank === 3
+//                         ? Rank3
+//                         : player.rank === 4
+//                         ? Rank4
+//                         : player.rank === 5
+//                         ? Rank5
+//                         : player.rank === 6
+//                         ? Rank6
+//                         : null;
+
+//                     const isTop3 =
+//                       player.rank === 1 ||
+//                       player.rank === 2 ||
+//                       player.rank === 3;
+
+//                     return (
+//                       <tr
+//                         key={index}
+//                         className={`text-center ${
+//                           isTop3
+//                             ? "bg-gradient-to-b from-[#221F20] to-[#000000] shadow-[0px_4px_4px_0px_#00000040] rounded-[25px]"
+//                             : ""
+//                         }`}
+//                       >
+//                         <td className="p-2 relative w-[50px] h-[50px] font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+//                           {rankImage ? (
+//                             <div className="relative flex justify-center items-center ">
+//                               <img
+//                                 src={rankImage}
+//                                 alt={`Rank ${player.rank}`}
+//                                 className="w-[30px] h-[25px]"
+//                               />
+//                               <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-white text-[14px]">
+//                                 {player.rank}
+//                               </span>
+//                             </div>
+//                           ) : (
+//                             <span className="font-bold text-white text-[14px]">
+//                               {player.rank}
+//                             </span>
+//                           )}
+//                         </td>
+
+//                         <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+//                           {player.phone}
+//                         </td>
+//                         <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+//                           {player.dailyScore}
+//                         </td>
+//                         <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+//                           {player.monthlyScore}
+//                         </td>
+//                       </tr>
+//                     );
+//                   })}
+//                 </tbody>
+//               </table>
+//             </div>
+//           </div>
+//         </div>
+//         <div className="w-full " style={navStyle}>
+//           <div className="flex justify-center mb-[51px] ">
+//             <button
+//               className="bg-button-gradient mx-auto py-[14px] px-[33px] rounded-[42px] border border-[#00000033] font-mtn-brighter-bold text-[14px] text-black"
+//               onClick={handleViewPrizesClick}
+//             >
+//               View Prizes
+//             </button>
+//           </div>
+
+//           <div className=" flex justify-center py-8 ">
+//             <div className="w-full max-w-[336px]  h-[82px] backdrop-blur-sm flex justify-between items-center bg-foot-nav-gradient rounded-b-[60px] pt-[12px] pb-[20px] px-[46px]">
+//               <Link
+//                 to="/home"
+//                 className="bg-foot-nav-gradient rounded-[50px] w-[60px] h-[60px] flex items-center justify-center"
+//               >
+//                 <img src={Home} alt="home" />
+//               </Link>
+
+//               <Link
+//                 to="/user-profile"
+//                 className="bg-[#FFCB05] rounded-[50px] w-[76px] h-[76px] flex items-center justify-center -mt-[40px]"
+//               >
+//                 <img
+//                   src={Profile}
+//                   alt="profile"
+//                   className="w-[40px] h-[40px]"
+//                 />
+//               </Link>
+
+//               <Link
+//                 to="/leaderboard"
+//                 className="bg-foot-nav-gradient rounded-[50px] w-[60px] h-[60px] flex items-center justify-center"
+//               >
+//                 <img src={Leaderboard} alt="leaderboard" />
+//               </Link>
+//             </div>
+//           </div>
+
+//         </div>
+//         {showAvatarSelector && (
+//           <div className="flex items-center justify-center mx-auto">
+//             <div className="absolute top-[30px] left-auto w-[265px] h-[138px]  bg-background-avatar  rounded-[26px]  ">
+//               <div className="flex  ">
+//                 <img
+//                   src={currentAvatar || "/default-avatar.png"}
+//                   alt="Profile Avatar"
+//                 />
+//                 <p className="text-white pt-[12px] font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-center w-[126px]">
+//                   Please select an avatar
+//                 </p>
+//                 {selectedAvatar && (
+//                   <button
+//                     className="text-[#FFCB05] ml-[32px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center  -mt-[5px]"
+//                     onClick={handleSave}
+//                   >
+//                     Save
+//                   </button>
+//                 )}
+//               </div>
+
+//               <div className="flex px-[10px] mt-4">
+//                 {avatars.map((avatar, index) => (
+//                   <div
+//                     key={index}
+//                     className={`relative  ${
+//                       selectedAvatar === avatar
+//                         ? "border-[3px] rounded-[28px] flex items-center justify-center border-[#FFCB05]"
+//                         : ""
+//                     } cursor-pointer`}
+//                     onClick={() => handleAvatarSelect(avatar)}
+//                   >
+//                     <img
+//                       src={avatar}
+//                       alt={`Avatar ${index + 1}`}
+//                       className="w-[50px] h-[50px]"
+//                     />
+//                     {selectedAvatar !== avatar && (
+//                       <div className=" absolute bottom-[5px] right-0  w-[10px] h-[10px]  bg-[#FFCB05] rounded-[28px]">
+//                         <img
+//                           src={PlusIcon}
+//                           alt="Plus Icon"
+//                           className="w-[15px] h-[15px]  "
+//                         />
+//                       </div>
+//                     )}
+//                   </div>
+//                 ))}
+//               </div>
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     </>
+//   );
+// };
+
+// export default LeaderboardPage;
+
+
+
+
+
+import React, { useState } from 'react';
+
+// const BigCashTrivia = () => {
+//   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+//   const [selectedAnswer, setSelectedAnswer] = useState(null);
+//   const [isCorrect, setIsCorrect] = useState(null);
+
+//   const questions = [
+//     {
+//       question: "What is the capital of France?",
+//       answers: ["Berlin", "Madrid", "Paris", "Rome"],
+//       correctAnswer: "Paris"
+//     },
+//     {
+//       question: "Which planet is known as the Red Planet?",
+//       answers: ["Earth", "Mars", "Jupiter", "Saturn"],
+//       correctAnswer: "Mars"
+//     },
+//     {
+//       question: "Who wrote 'Hamlet'?",
+//       answers: ["Mark Twain", "J.K. Rowling", "William Shakespeare", "Charles Dickens"],
+//       correctAnswer: "William Shakespeare"
+//     }
+//   ];
+
+//   const handleAnswerClick = (answer) => {
+//     setSelectedAnswer(answer);
+//     if (answer === questions[currentQuestionIndex].correctAnswer) {
+//       setIsCorrect(true);
+//     } else {
+//       setIsCorrect(false);
+//     }
+//   };
+
+//   const handleNextQuestion = () => {
+//     setSelectedAnswer(null);
+//     setIsCorrect(null);
+//     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+//   };
+
+//   return (
+//     <div className="flex flex-col items-center justify-center w-full h-screen bg-darrk-gradient text-white">
+//       <div className="w-[350px] p-4 bg-custom-t-gradient rounded-lg shadow-lg text-center">
+//         <h2 className="text-2xl font-bold mb-4">
+//           {questions[currentQuestionIndex].question}
+//         </h2>
+//         <div className="flex flex-col gap-2">
+//           {questions[currentQuestionIndex].answers.map((answer, index) => (
+//             <button
+//               key={index}
+//               onClick={() => handleAnswerClick(answer)}
+//               className={`py-2 px-4 rounded-lg ${selectedAnswer === answer ? (isCorrect ? 'bg-green-500' : 'bg-red-500') : 'bg-gray-800'}`}
+//             >
+//               {answer}
+//             </button>
+//           ))}
+//         </div>
+//         {selectedAnswer && (
+//           <div className="mt-4">
+//             {isCorrect ? (
+//               <p className="text-green-400">Correct!</p>
+//             ) : (
+//               <p className="text-red-400">Wrong! The correct answer is {questions[currentQuestionIndex].correctAnswer}</p>
+//             )}
+//             {currentQuestionIndex < questions.length - 1 && (
+//               <button
+//                 onClick={handleNextQuestion}
+//                 className="mt-4 bg-[#19BFC1] py-2 px-4 rounded-lg"
+//               >
+//                 Next Question
+//               </button>
+//             )}
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default BigCashTrivia;
+
+
+
+
+// import React, {useState} from "react";
+// // import Logo from "../../assets/Icons/Frame-cup.png";
+// import Congrat from "../../assets/Icons/congrat.png";
+// import Right from "../../assets/Icons/icon-cancel.png";
+// import Cancel from "../../assets/Icons/icon-right.png";
+// import { useNavigate, useLocation } from "react-router-dom";
+// // import { useDispatch, useSelector } from "react-redux";
+// // import EndGameModal from "../../Components/EndGameModal";
+// import Trophy from "../../assets/Images/gold-trophy.png";
+// import "../../Pages/ResultPage/ResultPage.css";
+
+
+
+// const ResultPage = () => {
+//   const [screenBgColor, setScreenBgColor] = useState("#580DA4"); 
+//   const [showModal, setShowModal] = useState(false);
+
+//   const location = useLocation();
+//   const { selectedPack } = location.state || {}; 
+
+//   const navigate = useNavigate();
+//   const walletBalance = useSelector((state) => state.wallet.walletBalance);
+
+//   const { correctAnswers, wrongAnswers, balance } = location.state || {};
+
+//   const handleQuit = () => {
+//     setScreenBgColor("#1F82F2"); 
+//     setShowModal(true);
+//   };
+
+//   const handleEndGame = () => {
+//     navigate("/home");
+//   };
+
+//   return (
+//     <>
+//       <div className="result-container">
+//         <div className="result-header">
+//           <div className="your-result">
+//             <p>Your Results</p>
+
+//           </div>
+//           <div className="quitt">
+//             <p onClick={handleQuit}>Quit</p>
+
+//           </div>
+//         </div>
+
+//         <div className="result-details">
+//           <div className="result-info">
+//             <img className="right" src={Right} alt="green" />
+
+//             <p className="info-value">{correctAnswers}</p>
+
+//             <p className="info-heading">Correct </p>
+//           </div>
+//           <div className="result-info">
+//             <img className="wrong" src={Cancel} alt="red" />
+//             <p className="info-value">{wrongAnswers}</p>
+
+//             <p className="info-heading">Wrong</p>
+//           </div>
+//         </div>
+
+//         <div className="prize-details">
+//           <img src={Trophy} alt="trophy" />
+//           <p className="prize-amount">Welldone</p>
+//           <p className="current-balance">Current balance: {walletBalance} Naira</p>
+//         </div>
+//         <div className="result-text">
+//           <img src={Congrat} alt="" />
+//           <p className="qualification-text">
+//             You automatically qualify for a draw after every game that you
+//             exceed 70% correct.
+//           </p>
+//         </div>
+//         <button
+//           className="replay-button"
+//           onClick={() => {
+//             navigate("/questions", {
+//               state: {
+//                 selectedPack
+//               }
+//             });
+//           }}
+//         >
+//           Replay
+//         </button>
+//         <a className="back-to-home"  onClick={() => {
+//             navigate("/home", {
+//               state: {
+//                 selectedPack
+//               }
+//             });
+//           }}>Home</a>
+       
+//       </div>
+//       <EndGameModal
+//         isOpen={showModal}
+//         onClose={() => setShowModal(false)}
+//         onEnd={handleEndGame}
+//       />
+//     </>
+//   );
+// };
+
+// export default ResultPage;
+
+
+
+
+

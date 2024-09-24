@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AvatarProfile from "../assets/Images/avatar-prof.png";
 import Coins from "../assets/Images/coins.png";
 import Trophy from "../assets/Icons/trophy.png";
 import Home from "../assets/Icons/home.png";
-import Leaderboard from "../assets/Icons/leaderboard.png";
+import LeaderboardIcon from "../assets/Icons/leaderboard.png";
 import Profile from "../assets/Icons/profile.png";
 import Rank1 from "../assets/Icons/rank4.png";
 import Rank2 from "../assets/Icons/rank1.png";
@@ -18,28 +18,23 @@ import Avatar3 from "../assets/Icons/avatar3.png";
 import Avatar4 from "../assets/Icons/avatar4.png";
 import Avatar5 from "../assets/Icons/avatar5.png";
 import PlusIcon from "../assets/Icons/plus-icon.png";
+import { useLeaderboard } from "../Context/LeaderboardContext";
 
-const LeaderboardPage = () => {
-  const leaderboardData = [
-    { rank: 1, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
-    { rank: 2, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
-    { rank: 3, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
-    { rank: 4, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
-    { rank: 5, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
-    { rank: 6, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
-    { rank: 7, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
-    { rank: 8, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
-    { rank: 9, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
-    { rank: 10, phone: "**88881", dailyScore: "0000", monthlyScore: "0000" },
-  ];
-  const avatars = [Avatar1, Avatar2, Avatar3, Avatar4, Avatar5];
+const LeaderboardPage = ({ subscriberMsisdn }) => {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [showAvatarSelector, setShowAvatarSelector] = useState(false);
   const [currentAvatar, setCurrentAvatar] = useState(AvatarProfile);
+  const avatars = [Avatar1, Avatar2, Avatar3, Avatar4, Avatar5];
   const navigate = useNavigate();
-
   const [scrollDirection, setScrollDirection] = useState(null);
   const [lastScrollTop, setLastScrollTop] = useState(0);
+
+  const { leaderboardData, loading, error, fetchLeaderboard } =
+    useLeaderboard();
+
+  useEffect(() => {
+    fetchLeaderboard(subscriberMsisdn);
+  }, [subscriberMsisdn]);
 
   useEffect(() => {
     let lastScrollTop = 0;
@@ -88,6 +83,11 @@ const LeaderboardPage = () => {
       setShowAvatarSelector(false);
     }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <div className="relative">
@@ -96,13 +96,18 @@ const LeaderboardPage = () => {
             showAvatarSelector ? " blur-[3px]" : ""
           }`}
         >
+          {error && (
+            <div className="text-red-500 text-center mt-4">{error}</div>
+          )}
+
           <div className="bg-[#E2EEF60D] w-[342px] h-[933px] mt-[17px] mx-auto">
             <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[265px] h-[49px]  mt-[21px] mx-auto">
+              {/* Avatar and Coin Section */}
               <div className="flex justify-between items-center w-[265px] h-[49px]">
                 <div className="flex items-center justify-between space-x-12  relative">
                   <div
                     className="w-[50px] h-[50px]  flex items-center justify-center cursor-pointer"
-                    onClick={handleAvatarClick}
+                    onClick={() => setShowAvatarSelector(!showAvatarSelector)}
                   >
                     <img
                       src={currentAvatar || "/default-avatar.png"}
@@ -141,11 +146,15 @@ const LeaderboardPage = () => {
               <span className="font-mtn-brighter-bold font-bold text-[18px] leading-[23.4px] text-center">
                 Top Players
               </span>{" "}
-              and you are currently #6
+              and you are currently #
+              {leaderboardData.find(
+                (player) => player.phone === subscriberMsisdn
+              )?.rank || "N/A"}
             </p>
 
-            <div className="w-full   mt-6 ">
-              <table className="table-auto  mx-auto md:mx-auto">
+            {/* Table */}
+            <div className="w-full mt-6 ">
+              <table className="table-auto mx-auto md:mx-auto">
                 <thead>
                   <tr className="text-center">
                     <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
@@ -230,6 +239,7 @@ const LeaderboardPage = () => {
             </div>
           </div>
         </div>
+
         <div className="w-full " style={navStyle}>
           <div className="flex justify-center mb-[51px] ">
             <button
@@ -264,11 +274,10 @@ const LeaderboardPage = () => {
                 to="/leaderboard"
                 className="bg-foot-nav-gradient rounded-[50px] w-[60px] h-[60px] flex items-center justify-center"
               >
-                <img src={Leaderboard} alt="leaderboard" />
+                <img src={LeaderboardIcon} alt="leaderboard" />
               </Link>
             </div>
           </div>
-          
         </div>
         {showAvatarSelector && (
           <div className="flex items-center justify-center mx-auto">

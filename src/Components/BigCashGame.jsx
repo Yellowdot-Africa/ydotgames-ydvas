@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom"; 
-// import FrameBigCash from "../assets/Images/frameBigCash.png"; 
 
 const BigCashGame = () => {
   return (
@@ -9,7 +8,6 @@ const BigCashGame = () => {
         <div className="relative w-[344px] h-[166px]  bg-custom-t-gradient rounded-[16px] shadow-md flex flex-col items-center justify-between p-4">
           <div
             className="w-[120px] h-[80px] bg-cover bg-center"
-            // style={{ backgroundImage: `url(${FrameBigCash})` }}
           ></div>
           <div className="text-center">
             <h3 className="text-white font-bold font-mtn-brighter-bold  text-[18px] text-center leading-[18.2px]">BigCash Trivia Game</h3>

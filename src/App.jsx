@@ -6,6 +6,7 @@ import Leaderboard from './Pages/Leaderboard';
 import ProfilePage from "./Pages/ProfilePage";
 import PrizesPage from './Pages/Prizes';
 import BigCashTrivia from './Pages/BigCashTrivia';
+import ResultPage from './Pages/ResultPage';
 import './App.css';
 
 
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
     path: "/prizes",
     element: <PrizesPage />,
   },
+  {
+    path: "/result-page",
+    element: <ResultPage />,
+  },
 ]);
 
 const App = ()=> {
@@ -48,6 +53,7 @@ const App = ()=> {
 }
 
 export default App;
+
 
 
 
