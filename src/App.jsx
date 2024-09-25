@@ -8,6 +8,8 @@ import PrizesPage from './Pages/Prizes';
 import BigCashTrivia from './Pages/BigCashTrivia';
 import ResultPage from './Pages/ResultPage';
 import './App.css';
+import FaqAccordion from './Pages/FaqAccordion';
+import TermsAndConditions from './Pages/TermsAndConditions';
 
 
 
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
   {
     path: "/result-page",
     element: <ResultPage />,
+  },
+  {
+    path: "/faq",
+    element: <FaqAccordion />,
+  },
+  {
+    path: "/terms-and-conditions",
+    element: <TermsAndConditions/>,
   },
 ]);
 

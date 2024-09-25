@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AvatarProfile from "../assets/Images/avatar-prof.png";
 import Coins from "../assets/Images/coins.png";
 import Trophy from "../assets/Icons/trophy.png";
+import Arrow from "../assets/Icons/Arrow.png";
 import Home from "../assets/Icons/home.png";
 import LeaderboardIcon from "../assets/Icons/leaderboard.png";
 import Profile from "../assets/Icons/profile.png";
@@ -122,11 +123,12 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                       R10k
                     </p>
                   </div>
-                  <div className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center items-center mt-[12px] mb-[10px] mr-[10px]">
+                  <Link to="/terms-and-conditions" className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center items-center mt-[12px] mb-[10px] mr-[10px]">
                     <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
                       T&C
                     </p>
-                  </div>
+                  </Link>
+                
                 </div>
               </div>
             </div>

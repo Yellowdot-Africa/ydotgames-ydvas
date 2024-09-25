@@ -137,7 +137,6 @@ const ProfilePage = () => {
           <p className="font-mtn-brighter-xtra-bold font-extrabold text-[24px] leading-[31.2px] text-center text-[#FFFFFF] mt-[40px]">
             Continue Playing
           </p>
-         
 
           <div className="flex flex-col items-center justify-center gap-[14px] mt-6 w-full ">
             {games.length > 0 ? (
@@ -213,6 +212,3 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
-
-
-

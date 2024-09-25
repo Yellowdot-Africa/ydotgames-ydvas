@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"; 
+import BigCash from "../assets/Images/big-cash.jpeg";
+
 
 const BigCashGame = () => {
   return (
@@ -10,6 +12,7 @@ const BigCashGame = () => {
             className="w-[120px] h-[80px] bg-cover bg-center"
           ></div>
           <div className="text-center">
+            <img src={BigCash} alt="bigcash" className="-mt-[50px] rounded-[50px] w-[60px] h-[60px] object-cover mx-auto mb-[8px]" />
             <h3 className="text-white font-bold font-mtn-brighter-bold  text-[18px] text-center leading-[18.2px]">BigCash Trivia Game</h3>
             <p className="text-gray-400 text-[14px] font-mtn-brighter-regular font-regular text-center leading-[18.2px] mt-2">Test your trivia knowledge!</p>
           </div>

@@ -11,6 +11,7 @@ import Forknite from "../assets/Images/forknite.png";
 import XWinger from "../assets/Images/x-winger.png";
 import Gumball from "../assets/Images/gumball.png";
 import Taffy from "../assets/Images/match-up.png";
+import BigCash from "../assets/Images/big-cash.jpeg";
 import Home from "../assets/Icons/home.png";
 import Leaderboard from "../assets/Icons/leaderboard.png";
 import Profile from "../assets/Icons/profile.png";
@@ -110,9 +111,9 @@ const HomePage = () => {
           }`}
         >
           <div className="bg-[#E2EEF60D] mt-[17px]">
-            <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[265px] h-[49px]  mt-[21px] mx-auto">
-              <div className="flex justify-between items-center w-[265px] h-[49px]">
-                <div className="flex items-center justify-between space-x-12  relative">
+            <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[342px] h-[49px]  mt-[21px] mx-auto">
+              <div className="flex justify-between items-center w-[342px] h-[49px]">
+                <div className="flex items-center  space-x-10  relative">
                   <div
                     className="w-[50px] h-[50px]  flex items-center justify-center cursor-pointer"
                     onClick={handleAvatarClick}
@@ -130,11 +131,18 @@ const HomePage = () => {
                       R10k
                     </p>
                   </div>
-                  <div className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center items-center mt-[12px] mb-[10px] mr-[10px]">
+                  
+                  <Link to="/terms-and-conditions" className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center items-center mt-[12px] mb-[10px] ">
                     <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
                       T&C
                     </p>
-                  </div>
+                   
+                  </Link>
+                  <Link to="/faq" className="border border-[#FFCB05]   rounded-[26px] w-[61px] h-[27px]  flex items-center  justify-center gap-[6px]   py-[5px] px-[20px]  ">
+                <img src={Arrow} alt="arrow" />
+               
+                <p className="font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-center text-[#FFCB05]" > FAQs</p>
+              </Link>
                 </div>
               </div>
             </div>
@@ -148,10 +156,7 @@ const HomePage = () => {
                 Play Now
               </p>
               {loading ? <p>Loading games...</p> : <CarouselSection />}
-              <button className="bg-[#7F806266] border border-[#FFCB05]  -mb-[15px] rounded-[26px] flex items-center text-[#FFCB05] justify-center gap-[6px] mt-[29px] py-[5px] px-[16px] font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-center">
-                <img src={Arrow} alt="arrow" />
-                FAQs
-              </button>
+             
             </div>
           </div>
 

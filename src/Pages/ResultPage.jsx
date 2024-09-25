@@ -22,7 +22,7 @@ const ResultPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center   w-[100%] h-[100vh]  bg-[#EFF3F5] text-black pt-[50px] px-[20px]">
+    <div className="flex flex-col items-center   w-[100%] h-[100vh]  bg-[#EFF3F5] text-black pt-[70px] px-[20px]">
       <h1 className="text-[20px] leading-[24px] font-mtn-brighter-bold font-bold mb-4">Your Results</h1>
       <div className="flex items-center justify-around w-full h-[40px] bg-[#f7f7f7] rounded-[10px]">
            <div className="flex items-center justify-center">

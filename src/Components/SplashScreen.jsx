@@ -57,7 +57,6 @@ const SplashScreen = () => {
             </div>
           )}
 
-          {/* {loadingComplete ? ( */}
           {loadingComplete && (
             <div className="h-[60px] w-[230px] flex justify-center items-center">
               <button
@@ -71,7 +70,6 @@ const SplashScreen = () => {
                   className="absolute -top-[25px] -right-3 w-10 h-10 m-2"
                 />
               </button>
-              {/* //   ) : null} */}
             </div>
           )}
         </div>
