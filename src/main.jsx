@@ -4,16 +4,22 @@ import { AuthProvider } from "./Context/AuthContext";
 import { GameProvider } from "./Context/GameContext";
 import App from "./App.jsx";
 import "./index.css";
-import { LeaderboardProvider } from "./Context/LeaderboardContext";
+import { UserProvider } from "./Context/UserContext"; 
+import { LeaderboardProvider } from "./Context/LeaderboardContext"; 
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
       <GameProvider>
-        <LeaderboardProvider>
-          <App />
-        </LeaderboardProvider>
+        <UserProvider>
+          <LeaderboardProvider>
+            <App />
+          </LeaderboardProvider>
+        </UserProvider>
       </GameProvider>
     </AuthProvider>
   </StrictMode>
 );
+
+
+

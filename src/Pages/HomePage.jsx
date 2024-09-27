@@ -26,6 +26,7 @@ import Avatar4 from "../assets/Icons/avatar4.png";
 import Avatar5 from "../assets/Icons/avatar5.png";
 import AuthContext from "../Context/AuthContext";
 import GameContext from "../Context/GameContext";
+import UserContext from "../Context/UserContext";
 import BigCashGame from "../Components/BigCashGame";
 
 const HomePage = () => {
@@ -36,10 +37,10 @@ const HomePage = () => {
   const [scrollDirection, setScrollDirection] = useState("null");
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const { auth } = useContext(AuthContext);
+  const {handleUpdateSubscriberProfile, userProfile} = useContext(UserContext);
   const { games, loading } = useContext(GameContext);
   const [categories, setCategories] = useState([]);
-
-
+  // const msisdn = userProfile.msisdn; 
 
   useEffect(() => {
     if (games && games.length > 0) {
@@ -51,13 +52,12 @@ const HomePage = () => {
   }, [games]);
 
   const truncateTitle = (title) => {
-    const maxLength = 15; 
+    const maxLength = 15;
     if (title.length > maxLength) {
       return title.substring(0, maxLength) + "...";
     }
     return title;
   };
-  
 
   useEffect(() => {
     let lastScrollTop = 0;
@@ -91,8 +91,10 @@ const HomePage = () => {
     setShowAvatarSelector(!showAvatarSelector);
   };
 
-  const handleAvatarSelect = (avatar) => {
-    setSelectedAvatar(avatar);
+  const handleAvatarSelect = async (avatarId) => {
+    // setSelectedAvatar(avatar);
+    await handleUpdateSubscriberProfile(msisdn, userProfile.nickname, avatarId);
+
   };
 
   const handleSave = () => {
@@ -111,9 +113,9 @@ const HomePage = () => {
           }`}
         >
           <div className="bg-[#E2EEF60D] mt-[17px]">
-            <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[342px] h-[49px]  mt-[21px] mx-auto">
+            <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[282px] h-[49px]  mt-[21px] mx-auto">
               <div className="flex justify-between items-center w-[342px] h-[49px]">
-                <div className="flex items-center  space-x-10  relative">
+                <div className="flex items-center  space-x-12  relative">
                   <div
                     className="w-[50px] h-[50px]  flex items-center justify-center cursor-pointer"
                     onClick={handleAvatarClick}
@@ -124,31 +126,38 @@ const HomePage = () => {
                       className="-ml-[8px] -mb-[6px]"
                     />
                   </div>
+                  <div className="flex items-center justify-center gap-[10px]  ">
+                    <div className="flex items-center justify-center">
+                      <img src={Coins} alt="coin" />
+                      <p className="font-mtn-brighter-medium font-medium text-[12px] text-center leading-[15.6px] text-[#FFFFFF]">
+                        R10k
+                      </p>
+                    </div>
 
-                  <div className="flex items-center justify-center">
-                    <img src={Coins} alt="coin" />
-                    <p className="font-mtn-brighter-medium font-medium text-[12px] text-center leading-[15.6px] text-[#FFFFFF]">
-                      R10k
-                    </p>
+                    <Link
+                      to="/terms-and-conditions"
+                      className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center items-center mt-[12px] mb-[10px] "
+                    >
+                      <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
+                        T&C's
+                      </p>
+                    </Link>
+                    <Link
+                      to="/faq"
+                      className="border border-[#FFCB05]   rounded-[26px] w-[51px] h-[27px]  flex items-center  justify-center gap-[6px]   py-[5px] px-[20px]  "
+                    >
+                      <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
+                        {" "}
+                        FAQ's
+                      </p>
+                    </Link>
                   </div>
-                  
-                  <Link to="/terms-and-conditions" className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center items-center mt-[12px] mb-[10px] ">
-                    <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
-                      T&C
-                    </p>
-                   
-                  </Link>
-                  <Link to="/faq" className="border border-[#FFCB05]   rounded-[26px] w-[61px] h-[27px]  flex items-center  justify-center gap-[6px]   py-[5px] px-[20px]  ">
-                <img src={Arrow} alt="arrow" />
-               
-                <p className="font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-center text-[#FFCB05]" > FAQs</p>
-              </Link>
                 </div>
               </div>
             </div>
             <div className="bg-background w-[140px] h-[28px] rounded-b-[26px] flex items-center justify-center mx-auto shadow-box-shadow">
               <p className="font-mtn-brighter-medium font-medium text-[10px] leading-[13px] text-center text-[#FFFFFF]">
-                @+2778 414 2470
+              @{userProfile?.msisdn}
               </p>
             </div>
             <div className="flex flex-col items-center flex-grow mt-[20px]">
@@ -156,7 +165,6 @@ const HomePage = () => {
                 Play Now
               </p>
               {loading ? <p>Loading games...</p> : <CarouselSection />}
-             
             </div>
           </div>
 
@@ -183,20 +191,17 @@ const HomePage = () => {
             <div className="flex items-center justify-center">
               <div className="grid grid-cols-2 gap-[35px] mb-4">
                 {games.map((game, index) => (
-
                   <div
                     key={game.gameId}
                     className="bg-custom-t-gradient flex flex-col items-center justify-center mt-[32px] rounded-[16px] w-[152px] h-[166px]"
                   >
                     <img
-                     src={`data:image/png;base64,${game.base64}`}
-
-
+                      src={`data:image/png;base64,${game.base64}`}
                       alt={game.title}
                       className="mb-[6px] -mt-[50px] w-[60px] h-[60px] rounded-[12px] object-cover"
                     />
                     <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
-                    {truncateTitle(game.title)}
+                      {truncateTitle(game.title)}
                     </p>
                     {/* Star rating logic */}
                     <div className="flex items-center justify-center mt-[9.8px]">
@@ -220,7 +225,6 @@ const HomePage = () => {
               </div>
             </div>
             <BigCashGame />
-
           </section>
         </div>
 
@@ -308,7 +312,6 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
 
 
 

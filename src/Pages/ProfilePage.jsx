@@ -13,12 +13,34 @@ import Home from "../assets/Icons/home.png";
 import Leaderboard from "../assets/Icons/leaderboard.png";
 import Profile from "../assets/Icons/profile.png";
 import GameContext from "../Context/GameContext";
+import UserContext from "../Context/UserContext";
+import { LeaderboardContext } from "../Context/LeaderboardContext";
+
 
 const ProfilePage = () => {
   const navigate = useNavigate();
   const [scrollDirection, setScrollDirection] = useState(null);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const { games, loading } = useContext(GameContext);
+  const { userProfile,fetchProfile, error, handleUpdateSubscriberProfile } = useContext(UserContext);
+  const {leaderboard} = useContext(LeaderboardContext)
+  const [myPoints, setMyPoints] = useState(0);
+  const [topPoints, setTopPoints] = useState(0);
+
+
+
+useEffect(() => {
+  if (leaderboard.length > 0 && userProfile) {
+    const myEntry = leaderboard.find(entry => entry.msisdn === userProfile.msisdn);
+    setMyPoints(myEntry ? myEntry.points : 0);
+
+    const maxPoints = Math.max(...leaderboard.map(entry => entry.points));
+    setTopPoints(maxPoints);
+  }
+}, [leaderboard, userProfile]);
+
+  
+
 
   const truncateTitle = (title) => {
     const maxLength = 10;
@@ -60,6 +82,12 @@ const ProfilePage = () => {
   const handleViewLeaderboardClick = () => {
     navigate("/leaderboard");
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) return <p>{error}</p>;
+  
   return (
     <>
       <div className="flex flex-col h-[1059px] md:h-[1390px] bg-profile-gradient   justify-center items-center">
@@ -88,7 +116,7 @@ const ProfilePage = () => {
           <div className="flex items-center justify-between mt-[11px]">
             <div className="text-center text-white ml-[13px] md:ml-[170px]">
               <p className="font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-center">
-                @+2348123433234
+                @{userProfile?.msisdn}
               </p>
               <p className="text-[#FFCA00] font-mtn-brighter-bold font-bold text-[16px] leading-[20.8px] text-center">
                 Subscribed
@@ -104,6 +132,7 @@ const ProfilePage = () => {
           <button
             className="bg-button-gradient color-[#000000] mx-auto mt-[20px] py-[14px] px-[33px]  flex items-center justify-center rounded-[42px] border border-[#00000033] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center"
             onClick={handleViewLeaderboardClick}
+
           >
             <img src={Trophy} alt="trophy" />
             View Leaderboard
@@ -117,7 +146,7 @@ const ProfilePage = () => {
                   Your Score
                 </p>
                 <p className="font-mtn-brighter-bold font-bold text-[20px] leading-[26px] text-center text-[#FFCB05]">
-                  198k
+                {myPoints}
                 </p>
               </div>
             </div>
@@ -129,7 +158,7 @@ const ProfilePage = () => {
                   Top Score
                 </p>
                 <p className="font-mtn-brighter-bold font-bold text-[20px] leading-[26px] text-center text-[#FFCB05]">
-                  308k
+                {topPoints}
                 </p>
               </div>
             </div>
@@ -212,3 +241,7 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
+
+
+

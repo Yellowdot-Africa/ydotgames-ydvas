@@ -19,7 +19,8 @@ import Avatar3 from "../assets/Icons/avatar3.png";
 import Avatar4 from "../assets/Icons/avatar4.png";
 import Avatar5 from "../assets/Icons/avatar5.png";
 import PlusIcon from "../assets/Icons/plus-icon.png";
-import { useLeaderboard } from "../Context/LeaderboardContext";
+import { LeaderboardContext } from "../Context/LeaderboardContext";
+import UserContext from "../Context/UserContext";
 
 const LeaderboardPage = ({ subscriberMsisdn }) => {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
@@ -30,12 +31,34 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
   const [scrollDirection, setScrollDirection] = useState(null);
   const [lastScrollTop, setLastScrollTop] = useState(0);
 
-  const { leaderboardData, loading, error, fetchLeaderboard } =
-    useLeaderboard();
+
+
+  const {
+    leaderboard,
+    handleUpdateLeaderboardScore,
+    fetchLeaderboardStanding,
+    loading,
+    error,
+  } = useContext(LeaderboardContext);
+  const { userProfile, fetchProfile, msisdn, handleUpdateSubscriberProfile } =
+    useContext(UserContext);
+
+  const getDailyAndMonthlyScores = (points) => {
+    const dailyScore = points;
+    const monthlyScore = points * 30;
+    return { dailyScore, monthlyScore };
+  };
 
   useEffect(() => {
-    fetchLeaderboard(subscriberMsisdn);
+    fetchLeaderboardStanding(subscriberMsisdn);
   }, [subscriberMsisdn]);
+
+
+  useEffect(()=>{
+    handleUpdateLeaderboardScore();
+  }, [])
+
+
 
   useEffect(() => {
     let lastScrollTop = 0;
@@ -84,10 +107,15 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
       setShowAvatarSelector(false);
     }
   };
+  console.log("subscriberMsisdn:", subscriberMsisdn);
+  console.log("leaderboard:", leaderboard);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+
+  const userPosition = leaderboard.find((player) => player.msisdn === msisdn);
+
+  console.log("User Position:", userPosition);
+  console.log("leaderboard:", leaderboard);
+  console.log("msisdn:", msisdn);
 
   return (
     <>
@@ -123,19 +151,21 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                       R10k
                     </p>
                   </div>
-                  <Link to="/terms-and-conditions" className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center items-center mt-[12px] mb-[10px] mr-[10px]">
+                  <Link
+                    to="/terms-and-conditions"
+                    className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center items-center mt-[12px] mb-[10px] mr-[10px]"
+                  >
                     <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
                       T&C
                     </p>
                   </Link>
-                
                 </div>
               </div>
             </div>
 
             <div className="bg-background w-[140px] h-[28px] rounded-b-[26px] flex items-center justify-center m-auto shadow-box-shadow">
               <p className="font-mtn-brighter-medium font-medium text-[10px] leading-[13px] text-center text-[#FFFFFF]">
-                @+2778 414 2470
+                @{userProfile?.msisdn}
               </p>
             </div>
 
@@ -143,15 +173,13 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
             <h1 className="font-mtn-brighter-xtra-bold font-extrabold text-[18px] text-center leading-[23.4px] mx-auto text-[#FFFFFF]">
               Leaderboard
             </h1>
+
             <p className="text-[#FFFFFF] mx-auto font-mtn-brighter-regular font-regular text-[18px] w-[274px] leading-[23.4px] text-center mt-[11px]">
               These are our{" "}
               <span className="font-mtn-brighter-bold font-bold text-[18px] leading-[23.4px] text-center">
                 Top Players
               </span>{" "}
-              and you are currently #
-              {leaderboardData.find(
-                (player) => player.phone === subscriberMsisdn
-              )?.rank || "N/A"}
+              and you are currently #{userPosition?.position}
             </p>
 
             {/* Table */}
@@ -175,67 +203,78 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                 </thead>
 
                 <tbody>
-                  {leaderboardData.map((player, index) => {
-                    const rankImage =
-                      player.rank === 1
-                        ? Rank1
-                        : player.rank === 2
-                        ? Rank2
-                        : player.rank === 3
-                        ? Rank3
-                        : player.rank === 4
-                        ? Rank4
-                        : player.rank === 5
-                        ? Rank5
-                        : player.rank === 6
-                        ? Rank6
-                        : null;
+                  {leaderboard.length === 0 ? (
+                    <tr>
+                      <td colSpan="4" className="text-center text-white">
+                        No players found
+                      </td>
+                    </tr>
+                  ) : (
+                    leaderboard.map((player, index) => {
+                      const rankImage =
+                        player.position === 1
+                          ? Rank1
+                          : player.position === 2
+                          ? Rank2
+                          : player.position === 3
+                          ? Rank3
+                          : player.position === 4
+                          ? Rank4
+                          : player.position === 5
+                          ? Rank5
+                          : player.position === 6
+                          ? Rank6
+                          : null;
 
-                    const isTop3 =
-                      player.rank === 1 ||
-                      player.rank === 2 ||
-                      player.rank === 3;
+                      const isTop3 =
+                        player.position === 1 ||
+                        player.position === 2 ||
+                        player.position === 3;
 
-                    return (
-                      <tr
-                        key={index}
-                        className={`text-center ${
-                          isTop3
-                            ? "bg-gradient-to-b from-[#221F20] to-[#000000] shadow-[0px_4px_4px_0px_#00000040] rounded-[25px]"
-                            : ""
-                        }`}
-                      >
-                        <td className="p-2 relative w-[50px] h-[50px] font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
-                          {rankImage ? (
-                            <div className="relative flex justify-center items-center ">
-                              <img
-                                src={rankImage}
-                                alt={`Rank ${player.rank}`}
-                                className="w-[30px] h-[25px]"
-                              />
-                              <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-white text-[14px]">
-                                {player.rank}
+                      const { dailyScore, monthlyScore } =
+                        getDailyAndMonthlyScores(player.points);
+
+                      return (
+                        <tr
+                          key={index}
+                          className={`text-center ${
+                            isTop3
+                              ? "bg-gradient-to-b from-[#221F20] to-[#000000] shadow-[0px_4px_4px_0px_#00000040] rounded-[25px]"
+                              : ""
+                          }`}
+                        >
+                          <td className="p-2 relative w-[50px] h-[50px] font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+                            {rankImage ? (
+                              <div className="relative flex justify-center items-center ">
+                                <img
+                                  src={rankImage}
+                                  alt={`Rank ${player.position}`}
+                                  className="w-[30px] h-[25px]"
+                                />
+                                <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-white text-[14px]">
+                                  {player.position}
+                                </span>
+                              </div>
+                            ) : (
+                              <span className="font-bold text-white text-[14px]">
+                                {player.position}
                               </span>
-                            </div>
-                          ) : (
-                            <span className="font-bold text-white text-[14px]">
-                              {player.rank}
-                            </span>
-                          )}
-                        </td>
+                            )}
+                          </td>
 
-                        <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
-                          {player.phone}
-                        </td>
-                        <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
-                          {player.dailyScore}
-                        </td>
-                        <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
-                          {player.monthlyScore}
-                        </td>
-                      </tr>
-                    );
-                  })}
+                          <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+                            {player.msisdn}
+                          </td>
+                          <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+                            {dailyScore}
+                          </td>
+                          <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+                            {monthlyScore}
+                          </td>
+                        </tr>
+                      );
+                    })
+                  )}
                 </tbody>
               </table>
             </div>

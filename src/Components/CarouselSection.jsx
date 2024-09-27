@@ -139,5 +139,3 @@ const CarouselSection = () => {
 
 export default CarouselSection;
 
-
-

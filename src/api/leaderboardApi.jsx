@@ -1,13 +1,15 @@
 import axios from "axios";
 
-const leaderboardApi = async (auth, msisdn) => {
+export const getLeaderboardStanding = async (auth, msisdn) => {
   try {
     const token = localStorage.getItem("authToken");
     if (!token) {
       throw new Error("No auth token available");
     }
+
     const response = await axios.get(
       `https://ydvassdp.com:5001/api/YellowdotGames/GetLeaderboardStanding?msisdn=${msisdn}`,
+
       {
         headers: {
           "Content-Type": "application/json",
@@ -15,11 +17,35 @@ const leaderboardApi = async (auth, msisdn) => {
         },
       }
     );
-
     return response.data;
   } catch (error) {
-    throw new Error("Error fetching leaderboard data.");
+    console.error("Error fetching leaderboard standing:", error);
+    throw error;
   }
 };
 
-export default leaderboardApi;
+export const updateLeaderboardScore = async (auth, msisdn, gameScore) => {
+  try {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      throw new Error("No auth token available");
+    }
+    const response = await axios.put(
+      `https://ydvassdp.com:5001/api/YellowdotGames/UpdateLeaderboardScore`,
+      {
+        MSISDN: msisdn,
+        gameScore: gameScore,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error updating leaderboard score:", error);
+    throw error;
+  }
+};

@@ -1,46 +1,76 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import leaderboardApi from "../api/leaderboardApi";
+import {
+  getLeaderboardStanding,
+  updateLeaderboardScore,
+} from "../api/leaderboardApi";
 import AuthContext from "../Context/AuthContext";
+import UserContext from "../Context/UserContext";
 
 const LeaderboardContext = createContext();
 
-export const LeaderboardProvider = ({ children, msisdn }) => {
-  const [leaderboardData, setLeaderboardData] = useState([]);
+const LeaderboardProvider = ({ children }) => {
+  const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { auth } = useContext(AuthContext);
+  const { userProfile } = useContext(UserContext);
 
-  const fetchLeaderboard = async () => {
+  const msisdn = userProfile?.msisdn || null;
+
+  useEffect(() => {
+    console.log("UserContext MSISDN:", msisdn);
+  }, [msisdn]);
+
+  const fetchLeaderboardStanding = async () => {
     try {
       setLoading(true);
-      const response = await leaderboardApi(auth, msisdn);
-      if (response.statusCode === "999" && response.data.length > 0) {
-        const leaderboarddd = response.data;
-
-        setLeaderboardData(leaderboarddd);
-        console.log("Fetched 0 leaderboard");
-      } else {
-        setError("No leaderboard data available.");
+      if (!msisdn) {
+        throw new Error("MSISDN is required");
       }
-    } catch (err) {
-      setError(err.message);
+      const response = await getLeaderboardStanding(auth, msisdn);
+      setLeaderboard(response.data);
+      console.log("Fetched leaderboard:", response.data);
+    } catch (error) {
+      setError(error.message);
+      console.error("Error fetching leaderboard standing:", error);
     } finally {
       setLoading(false);
     }
   };
 
+  const handleUpdateLeaderboardScore = async (gameScore) => {
+    try {
+      console.log("Updating score for MSISDN:", msisdn);
+      if (!msisdn) {
+        throw new Error("MSISDN is required for updating the score");
+      }
+      await updateLeaderboardScore(auth, msisdn, gameScore);
+      await fetchLeaderboardStanding();
+    } catch (error) {
+      console.error("Error updating leaderboard score:", error);
+    }
+  };
+
   useEffect(() => {
     if (auth?.token) {
-      fetchLeaderboard();
+      fetchLeaderboardStanding();
     }
   }, [auth?.token, msisdn]);
 
   return (
     <LeaderboardContext.Provider
-      value={{ leaderboardData, loading, error, fetchLeaderboard }}
+      value={{
+        leaderboard,
+        loading,
+        fetchLeaderboardStanding,
+        handleUpdateLeaderboardScore,
+      }}
     >
       {children}
     </LeaderboardContext.Provider>
   );
 };
+
+export { LeaderboardContext, LeaderboardProvider };
+
 export const useLeaderboard = () => useContext(LeaderboardContext);

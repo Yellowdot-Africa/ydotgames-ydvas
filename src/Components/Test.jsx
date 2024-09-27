@@ -1243,7 +1243,7 @@
 
 
 
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 
 // const BigCashTrivia = () => {
 //   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -1441,6 +1441,7 @@ import React, { useState } from 'react';
 
 
 
+
 // import React, { useRef, useEffect, useState, useContext } from "react";
 // import Frame1 from "../assets/Images/frame1.png";
 // import Frame2 from "../assets/Images/frame2.png";
@@ -1593,6 +1594,855 @@ import React, { useState } from 'react';
 //             )}
 //           </div>
 //         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default CarouselSection;
+
+
+
+
+
+
+// src/pages/ProfilePage.js
+// import React, { useContext } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import UserContext from "../Context/UserContext";
+// import Avatar1 from "../assets/Icons/avatar1.png";
+// import Trophy from "../assets/Icons/trophy.png";
+// import Coins from "../assets/Icons/coins.png";
+// import Crown from "../assets/Icons/crown.png";
+// import Home from "../assets/Icons/home.png";
+// import Leaderboard from "../assets/Icons/leaderboard.png";
+// import Profile from "../assets/Icons/profile.png";
+
+// const ProfilePage = () => {
+//   const navigate = useNavigate();
+//   const { userProfile, loading, handleUpdateLeaderboardScore } = useContext(UserContext);
+
+//   const handleViewLeaderboardClick = () => {
+//     navigate("/leaderboard");
+//   };
+
+//   if (loading) {
+//     return <div>Loading...</div>;
+//   }
+
+//   return (
+//     <div className="flex flex-col h-[1059px] md:h-[1390px] bg-profile-gradient justify-center items-center">
+//       <div className="bg-darrk-gradient h-[749px] w-full">
+//         <div className="flex justify-between items-center">
+//           <img
+//             src={Avatar1}
+//             alt="Avatar Icon"
+//             className="w-[108px] h-[108px] rounded-full ml-[40px] md:ml-[170px]"
+//           />
+//           <div className="mr-[24px] md:mr-[100px] flex items-center justify-center border border-[#FFCB05] rounded-[30px] pl-[35px] pr-[44px] px-[12px] ">
+//             <img src={Coins} alt="Coin" className="w-12 h-12" />
+//             <p className="text-[#FFFFFF] font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-center">
+//               N10k
+//             </p>
+//           </div>
+//         </div>
+
+//         <div className="text-center text-white ml-[13px] md:ml-[170px]">
+//           <p className="font-mtn-brighter-medium text-[14px]">@{userProfile?.msisdn}</p>
+//           <p className="text-[#FFCA00] font-mtn-brighter-bold text-[16px]">Subscribed</p>
+//         </div>
+
+//         <button
+//           className="bg-button-gradient mx-auto mt-[20px] py-[14px] px-[33px] flex items-center justify-center rounded-[42px]"
+//           onClick={() => handleUpdateLeaderboardScore(200)} // Example score update
+//         >
+//           <img src={Trophy} alt="trophy" />
+//           View Leaderboard
+//         </button>
+
+//         {/* Other UI elements */}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ProfilePage;
+
+
+
+// In UserContext
+
+
+// import React, { useState, useEffect , useContext} from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import AvatarProfile from "../assets/Images/avatar-prof.png";
+// import Coins from "../assets/Images/coins.png";
+// import Trophy from "../assets/Icons/trophy.png";
+// import Arrow from "../assets/Icons/Arrow.png";
+// import Home from "../assets/Icons/home.png";
+// import LeaderboardIcon from "../assets/Icons/leaderboard.png";
+// import Profile from "../assets/Icons/profile.png";
+// import Rank1 from "../assets/Icons/rank4.png";
+// import Rank2 from "../assets/Icons/rank1.png";
+// import Rank3 from "../assets/Icons/rank2.png";
+// import Rank4 from "../assets/Icons/rank3.png";
+// import Rank5 from "../assets/Icons/rank3.png";
+// import Rank6 from "../assets/Icons/rank3.png";
+// import Avatar1 from "../assets/Icons/avatar1.png";
+// import Avatar2 from "../assets/Icons/avatar2.png";
+// import Avatar3 from "../assets/Icons/avatar3.png";
+// import Avatar4 from "../assets/Icons/avatar4.png";
+// import Avatar5 from "../assets/Icons/avatar5.png";
+// import PlusIcon from "../assets/Icons/plus-icon.png";
+// // import { useLeaderboard } from "../Context/LeaderboardContext";
+// import { LeaderboardContext } from "../Context/LeaderboardContext";
+
+// const LeaderboardPage = ({ subscriberMsisdn }) => {
+//   const [selectedAvatar, setSelectedAvatar] = useState(null);
+//   const [showAvatarSelector, setShowAvatarSelector] = useState(false);
+//   const [currentAvatar, setCurrentAvatar] = useState(AvatarProfile);
+//   const avatars = [Avatar1, Avatar2, Avatar3, Avatar4, Avatar5];
+//   const navigate = useNavigate();
+//   const [scrollDirection, setScrollDirection] = useState(null);
+//   const [lastScrollTop, setLastScrollTop] = useState(0);
+
+//   // const { leaderboardData, loading, error, fetchLeaderboard } =
+//   //   useLeaderboard();
+
+//   const { leaderboard, handleUpdateLeaderboardScore, fetchLeaderboardStanding, loading, error } = useContext(LeaderboardContext);
+
+//   // useEffect(() => {
+//   //   fetchLeaderboardStanding(subscriberMsisdn);
+//   // }, [subscriberMsisdn]);
+
+//   useEffect(() => {
+//     fetchLeaderboardStanding(subscriberMsisdn);
+//   }, [subscriberMsisdn]);
+
+//   // useEffect(() => {
+//   //   handleUpdateLeaderboardScore(subscriberMsisdn);
+
+//   //   const intervalId = setInterval(() => {
+//   //     handleUpdateLeaderboardScore(subscriberMsisdn);
+//   //   }, 30000);
+
+//   //   return () => clearInterval(intervalId);
+//   // }, [subscriberMsisdn, handleUpdateLeaderboardScore]);
+
+//   useEffect(() => {
+//     let lastScrollTop = 0;
+
+//     const handleScroll = () => {
+//       const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+//       if (scrollTop > lastScrollTop) {
+//         setScrollDirection("down");
+//       } else {
+//         setScrollDirection("up");
+//       }
+//       setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
+//     };
+
+//     window.addEventListener("scroll", handleScroll);
+
+//     return () => {
+//       window.removeEventListener("scroll", handleScroll);
+//     };
+//   }, [lastScrollTop]);
+
+//   const navStyle = {
+//     position: "fixed",
+//     bottom: scrollDirection === "down" ? "0px" : "0px",
+//     left: "50%",
+//     transform: "translateX(-50%)",
+//     transition: "bottom 0.5s ease",
+//   };
+
+//   const handleViewPrizesClick = () => {
+//     navigate("/prizes");
+//   };
+
+//   const handleAvatarClick = () => {
+//     setShowAvatarSelector(!showAvatarSelector);
+//   };
+
+//   const handleAvatarSelect = (avatar) => {
+//     setSelectedAvatar(avatar);
+//   };
+
+//   const handleSave = () => {
+//     if (selectedAvatar) {
+//       setCurrentAvatar(selectedAvatar);
+//       setShowAvatarSelector(false);
+//     }
+//   };
+
+//   // if (loading) {
+//   //   return <div>Loading...</div>;
+//   // }
+
+//   return (
+//     <>
+//       <div className="relative">
+//         <div
+//           className={`flex flex-col min-h-[1080px] md:h-[1430px] bg-darrk-gradient  ${
+//             showAvatarSelector ? " blur-[3px]" : ""
+//           }`}
+//         >
+//           {error && (
+//             <div className="text-red-500 text-center mt-4">{error}</div>
+//           )}
+
+//           <div className="bg-[#E2EEF60D] w-[342px] h-[933px] mt-[17px] mx-auto">
+//             <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[265px] h-[49px]  mt-[21px] mx-auto">
+//               {/* Avatar and Coin Section */}
+//               <div className="flex justify-between items-center w-[265px] h-[49px]">
+//                 <div className="flex items-center justify-between space-x-12  relative">
+//                   <div
+//                     className="w-[50px] h-[50px]  flex items-center justify-center cursor-pointer"
+//                     onClick={() => setShowAvatarSelector(!showAvatarSelector)}
+//                   >
+//                     <img
+//                       src={currentAvatar || "/default-avatar.png"}
+//                       alt="Profile Avatar"
+//                       className="-ml-[8px] -mb-[6px]"
+//                     />
+//                   </div>
+
+//                   <div className="flex items-center justify-center">
+//                     <img src={Coins} alt="coin" />
+//                     <p className="font-mtn-brighter-medium font-medium text-[12px] text-center leading-[15.6px] text-[#FFFFFF]">
+//                       R10k
+//                     </p>
+//                   </div>
+//                   <Link to="/terms-and-conditions" className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center items-center mt-[12px] mb-[10px] mr-[10px]">
+//                     <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
+//                       T&C
+//                     </p>
+//                   </Link>
+
+//                 </div>
+//               </div>
+//             </div>
+
+//             <div className="bg-background w-[140px] h-[28px] rounded-b-[26px] flex items-center justify-center m-auto shadow-box-shadow">
+//               <p className="font-mtn-brighter-medium font-medium text-[10px] leading-[13px] text-center text-[#FFFFFF]">
+//                 @+2778 414 2470
+//               </p>
+//             </div>
+
+//             <img src={Trophy} alt="trophy" className="mx-auto mt-[4px]" />
+//             <h1 className="font-mtn-brighter-xtra-bold font-extrabold text-[18px] text-center leading-[23.4px] mx-auto text-[#FFFFFF]">
+//               Leaderboard
+//             </h1>
+//             <p className="text-[#FFFFFF] mx-auto font-mtn-brighter-regular font-regular text-[18px] w-[274px] leading-[23.4px] text-center mt-[11px]">
+//               These are our{" "}
+//               <span className="font-mtn-brighter-bold font-bold text-[18px] leading-[23.4px] text-center">
+//                 Top Players
+//               </span>{" "}
+//               and you are currently #
+//               {leaderboard.find(
+//                 (player) => player.phone === subscriberMsisdn
+//               )?.rank || "N/A"}
+//             </p>
+
+//             {/* Table */}
+//             <div className="w-full mt-6 ">
+//               <table className="table-auto mx-auto md:mx-auto">
+//                 <thead>
+//                   <tr className="text-center">
+//                     <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+//                       Rank
+//                     </th>
+//                     <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+//                       Phone
+//                     </th>
+//                     <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+//                       Daily Score
+//                     </th>
+//                     <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+//                       Monthly Score
+//                     </th>
+//                   </tr>
+//                 </thead>
+
+//                 <tbody>
+//                 {leaderboard.length === 0 ? (
+//  <tr>
+//  <td colSpan="4" className="text-center text-white">No players found</td>
+// </tr>
+// ) : (
+//                   leaderboard.map((player, index) => {
+//                     const rankImage =
+//                       player.rank === 1
+//                         ? Rank1
+//                         : player.rank === 2
+//                         ? Rank2
+//                         : player.rank === 3
+//                         ? Rank3
+//                         : player.rank === 4
+//                         ? Rank4
+//                         : player.rank === 5
+//                         ? Rank5
+//                         : player.rank === 6
+//                         ? Rank6
+//                         : null;
+
+//                     const isTop3 =
+//                       player.rank === 1 ||
+//                       player.rank === 2 ||
+//                       player.rank === 3;
+
+//                     return (
+//                       <tr
+//                         key={index}
+//                         className={`text-center ${
+//                           isTop3
+//                             ? "bg-gradient-to-b from-[#221F20] to-[#000000] shadow-[0px_4px_4px_0px_#00000040] rounded-[25px]"
+//                             : ""
+//                         }`}
+//                       >
+//                         <td className="p-2 relative w-[50px] h-[50px] font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+//                           {rankImage ? (
+//                             <div className="relative flex justify-center items-center ">
+//                               <img
+//                                 src={rankImage}
+//                                 alt={`Rank ${player.rank}`}
+//                                 className="w-[30px] h-[25px]"
+//                               />
+//                               <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-white text-[14px]">
+//                                 {player.rank}
+//                               </span>
+//                             </div>
+//                           ) : (
+//                             <span className="font-bold text-white text-[14px]">
+//                               {player.rank}
+//                             </span>
+//                           )}
+//                         </td>
+
+//                         <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+//                           {player.phone}
+//                         </td>
+//                         <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+//                           {player.dailyScore}
+//                         </td>
+//                         <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+//                           {player.monthlyScore}
+//                         </td>
+//                       </tr>
+//                     );
+//                   })
+//                   )}
+//                 </tbody>
+//               </table>
+//             </div>
+//           </div>
+//         </div>
+
+//         <div className="w-full " style={navStyle}>
+//           <div className="flex justify-center mb-[51px] ">
+//             <button
+//               className="bg-button-gradient mx-auto py-[14px] px-[33px] rounded-[42px] border border-[#00000033] font-mtn-brighter-bold text-[14px] text-black"
+//               onClick={handleViewPrizesClick}
+//             >
+//               View Prizes
+//             </button>
+//           </div>
+
+//           <div className=" flex justify-center py-8 ">
+//             <div className="w-full max-w-[336px]  h-[82px] backdrop-blur-sm flex justify-between items-center bg-foot-nav-gradient rounded-b-[60px] pt-[12px] pb-[20px] px-[46px]">
+//               <Link
+//                 to="/home"
+//                 className="bg-foot-nav-gradient rounded-[50px] w-[60px] h-[60px] flex items-center justify-center"
+//               >
+//                 <img src={Home} alt="home" />
+//               </Link>
+
+//               <Link
+//                 to="/user-profile"
+//                 className="bg-[#FFCB05] rounded-[50px] w-[76px] h-[76px] flex items-center justify-center -mt-[40px]"
+//               >
+//                 <img
+//                   src={Profile}
+//                   alt="profile"
+//                   className="w-[40px] h-[40px]"
+//                 />
+//               </Link>
+
+//               <Link
+//                 to="/leaderboard"
+//                 className="bg-foot-nav-gradient rounded-[50px] w-[60px] h-[60px] flex items-center justify-center"
+//               >
+//                 <img src={LeaderboardIcon} alt="leaderboard" />
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//         {showAvatarSelector && (
+//           <div className="flex items-center justify-center mx-auto">
+//             <div className="absolute top-[30px] left-auto w-[265px] h-[138px]  bg-background-avatar  rounded-[26px]  ">
+//               <div className="flex  ">
+//                 <img
+//                   src={currentAvatar || "/default-avatar.png"}
+//                   alt="Profile Avatar"
+//                 />
+//                 <p className="text-white pt-[12px] font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-center w-[126px]">
+//                   Please select an avatar
+//                 </p>
+//                 {selectedAvatar && (
+//                   <button
+//                     className="text-[#FFCB05] ml-[32px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center  -mt-[5px]"
+//                     onClick={handleSave}
+//                   >
+//                     Save
+//                   </button>
+//                 )}
+//               </div>
+
+//               <div className="flex px-[10px] mt-4">
+//                 {avatars.map((avatar, index) => (
+//                   <div
+//                     key={index}
+//                     className={`relative  ${
+//                       selectedAvatar === avatar
+//                         ? "border-[3px] rounded-[28px] flex items-center justify-center border-[#FFCB05]"
+//                         : ""
+//                     } cursor-pointer`}
+//                     onClick={() => handleAvatarSelect(avatar)}
+//                   >
+//                     <img
+//                       src={avatar}
+//                       alt={`Avatar ${index + 1}`}
+//                       className="w-[50px] h-[50px]"
+//                     />
+//                     {selectedAvatar !== avatar && (
+//                       <div className=" absolute bottom-[5px] right-0  w-[10px] h-[10px]  bg-[#FFCB05] rounded-[28px]">
+//                         <img
+//                           src={PlusIcon}
+//                           alt="Plus Icon"
+//                           className="w-[15px] h-[15px]  "
+//                         />
+//                       </div>
+//                     )}
+//                   </div>
+//                 ))}
+//               </div>
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     </>
+//   );
+// };
+
+// export default LeaderboardPage;
+
+
+
+
+
+
+
+
+
+
+// import React, { createContext, useContext, useState, useEffect } from 'react';
+// import { getLeaderboardStanding, updateLeaderboardScore } from '../api/leaderboardApi'; 
+// import AuthContext from "../Context/AuthContext";
+// import UserContext from '../Context/UserContext';
+
+// const LeaderboardContext = createContext();
+
+// const LeaderboardProvider = ({ children }) => {
+//   const [leaderboard, setLeaderboard] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+//   const { auth } = useContext(AuthContext);
+//   const userContext = useContext(UserContext);
+//   // const { msisdn } = useContext(UserContext); // Use msisdn from UserContext
+//   const msisdn = userContext ? userContext.msisdn : null; // Fallback if context is undefined
+
+
+//   useEffect(() => {
+//     console.log("UserContext MSISDN:", msisdn); // Debugging log
+// }, [msisdn]);
+
+//   const fetchLeaderboardStanding = async () => {
+//     try {
+//       setLoading(true);
+//       if (!msisdn) {
+//         throw new Error("MSISDN is required");
+//       }
+//       const response = await getLeaderboardStanding(auth, msisdn);
+//       setLeaderboard(response.data);
+//       console.log("Fetched leaderboard:", response.data);
+//     } catch (error) {
+//       setError(error.message);
+//       console.error("Error fetching leaderboard standing:", error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const handleUpdateLeaderboardScore = async (gameScore) => {
+//     try {
+//       if (!msisdn) {
+//         throw new Error("MSISDN is required for updating the score");
+//       }
+//       await updateLeaderboardScore(auth, msisdn, gameScore);
+//       fetchLeaderboardStanding();
+//     } catch (error) {
+//       console.error("Error updating leaderboard score:", error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     if (auth?.token) {
+//       fetchLeaderboardStanding();
+//     }
+//   }, [auth?.token, msisdn]);
+
+//   return (
+//     <LeaderboardContext.Provider
+//       value={{
+//         leaderboard,
+//         loading,
+//         fetchLeaderboardStanding,
+//         handleUpdateLeaderboardScore, 
+//       }}
+//     >
+//       {children}
+//     </LeaderboardContext.Provider>
+//   );
+// };
+
+// export { LeaderboardContext, LeaderboardProvider };
+
+// export const useLeaderboard = () => useContext(LeaderboardContext);
+
+
+
+// import React, { createContext, useContext, useState, useEffect } from 'react';
+// import { getLeaderboardStanding, updateLeaderboardScore } from '../api/leaderboardApi'; 
+// import AuthContext from "../Context/AuthContext";
+// import UserContext from '../Context/UserContext';
+
+// const LeaderboardContext = createContext();
+
+// const LeaderboardProvider = ({ children }) => {
+//   const [leaderboard, setLeaderboard] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+//   const { auth } = useContext(AuthContext);
+//   const userContext = useContext(UserContext);
+  
+//   // Use optional chaining to safely access msisdn
+//   const msisdn = userContext?.msisdn || null; 
+
+//   useEffect(() => {
+//     console.log("UserContext MSISDN:", msisdn); // Debugging log
+//   }, [msisdn]);
+
+//   const fetchLeaderboardStanding = async () => {
+//     try {
+//       setLoading(true);
+//       if (!msisdn) {
+//         throw new Error("MSISDN is required");
+//       }
+//       const response = await getLeaderboardStanding(auth, msisdn);
+//       setLeaderboard(response.data);
+//       console.log("Fetched leaderboard:", response.data);
+//     } catch (error) {
+//       setError(error.message);
+//       console.error("Error fetching leaderboard standing:", error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const handleUpdateLeaderboardScore = async (gameScore) => {
+//     try {
+//       console.log("Updating score for MSISDN:", msisdn); // Debugging log
+//       if (!msisdn) {
+//         throw new Error("MSISDN is required for updating the score");
+//       }
+//       await updateLeaderboardScore(auth, msisdn, gameScore);
+//       await fetchLeaderboardStanding(); // Ensure leaderboard is refreshed after updating
+//     } catch (error) {
+//       console.error("Error updating leaderboard score:", error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     if (auth?.token) {
+//       fetchLeaderboardStanding();
+//     }
+//   }, [auth?.token, msisdn]);
+
+//   return (
+//     <LeaderboardContext.Provider
+//       value={{
+//         leaderboard,
+//         loading,
+//         fetchLeaderboardStanding,
+//         handleUpdateLeaderboardScore, 
+//       }}
+//     >
+//       {children}
+//     </LeaderboardContext.Provider>
+//   );
+// };
+
+// export { LeaderboardContext, LeaderboardProvider };
+
+// export const useLeaderboard = () => useContext(LeaderboardContext);
+
+
+
+// import axios from "axios";
+
+// const leaderboardApi = async (auth, msisdn) => {
+//   try {
+//     const token = localStorage.getItem("authToken");
+//     if (!token) {
+//       throw new Error("No auth token available");
+//     }
+//     const response = await axios.get(
+//       `https://ydvassdp.com:5001/api/YellowdotGames/GetLeaderboardStanding?msisdn=${msisdn}`,
+//       {
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${token}`,
+//         },
+//       }
+//     );
+
+//     return response.data;
+//   } catch (error) {
+//     throw new Error("Error fetching leaderboard data.");
+//   }
+// };
+
+// export default leaderboardApi;
+
+
+
+// import React, { useContext } from "react";
+// import Slider from "react-slick";
+// import Frame1 from "../assets/Images/frame1.png";
+// import Frame2 from "../assets/Images/frame2.png";
+// import Frame3 from "../assets/Images/frame3.png";
+// import StarW from "../assets/Icons/Star-w.png";
+// import GameContext from "../Context/GameContext";
+// import AuthContext from "../Context/AuthContext";
+// import "../App.css";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+
+// const CarouselSection = () => {
+//   const { games, loading } = useContext(GameContext);
+
+//   const carouselConfig = [
+//     { frame: Frame1, bgColor: "#19BFC1" },
+//     { frame: Frame2, bgColor: "#CFA400" },
+//     { frame: Frame3, bgColor: "#4601B7" },
+//   ];
+
+//   const truncateTitle = (title) => {
+//     const maxLength = 10;
+//     return title.length > maxLength ? title.substring(0, maxLength) + "..." : title;
+//   };
+
+//   // Adjusting Slick settings to reduce padding and scaling properly
+//   const settings = {
+//     centerMode: true,
+//     centerPadding: "10px", // Reduced center padding to reduce space between slides
+//     slidesToShow: 3,
+//     infinite: true,
+//     speed: 500,
+//     responsive: [
+//       {
+//         breakpoint: 768, // For smaller screens
+//         settings: {
+//           slidesToShow: 1,
+//           centerPadding: "10px", // Reduced padding for smaller screens
+//         },
+//       },
+//     ],
+//   };
+
+//   return (
+//     <div className="w-full">
+//       {loading ? (
+//         <p>Loading games...</p>
+//       ) : (
+//         <Slider {...settings} className="overflow-visible"> {/* Added overflow-visible */}
+//           {games.length > 0 ? (
+//             games.slice(0, 3).map((game, index) => (
+//               <div key={game.gameId} className="px-0"> {/* Reduced spacing */}
+//                 <div className="relative rounded-[20px] w-[160px] my-6 pt-[7px] px-0 border border-[#FEFFD366] bg-[#2E3237] overflow-visible"> {/* overflow-visible ensures no clipping */}
+//                   <div
+//                     className="relative w-[142px] h-[71px] mx-[7px] bg-cover bg-center rounded-[16px] flex flex-col items-center justify-center"
+//                     style={{
+//                       backgroundImage: `url(${carouselConfig[index].frame})`,
+//                     }}
+//                   >
+//                     <img
+//                       src={`data:image/png;base64,${game.base64}`}
+//                       style={{ top: "-15px" }}
+//                       alt={game.title}
+//                       className="w-[59px] h-[58px] rounded-[12px] absolute object-cover z-10"
+//                     />
+//                     <div className="absolute bottom-1 text-center">
+//                       <p className="font-mtn-brighter-xtra-bold font-extrabold text-[14px] leading-[18.2px] text-center text-[#002E38]">
+//                         {truncateTitle(game.title)}
+//                       </p>
+//                     </div>
+//                   </div>
+//                   <div className="flex items-center mx-0 border-none mt-[10px] mb-0 px-0">
+//                     <span
+//                       style={{
+//                         backgroundColor: carouselConfig[index].bgColor,
+//                       }}
+//                       className="bg-[#19BFC1] rounded-bl-[20px] w-[103px] h-[30px] flex items-center justify-center"
+//                     >
+//                       {Array(5)
+//                         .fill()
+//                         .map((_, starIndex) => (
+//                           <img key={starIndex} src={StarW} alt="star" />
+//                         ))}
+//                     </span>
+//                     <button className="bg-[#2A76D8] pb-[7px] px-[15px] rounded-br-[20px]">
+//                       <a
+//                         href={game.playUrl}
+//                         rel="noopener noreferrer"
+//                         target="_blank"
+//                         className="font-mtn-brighter-medium font-medium text-center text-[12px] leading-[15.6px] text-white"
+//                       >
+//                         Play
+//                       </a>
+//                     </button>
+//                   </div>
+//                 </div>
+//               </div>
+//             ))
+//           ) : (
+//             <p>No games available.</p>
+//           )}
+//         </Slider>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default CarouselSection;
+
+
+
+// import React, { useContext } from "react";
+// import Slider from "react-slick";
+// import Frame1 from "../assets/Images/frame1.png";
+// import Frame2 from "../assets/Images/frame2.png";
+// import Frame3 from "../assets/Images/frame3.png";
+// import StarW from "../assets/Icons/Star-w.png";
+// import GameContext from "../Context/GameContext";
+// import AuthContext from "../Context/AuthContext";
+// import "../App.css";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+
+// const CarouselSection = () => {
+//   const { games, loading } = useContext(GameContext);
+
+//   const carouselConfig = [
+//     { frame: Frame1, bgColor: "#19BFC1" },
+//     { frame: Frame2, bgColor: "#CFA400" },
+//     { frame: Frame3, bgColor: "#4601B7" },
+//   ];
+
+//   const truncateTitle = (title) => {
+//     const maxLength = 10;
+//     return title.length > maxLength ? title.substring(0, maxLength) + "..." : title;
+//   };
+
+//   // Slick settings to make the center item bigger
+//   const settings = {
+//     centerMode: true,
+//     centerPadding: "10px",
+//     slidesToShow: 3,
+//     infinite: true,
+//     speed: 500,
+//     responsive: [
+//       {
+//         breakpoint: 768, // For smaller screens
+//         settings: {
+//           slidesToShow: 1,
+//           centerPadding: "10px",
+//         },
+//       },
+//     ],
+//   };
+
+//   return (
+//     <div className="w-full h-[100%]">
+//       {loading ? (
+//         <p>Loading games...</p>
+//       ) : (
+//         <Slider {...settings}>
+//           {games.length > 0 ? (
+//             games.slice(0, 3).map((game, index) => (
+//               <div key={game.gameId} className="">
+//                 <div className=" rounded-[20px] w-[142px] pt-[7px] px-0 border border-[#FEFFD366] bg-[#2E3237] overflow-visible">
+//                   <div
+//                     className="relative w-[142px] h-[71px]  bg-cover bg-center rounded-[16px] flex flex-col items-center justify-between"
+//                     style={{
+//                       backgroundImage: `url(${carouselConfig[index].frame})`,
+//                     }}
+//                   >
+//                     <img
+//                       src={`data:image/png;base64,${game.base64}`}
+//                       style={{ top: "-15px" }}
+//                       alt={game.title}
+//                       className="w-[59px] h-[58px] rounded-[12px] absolute object-contain z-10"
+//                     />
+//                     <div className="absolute bottom-1 text-center">
+//                       <p className="font-mtn-brighter-xtra-bold font-extrabold text-[14px] leading-[18.2px] text-center text-[#002E38]">
+//                         {truncateTitle(game.title)}
+//                       </p>
+//                     </div>
+//                   </div>
+//                   <div className="flex items-center mx-0 border-none mt-[10px] mb-0 px-0">
+//                     <span
+//                       style={{
+//                         backgroundColor: carouselConfig[index].bgColor,
+//                       }}
+//                       className="bg-[#19BFC1] rounded-bl-[20px] w-[103px] h-[30px] flex items-center justify-center"
+//                     >
+//                       {Array(5)
+//                         .fill()
+//                         .map((_, starIndex) => (
+//                           <img key={starIndex} src={StarW} alt="star" />
+//                         ))}
+//                     </span>
+//                     <button className="bg-[#2A76D8] pb-[7px] px-[15px] rounded-br-[20px]">
+//                       <a
+//                         href={game.playUrl}
+//                         rel="noopener noreferrer"
+//                         target="_blank"
+//                         className="font-mtn-brighter-medium font-medium text-center text-[12px] leading-[15.6px] text-white"
+//                       >
+//                         Play
+//                       </a>
+//                     </button>
+//                   </div>
+//                 </div>
+//               </div>
+//             ))
+//           ) : (
+//             <p>No games available.</p>
+//           )}
+//         </Slider>
 //       )}
 //     </div>
 //   );
