@@ -45,6 +45,10 @@ export const UserProvider = ({ children }) => {
   ) => {
     setLoading(true);
     setError(null);
+
+    console.log("MSISDN:", msisdn);
+    console.log("Nickname:", nickname);
+    console.log("AvatarID:", avatarId);
     try {
       const response = await UpdateSubscriberProfile(
         auth,

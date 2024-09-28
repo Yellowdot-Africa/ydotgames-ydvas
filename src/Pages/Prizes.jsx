@@ -98,9 +98,9 @@ const PrizesPage = () => {
           }`}
         >
           <div className="bg-[#E2EEF60D] w-[342px]  h-[933px] mt-[17px] mx-auto">
-          <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[265px] h-[49px]  mt-[21px] mx-auto">
-        <div className="flex justify-between items-center w-[265px] h-[49px]">
-          <div className="flex items-center justify-between space-x-12  relative">
+          <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[185px] h-[49px]  mt-[21px] mx-auto">
+        <div className="flex justify-between items-center w-[205px] h-[49px]">
+          <div className="flex items-center justify-between space-x-16  relative">
             <div
               className="w-[50px] h-[50px] flex items-center justify-center cursor-pointer"
               onClick={handleAvatarClick}
@@ -112,12 +112,12 @@ const PrizesPage = () => {
               />
             </div>
 
-            <div className="flex items-center justify-center">
+            {/* <div className="flex items-center justify-center">
               <img src={Coins} alt="coin" />
               <p className="font-mtn-brighter-medium font-medium text-[12px] text-center leading-[15.6px] text-[#FFFFFF]">
                 R10k
               </p>
-            </div>
+            </div> */}
             <Link to="/terms-and-conditions" className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center items-center mt-[12px] mb-[10px] mr-[10px]">
               <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
                 T&C

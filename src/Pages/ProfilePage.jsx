@@ -122,12 +122,12 @@ useEffect(() => {
                 Subscribed
               </p>
             </div>
-            <div className="mr-[24px] md:mr-[100px] flex items-center justify-center border border-[#FFCB05] rounded-[30px] pl-[35px] pr-[44px] px-[12px] ">
+            {/* <div className="mr-[24px] md:mr-[100px] flex items-center justify-center border border-[#FFCB05] rounded-[30px] pl-[35px] pr-[44px] px-[12px] ">
               <img src={Coins} alt="Coin" className="w-12 h-12" />
               <p className="text-[#FFFFFF] font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-center">
                 N10k
               </p>
-            </div>
+            </div> */}
           </div>
           <button
             className="bg-button-gradient color-[#000000] mx-auto mt-[20px] py-[14px] px-[33px]  flex items-center justify-center rounded-[42px] border border-[#00000033] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center"
@@ -245,3 +245,23 @@ export default ProfilePage;
 
 
 
+
+
+
+// const renderStars = (rating) => {
+//   const totalStars = 5;
+//   const filledStars = Math.floor(rating);
+//   const emptyStars = totalStars - filledStars;
+
+//   return (
+//     <>
+//       {[...Array(filledStars)].map((_, i) => <img key={i} src={StarYs} alt="star" />)}
+//       {[...Array(emptyStars)].map((_, i) => <img key={i} src={StarWs} alt="star" />)}
+//     </>
+//   );
+// };
+
+
+// <div className="flex items-center justify-center mt-[9.8px]">
+//   {renderStars(game.rating)}
+// </div>

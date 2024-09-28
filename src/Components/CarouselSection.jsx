@@ -5,6 +5,8 @@ import Frame3 from "../assets/Images/frame3.png";
 import StarW from "../assets/Icons/Star-w.png";
 import GameContext from "../Context/GameContext";
 import AuthContext from "../Context/AuthContext";
+import { Link } from "react-router-dom";
+
 import "../App.css";
 
 const CarouselSection = () => {
@@ -75,8 +77,11 @@ const CarouselSection = () => {
           <div className="flex space-x-[12px] w-max mx-0 md:mx-auto">
             {games.length > 0 ? (
               games.slice(0, 3).map((game, index) => (
-                <div
+                <Link
+                to={game.playUrl}
                   key={game.gameId}
+                  rel="noopener noreferrer"
+                          target="_blank"
                   className={`min-w-[157px] flex-shrink-0 ${getCardClass(
                     index
                   )}`}
@@ -114,18 +119,18 @@ const CarouselSection = () => {
                           ))}
                       </span>
                       <button className="bg-[#2A76D8] pb-[7px] px-[15px] rounded-br-[20px]">
-                        <a
+                        <p
                           href={game.playUrl}
                           rel="noopener noreferrer"
                           target="_blank"
                           className="font-mtn-brighter-medium font-medium text-center text-[12px] leading-[15.6px] text-white"
                         >
                           Play
-                        </a>
+                        </p>
                       </button>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))
             ) : (
               <p>No games available.</p>

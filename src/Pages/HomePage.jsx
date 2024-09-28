@@ -91,9 +91,12 @@ const HomePage = () => {
     setShowAvatarSelector(!showAvatarSelector);
   };
 
-  const handleAvatarSelect = async (avatarId) => {
-    // setSelectedAvatar(avatar);
-    await handleUpdateSubscriberProfile(msisdn, userProfile.nickname, avatarId);
+  const handleAvatarSelect = async (avatar) => {
+    setSelectedAvatar(avatar);
+    await handleUpdateSubscriberProfile({
+      msisdn: userProfile.msisdn,
+      avatarId: avatar, 
+    });
 
   };
 
@@ -104,6 +107,22 @@ const HomePage = () => {
     }
   };
 
+  // function renderStars(rating) {
+  //   const starsCount = Math.max(0, Math.min(5, Math.floor(rating))); // Ensure the rating is between 0 and 5
+  //   return Array(starsCount).fill('⭐'); // Assuming you are generating stars
+  // }
+  
+//   function renderStars(rating) {
+//     // Ensure the rating is a number and within valid bounds
+//     const validRating = Number.isFinite(rating) ? Math.max(0, Math.min(5, Math.floor(rating))) : 0;
+
+//     // Generate the stars array safely
+//     return Array(validRating).fill('⭐'); // Adjust this to whatever symbol you use for stars
+// }
+
+
+
+
   return (
     <>
       <div className="relative ">
@@ -113,9 +132,9 @@ const HomePage = () => {
           }`}
         >
           <div className="bg-[#E2EEF60D] mt-[17px]">
-            <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[282px] h-[49px]  mt-[21px] mx-auto">
-              <div className="flex justify-between items-center w-[342px] h-[49px]">
-                <div className="flex items-center  space-x-12  relative">
+            <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[222px] h-[49px]  mt-[21px] mx-auto">
+              <div className="flex justify-between items-center w-[242px] h-[49px]">
+                <div className="flex items-center  space-x-10  relative">
                   <div
                     className="w-[50px] h-[50px]  flex items-center justify-center cursor-pointer"
                     onClick={handleAvatarClick}
@@ -127,12 +146,12 @@ const HomePage = () => {
                     />
                   </div>
                   <div className="flex items-center justify-center gap-[10px]  ">
-                    <div className="flex items-center justify-center">
+                    {/* <div className="flex items-center justify-center">
                       <img src={Coins} alt="coin" />
                       <p className="font-mtn-brighter-medium font-medium text-[12px] text-center leading-[15.6px] text-[#FFFFFF]">
                         R10k
                       </p>
-                    </div>
+                    </div> */}
 
                     <Link
                       to="/terms-and-conditions"
@@ -190,7 +209,9 @@ const HomePage = () => {
 
             <div className="flex items-center justify-center">
               <div className="grid grid-cols-2 gap-[35px] mb-4">
-                {games.map((game, index) => (
+                {/* {games.map((game, index) => ( */}
+                  {games && games.length > 0 && games.map((game) => (
+
                   <div
                     key={game.gameId}
                     className="bg-custom-t-gradient flex flex-col items-center justify-center mt-[32px] rounded-[16px] w-[152px] h-[166px]"
@@ -210,6 +231,8 @@ const HomePage = () => {
                       <img src={StarWs} alt="start" />
                       <img src={StarWs} alt="start" />
                       <img src={StarWs} alt="start" />
+
+
                     </div>
                     <button className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center px-[30px] py-[6px] mx-auto mt-[12.87px]">
                       <a
