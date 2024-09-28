@@ -192,7 +192,7 @@ const HomePage = () => {
               All Games
             </h2>
             <div className="space-x-[33px] mt-[17px] flex justify-center items-center mb-[20px]">
-              {categories.map((category, index) => (
+              {/* {categories.map((category, index) => (
                 <button
                   key={index}
                   className="flex items-center justify-center text-white rounded-[26px] border border-[#D7E7F066] bg-[#EDF0F233] font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] gap-[6px] text-center px-[9px] py-[5px]"
@@ -204,7 +204,7 @@ const HomePage = () => {
                   {category === "Racing" && <img src={Racing} alt="racing" />}
                   {category}
                 </button>
-              ))}
+              ))} */}
             </div>
 
             <div className="flex items-center justify-center">
@@ -335,6 +335,8 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+
 
 
 

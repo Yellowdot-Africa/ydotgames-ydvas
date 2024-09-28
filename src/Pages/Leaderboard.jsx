@@ -37,6 +37,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
     leaderboard,
     handleUpdateLeaderboardScore,
     fetchLeaderboardStanding,
+    obscureMSISDN,
     loading,
     error,
   } = useContext(LeaderboardContext);
@@ -264,7 +265,8 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                           </td>
 
                           <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
-                            {player.msisdn}
+                            {/* {player.msisdn} */}
+                            {obscureMSISDN(player.msisdn)}
                           </td>
                           <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
                             {dailyScore}

@@ -6,6 +6,15 @@ import {
 import AuthContext from "../Context/AuthContext";
 import UserContext from "../Context/UserContext";
 
+
+
+const obscureMSISDN = (msisdn) => {
+  if (!msisdn || msisdn.length < 5) return msisdn; 
+  const obscuredPart = '*'.repeat(5); 
+  const visiblePart = msisdn.slice(5); 
+  return `${obscuredPart}${visiblePart}`; 
+};
+
 const LeaderboardContext = createContext();
 
 const LeaderboardProvider = ({ children }) => {
@@ -64,6 +73,7 @@ const LeaderboardProvider = ({ children }) => {
         loading,
         fetchLeaderboardStanding,
         handleUpdateLeaderboardScore,
+        obscureMSISDN,
       }}
     >
       {children}
