@@ -28,7 +28,9 @@ export const getSubscriberProfile = async (auth, msisdn) => {
 
 
 export const UpdateSubscriberProfile = async (auth,msisdn, nickname,avatarId) => {
-  try {
+    console.log('Updating profile with:', { msisdn, nickname, avatarId });
+
+    try {
     const token = localStorage.getItem("authToken");
     // const token = auth?.token; 
     if (!token) {
@@ -53,3 +55,5 @@ export const UpdateSubscriberProfile = async (auth,msisdn, nickname,avatarId) =>
     throw error;
   }
 };
+
+

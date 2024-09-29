@@ -32,9 +32,9 @@ const ProfilePage = () => {
 useEffect(() => {
   if (leaderboard.length > 0 && userProfile) {
     const myEntry = leaderboard.find(entry => entry.msisdn === userProfile.msisdn);
-    setMyPoints(myEntry ? myEntry.points : 0);
+    setMyPoints(myEntry ? myEntry.dailyPoints : 0);
 
-    const maxPoints = Math.max(...leaderboard.map(entry => entry.points));
+    const maxPoints = Math.max(...leaderboard.map(entry => entry.dailyPoints));
     setTopPoints(maxPoints);
   }
 }, [leaderboard, userProfile]);

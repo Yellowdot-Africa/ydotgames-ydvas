@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Logo from "../assets/Images/logo.png";
 import SplashIcon from "../assets/Icons/splash.png";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"; 
 
 const SplashScreen = () => {
   const [progress, setProgress] = useState(0);
@@ -23,8 +24,39 @@ const SplashScreen = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handlePlayNow = () => {
-    navigate("/home");
+  useEffect(() => {
+    const checkSubscription = async () => {
+      const queryParams = new URLSearchParams(window.location.search);
+      let msisdn = queryParams.get('msisdn');
+
+      if (isBase64(msisdn)) {
+        msisdn = atob(msisdn);
+      }
+
+      try {
+        const response = await axios.get(`https://ydvassdp.com:6001/api/DataSync/Subscription/CheckSubscriptionStatus?msisdn=${msisdn}&serviceId=9`);
+        if (response.data.isSubscribed) {
+          navigate("/home");
+        } else {
+          navigate("/subscribe");
+        }
+      } catch (error) {
+        console.error("Error checking subscription status", error);
+        navigate("/error");
+      }
+    };
+
+    if (loadingComplete) {
+      checkSubscription();
+    }
+  }, [loadingComplete, navigate]);
+
+  const isBase64 = (str) => {
+    try {
+      return btoa(atob(str)) === str;
+    } catch (err) {
+      return false; 
+    }
   };
 
   return (
@@ -61,7 +93,7 @@ const SplashScreen = () => {
             <div className="h-[60px] w-[230px] flex justify-center items-center">
               <button
                 className="relative bg-darrk-gradient shadow-custom-shadow w-full h-full text-white text-[20px] text-center font-bold font-mtn-brighter-bold leading-[26px] rounded-[30px] transition-all"
-                onClick={handlePlayNow}
+                onClick={() => navigate("/home")} 
               >
                 Play Now
                 <img
@@ -79,4 +111,3 @@ const SplashScreen = () => {
 };
 
 export default SplashScreen;
-

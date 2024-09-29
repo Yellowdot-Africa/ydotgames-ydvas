@@ -120,7 +120,7 @@ const PrizesPage = () => {
             </div> */}
             <Link to="/terms-and-conditions" className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center items-center mt-[12px] mb-[10px] mr-[10px]">
               <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
-                T&C
+                T&C's
               </p>
             </Link>
           </div>

@@ -28,6 +28,7 @@ import AuthContext from "../Context/AuthContext";
 import GameContext from "../Context/GameContext";
 import UserContext from "../Context/UserContext";
 import BigCashGame from "../Components/BigCashGame";
+import StarRatings from "../Components/StarRatings";
 
 const HomePage = () => {
   const avatars = [Avatar1, Avatar2, Avatar3, Avatar4, Avatar5];
@@ -37,16 +38,18 @@ const HomePage = () => {
   const [scrollDirection, setScrollDirection] = useState("null");
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const { auth } = useContext(AuthContext);
-  const {handleUpdateSubscriberProfile, userProfile} = useContext(UserContext);
+  const { handleUpdateSubscriberProfile, fetchProfile, userProfile, msisdn } =
+    useContext(UserContext);
   const { games, loading } = useContext(GameContext);
   const [categories, setCategories] = useState([]);
-  // const msisdn = userProfile.msisdn; 
+  const [nickname, setNickname] = useState("Racer001");
 
   useEffect(() => {
     if (games && games.length > 0) {
       const uniqueCategories = [
         ...new Set(games.map((game) => game.category[0])),
       ];
+
       setCategories(uniqueCategories);
     }
   }, [games]);
@@ -93,34 +96,42 @@ const HomePage = () => {
 
   const handleAvatarSelect = async (avatar) => {
     setSelectedAvatar(avatar);
-    await handleUpdateSubscriberProfile({
-      msisdn: userProfile.msisdn,
-      avatarId: avatar, 
-    });
-
+    // // await handleUpdateSubscriberProfile({
+    // //   msisdn: userProfile.msisdn,
+    // //   avatarId: avatar,
+    // });
   };
 
-  const handleSave = () => {
-    if (selectedAvatar) {
+  const handleSave = async () => {
+    try {
+      if (!selectedAvatar) return;
+      const avatarId = avatars.indexOf(selectedAvatar) + 1;
+      await handleUpdateSubscriberProfile(msisdn, nickname, avatarId);
       setCurrentAvatar(selectedAvatar);
+
+      localStorage.setItem("avatarId", avatarId);
       setShowAvatarSelector(false);
+    } catch (error) {
+      console.error("Error saving avatar:", error);
     }
   };
 
-  // function renderStars(rating) {
-  //   const starsCount = Math.max(0, Math.min(5, Math.floor(rating))); // Ensure the rating is between 0 and 5
-  //   return Array(starsCount).fill('⭐'); // Assuming you are generating stars
-  // }
+  const handlePlay = (playUrl) => {
+    localStorage.setItem("gameScore", 0); 
   
-//   function renderStars(rating) {
-//     // Ensure the rating is a number and within valid bounds
-//     const validRating = Number.isFinite(rating) ? Math.max(0, Math.min(5, Math.floor(rating))) : 0;
+    window.open(playUrl, '_blank');  
+  };
+  
 
-//     // Generate the stars array safely
-//     return Array(validRating).fill('⭐'); // Adjust this to whatever symbol you use for stars
-// }
+// const handlePlay = (game) => {
+//   const currentScore = getCurrentScoreForGame(game.gameId); 
+//   const totalScore = parseInt(localStorage.getItem("ydotGameScore")) || 0; 
+//   const newTotalScore = totalScore + currentScore; 
 
+//   localStorage.setItem("ydotGameScore", newTotalScore); 
 
+//   window.location.href = game.playUrl;
+// };
 
 
   return (
@@ -176,7 +187,7 @@ const HomePage = () => {
             </div>
             <div className="bg-background w-[140px] h-[28px] rounded-b-[26px] flex items-center justify-center mx-auto shadow-box-shadow">
               <p className="font-mtn-brighter-medium font-medium text-[10px] leading-[13px] text-center text-[#FFFFFF]">
-              @{userProfile?.msisdn}
+                @{userProfile?.msisdn}
               </p>
             </div>
             <div className="flex flex-col items-center flex-grow mt-[20px]">
@@ -210,41 +221,49 @@ const HomePage = () => {
             <div className="flex items-center justify-center">
               <div className="grid grid-cols-2 gap-[35px] mb-4">
                 {/* {games.map((game, index) => ( */}
-                  {games && games.length > 0 && games.map((game) => (
 
-                  <div
-                    key={game.gameId}
-                    className="bg-custom-t-gradient flex flex-col items-center justify-center mt-[32px] rounded-[16px] w-[152px] h-[166px]"
-                  >
-                    <img
-                      src={`data:image/png;base64,${game.base64}`}
-                      alt={game.title}
-                      className="mb-[6px] -mt-[50px] w-[60px] h-[60px] rounded-[12px] object-cover"
-                    />
-                    <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
-                      {truncateTitle(game.title)}
-                    </p>
-                    {/* Star rating logic */}
-                    <div className="flex items-center justify-center mt-[9.8px]">
-                      <img src={StarYs} alt="start" />
-                      <img src={StarYs} alt="start" />
-                      <img src={StarWs} alt="start" />
-                      <img src={StarWs} alt="start" />
-                      <img src={StarWs} alt="start" />
+                {games &&
+                  games.length > 0 &&
+                  games.map((game) => (
+                 
 
-
-                    </div>
-                    <button className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center px-[30px] py-[6px] mx-auto mt-[12.87px]">
-                      <a
-                        href={game.playUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                  
+                      <div
+                        key={game.gameId}
+                        className="bg-custom-t-gradient flex flex-col items-center justify-center mt-[32px] rounded-[16px] w-[152px] h-[166px]"
                       >
-                        Play
-                      </a>
-                    </button>
-                  </div>
-                ))}
+                        <img
+                          src={
+                            game.base64
+                              ? `data:image/png;base64,${game.base64}`
+                              : game.title &&
+                                game.title.trim() === "X-Wing Fighter"
+                              ? XWinger
+                              : ""
+                          }
+                          alt={game.title || "game-image"}
+                          className="mb-[6px] -mt-[50px] w-[60px] h-[60px] rounded-[12px] object-cover"
+                        />
+
+                        <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
+                          {truncateTitle(game.title)}
+                        </p>
+                        <div className="flex items-center justify-center mt-[9.8px]">
+                          <StarRatings />
+                        </div>
+                        <button   onClick={() => handlePlay(game.playUrl)}  className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center px-[30px] py-[6px] mx-auto mt-[12.87px]">
+                          {/* <a
+                            href={game.playUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Play
+                          </a> */}
+                          Play
+                        </button>
+                      </div>
+                    )
+                  )}
               </div>
             </div>
             <BigCashGame />
@@ -335,6 +354,7 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
 
 
 

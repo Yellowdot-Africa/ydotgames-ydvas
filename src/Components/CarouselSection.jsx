@@ -8,6 +8,7 @@ import AuthContext from "../Context/AuthContext";
 import { Link } from "react-router-dom";
 
 import "../App.css";
+import StarRatings from "./StarRatings";
 
 const CarouselSection = () => {
   const carouselRef = useRef(null);
@@ -112,13 +113,14 @@ const CarouselSection = () => {
                         }}
                         className="bg-[#19BFC1] rounded-bl-[20px] w-[103px] h-[30px] flex items-center justify-center"
                       >
-                        {Array(5)
+                        {/* {Array(5)
                           .fill()
                           .map((_, starIndex) => (
                             <img key={starIndex} src={StarW} alt="star" />
-                          ))}
+                          ))} */}
+                          <StarRatings/>
                       </span>
-                      <button className="bg-[#2A76D8] pb-[7px] px-[15px] rounded-br-[20px]">
+                      <button className="bg-[#2A76D8] pt-[7px] pb-[7px]  px-[15px] rounded-br-[20px]">
                         <p
                           href={game.playUrl}
                           rel="noopener noreferrer"
@@ -143,4 +145,6 @@ const CarouselSection = () => {
 };
 
 export default CarouselSection;
+
+
 

@@ -44,11 +44,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
   const { userProfile, fetchProfile, msisdn, handleUpdateSubscriberProfile } =
     useContext(UserContext);
 
-  const getDailyAndMonthlyScores = (points) => {
-    const dailyScore = points;
-    const monthlyScore = points * 30;
-    return { dailyScore, monthlyScore };
-  };
+ 
 
   useEffect(() => {
     fetchLeaderboardStanding(subscriberMsisdn);
@@ -155,10 +151,10 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                   </div> */}
                   <Link
                     to="/terms-and-conditions"
-                    className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center items-center mt-[12px] mb-[10px] mr-[10px]"
+                    className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center px-4 items-center mt-[12px] mb-[10px] mr-[10px]"
                   >
                     <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
-                      T&C
+                      T&C's
                     </p>
                   </Link>
                 </div>
@@ -233,9 +229,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                         player.position === 2 ||
                         player.position === 3;
 
-                      const { dailyScore, monthlyScore } =
-                        getDailyAndMonthlyScores(player.points);
-
+              
                       return (
                         <tr
                           key={index}
@@ -269,16 +263,17 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                             {obscureMSISDN(player.msisdn)}
                           </td>
                           <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
-                            {dailyScore}
+                            {player.dailyPoints}
                           </td>
                           <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
-                            {monthlyScore}
+                            {player.monthlyPoints}
                           </td>
                         </tr>
                       );
                     })
                   )}
                 </tbody>
+
               </table>
             </div>
           </div>
@@ -381,3 +376,57 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
 };
 
 export default LeaderboardPage;
+
+
+
+
+
+
+// const handleUpdateLeaderboardScore = async () => {
+//   try {
+//     const response = await axios.post('https://your-api-endpoint/update-leaderboard', {
+//       msisdn: msisdn,  // Replace with actual data you're sending
+//       // Include any other necessary data, like the new score
+//     });
+//     console.log("Leaderboard score updated:", response.data);
+//     // Optionally, you might want to refetch the leaderboard here
+//     fetchLeaderboardStanding(subscriberMsisdn);
+//   } catch (error) {
+//     console.error("Error updating leaderboard score:", error);
+//     // Handle error (e.g., set error state)
+//   }
+// };
+
+
+// const handleUpdateLeaderboardScore = async () => {
+//   try {
+//     const storedScore = localStorage.getItem("gameScore");
+//     if (!storedScore) {
+//       console.warn("No score found in local storage. Ensure the game score is set after playing.");
+//       return;
+//     }
+
+//     // Ensure MSISDN is defined
+//     console.log("Updating score for MSISDN:", msisdn);
+//     if (!msisdn) {
+//       throw new Error("MSISDN is required for updating the score");
+//     }
+
+//     // Log the parsed game score
+//     const gameScore = parseInt(storedScore, 10);
+//     console.log("Updating leaderboard score with:", { msisdn, gameScore });
+
+//     // Update the leaderboard score
+//     const response = await updateLeaderboardScore(auth, msisdn, gameScore);
+//     console.log("Leaderboard score update response:", response); // Log response for debugging
+
+//     // Fetch the updated leaderboard standings
+//     await fetchLeaderboardStanding();
+//   } catch (error) {
+//     console.error("Error updating leaderboard score:", error);
+//   }
+// };
+
+
+
+

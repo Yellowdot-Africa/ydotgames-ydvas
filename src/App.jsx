@@ -10,6 +10,8 @@ import ResultPage from './Pages/ResultPage';
 import './App.css';
 import FaqAccordion from './Pages/FaqAccordion';
 import TermsAndConditions from './Pages/TermsAndConditions';
+import SubscriptionPage from './Pages/SubscriptionPage';
+import ErrorPage from './Pages/ErrorPage';
 
 
 
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <SplashScreen />,
+  },
+  {
+    path: "/subscribe",
+    element: <SubscriptionPage />,
+  },
+  {
+    path: "/error",
+    element: <ErrorPage/>,
   },
   {
     path: "/home",

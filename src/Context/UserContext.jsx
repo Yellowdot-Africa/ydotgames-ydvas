@@ -11,6 +11,7 @@ export const UserProvider = ({ children }) => {
 
   const msisdn = "27687530974";
   const { auth } = useContext(AuthContext);
+
   console.log("MSISDN:", msisdn);
 
   const fetchProfile = async (msisdn) => {
@@ -37,12 +38,7 @@ export const UserProvider = ({ children }) => {
     }
   }, [auth?.token, msisdn]);
 
-  const handleUpdateSubscriberProfile = async (
-    auth,
-    msisdn,
-    nickname,
-    avatarId
-  ) => {
+  const handleUpdateSubscriberProfile = async (msisdn, nickname, avatarId) => {
     setLoading(true);
     setError(null);
 
@@ -50,20 +46,14 @@ export const UserProvider = ({ children }) => {
     console.log("Nickname:", nickname);
     console.log("AvatarID:", avatarId);
     try {
-      const response = await UpdateSubscriberProfile(
-        auth,
-        msisdn,
-        nickname,
-        avatarId
-      );
+      const response = await UpdateSubscriberProfile(auth, msisdn, nickname, avatarId || '');
       if (response.statusCode === "999") {
-        setUserProfile((prev) => ({ ...prev, avatarID: avatarId })); 
+        setUserProfile((prev) => ({ ...prev, avatarID: avatarId }));
       } else {
         setError(response.statusMessage);
       }
-      console.log(result.message);
     } catch (error) {
-      console.error("Failed to update leaderboard score", error);
+      console.error("Failed to update profile", error);
       setError("Error updating profile");
     } finally {
       setLoading(false);
@@ -88,3 +78,10 @@ export const UserProvider = ({ children }) => {
 
 export default UserContext;
 export const useUserContext = () => useContext(UserContext);
+
+
+
+
+
+
+
