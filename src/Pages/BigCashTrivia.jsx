@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Timer from "../assets/Icons/timer.svg";
+import { LeaderboardContext } from "../Context/LeaderboardContext"; 
 
 const BigCashTrivia = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -10,6 +11,9 @@ const BigCashTrivia = () => {
   const [statuses, setStatuses] = useState([]);
   const [timer, setTimer] = useState(10);
   const navigate = useNavigate();
+  const { handleUpdateLeaderboardScore } = useContext(LeaderboardContext);
+  const { leaderboard, loading, fetchLeaderboardStanding } = useContext(LeaderboardContext);
+
 
   const questions = [
     {
@@ -122,6 +126,8 @@ const BigCashTrivia = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
+      handleUpdateLeaderboardScore(score);
+
       navigate("/result-page", {
         state: { score: score, totalQuestions: questions.length , statuses: statuses},
       });
@@ -192,3 +198,6 @@ const BigCashTrivia = () => {
 };
 
 export default BigCashTrivia;
+
+
+

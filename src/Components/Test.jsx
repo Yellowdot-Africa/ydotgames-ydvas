@@ -2503,3 +2503,349 @@
   //     }
   //   }
   // }, [auth?.token, msisdn]);
+
+
+
+
+
+
+
+
+// import React from "react";
+// import { useNavigate } from "react-router-dom";
+// import BackgroundImage from "../assets/leaderboard-bg.png";
+// import LogoImage from "../assets/gamewin.png";
+// import DiamondImage from "../assets/DiamondGems.png";
+// import Image1 from "../assets/one.png";
+// import Image2 from "../assets/two.png";
+// import Image3 from "../assets/three.png";
+// import Rank1 from "../assets/rank1.png";
+// import Rank2 from "../assets/rank2.png";
+// import Rank3 from "../assets/rank3.png";
+// import Rank4 from "../assets/rank4.png";
+// import Rank5 from "../assets/rank3.png";
+// import Rank6 from "../assets/rank3.png";
+
+// const Leaderboard = () => {
+//   const navigate = useNavigate();
+
+//   const GoHome = () => {
+//     navigate("/main");
+//   };
+
+//   const players = [
+//     { rank: 1, name: "Name", points: 1000 },
+//     { rank: 2, name: "Name", points: 800 },
+//     { rank: 3, name: "Name", points: 600 },
+//     { rank: 4, name: "Name", points: 1000 },
+//     { rank: 5, name: "Name", points: 800 },
+//     { rank: 6, name: "Name", points: 600 },
+//     { rank: 7, name: "Name", points: 1000 },
+//     { rank: 8, name: "Name", points: 800 },
+//     { rank: 9, name: "Name", points: 600 },
+//     { rank: 10, name: "Name", points: 600 },
+//   ];
+
+//   const getLocalStorageData = () => {
+//         const gameData = localStorage.getItem('com.disney.fighter.game_11.save');
+//         return gameData ? JSON.parse(gameData) : {};
+//       };
+
+//       const parsedData = getLocalStorageData();
+//         const formattedPlayers = [
+//           {
+//             rank: 1,
+//             name: "Player 1",
+//             points: parsedData.bestScore || 0,
+//           },
+//           {
+//             rank: 2,
+//             name: "Player 2",
+//             points: parsedData.bestScore || 0,
+//           },
+//           {
+//             rank: 3,
+//             name: "Player 3",
+//             points: parsedData.bestScore || 0,
+//           }, {
+//             rank: 4,
+//             name: "Player 4",
+//             points: parsedData.bestScore || 0,
+//           }, {
+//             rank: 5,
+//             name: "Player 5",
+//             points: parsedData.bestScore || 0,
+//           },
+
+//           {
+//             rank: 6,
+//             name: "Player 6",
+//             points: parsedData.bestScore || 0,
+//           },{
+//             rank: 7,
+//             name: "Player 5",
+//             points: parsedData.bestScore || 0,
+//           },{
+//             rank: 8,
+//             name: "Player 5",
+//             points: parsedData.bestScore || 0,
+//           },{
+//             rank: 9,
+//             name: "Player 5",
+//             points: parsedData.bestScore || 0,
+//           },
+//         ];
+
+//   return (
+//     <div className="min-h-screen flex flex-col">
+//       <div
+//         className="relative w-full h-[328px] bg-cover bg-center"
+//         style={{ backgroundImage: `url(${BackgroundImage})` }}
+//       >
+//         <img
+//           src={LogoImage}
+//           alt="Logo"
+//           className="absolute top-4 left-4 w-[73px] h-[52px]"
+//         />
+//         <div className="relative w-[200px] h-[200px] mx-auto mt-20">
+//           <img
+//             src={DiamondImage}
+//             alt="Top 3"
+//             className="absolute top-[70%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[174px] h-[100px]"
+//           />
+//           <img
+//             src={Image1}
+//             alt="1"
+//             className="absolute w-[50px] top-[25%] left-1/2 transform -translate-x-1/2"
+//           />
+//           <img
+//             src={Image2}
+//             alt="2"
+//             className="absolute w-[50px] top-[47%] left-[3%]"
+//           />
+//           <img
+//             src={Image3}
+//             alt="3"
+//             className="absolute w-[50px] top-[50%] right-[0%]"
+//           />
+//         </div>
+//       </div>
+//       <div className="relative -mt-16 flex justify-center">
+//         <div className="absolute top-[10px] flex flex-col items-center justify-center container mx-auto p-4">
+//           <h1 className="w-[70vw] text-center bg-[#004ADA] px-[35px] py-[8px] text-white font-mochiy text-[16px] font-normal leading-[23.17px]">
+//             LEADERBOARD
+//           </h1>
+//           <div className="bg-white flex flex-col items-center justify-center shadow rounded overflow-hidden">
+//             {players.map((player) => (
+//               <div
+//                 key={player.rank}
+//                 className={`flex items-center justify-between p-4 border-b border-gray-200 rounded-lg shadow-md mx-[22px] ${
+//                   player.rank > 6 ? "bg-white" : ""
+//                 }`}
+//                 style={{
+//                   width: "80vw",
+//                   height: "49px",
+//                   borderRadius: player.rank <= 3 ? "25px" : "0px",
+//                   boxShadow:
+//                     player.rank <= 3 ? "0px 4px 4px 0px #00000040" : "none",
+//                 }}
+//               >
+//                 {player.rank <= 6 ? (
+//                   <div className="relative flex items-center">
+//                     <img
+//                       src={
+//                         player.rank === 1
+//                           ? Rank4
+//                           : player.rank === 2
+//                           ? Rank1
+//                           : player.rank === 3
+//                           ? Rank2
+//                           : Rank3
+//                       }
+//                       alt={`Rank ${player.rank}`}
+//                       className=""
+//                     />
+//                     <span className="absolute left-1/2 transform -translate-x-1/2 text-white font-normal text-[16px]">
+//                       {player.rank}
+//                     </span>
+//                   </div>
+//                 ) : (
+//                   <span className="flex-0 text-left mx-[22px]">
+//                     {player.rank}
+//                   </span>
+//                 )}
+//                 <span className="flex-0 text-center">{player.name}</span>
+//                 <span className="text-right flex-0">{player.points}</span>
+//               </div>
+//             ))}
+//             <button
+//               className="px-4 py-2 bg-white text-black rounded-[25px] font-mochiy text-[16px] font-normal leading-[23.17px] w-[50vw] mx-auto"
+//               style={{
+//                 height: "50px",
+//                 borderRadius: "25px",
+//                 boxShadow: "0px 4px 4px 0px #00000040",
+//                 // marginTop: "50px",
+//                 position: "absolute",
+//                 // bottom: "144px",
+//                 bottom: "10px",
+//               }}
+//               onClick={GoHome}
+//             >
+//               BACK TO HOME
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Leaderboard;
+
+
+
+
+
+
+// import React, { useState, useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
+// import Timer from "../assets/Icons/timer.svg";
+// import { useLeaderboard } from "../Context/LeaderboardContext"; // Import Leaderboard context
+
+// const BigCashTrivia = () => {
+//   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+//   const [selectedAnswer, setSelectedAnswer] = useState(null);
+//   const [isCorrect, setIsCorrect] = useState(null);
+//   const [score, setScore] = useState(0);
+//   const [statuses, setStatuses] = useState([]);
+//   const [timer, setTimer] = useState(10);
+//   const navigate = useNavigate();
+//   const { handleUpdateLeaderboardScore } = useLeaderboard(); // Use leaderboard context
+
+//   const questions = [
+//     // Questions data...
+//   ];
+
+//   useEffect(() => {
+//     const timerId = setInterval(() => {
+//       setTimer((prev) => {
+//         if (prev <= 1) {
+//           clearInterval(timerId);
+//           handleNextQuestion();
+//           return 10;
+//         }
+//         return prev - 1;
+//       });
+//     }, 1000);
+
+//     return () => clearInterval(timerId);
+//   }, [currentQuestionIndex]);
+
+//   const handleAnswerClick = (answer) => {
+//     if (selectedAnswer) return;
+
+//     setSelectedAnswer(answer);
+//     const isAnswerCorrect =
+//       answer === questions[currentQuestionIndex].correctAnswer;
+//     setIsCorrect(isAnswerCorrect);
+//     setStatuses((prev) => {
+//       const newStatuses = [...prev];
+//       newStatuses[currentQuestionIndex] = isAnswerCorrect
+//         ? "correct"
+//         : "incorrect";
+//       return newStatuses;
+//     });
+
+//     if (isAnswerCorrect) {
+//       setScore(score + 1);
+//     }
+
+//     setTimeout(() => {
+//       handleNextQuestion();
+//     }, 2000);
+//   };
+
+//   const handleNextQuestion = () => {
+//     setSelectedAnswer(null);
+//     setIsCorrect(null);
+//     setTimer(10);
+
+//     // Check if it's the last question
+//     if (currentQuestionIndex < questions.length - 1) {
+//       setCurrentQuestionIndex(currentQuestionIndex + 1);
+//     } else {
+//       // Game is finished, update leaderboard score
+//       handleUpdateLeaderboardScore(score);
+
+//       // Navigate to result page after updating leaderboard
+//       navigate("/result-page", {
+//         state: { score: score, totalQuestions: questions.length, statuses: statuses },
+//       });
+//     }
+//   };
+
+//   return (
+//     <div className="flex flex-col items-center w-full min-h-screen bg-darrk-gradient text-white">
+//       {/* Timer and question content */}
+//       <div className=" mt-[60px] mb-[30px]">
+//         <div className="flex items-center justify-center bg-white w-[46px] h-[46px] border rounded-[50px]">
+//           <img className="img-timer" src={Timer} alt="timer" />
+//           <p className="text-black text-[18px] font-mtn-brighter-medium font-medium text-center">
+//             {timer}
+//           </p>
+//         </div>
+//       </div>
+
+//       <div className="p-4 text-center">
+//         <h2 className="text-[24px] text-white leading-[24px] font-bold font-mtn-brighter-bold text-center mb-[47px]">
+//           {questions[currentQuestionIndex].question}
+//         </h2>
+
+//         {/* Pagination Dots */}
+//         <div className="flex items-center justify-between mt-4 mb-[59px]">
+//           {questions.map((_, index) => (
+//             <div
+//               key={index}
+//               className={`w-2 h-2 rounded-full mx-1 ${
+//                 statuses[index] === "correct"
+//                   ? "bg-[#82e180]"
+//                   : statuses[index] === "incorrect"
+//                   ? "bg-[#e37e80]"
+//                   : "bg-gray-500"
+//               }`}
+//             />
+//           ))}
+//         </div>
+
+//         <div className="flex flex-col gap-[21px]">
+//           {questions[currentQuestionIndex].answers.map((answer, index) => {
+//             const isCorrectAnswer =
+//               answer === questions[currentQuestionIndex].correctAnswer;
+//             const isWrongAnswer = selectedAnswer === answer && !isCorrect;
+
+//             return (
+//               <button
+//                 key={index}
+//                 onClick={() => handleAnswerClick(answer)}
+//                 className={`py-2 px-4 text-black rounded-[50px] w-[90vw] h-[60px] ${
+//                   selectedAnswer === answer
+//                     ? isCorrectAnswer
+//                       ? "bg-[#82e180]"
+//                       : "bg-[#e37e80]"
+//                     : selectedAnswer && isCorrectAnswer
+//                     ? "bg-[#82e180]"
+//                     : "bg-white"
+//                 }`}
+//                 disabled={selectedAnswer !== null}
+//               >
+//                 {answer}
+//               </button>
+//             );
+//           })}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default BigCashTrivia;

@@ -58,6 +58,25 @@ const LeaderboardProvider = ({ children }) => {
     }
   };
 
+  const saveScoreToLocalStorage = (msisdn, score) => {
+    const existingScores = JSON.parse(localStorage.getItem('leaderboard')) || [];
+    
+    const userIndex = existingScores.findIndex((item) => item.msisdn === msisdn);
+    
+    if (userIndex !== -1) {
+      existingScores[userIndex].score = Math.max(existingScores[userIndex].score, score); // Keep the highest score
+    } else {
+      existingScores.push({ msisdn, score });
+    }
+    
+    localStorage.setItem('leaderboard', JSON.stringify(existingScores));
+  };
+
+  const getScoresFromLocalStorage = () => {
+    return JSON.parse(localStorage.getItem('leaderboard')) || [];
+  };
+
+
   useEffect(() => {
     if (auth?.token) {
       fetchLeaderboardStanding();
@@ -67,11 +86,15 @@ const LeaderboardProvider = ({ children }) => {
         const gameScore = parseInt(storedScore, 10);
         if (!isNaN(gameScore)) {
           handleUpdateLeaderboardScore(gameScore);
+          saveScoreToLocalStorage(msisdn, gameScore); 
           localStorage.removeItem("gameScore"); 
         } else {
           console.warn("Invalid score value found in local storage.");
         }
       }
+      const scores = getScoresFromLocalStorage();
+      setLeaderboard(prev => [...prev, ...scores]);
+
     }
   }, [auth?.token, msisdn]);
 
@@ -84,6 +107,7 @@ const LeaderboardProvider = ({ children }) => {
         loading,
         fetchLeaderboardStanding,
         handleUpdateLeaderboardScore,
+        saveScoreToLocalStorage, 
         obscureMSISDN,
       }}
     >
@@ -92,7 +116,7 @@ const LeaderboardProvider = ({ children }) => {
   );
 };
 
-export { LeaderboardContext, LeaderboardProvider };
+export  { LeaderboardContext, LeaderboardProvider };
 
 export const useLeaderboard = () => useContext(LeaderboardContext);
 
