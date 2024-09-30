@@ -119,7 +119,8 @@ useEffect(() => {
                 @{userProfile?.msisdn}
               </p>
               <p className="text-[#FFCA00] font-mtn-brighter-bold font-bold text-[16px] leading-[20.8px] text-center">
-                Subscribed
+                {/* Subscribed */}
+                {userProfile?.isSubscribed ? "Subscribed" : "Unsubscribed"}
               </p>
             </div>
             {/* <div className="mr-[24px] md:mr-[100px] flex items-center justify-center border border-[#FFCB05] rounded-[30px] pl-[35px] pr-[44px] px-[12px] ">
@@ -247,21 +248,3 @@ export default ProfilePage;
 
 
 
-
-// const renderStars = (rating) => {
-//   const totalStars = 5;
-//   const filledStars = Math.floor(rating);
-//   const emptyStars = totalStars - filledStars;
-
-//   return (
-//     <>
-//       {[...Array(filledStars)].map((_, i) => <img key={i} src={StarYs} alt="star" />)}
-//       {[...Array(emptyStars)].map((_, i) => <img key={i} src={StarWs} alt="star" />)}
-//     </>
-//   );
-// };
-
-
-// <div className="flex items-center justify-center mt-[9.8px]">
-//   {renderStars(game.rating)}
-// </div>

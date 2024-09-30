@@ -382,50 +382,7 @@ export default LeaderboardPage;
 
 
 
-// const handleUpdateLeaderboardScore = async () => {
-//   try {
-//     const response = await axios.post('https://your-api-endpoint/update-leaderboard', {
-//       msisdn: msisdn,  // Replace with actual data you're sending
-//       // Include any other necessary data, like the new score
-//     });
-//     console.log("Leaderboard score updated:", response.data);
-//     // Optionally, you might want to refetch the leaderboard here
-//     fetchLeaderboardStanding(subscriberMsisdn);
-//   } catch (error) {
-//     console.error("Error updating leaderboard score:", error);
-//     // Handle error (e.g., set error state)
-//   }
-// };
 
-
-// const handleUpdateLeaderboardScore = async () => {
-//   try {
-//     const storedScore = localStorage.getItem("gameScore");
-//     if (!storedScore) {
-//       console.warn("No score found in local storage. Ensure the game score is set after playing.");
-//       return;
-//     }
-
-//     // Ensure MSISDN is defined
-//     console.log("Updating score for MSISDN:", msisdn);
-//     if (!msisdn) {
-//       throw new Error("MSISDN is required for updating the score");
-//     }
-
-//     // Log the parsed game score
-//     const gameScore = parseInt(storedScore, 10);
-//     console.log("Updating leaderboard score with:", { msisdn, gameScore });
-
-//     // Update the leaderboard score
-//     const response = await updateLeaderboardScore(auth, msisdn, gameScore);
-//     console.log("Leaderboard score update response:", response); // Log response for debugging
-
-//     // Fetch the updated leaderboard standings
-//     await fetchLeaderboardStanding();
-//   } catch (error) {
-//     console.error("Error updating leaderboard score:", error);
-//   }
-// };
 
 
 

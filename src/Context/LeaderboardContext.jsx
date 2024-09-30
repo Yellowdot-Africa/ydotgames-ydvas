@@ -45,39 +45,14 @@ const LeaderboardProvider = ({ children }) => {
     }
   };
 
-  const handleUpdateLeaderboardScore = async () => {
-    console.log("Attempting to update leaderboard score..."); // Debugging log
 
+  const handleUpdateLeaderboardScore = async (gameScore) => {
+    if (!msisdn) throw new Error("MSISDN is required for updating the score");
+    
     try {
-      const storedScore = localStorage.getItem("gameScore");
-      console.log("Stored score:", storedScore);
-      if (!storedScore) {
-        // throw new Error("No score found in local storage");
-        console.warn(
-          "No score found in local storage. Ensure the game score is set after playing."
-        );
-
-        return;
-      }
-
-      console.log("Updating score for MSISDN:", msisdn);
-      if (!msisdn) {
-        throw new Error("MSISDN is required for updating the score");
-      }
-      const gameScore = parseInt(storedScore, 10);
-      if (isNaN(gameScore)) {
-        console.warn("Invalid score value. Cannot update leaderboard.");
-        return;
-      }
-
-      console.log("Updating leaderboard score with:", { msisdn, gameScore });
-
       const response = await updateLeaderboardScore(auth, msisdn, gameScore);
-      console.log("API Response:", response);
-
-      console.log("Leaderboard score update response:", response);
-
-      await fetchLeaderboardStanding();
+      console.log("Leaderboard score updated:", response);
+      await fetchLeaderboardStanding(); 
     } catch (error) {
       console.error("Error updating leaderboard score:", error);
     }
@@ -86,15 +61,19 @@ const LeaderboardProvider = ({ children }) => {
   useEffect(() => {
     if (auth?.token) {
       fetchLeaderboardStanding();
+      
       const storedScore = localStorage.getItem("gameScore");
       if (storedScore) {
-        handleUpdateLeaderboardScore();
-      } else {
-        console.warn("No score to update in the leaderboard.");
+        const gameScore = parseInt(storedScore, 10);
+        if (!isNaN(gameScore)) {
+          handleUpdateLeaderboardScore(gameScore);
+          localStorage.removeItem("gameScore"); 
+        } else {
+          console.warn("Invalid score value found in local storage.");
+        }
       }
     }
   }, [auth?.token, msisdn]);
-
 
 
 
