@@ -2849,3 +2849,1133 @@
 // };
 
 // export default BigCashTrivia;
+
+
+
+
+
+// import React, { useState, useEffect,useContext } from "react";
+// import { useNavigate } from "react-router-dom";
+// import Timer from "../assets/Icons/timer.svg";
+// import { LeaderboardContext } from "../Context/LeaderboardContext"; 
+// import { TriviaContext } from "../Context/TriviaContext";
+// import { useParams } from 'react-router-dom';
+// // import { getTriviaQuestions } from '../api/triviaApi';
+
+
+// const BigCashTrivia = () => {
+//   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+//   const [selectedAnswer, setSelectedAnswer] = useState(null);
+//   const [isCorrect, setIsCorrect] = useState(null);
+//   const [score, setScore] = useState(0);
+//   const [statuses, setStatuses] = useState([]);
+//   const [timer, setTimer] = useState(10);
+//   const navigate = useNavigate();
+//   const { gameId } = useParams();
+//   const { handleUpdateLeaderboardScore } = useContext(LeaderboardContext);
+//   const { leaderboard, loading, fetchLeaderboardStanding } = useContext(LeaderboardContext);
+//   const {
+//     games,
+//     questions,
+//     fetchQuestions,
+//     selectedGameId,
+//     setSelectedGameId,
+//    error,
+
+//   } = useContext(TriviaContext);
+
+
+
+//   useEffect(() => {
+//     if (selectedGameId) {
+//       fetchQuestions(selectedGameId);
+//     }
+//   }, [selectedGameId, fetchQuestions]);
+
+//   // useEffect(() => {
+//   //   console.log("Game ID:", gameId);
+//   //   if (gameId) {
+//   //     setSelectedGameId(gameId);
+//   //     fetchQuestions(gameId); 
+//   //   }
+//   // }, [gameId]);
+  
+
+//   useEffect(() => {
+//     const timerId = setInterval(() => {
+//       setTimer((prev) => {
+//         if (prev <= 1) {
+//           clearInterval(timerId);
+//           handleNextQuestion();
+//           return 10;
+//         }
+//         return prev - 1;
+//       });
+//     }, 1000);
+
+//     return () => clearInterval(timerId);
+//   }, [currentQuestionIndex]);
+
+//   const handleAnswerClick = (answer) => {
+//     if (selectedAnswer) return;
+
+//     setSelectedAnswer(answer);
+//     const isAnswerCorrect =
+//       answer === questions[currentQuestionIndex].correctAnswer;
+//     setIsCorrect(isAnswerCorrect);
+//     setStatuses((prev) => {
+//       const newStatuses = [...prev];
+//       newStatuses[currentQuestionIndex] = isAnswerCorrect
+//         ? "correct"
+//         : "incorrect";
+//       return newStatuses;
+//     });
+
+//     if (isAnswerCorrect) {
+//       setScore(score + 1);
+//     }
+
+//     setTimeout(() => {
+//       handleNextQuestion();
+//     }, 2000);
+//   };
+
+//   const handleNextQuestion = () => {
+//     setSelectedAnswer(null);
+//     setIsCorrect(null);
+//     setTimer(10);
+//     if (currentQuestionIndex < questions.length - 1) {
+//       setCurrentQuestionIndex(currentQuestionIndex + 1);
+//     } else {
+//       handleUpdateLeaderboardScore(score);
+
+//       navigate("/result-page", {
+//         state: { score: score, totalQuestions: questions.length , statuses: statuses},
+//       });
+//     }
+//   };
+
+//   if (loading) {
+//     return <div>Loading...</div>; // Show loading state
+// }
+
+//   return (
+//     <div className="flex flex-col items-center w-full min-h-screen bg-darrk-gradient text-white">
+//       <div className=" mt-[60px] mb-[30px]">
+//         <div className="flex items-center justify-center bg-white w-[46px] h-[46px] border rounded-[50px]">
+//           <img className="img-timer" src={Timer} alt="timer" />
+//           <p className="text-black text-[18px] font-mtn-brighter-medium font-medium text-center">
+//             {timer}
+//           </p>
+//         </div>
+//       </div>
+
+//       <div className="p-4 text-center">
+//         <h2 className="text-[24px] text-white leading-[24px] font-bold font-mtn-brighter-bold text-center mb-[47px]">
+//           {questions[currentQuestionIndex]?.question}
+//         </h2>
+
+//         {/* Pagination Dots */}
+//         <div className="flex items-center justify-between mt-4 mb-[59px]">
+//           {questions.map((_, index) => (
+//             <div
+//               key={index}
+//               className={`w-2 h-2 rounded-full mx-1 ${
+//                 statuses[index] === "correct"
+//                   ? "bg-[#82e180]"
+//                   : statuses[index] === "incorrect"
+//                   ? "bg-[#e37e80]"
+//                   : "bg-gray-500"
+//               }`}
+//             />
+//           ))}
+//         </div>
+
+//         <div className="flex flex-col gap-[21px]">
+//           {questions[currentQuestionIndex]?.answers?.map((answer, index) => {
+//             const isCorrectAnswer =
+//               answer === questions[currentQuestionIndex].correctAnswer;
+//             const isWrongAnswer = selectedAnswer === answer && !isCorrect;
+
+//             return (
+//               <button
+//                 key={index}
+//                 onClick={() => handleAnswerClick(answer)}
+//                 className={`py-2 px-4 text-black rounded-[50px] w-[90vw] h-[60px] ${
+//                   selectedAnswer === answer
+//                     ? isCorrectAnswer
+//                       ? "bg-[#82e180]"
+//                       : "bg-[#e37e80]"
+//                     : selectedAnswer && isCorrectAnswer
+//                     ? "bg-[#82e180]"
+//                     : "bg-white"
+//                 }`}
+//                 disabled={selectedAnswer !== null}
+//               >
+//                 {answer}
+//               </button>
+//             );
+//           })}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default BigCashTrivia;
+
+
+
+
+
+
+// import React, { useEffect, useState } from "react";
+// import Logo from "../assets/Images/logo.png";
+// import SplashIcon from "../assets/Icons/splash.png";
+// import { useNavigate } from "react-router-dom";
+// import axios from "axios"; 
+
+// const SplashScreen = () => {
+//   const [progress, setProgress] = useState(0);
+//   const [loadingComplete, setLoadingComplete] = useState(false);
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setProgress((prev) => {
+//         if (prev >= 100) {
+//           setLoadingComplete(true);
+//           clearInterval(interval);
+//           return 100;
+//         }
+//         return prev + 10;
+//       });
+//     }, 1000);
+
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   useEffect(() => {
+//     const checkSubscription = async () => {
+//       const queryParams = new URLSearchParams(window.location.search);
+//       let msisdn = queryParams.get('msisdn');
+
+//       if (isBase64(msisdn)) {
+//         msisdn = atob(msisdn);
+//       }
+
+//       try {
+//         // const response = await axios.get(`https://ydvassdp.com:6001/api/DataSync/Subscription/CheckSubscriptionStatus?msisdn=${msisdn}&serviceId=9`);
+       
+//         const response = await axios.post(`https://be-spin-mtn.ydafrica.com/api/v1/checkstatus`, {
+//           msisdn,
+//           serviceId,
+//         });
+//      if (response.status === 200){
+//         // if (response.data.isSubscribed) {
+//           navigate("/redirect");
+//         } else {
+//           // navigate("/subscribe");
+//         }
+//       } catch (error) {
+//         console.error("Error checking subscription status", error);
+//         // navigate("/error");
+//       }
+//     };
+
+//     if (loadingComplete) {
+//       checkSubscription();
+//     }
+//   }, [loadingComplete, navigate]);
+
+//   const isBase64 = (str) => {
+//     try {
+//       return btoa(atob(str)) === str;
+//     } catch (err) {
+//       return false; 
+//     }
+//   };
+
+//   return (
+//     <>
+//       <div className="flex flex-col items-center justify-center h-screen bg-custom-gradient">
+//         <div className="flex flex-col items-center justify-center">
+//           <img
+//             src={Logo}
+//             alt="Logo"
+//             className="w-[100%] h-[auto] max-w-[225.31px] mb-5"
+//           />
+
+//           <h1 className="text-[20px] font-bold font-mtn-brighter-bold text-center text-dark-gradient leading-[26px] mb-[100px] w-[342px] h-[52px] ">
+//             Gain Access To Multiple Games,
+//             <br /> And Have An Amazing Experience!
+//           </h1>
+
+//           {!loadingComplete && (
+//             <div className="relative w-[230px] h-4 bg-[#EEEEEE99] rounded-full">
+//               <div
+//                 className="absolute top-0 left-0 h-full bg-white rounded-full transition-all duration-300"
+//                 style={{ width: `${progress}%` }}
+//               ></div>
+//               <img
+//                 src={SplashIcon}
+//                 alt="Progress Splash Icon"
+//                 className="absolute top-[-10px] w-9 h-9 transition-transform"
+//                 style={{ transform: `translateX(${progress * 1.9}px)` }}
+//               />
+//             </div>
+//           )}
+
+//           {loadingComplete && (
+//             <div className="h-[60px] w-[230px] flex justify-center items-center">
+//               <button
+//                 className="relative bg-darrk-gradient shadow-custom-shadow w-full h-full text-white text-[20px] text-center font-bold font-mtn-brighter-bold leading-[26px] rounded-[30px] transition-all"
+//                 onClick={() => navigate("/home")} 
+//               >
+//                 Play Now
+//                 <img
+//                   src={SplashIcon}
+//                   alt="Splash Icon"
+//                   className="absolute -top-[25px] -right-3 w-10 h-10 m-2"
+//                 />
+//               </button>
+//             </div>
+//           )}
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default SplashScreen;
+
+
+
+
+
+
+
+// import React, { useEffect, useState } from "react";
+// import Logo from "../assets/Images/logo.png";
+// import SplashIcon from "../assets/Icons/splash.png";
+// import { useNavigate } from "react-router-dom";
+// import axios from "axios"; 
+
+// const SplashScreen = () => {
+//   const [progress, setProgress] = useState(0);
+//   const [loadingComplete, setLoadingComplete] = useState(false);
+//   const [apiMessage, setApiMessage] = useState(""); // State to store API message
+//   const [isActive, setIsActive] = useState(false);  // State to store active status
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setProgress((prev) => {
+//         if (prev >= 100) {
+//           setLoadingComplete(true);
+//           clearInterval(interval);
+//           return 100;
+//         }
+//         return prev + 10;
+//       });
+//     }, 1000);
+
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   useEffect(() => {
+//     const checkSubscription = async () => {
+//       const queryParams = new URLSearchParams(window.location.search);
+//       let msisdn = queryParams.get('msisdn');
+
+//       if (isBase64(msisdn)) {
+//         msisdn = atob(msisdn);
+//       }
+
+//       try {
+//         // Make the API call to check the subscription status
+//         const response = await axios.post(`https://be-spin-mtn.ydafrica.com/api/v1/checkstatus`, {
+//           msisdn,
+//           serviceId: 778, // Use a service ID if available or from the params
+//         });
+
+//         if (response.status === 200) {
+//           const { State, Description } = response.data.data;
+//           setApiMessage(Description); // Set the description message from the API
+
+//           if (State === "Active") {
+//             setIsActive(true); // Set active status if subscription is active
+//             navigate(`/redirect?cli=${btoa(msisdn)}&sid=778`);
+//           } else {
+//             setIsActive(false); // Set inactive status if subscription is inactive
+//           }
+//         }
+//       } catch (error) {
+//         // Capture and display the error message from the API response
+//         if (error.response && error.response.data) {
+//           setApiMessage(error.response.data.msg || "An error occurred");
+//         } else {
+//           setApiMessage("An unknown error occurred");
+//         }
+//       }
+//     };
+
+//     if (loadingComplete) {
+//       checkSubscription();
+//     }
+//   }, [loadingComplete, navigate]);
+
+//   const isBase64 = (str) => {
+//     try {
+//       return btoa(atob(str)) === str;
+//     } catch (err) {
+//       return false; 
+//     }
+//   };
+
+//   return (
+//     <>
+//       <div className="flex flex-col items-center justify-center h-screen bg-custom-gradient">
+//         <div className="flex flex-col items-center justify-center">
+//           <img
+//             src={Logo}
+//             alt="Logo"
+//             className="w-[100%] h-[auto] max-w-[225.31px] mb-5"
+//           />
+
+//           <h1 className="text-[20px] font-bold font-mtn-brighter-bold text-center text-dark-gradient leading-[26px] mb-[100px] w-[342px] h-[52px] ">
+//             Gain Access To Multiple Games,
+//             <br /> And Have An Amazing Experience!
+//           </h1>
+
+//           {!loadingComplete && (
+//             <div className="relative w-[230px] h-4 bg-[#EEEEEE99] rounded-full">
+//               <div
+//                 className="absolute top-0 left-0 h-full bg-white rounded-full transition-all duration-300"
+//                 style={{ width: `${progress}%` }}
+//               ></div>
+//               <img
+//                 src={SplashIcon}
+//                 alt="Progress Splash Icon"
+//                 className="absolute top-[-10px] w-9 h-9 transition-transform"
+//                 style={{ transform: `translateX(${progress * 1.9}px)` }}
+//               />
+//             </div>
+//           )}
+
+//           {loadingComplete && !isActive && (
+//             <div className="mt-5 text-center text-red-600">
+//               {/* Display the exact API message here */}
+//               <p>{apiMessage}</p>
+//             </div>
+//           )}
+
+//           {loadingComplete && isActive && (
+//             <div className="h-[60px] w-[230px] flex justify-center items-center">
+//               <button
+//                 className="relative bg-darrk-gradient shadow-custom-shadow w-full h-full text-white text-[20px] text-center font-bold font-mtn-brighter-bold leading-[26px] rounded-[30px] transition-all"
+//                 onClick={() => navigate("/home")} 
+//               >
+//                 Play Now
+//                 <img
+//                   src={SplashIcon}
+//                   alt="Splash Icon"
+//                   className="absolute -top-[25px] -right-3 w-10 h-10 m-2"
+//                 />
+//               </button>
+//             </div>
+//           )}
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default SplashScreen;
+
+
+
+
+
+
+
+// import React, { useState, useEffect, useContext } from "react";
+// import { Link } from "react-router-dom";
+// import CarouselSection from "../Components/CarouselSection";
+// import Action from "../assets/Icons/action.png";
+// import Fantasy from "../assets/Icons/fantasy.png";
+// import Racing from "../assets/Icons/racing.png";
+// import BigCash from "../assets/Images/big-cash.jpeg";
+// import XWinger from "../assets/Images/x-winger.png";
+// import AvatarProfile from "../assets/Images/avatar-prof.png";
+// import Home from "../assets/Icons/home.png";
+// import Leaderboard from "../assets/Icons/leaderboard.png";
+// import Profile from "../assets/Icons/profile.png";
+// import PlusIcon from "../assets/Icons/plus-icon.png";
+// import Avatar1 from "../assets/Icons/avatar1.png";
+// import Avatar2 from "../assets/Icons/avatar2.png";
+// import Avatar3 from "../assets/Icons/avatar3.png";
+// import Avatar4 from "../assets/Icons/avatar4.png";
+// import Avatar5 from "../assets/Icons/avatar5.png";
+// import AuthContext from "../Context/AuthContext";
+// import GameContext from "../Context/GameContext";
+// import UserContext from "../Context/UserContext";
+// import BigCashGame from "../Components/BigCashGame";
+// import StarRatings from "../Components/StarRatings";
+// import { LeaderboardContext } from "../Context/LeaderboardContext";
+
+// const HomePage = () => {
+//   const avatars = [Avatar1, Avatar2, Avatar3, Avatar4, Avatar5];
+//   const [selectedAvatar, setSelectedAvatar] = useState(null);
+//   const [showAvatarSelector, setShowAvatarSelector] = useState(false);
+//   const [currentAvatar, setCurrentAvatar] = useState(AvatarProfile);
+//   const [scrollDirection, setScrollDirection] = useState("null");
+//   const [lastScrollTop, setLastScrollTop] = useState(0);
+//   const { auth } = useContext(AuthContext);
+//   const { handleUpdateSubscriberProfile, userProfile, msisdn } =
+//     useContext(UserContext);
+
+
+//     const { saveScoreToLocalStorage } = useContext(LeaderboardContext);
+
+//   const { games, loading } = useContext(GameContext);
+//   const [nickname, setNickname] = useState("Racer001");
+//   const [iframeSrc, setIframeSrc] = useState("");
+
+//   const truncateTitle = (title) => {
+//     const maxLength = 15;
+//     if (title.length > maxLength) {
+//       return title.substring(0, maxLength) + "...";
+//     }
+//     return title;
+//   };
+
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       const scrollTop = window.scrollY || document.documentElement.scrollTop;
+//       setScrollDirection(scrollTop > lastScrollTop ? "down" : "up");
+//       setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
+//     };
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, [lastScrollTop]);
+
+
+//     useEffect(() => {
+//     let lastScrollTop = 0;
+
+//     const handleScroll = () => {
+//       const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+//       if (scrollTop > lastScrollTop) {
+//         setScrollDirection("down");
+//       } else {
+//         setScrollDirection("up");
+//       }
+//       setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
+//     };
+//     window.addEventListener("scroll", handleScroll);
+
+//     return () => {
+//       window.removeEventListener("scroll", handleScroll);
+//     };
+//   }, [lastScrollTop]);
+
+//   const navStyle = {
+//     position: "fixed",
+//     bottom: scrollDirection === "down" ? "0px" : "0px",
+//     left: "50%",
+//     transform: "translateX(-50%)",
+//     transition: "bottom 0.5s ease",
+//   };
+
+//   const handleAvatarClick = () => {
+//     setShowAvatarSelector(!showAvatarSelector);
+//   };
+
+//   const handleAvatarSelect = async (avatar) => {
+//     setSelectedAvatar(avatar);
+//     // // await handleUpdateSubscriberProfile({
+//     // //   msisdn: userProfile.msisdn,
+//     // //   avatarId: avatar,
+//     // });
+//   };
+
+//   const handleSave = async () => {
+//     try {
+//       if (!selectedAvatar) return;
+//       const avatarId = avatars.indexOf(selectedAvatar) + 1;
+//       await handleUpdateSubscriberProfile(msisdn, nickname, avatarId);
+//       setCurrentAvatar(selectedAvatar);
+
+//       localStorage.setItem("avatarId", avatarId);
+//       setShowAvatarSelector(false);
+//     } catch (error) {
+//       console.error("Error saving avatar:", error);
+//     }
+//   };
+
+//   const handlePlay = (playUrl) => {
+//     setIframeSrc(playUrl);
+//   };
+
+//   const handleBackToApp = () => {
+//     setIframeSrc("");
+//     saveScoreToLocalStorage(userProfile.msisdn, score);
+
+//   };
+
+//   return (
+//     <>
+//       <div className="relative ">
+//         <div
+//           className={`flex flex-col min-h-screen bg-darrk-gradient ${
+//             showAvatarSelector ? "blur-[3px]" : ""
+//           }`}
+//         >
+//           <div className="bg-[#E2EEF60D] mt-[17px]">
+//             <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[222px] h-[49px] mt-[21px] mx-auto">
+//               <div className="flex justify-between items-center w-[242px] h-[49px]">
+//                 <div className="flex items-center space-x-10 relative">
+//                   <div
+//                     className="w-[50px] h-[50px] flex items-center justify-center cursor-pointer"
+//                     onClick={() => setShowAvatarSelector(!showAvatarSelector)}
+//                   >
+//                     <img
+//                       src={currentAvatar || "/default-avatar.png"}
+//                       alt="Profile Avatar"
+//                       className="-ml-[8px] -mb-[6px]"
+//                     />
+//                   </div>
+//                   <div className="flex items-center justify-center gap-[10px]">
+//                     <Link
+//                       to="/terms-and-conditions"
+//                       className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center items-center mt-[12px] mb-[10px] "
+//                     >
+//                       <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
+//                         T&C's
+//                       </p>
+//                     </Link>
+//                     <Link
+//                       to="/faq"
+//                       className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] flex items-center justify-center gap-[6px] py-[5px] px-[20px]"
+//                     >
+//                       <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
+//                         FAQ's
+//                       </p>
+//                     </Link>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//             <div className="bg-background w-[140px] h-[28px] rounded-b-[26px] flex items-center justify-center mx-auto shadow-box-shadow">
+//               <p className="font-mtn-brighter-medium font-medium text-[10px] leading-[13px] text-center text-[#FFFFFF]">
+//                 @{userProfile?.msisdn}
+//               </p>
+//             </div>
+//             <div className="flex flex-col items-center flex-grow mt-[20px]">
+//               <p className="text-white mb-[17px] font-mtn-brighter-xtra-bold font-extrabold text-[24px] leading-[31.2px] text-center">
+//                 Play Now
+//               </p>
+//               {loading ? <p>Loading games...</p> : <CarouselSection />}
+//             </div>
+//           </div>
+
+//           <section className="mt-[36px] w-full max-w-4xl lg:mx-auto">
+//             <h2 className="font-mtn-brighter-xtra-bold font-extrabold text-[24px] leading-[31.2px] text-center text-[#FFFFFF]">
+//               All Games
+//             </h2>
+//             <div className="flex items-center justify-center">
+//               <div className="grid grid-cols-2 gap-[35px] mb-4">
+//                 {games &&
+//                   games.length > 0 &&
+//                   games.map((game) => (
+//                     <div
+//                       key={game.gameId}
+//                       className="bg-custom-t-gradient flex flex-col items-center justify-center mt-[32px] rounded-[16px] w-[152px] h-[166px]"
+//                     >
+//                       <img
+//                         src={
+//                           game.base64
+//                             ? `data:image/png;base64,${game.base64}`
+//                             : game.title.trim() === "X-Wing Fighter"
+//                             ? XWinger
+//                             : ""
+//                         }
+//                         alt={game.title || "game-image"}
+//                         className="mb-[6px] -mt-[50px] w-[60px] h-[60px] rounded-[12px] object-cover"
+//                       />
+//                       <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
+//                         {game.title}
+//                       </p>
+//                       <div className="flex items-center justify-center mt-[9.8px]">
+//                         <StarRatings />
+//                       </div>
+//                       <button
+//                         onClick={() => handlePlay(game.playUrl)}
+//                         className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center mx-auto mt-[12.87px]"
+//                       >
+//                         Play
+//                       </button>
+//                     </div>
+//                   ))}
+//               </div>
+//             </div>
+//             <BigCashGame />
+//           </section>
+//         </div>
+
+//         {iframeSrc && (
+//           <div className="absolute inset-0 bg-white z-50">
+//             <iframe src={iframeSrc} title="Game"  sandbox="allow-scripts allow-same-origin" className="w-full h-full" />
+//             <button
+//               onClick={handleBackToApp}
+//               className="absolute top-4 right-4 bg-sky-900 text-white px-4 py-2 rounded"
+//             >
+//               Back to App
+//             </button>
+//           </div>
+//         )}
+
+//         <div className="fixed w-full flex justify-center ">
+//           <div
+//             style={navStyle}
+//             className="bottom-0 backdrop-blur-sm mb-[15px] md:mb-[50px] left-0px flex justify-between items-center w-[342px] h-[82px] bg-foot-nav-gradient rounded-b-[60px] pt-[12px] pb-[20px] px-[46px] "
+//           >
+//             <Link
+//               to="/home"
+//               className="bg-foot-nav-gradient rounded-[50px] w-[60px] h-[60px] flex items-center justify-center"
+//             >
+//               <img src={Home} alt="home" />
+//             </Link>
+//             <Link
+//               to="/user-profile"
+//               className="bg-foot-nav-gradient rounded-[50px] w-[60px] h-[60px] flex items-center justify-center"
+//             >
+//               <img src={Profile} alt="profile" />
+//             </Link>
+//             <Link
+//               to="/leaderboard"
+//               className="bg-foot-nav-gradient rounded-[50px] w-[60px] h-[60px] flex items-center justify-center"
+//             >
+//               <img src={Leaderboard} alt="leaderboard" />
+//             </Link>
+//           </div>
+//         </div>
+//         {showAvatarSelector && (
+//           <div className="flex items-center justify-center mx-auto">
+//             <div className="absolute top-[30px] left-auto w-[265px] h-[138px]  bg-background-avatar  rounded-[26px]  ">
+//               <div className="flex  ">
+//                 <img
+//                   src={currentAvatar || "/default-avatar.png"}
+//                   alt="Profile Avatar"
+//                 />
+//                 <p className="text-white pt-[12px] font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-center w-[126px]">
+//                   Please select an avatar
+//                 </p>
+//                 {selectedAvatar && (
+//                   <button
+//                     className="text-[#FFCB05] ml-[32px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center  -mt-[5px]"
+//                     onClick={handleSave}
+//                   >
+//                     Save
+//                   </button>
+//                 )}
+//               </div>
+
+//               <div className="flex px-[10px] mt-4">
+//                 {avatars.map((avatar, index) => (
+//                   <div
+//                     key={index}
+//                     className={`relative  ${
+//                       selectedAvatar === avatar
+//                         ? "border-[3px] rounded-[28px] flex items-center justify-center border-[#FFCB05]"
+//                         : ""
+//                     } cursor-pointer`}
+//                     onClick={() => handleAvatarSelect(avatar)}
+//                   >
+//                     <img
+//                       src={avatar}
+//                       alt={`Avatar ${index + 1}`}
+//                       className="w-[50px] h-[50px]"
+//                     />
+//                     {selectedAvatar !== avatar && (
+//                       <div className=" absolute bottom-[5px] right-0  w-[10px] h-[10px]  bg-[#FFCB05] rounded-[28px]">
+//                         <img
+//                           src={PlusIcon}
+//                           alt="Plus Icon"
+//                           className="w-[15px] h-[15px]  "
+//                         />
+//                       </div>
+//                     )}
+//                   </div>
+//                 ))}
+//               </div>
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     </>
+//   );
+// };
+
+// export default HomePage;
+
+
+
+// import React, { useState, useEffect, useContext } from "react";
+// import { Link } from "react-router-dom";
+// import CarouselSection from "../Components/CarouselSection";
+// import Arrow from "../assets/Icons/Arrow.png";
+// import Action from "../assets/Icons/action.png";
+// import Fantasy from "../assets/Icons/fantasy.png";
+// import Racing from "../assets/Icons/racing.png";
+// import StarYs from "../assets/Icons/Star-ys.png";
+// import StarWs from "../assets/Icons/Star-ws.png";
+// import Forknite from "../assets/Images/forknite.png";
+// import XWinger from "../assets/Images/x-winger.png";
+// import Gumball from "../assets/Images/gumball.png";
+// import Taffy from "../assets/Images/match-up.png";
+// import BigCash from "../assets/Images/big-cash.jpeg";
+// import Home from "../assets/Icons/home.png";
+// import Leaderboard from "../assets/Icons/leaderboard.png";
+// import Profile from "../assets/Icons/profile.png";
+// import FooterNav from "../assets/Images/nav-container.png";
+// import AvatarProfile from "../assets/Images/avatar-prof.png";
+// import Coins from "../assets/Images/coins.png";
+// import PlusIcon from "../assets/Icons/plus-icon.png";
+// import Avatar1 from "../assets/Icons/avatar1.png";
+// import Avatar2 from "../assets/Icons/avatar2.png";
+// import Avatar3 from "../assets/Icons/avatar3.png";
+// import Avatar4 from "../assets/Icons/avatar4.png";
+// import Avatar5 from "../assets/Icons/avatar5.png";
+// import AuthContext from "../Context/AuthContext";
+// import GameContext from "../Context/GameContext";
+// import UserContext from "../Context/UserContext";
+// import BigCashGame from "../Components/BigCashGame";
+// import StarRatings from "../Components/StarRatings";
+
+// const HomePage = () => {
+//   const avatars = [Avatar1, Avatar2, Avatar3, Avatar4, Avatar5];
+//   const [selectedAvatar, setSelectedAvatar] = useState(null);
+//   const [showAvatarSelector, setShowAvatarSelector] = useState(false);
+//   const [currentAvatar, setCurrentAvatar] = useState(AvatarProfile);
+//   const [scrollDirection, setScrollDirection] = useState("null");
+//   const [lastScrollTop, setLastScrollTop] = useState(0);
+//   const { auth } = useContext(AuthContext);
+//   const { handleUpdateSubscriberProfile, fetchProfile, userProfile, msisdn } =
+//     useContext(UserContext);
+//   const { games, loading } = useContext(GameContext);
+//   const [categories, setCategories] = useState([]);
+//   const [nickname, setNickname] = useState("Racer001");
+
+//   useEffect(() => {
+//     if (games && games.length > 0) {
+//       const uniqueCategories = [
+//         ...new Set(games.map((game) => game.category[0])),
+//       ];
+
+//       setCategories(uniqueCategories);
+//     }
+//   }, [games]);
+
+//   const truncateTitle = (title) => {
+//     const maxLength = 15;
+//     if (title.length > maxLength) {
+//       return title.substring(0, maxLength) + "...";
+//     }
+//     return title;
+//   };
+
+//   useEffect(() => {
+//     let lastScrollTop = 0;
+
+//     const handleScroll = () => {
+//       const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+//       if (scrollTop > lastScrollTop) {
+//         setScrollDirection("down");
+//       } else {
+//         setScrollDirection("up");
+//       }
+//       setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
+//     };
+//     window.addEventListener("scroll", handleScroll);
+
+//     return () => {
+//       window.removeEventListener("scroll", handleScroll);
+//     };
+//   }, [lastScrollTop]);
+
+//   const navStyle = {
+//     position: "fixed",
+//     bottom: scrollDirection === "down" ? "0px" : "0px",
+//     left: "50%",
+//     transform: "translateX(-50%)",
+//     transition: "bottom 0.5s ease",
+//   };
+
+//   const handleAvatarClick = () => {
+//     setShowAvatarSelector(!showAvatarSelector);
+//   };
+
+//   const handleAvatarSelect = async (avatar) => {
+//     setSelectedAvatar(avatar);
+//     // // await handleUpdateSubscriberProfile({
+//     // //   msisdn: userProfile.msisdn,
+//     // //   avatarId: avatar,
+//     // });
+//   };
+
+//   const handleSave = async () => {
+//     try {
+//       if (!selectedAvatar) return;
+//       const avatarId = avatars.indexOf(selectedAvatar) + 1;
+//       await handleUpdateSubscriberProfile(msisdn, nickname, avatarId);
+//       setCurrentAvatar(selectedAvatar);
+
+//       localStorage.setItem("avatarId", avatarId);
+//       setShowAvatarSelector(false);
+//     } catch (error) {
+//       console.error("Error saving avatar:", error);
+//     }
+//   };
+
+//   const handlePlay = (playUrl) => {
+//     localStorage.setItem("gameScore", 0);
+
+//     window.open(playUrl, '_blank');
+//   };
+
+// // const handlePlay = (game) => {
+// //   const currentScore = getCurrentScoreForGame(game.gameId);
+// //   const totalScore = parseInt(localStorage.getItem("ydotGameScore")) || 0;
+// //   const newTotalScore = totalScore + currentScore;
+
+// //   localStorage.setItem("ydotGameScore", newTotalScore);
+
+// //   window.location.href = game.playUrl;
+// // };
+
+//   return (
+//     <>
+//       <div className="relative ">
+//         <div
+//           className={`flex flex-col min-h-screen  h-[1240px] bg-darrk-gradient  ${
+//             showAvatarSelector ? " blur-[3px]" : ""
+//           }`}
+//         >
+//           <div className="bg-[#E2EEF60D] mt-[17px]">
+//             <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[222px] h-[49px]  mt-[21px] mx-auto">
+//               <div className="flex justify-between items-center w-[242px] h-[49px]">
+//                 <div className="flex items-center  space-x-10  relative">
+//                   <div
+//                     className="w-[50px] h-[50px]  flex items-center justify-center cursor-pointer"
+//                     onClick={handleAvatarClick}
+//                   >
+//                     <img
+//                       src={currentAvatar || "/default-avatar.png"}
+//                       alt="Profile Avatar"
+//                       className="-ml-[8px] -mb-[6px]"
+//                     />
+//                   </div>
+//                   <div className="flex items-center justify-center gap-[10px]  ">
+//                     {/* <div className="flex items-center justify-center">
+//                       <img src={Coins} alt="coin" />
+//                       <p className="font-mtn-brighter-medium font-medium text-[12px] text-center leading-[15.6px] text-[#FFFFFF]">
+//                         R10k
+//                       </p>
+//                     </div> */}
+
+//                     <Link
+//                       to="/terms-and-conditions"
+//                       className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center items-center mt-[12px] mb-[10px] "
+//                     >
+//                       <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
+//                         T&C's
+//                       </p>
+//                     </Link>
+//                     <Link
+//                       to="/faq"
+//                       className="border border-[#FFCB05]   rounded-[26px] w-[51px] h-[27px]  flex items-center  justify-center gap-[6px]   py-[5px] px-[20px]  "
+//                     >
+//                       <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
+//                         {" "}
+//                         FAQ's
+//                       </p>
+//                     </Link>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//             <div className="bg-background w-[140px] h-[28px] rounded-b-[26px] flex items-center justify-center mx-auto shadow-box-shadow">
+//               <p className="font-mtn-brighter-medium font-medium text-[10px] leading-[13px] text-center text-[#FFFFFF]">
+//                 @{userProfile?.msisdn}
+//               </p>
+//             </div>
+//             <div className="flex flex-col items-center flex-grow mt-[20px]">
+//               <p className="text-white mb-[17px] font-mtn-brighter-xtra-bold font-extrabold text-[24px] leading-[31.2px] text-center">
+//                 Play Now
+//               </p>
+//               {loading ? <p>Loading games...</p> : <CarouselSection />}
+//             </div>
+//           </div>
+
+//           <section className="mt-[36px] w-full max-w-4xl lg:mx-auto">
+//             <h2 className="font-mtn-brighter-xtra-bold font-extrabold text-[24px] leading-[31.2px] text-center text-[#FFFFFF]">
+//               All Games
+//             </h2>
+//             <div className="space-x-[33px] mt-[17px] flex justify-center items-center mb-[20px]">
+//               {/* {categories.map((category, index) => (
+//                 <button
+//                   key={index}
+//                   className="flex items-center justify-center text-white rounded-[26px] border border-[#D7E7F066] bg-[#EDF0F233] font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] gap-[6px] text-center px-[9px] py-[5px]"
+//                 >
+//                   {category === "Action" && <img src={Action} alt="action" />}
+//                   {category === "Adventure" && (
+//                     <img src={Fantasy} alt="fantasy" />
+//                   )}
+//                   {category === "Racing" && <img src={Racing} alt="racing" />}
+//                   {category}
+//                 </button>
+//               ))} */}
+//             </div>
+
+//             <div className="flex items-center justify-center">
+//               <div className="grid grid-cols-2 gap-[35px] mb-4">
+//                 {/* {games.map((game, index) => ( */}
+
+//                 {games &&
+//                   games.length > 0 &&
+//                   games.map((game) => (
+
+//                       <div
+//                         key={game.gameId}
+//                         className="bg-custom-t-gradient flex flex-col items-center justify-center mt-[32px] rounded-[16px] w-[152px] h-[166px]"
+//                       >
+//                         <img
+//                           src={
+//                             game.base64
+//                               ? `data:image/png;base64,${game.base64}`
+//                               : game.title &&
+//                                 game.title.trim() === "X-Wing Fighter"
+//                               ? XWinger
+//                               : ""
+//                           }
+//                           alt={game.title || "game-image"}
+//                           className="mb-[6px] -mt-[50px] w-[60px] h-[60px] rounded-[12px] object-cover"
+//                         />
+
+//                         <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
+//                           {truncateTitle(game.title)}
+//                         </p>
+//                         <div className="flex items-center justify-center mt-[9.8px]">
+//                           <StarRatings />
+//                         </div>
+//                         <button   onClick={() => handlePlay(game.playUrl)}  className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center px-[30px] py-[6px] mx-auto mt-[12.87px]">
+//                           {/* <a
+//                             href={game.playUrl}
+//                             target="_blank"
+//                             rel="noopener noreferrer"
+//                           >
+//                             Play
+//                           </a> */}
+//                           Play
+//                         </button>
+//                       </div>
+//                     )
+//                   )}
+//               </div>
+//             </div>
+//             <BigCashGame />
+//           </section>
+//         </div>
+
+//         <div className="fixed w-full flex justify-center  ">
+//           <div
+//             style={navStyle}
+//             className="bottom-0 backdrop-blur-sm mb-[15px] md:mb-[50px]   left-0px flex justify-between items-center w-[342px] h-[82px] bg-foot-nav-gradient rounded-b-[60px] pt-[12px] pb-[20px] px-[46px] "
+//           >
+//             <Link
+//               to="/home"
+//               className="bg-foot-nav-gradient rounded-[50px] w-[60px] h-[60px] flex items-center justify-center"
+//             >
+//               <img src={Home} alt="home" />
+//             </Link>
+//             <Link
+//               to="/user-profile"
+//               className="bg-[#FFCB05] rounded-[50px] w-[76px] h-[76px] flex items-center justify-center -mt-[40px]"
+//             >
+//               <img src={Profile} alt="profile" className="w-[40px] h-[40px]" />
+//             </Link>
+//             <Link
+//               to="/leaderboard"
+//               className="bg-foot-nav-gradient rounded-[50px] w-[60px] h-[60px] flex items-center justify-center"
+//             >
+//               <img src={Leaderboard} alt="leaderboard" />
+//             </Link>
+//           </div>
+//         </div>
+
+//         {showAvatarSelector && (
+//           <div className="flex items-center justify-center mx-auto">
+//             <div className="absolute top-[30px] left-auto w-[265px] h-[138px]  bg-background-avatar  rounded-[26px]  ">
+//               <div className="flex  ">
+//                 <img
+//                   src={currentAvatar || "/default-avatar.png"}
+//                   alt="Profile Avatar"
+//                 />
+//                 <p className="text-white pt-[12px] font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-center w-[126px]">
+//                   Please select an avatar
+//                 </p>
+//                 {selectedAvatar && (
+//                   <button
+//                     className="text-[#FFCB05] ml-[32px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center  -mt-[5px]"
+//                     onClick={handleSave}
+//                   >
+//                     Save
+//                   </button>
+//                 )}
+//               </div>
+
+//               <div className="flex px-[10px] mt-4">
+//                 {avatars.map((avatar, index) => (
+//                   <div
+//                     key={index}
+//                     className={`relative  ${
+//                       selectedAvatar === avatar
+//                         ? "border-[3px] rounded-[28px] flex items-center justify-center border-[#FFCB05]"
+//                         : ""
+//                     } cursor-pointer`}
+//                     onClick={() => handleAvatarSelect(avatar)}
+//                   >
+//                     <img
+//                       src={avatar}
+//                       alt={`Avatar ${index + 1}`}
+//                       className="w-[50px] h-[50px]"
+//                     />
+//                     {selectedAvatar !== avatar && (
+//                       <div className=" absolute bottom-[5px] right-0  w-[10px] h-[10px]  bg-[#FFCB05] rounded-[28px]">
+//                         <img
+//                           src={PlusIcon}
+//                           alt="Plus Icon"
+//                           className="w-[15px] h-[15px]  "
+//                         />
+//                       </div>
+//                     )}
+//                   </div>
+//                 ))}
+//               </div>
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     </>
+//   );
+// };
+
+// export default HomePage;
+
+
+
+

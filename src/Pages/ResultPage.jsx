@@ -45,7 +45,7 @@ const ResultPage = () => {
      
       <button
         onClick={()=> {
-          navigate("/bigcash-trivia")
+          navigate(`/bigcash-trivia/${gameId}`)
         }} 
         className="mt-[36px] w-full h-[50px] text-center leading-[16.51px] font-mtn-brighter-medium font-medium text-[14px] text-white rounded-[30px] border-none bg-[#19BFC1]"
       >

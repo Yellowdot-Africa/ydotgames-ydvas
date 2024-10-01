@@ -1,7 +1,8 @@
-import React, { useState, useEffect,useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Timer from "../assets/Icons/timer.svg";
-import { LeaderboardContext } from "../Context/LeaderboardContext"; 
+import { LeaderboardContext } from "../Context/LeaderboardContext";
+import { TriviaContext } from "../Context/TriviaContext";
 
 const BigCashTrivia = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -11,74 +12,22 @@ const BigCashTrivia = () => {
   const [statuses, setStatuses] = useState([]);
   const [timer, setTimer] = useState(10);
   const navigate = useNavigate();
+  const { gameId } = useParams();
   const { handleUpdateLeaderboardScore } = useContext(LeaderboardContext);
-  const { leaderboard, loading, fetchLeaderboardStanding } = useContext(LeaderboardContext);
+  const {
+    leaderboard,
+    loading,
+    fetchQuestions,
+    questions,
+    selectedGameId,
+    handleAnswerSubmit,
+  } = useContext(TriviaContext);
 
-
-  const questions = [
-    {
-      question: "What is the capital of France?",
-      answers: ["Berlin", "Madrid", "Paris", "Rome"],
-      correctAnswer: "Paris",
-    },
-    {
-      question: "FC Barcelona has won how many Champions League trophy?",
-      answers: ["5", "4", "3", "7"],
-      correctAnswer: "5",
-    },
-    {
-      question: "Which planet is known as the Red Planet?",
-      answers: ["Earth", "Mars", "Jupiter", "Saturn"],
-      correctAnswer: "Mars",
-    },
-    {
-      question: "Who wrote 'Hamlet'?",
-      answers: [
-        "Mark Twain",
-        "J.K. Rowling",
-        "William Shakespeare",
-        "Charles Dickens",
-      ],
-      correctAnswer: "William Shakespeare",
-    },
-
-    {
-      question: "Manchester United has won how many Champions League trophy?",
-      answers: ["5", "4", "3", "7"],
-      correctAnswer: "3",
-    },
-
-    {
-      question: "What is the last book in the Bible?",
-      answers: ["Genesis", "Revelation", "Luke", "Chronicles"],
-      correctAnswer: "Revelation",
-    },
-    {
-      question: "Which planet is known as the Red Planet?",
-      answers: ["Earth", "Mars", "Jupiter", "Saturn"],
-      correctAnswer: "Mars",
-    },
-    {
-      question: "Who wrote 'Hamlet'?",
-      answers: [
-        "Mark Twain",
-        "J.K. Rowling",
-        "William Shakespeare",
-        "Charles Dickens",
-      ],
-      correctAnswer: "William Shakespeare",
-    },
-    {
-      question: "Cristiano Ronaldo has how many Ballon d'Or awards?",
-      answers: ["5", "6", "8", "7"],
-      correctAnswer: "5",
-    },
-    {
-      question: "Which country won the 2022 World Cup hosted in Qatar?",
-      answers: ["Nigeria", "Portugal", "Argentina", "France"],
-      correctAnswer: "Argentina",
-    },
-  ];
+  useEffect(() => {
+    if (selectedGameId) {
+      fetchQuestions(selectedGameId);
+    }
+  }, [selectedGameId]);
 
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -95,48 +44,67 @@ const BigCashTrivia = () => {
     return () => clearInterval(timerId);
   }, [currentQuestionIndex]);
 
-  const handleAnswerClick = (answer) => {
-    if (selectedAnswer) return;
+  const handleAnswerClick = async (answer) => {
+    if (selectedAnswer) return; 
 
     setSelectedAnswer(answer);
-    const isAnswerCorrect =
-      answer === questions[currentQuestionIndex].correctAnswer;
-    setIsCorrect(isAnswerCorrect);
-    setStatuses((prev) => {
-      const newStatuses = [...prev];
-      newStatuses[currentQuestionIndex] = isAnswerCorrect
-        ? "correct"
-        : "incorrect";
-      return newStatuses;
-    });
+    const questionId = questions[currentQuestionIndex].id;
+    const msisdn = "27837441852";
+    const response = await handleAnswerSubmit(msisdn, questionId, answer);
 
-    if (isAnswerCorrect) {
-      setScore(score + 1);
+    console.log("Submit answer response:", response); 
+
+    if (response && response.statusCode === "999") {
+      const isAnswerCorrect =
+        answer === questions[currentQuestionIndex]?.rightAnswer;
+      setIsCorrect(isAnswerCorrect);
+      setStatuses((prev) => {
+        const newStatuses = [...prev];
+        newStatuses[currentQuestionIndex] = isAnswerCorrect
+          ? "correct"
+          : "incorrect";
+        return newStatuses;
+      });
+
+      if (isAnswerCorrect) {
+        setScore((prevScore) => prevScore + 1);
+      }
+
+      setTimeout(() => {
+        handleNextQuestion();
+      }, 2000);
+    } else {
+      console.error("Failed to submit answer:", response);
     }
-
-    setTimeout(() => {
-      handleNextQuestion();
-    }, 2000);
   };
 
   const handleNextQuestion = () => {
     setSelectedAnswer(null);
     setIsCorrect(null);
-    setTimer(10);
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      handleUpdateLeaderboardScore(score);
+    setTimer(10); 
 
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+    } else {
+      console.log(
+        "All questions answered. Navigating to results with score:",
+        score
+      );
+      handleUpdateLeaderboardScore(score);
       navigate("/result-page", {
-        state: { score: score, totalQuestions: questions.length , statuses: statuses},
+        state: { score, totalQuestions: questions.length, statuses },
       });
+      return; 
     }
   };
 
+  if (loading || !questions || questions.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="flex flex-col items-center w-full min-h-screen bg-darrk-gradient text-white">
-      <div className=" mt-[60px] mb-[30px]">
+      <div className="mt-[60px] mb-[30px]">
         <div className="flex items-center justify-center bg-white w-[46px] h-[46px] border rounded-[50px]">
           <img className="img-timer" src={Timer} alt="timer" />
           <p className="text-black text-[18px] font-mtn-brighter-medium font-medium text-center">
@@ -147,7 +115,7 @@ const BigCashTrivia = () => {
 
       <div className="p-4 text-center">
         <h2 className="text-[24px] text-white leading-[24px] font-bold font-mtn-brighter-bold text-center mb-[47px]">
-          {questions[currentQuestionIndex].question}
+          {questions[currentQuestionIndex]?.text || "No question available."}
         </h2>
 
         {/* Pagination Dots */}
@@ -155,7 +123,7 @@ const BigCashTrivia = () => {
           {questions.map((_, index) => (
             <div
               key={index}
-              className={`w-2 h-2 rounded-full mx-1 ${
+              className={`w-2 h-2 rounded-full  ${
                 statuses[index] === "correct"
                   ? "bg-[#82e180]"
                   : statuses[index] === "incorrect"
@@ -167,21 +135,21 @@ const BigCashTrivia = () => {
         </div>
 
         <div className="flex flex-col gap-[21px]">
-          {questions[currentQuestionIndex].answers.map((answer, index) => {
-            const isCorrectAnswer =
-              answer === questions[currentQuestionIndex].correctAnswer;
-            const isWrongAnswer = selectedAnswer === answer && !isCorrect;
-
-            return (
+          {!questions[currentQuestionIndex]?.answers ||
+          questions[currentQuestionIndex].answers.length === 0 ? (
+            <div>No answer options available.</div>
+          ) : (
+            questions[currentQuestionIndex].answers.map((answer, index) => (
               <button
                 key={index}
                 onClick={() => handleAnswerClick(answer)}
                 className={`py-2 px-4 text-black rounded-[50px] w-[90vw] h-[60px] ${
                   selectedAnswer === answer
-                    ? isCorrectAnswer
+                    ? answer === questions[currentQuestionIndex].rightAnswer
                       ? "bg-[#82e180]"
                       : "bg-[#e37e80]"
-                    : selectedAnswer && isCorrectAnswer
+                    : selectedAnswer &&
+                      answer === questions[currentQuestionIndex].rightAnswer
                     ? "bg-[#82e180]"
                     : "bg-white"
                 }`}
@@ -189,8 +157,8 @@ const BigCashTrivia = () => {
               >
                 {answer}
               </button>
-            );
-          })}
+            ))
+          )}
         </div>
       </div>
     </div>
@@ -198,6 +166,8 @@ const BigCashTrivia = () => {
 };
 
 export default BigCashTrivia;
+
+
 
 
 

@@ -57,3 +57,10 @@ export const UpdateSubscriberProfile = async (auth,msisdn, nickname,avatarId) =>
 };
 
 
+
+
+
+
+
+
+

@@ -12,17 +12,21 @@ import FaqAccordion from './Pages/FaqAccordion';
 import TermsAndConditions from './Pages/TermsAndConditions';
 import SubscriptionPage from './Pages/SubscriptionPage';
 import ErrorPage from './Pages/ErrorPage';
-
-
+import TriviaGames from './Pages/TriviaGames';
+import RedirectPage from "./Pages/RediectPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <SplashScreen />,
+    element: <RedirectPage/>,
   },
   {
     path: "/subscribe",
     element: <SubscriptionPage />,
+  },
+  {
+    path: "/splash-screen",
+    element: <SplashScreen />,
   },
   {
     path: "/error",
@@ -33,8 +37,13 @@ const router = createBrowserRouter([
     element: <HomePage/>,
   },
   {
-    path: "/bigcash-trivia",
+    path: "/bigcash-trivia/:gameId",
     element: <BigCashTrivia />,
+   
+  },
+  {
+    path: "/trivia-games",
+    element: <TriviaGames />,
   },
   {
     path: "/leaderboard",

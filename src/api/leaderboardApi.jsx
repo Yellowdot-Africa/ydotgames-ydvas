@@ -57,3 +57,5 @@ export const updateLeaderboardScore = async (auth, msisdn, gameScore) => {
     throw error;
   }
 };
+
+
