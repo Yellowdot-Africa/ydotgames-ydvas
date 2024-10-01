@@ -12,23 +12,23 @@ const RedirectPage = () => {
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    const cli = queryParams.get('msisdn');
+    const cli = queryParams.get('cli');
     // let msisdn = queryParams.get("msisdn");
 
-    const sid = queryParams.get('sid');
+    // const sid = queryParams.get('sid');
 
     if (cli) {
       const decodedCli = atob(cli);
       
       console.log('Decoded CLI:', decodedCli);
-      console.log('SID:', sid);
-      checkSubscription(decodedCli, sid);
+    //   console.log('SID:', sid);
+      checkSubscription(decodedCli);
 
-      navigate(`/redirect?cli=${decodedCli}&sid=${sid}`);
+      navigate(`/Redirect?cli=${decodedCli}&sid=${sid}`);
     // navigate("/splashscreen");
     } else {
       console.error('CLI parameter is missing.');
-      setErrorMessage('CLI parameter is missing.');
+    //   setErrorMessage('CLI parameter is missing.');
       setLoading(false);
     }
   }, [location.search]);
@@ -38,7 +38,7 @@ const RedirectPage = () => {
     try {
       const response = await axios.post(
         'https://be-spin-mtn.ydafrica.com/api/v1/checkstatus',
-        { msisdn, serviceId },
+        { msisdn },
         { headers: { 'Content-Type': 'application/json' } }
       );
 
