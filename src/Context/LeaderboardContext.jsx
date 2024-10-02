@@ -25,7 +25,7 @@ const LeaderboardProvider = ({ children }) => {
   const msisdn = userProfile?.msisdn || null;
 
   useEffect(() => {
-    console.log("UserContext MSISDN:", msisdn);
+    // console.log("UserContext MSISDN:", msisdn);
   }, [msisdn]);
 
   const fetchLeaderboardStanding = async () => {
@@ -36,7 +36,7 @@ const LeaderboardProvider = ({ children }) => {
       }
       const response = await getLeaderboardStanding(auth, msisdn);
       setLeaderboard(response.data);
-      console.log("Fetched leaderboard:", response.data);
+      // console.log("Fetched leaderboard:", response.data);
     } catch (error) {
       setError(error.message);
       console.error("Error fetching leaderboard standing:", error);
@@ -51,7 +51,7 @@ const LeaderboardProvider = ({ children }) => {
     
     try {
       const response = await updateLeaderboardScore(auth, msisdn, gameScore);
-      console.log("Leaderboard score updated:", response);
+      // console.log("Leaderboard score updated:", response);
       await fetchLeaderboardStanding(); 
     } catch (error) {
       console.error("Error updating leaderboard score:", error);
@@ -73,9 +73,7 @@ const LeaderboardProvider = ({ children }) => {
       existingScores.push({ msisdn, score });
     }
     
-    localSto
-  
-  rage.setItem('leaderboard', JSON.stringify(existingScores));
+    localStorage.setItem('leaderboard', JSON.stringify(existingScores));
   };
 
   const getScoresFromLocalStorage = () => {

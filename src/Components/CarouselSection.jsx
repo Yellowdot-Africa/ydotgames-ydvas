@@ -37,7 +37,7 @@ const CarouselSection = () => {
     const handleScroll = () => {
       if (carousel) {
         const scrollLeft = carousel.scrollLeft;
-        const itemWidth = 187;
+        const itemWidth = 250;
         const newActiveIndex = Math.round(scrollLeft / itemWidth);
         setActiveIndex(newActiveIndex);
       }
@@ -47,7 +47,7 @@ const CarouselSection = () => {
       carousel.addEventListener("scroll", handleScroll);
 
       const carouselWidth = carousel.offsetWidth;
-      const itemWidth = 169;
+      const itemWidth = 189;
       const middleItemIndex = Math.floor(3 / 2);
       const scrollPosition =
         middleItemIndex * itemWidth - carouselWidth / 2 + itemWidth / 2;

@@ -28,10 +28,10 @@ const router = createBrowserRouter([
     path: "/subscribe",
     element: <SubscriptionPage />,
   },
-  {
-    path: "/splash-screen",
-    element: <SplashScreen />,
-  },
+  // {
+  //   path: "/splash-screen",
+  //   element: <SplashScreen />,
+  // },
   {
     path: "/error",
     element: <ErrorPage/>,
@@ -86,6 +86,13 @@ const App = ()=> {
 }
 
 export default App;
+
+
+
+
+
+
+
 
 
 

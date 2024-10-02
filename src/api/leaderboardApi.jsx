@@ -29,12 +29,12 @@ export const getLeaderboardStanding = async (auth, msisdn) => {
 export const updateLeaderboardScore = async (auth, msisdn, gameScore) => {
   try {
     const token = localStorage.getItem("authToken");
-    console.log("Auth Token Score:", token);
+    // console.log("Auth Token Score:", token);
 
     if (!token) {
       throw new Error("No auth token available");
     }
-    console.log("Updating score for:", { msisdn, gameScore });
+    // console.log("Updating score for:", { msisdn, gameScore });
 
     const response = await axios.put(
       `https://ydvassdp.com:5001/api/YellowdotGames/UpdateLeaderboardScore`,
@@ -49,7 +49,7 @@ export const updateLeaderboardScore = async (auth, msisdn, gameScore) => {
         },
       }
     );
-    console.log("Leaderboard score updated:", response.data);
+    // console.log("Leaderboard score updated:", response.data);
 
     return response.data;
   } catch (error) {

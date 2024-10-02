@@ -105,15 +105,15 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
       setShowAvatarSelector(false);
     }
   };
-  console.log("subscriberMsisdn:", subscriberMsisdn);
-  console.log("leaderboard:", leaderboard);
+  // console.log("subscriberMsisdn:", subscriberMsisdn);
+  // console.log("leaderboard:", leaderboard);
 
 
   const userPosition = leaderboard.find((player) => player.msisdn === msisdn);
 
-  console.log("User Position:", userPosition);
-  console.log("leaderboard:", leaderboard);
-  console.log("msisdn:", msisdn);
+  // console.log("User Position:", userPosition);
+  // console.log("leaderboard:", leaderboard);
+  // console.log("msisdn:", msisdn);
 
   return (
     <>

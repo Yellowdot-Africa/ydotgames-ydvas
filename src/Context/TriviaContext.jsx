@@ -17,8 +17,10 @@ export const TriviaProvider = ({ children }) => {
   const fetchGames = async () => {
     setLoading(true);
     try {
-      const response = await getTriviaGames();
-      setGames(response.data); 
+      const response = await getTriviaGames(10);
+      const sortedGames = response.data.sort((a, b) => a.name.localeCompare(b.name));
+
+      setGames(sortedGames); 
     } catch (error) {
         setError("Error fetching trivia games");
       console.error('Error fetching games:', error);
@@ -29,19 +31,23 @@ export const TriviaProvider = ({ children }) => {
 
 
   const fetchQuestions = async (gameId) => {
-    console.log(`Fetching questions for gameId: ${gameId}`);
+    if (questions.length > 0) {
+        // console.log(`Questions already fetched for gameId: ${gameId}`);
+        return; 
+      }
+    // console.log(`Fetching questions for gameId: ${gameId}`);
     setLoading(true);
 
     try {
 
      
         const response = await getTriviaQuestions(gameId);
-        console.log("Fetched Questions:", response.data);
+        // console.log("Fetched Questions:", response.data);
         const structuredQuestions = response.data.map(question => ({
             id: question.id,
             text: question.text,
             rightAnswer: question.rightAnswer,
-            answers: [question.rightAnswer, question.wrongAnswer] // Create answers array
+            answers: [question.rightAnswer, question.wrongAnswer] 
         }));
         setQuestions(structuredQuestions); 
 
@@ -100,4 +106,6 @@ export const TriviaProvider = ({ children }) => {
 
 
   
+
+
 

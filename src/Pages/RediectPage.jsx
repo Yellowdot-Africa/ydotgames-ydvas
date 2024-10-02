@@ -43,7 +43,7 @@ const RedirectPage = () => {
       );
 
       if (response.data.data.State === "Active") {
-    navigate("/splashscreen");
+    navigate("/");
 
       } else {
         setErrorMessage("Your subscription is inactive. Please subscribe to continue.");

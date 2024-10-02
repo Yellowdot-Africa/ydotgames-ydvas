@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export const getTriviaGames = async () => {
+export const getTriviaGames = async (count) => {
   try {
     const authToken = localStorage.getItem("triviaAuthToken");
 
     if (!authToken) throw new Error("Authentication token is missing");
 
     const response = await axios.get(
-      "https://ydvassdp.com:4001/api/Trivia/Games/GetGames?count=5",
+      `https://ydvassdp.com:4001/api/Trivia/Games/GetGames?count=${count}`,
       {
         headers: {
           Authorization: `Bearer ${authToken}`,

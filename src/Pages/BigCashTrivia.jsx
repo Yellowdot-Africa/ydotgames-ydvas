@@ -4,9 +4,7 @@ import Timer from "../assets/Icons/timer.svg";
 import { LeaderboardContext } from "../Context/LeaderboardContext";
 import { TriviaContext } from "../Context/TriviaContext";
 import UserContext from "../Context/UserContext";
-
-
-
+import { Circles } from "react-loader-spinner";
 
 const BigCashTrivia = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -16,12 +14,12 @@ const BigCashTrivia = () => {
   const [statuses, setStatuses] = useState([]);
   const [timer, setTimer] = useState(10);
   const navigate = useNavigate();
-  const { userProfile,fetchProfile, error,msisdn, handleUpdateSubscriberProfile } = useContext(UserContext);
 
+  const { userProfile, msisdn } = useContext(UserContext);
   const { gameId } = useParams();
   const { handleUpdateLeaderboardScore } = useContext(LeaderboardContext);
+
   const {
-    leaderboard,
     loading,
     fetchQuestions,
     questions,
@@ -36,11 +34,21 @@ const BigCashTrivia = () => {
   }, [selectedGameId]);
 
   useEffect(() => {
+    if (questions.length > 0) {
+      setCurrentQuestionIndex(0);
+      setSelectedAnswer(null);
+      setIsCorrect(null);
+      setTimer(10);
+      setStatuses(Array(questions.length).fill(null));
+    }
+  }, [questions]);
+
+  useEffect(() => {
     const timerId = setInterval(() => {
       setTimer((prev) => {
         if (prev <= 1) {
           clearInterval(timerId);
-          handleNextQuestion();
+          handleNextQuestion(false);
           return 10;
         }
         return prev - 1;
@@ -51,64 +59,79 @@ const BigCashTrivia = () => {
   }, [currentQuestionIndex]);
 
   const handleAnswerClick = async (answer) => {
-    if (selectedAnswer) return; 
+    if (selectedAnswer) return;
 
     setSelectedAnswer(answer);
     const questionId = questions[currentQuestionIndex].id;
-    const msisdn = "27837441852";
     const response = await handleAnswerSubmit(msisdn, questionId, answer);
 
-    console.log("Submit answer response:", response); 
+    // console.log("Submit answer response:", response);
+
+    const isAnswerCorrect =
+      answer === questions[currentQuestionIndex]?.rightAnswer;
+    setIsCorrect(isAnswerCorrect);
+
+    setStatuses((prev) => {
+      const newStatuses = [...prev];
+      newStatuses[currentQuestionIndex] = isAnswerCorrect
+        ? "correct"
+        : "incorrect";
+      return newStatuses;
+    });
 
     if (response && response.statusCode === "999") {
-      const isAnswerCorrect =
-        answer === questions[currentQuestionIndex]?.rightAnswer;
-      setIsCorrect(isAnswerCorrect);
-      setStatuses((prev) => {
-        const newStatuses = [...prev];
-        newStatuses[currentQuestionIndex] = isAnswerCorrect
-          ? "correct"
-          : "incorrect";
-        return newStatuses;
-      });
-
       if (isAnswerCorrect) {
         const pointsMessage = response.message;
         const awardedPoints = parseInt(pointsMessage.match(/\d+/)[0]);
-        console.log(`Awarded Points: ${awardedPoints}`); 
-
-        setScore((prevScore) => prevScore + awardedPoints); }
+        // console.log(`Awarded Points: ${awardedPoints}`);
+        setScore((prevScore) => prevScore + awardedPoints);
+      }
 
       setTimeout(() => {
-        handleNextQuestion();
+        handleNextQuestion(isAnswerCorrect);
       }, 2000);
     } else {
       console.error("Failed to submit answer:", response);
     }
   };
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = (answeredCorrectly) => {
     setSelectedAnswer(null);
     setIsCorrect(null);
-    setTimer(10); 
+    setTimer(10);
+
+    setStatuses((prev) => {
+      const newStatuses = [...prev];
+      newStatuses[currentQuestionIndex] = answeredCorrectly
+        ? "correct"
+        : "incorrect";
+      return newStatuses;
+    });
 
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
     } else {
-      console.log(
-        "All questions answered. Navigating to results with score:",
-        score
-      );
-      handleUpdateLeaderboardScore(msisdn,score);
-      navigate("/result-page", {
-        state: { score, totalQuestions: questions.length, statuses },
-      });
-      return; 
+      // console.log("All questions answered. Final Score:", score);
+      handleUpdateLeaderboardScore(msisdn, score);
+
+      setTimeout(() => {
+        navigate("/result-page", {
+          state: {
+            score: score,
+            totalQuestions: questions.length,
+            statuses: [...statuses],
+          },
+        });
+      }, 1000);
     }
   };
 
   if (loading || !questions || questions.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center mx-auto mt-[50px]">
+        <Circles color="black" height={50} width={50} />
+      </div>
+    );
   }
 
   return (
@@ -128,11 +151,11 @@ const BigCashTrivia = () => {
         </h2>
 
         {/* Pagination Dots */}
-        {/* <div className="flex items-center justify-between mt-4 mb-[59px]">
+        <div className="flex items-center justify-center mt-4 mb-[59px] gap-[25px] px-4">
           {questions.map((_, index) => (
             <div
               key={index}
-              className={`w-3 h-3 rounded-full  ${
+              className={`w-3 h-3 rounded-full ${
                 statuses[index] === "correct"
                   ? "bg-[#82e180]"
                   : statuses[index] === "incorrect"
@@ -141,7 +164,7 @@ const BigCashTrivia = () => {
               }`}
             />
           ))}
-        </div> */}
+        </div>
 
         <div className="flex flex-col gap-[21px]">
           {!questions[currentQuestionIndex]?.answers ||
@@ -174,9 +197,4 @@ const BigCashTrivia = () => {
   );
 };
 
-export default BigCashTrivia;
-
-
-
-
-
+export default React.memo(BigCashTrivia);
