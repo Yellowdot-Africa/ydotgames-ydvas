@@ -3,6 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import Timer from "../assets/Icons/timer.svg";
 import { LeaderboardContext } from "../Context/LeaderboardContext";
 import { TriviaContext } from "../Context/TriviaContext";
+import UserContext from "../Context/UserContext";
+
+
+
 
 const BigCashTrivia = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -12,6 +16,8 @@ const BigCashTrivia = () => {
   const [statuses, setStatuses] = useState([]);
   const [timer, setTimer] = useState(10);
   const navigate = useNavigate();
+  const { userProfile,fetchProfile, error,msisdn, handleUpdateSubscriberProfile } = useContext(UserContext);
+
   const { gameId } = useParams();
   const { handleUpdateLeaderboardScore } = useContext(LeaderboardContext);
   const {
@@ -69,7 +75,9 @@ const BigCashTrivia = () => {
       if (isAnswerCorrect) {
         const pointsMessage = response.message;
         const awardedPoints = parseInt(pointsMessage.match(/\d+/)[0]);
-        setScore((prevScore) => prevScore + awardedPoints);      }
+        console.log(`Awarded Points: ${awardedPoints}`); 
+
+        setScore((prevScore) => prevScore + awardedPoints); }
 
       setTimeout(() => {
         handleNextQuestion();
@@ -91,7 +99,7 @@ const BigCashTrivia = () => {
         "All questions answered. Navigating to results with score:",
         score
       );
-      handleUpdateLeaderboardScore(score);
+      handleUpdateLeaderboardScore(msisdn,score);
       navigate("/result-page", {
         state: { score, totalQuestions: questions.length, statuses },
       });
@@ -120,11 +128,11 @@ const BigCashTrivia = () => {
         </h2>
 
         {/* Pagination Dots */}
-        <div className="flex items-center justify-between mt-4 mb-[59px]">
+        {/* <div className="flex items-center justify-between mt-4 mb-[59px]">
           {questions.map((_, index) => (
             <div
               key={index}
-              className={`w-2 h-2 rounded-full  ${
+              className={`w-3 h-3 rounded-full  ${
                 statuses[index] === "correct"
                   ? "bg-[#82e180]"
                   : statuses[index] === "incorrect"
@@ -133,7 +141,7 @@ const BigCashTrivia = () => {
               }`}
             />
           ))}
-        </div>
+        </div> */}
 
         <div className="flex flex-col gap-[21px]">
           {!questions[currentQuestionIndex]?.answers ||

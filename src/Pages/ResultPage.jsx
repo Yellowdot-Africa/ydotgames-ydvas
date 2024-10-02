@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Trophy from "../assets/Images/gold-trophy.png";
 import Right from "../assets/Icons/icon-cancel.png";
 import Cancel from "../assets/Icons/icon-right.png";
+import { TriviaContext } from "../Context/TriviaContext"
 
 
 
