@@ -48,6 +48,8 @@ const HomePage = () => {
   const { leaderboard, fetchLeaderboardStanding } =
     useContext(LeaderboardContext);
   const navigate = useNavigate();
+    const [iframeSrc, setIframeSrc] = useState("");
+
 
   useEffect(() => {
     if (games && games.length > 0) {
@@ -121,25 +123,49 @@ const HomePage = () => {
     }
   };
 
-  const XwingFighterUrl = "/x-wing-fighter/index.html";
+  const XwingFighterUrl = "/x-wing-fighter/index.html"
 
   const handlePlay = (XwingFighterUrl, msisdn) => {
-    // localStorage.setItem("gameScore", 0);
-    const storedScore = localStorage.getItem("com.disney.fighter.game_11.save");
+    const storedData = localStorage.getItem("com.disney.fighter.game_11.save");
+    console.log("Stored score for stored:", storedData);
 
-    console.log("Stored score for score", storedScore);
+    const parsedData = storedData ? JSON.parse(storedData) : null;
+    
+    const bestScore = parsedData ? parsedData.bestScore : 0; 
+  
+    console.log("Stored score for bestScore:", bestScore);
+  
+    // const gameWindow = window.open(XwingFighterUrl);
+      setIframeSrc(XwingFighterUrl);
 
-    const gameWindow = window.open(XwingFighterUrl);
-
-    window.addEventListener("message", async (event) => {
-      if (event.origin === new URL(XwingFighterUrl).origin) {
-        const gameScore = event.data.bestScore;
-        await handleUpdateLeaderboardScore(msisdn, gameScore);
-        window.removeEventListener("message", () => {});
-      }
-    });
-    // navigate("/x-wing-fighter/index.html", { state: { msisdn } });
+    // window.addEventListener("message", async (event) => {
+    //   if (event.origin === new URL(XwingFighterUrl).origin) {
+    //     const gameScore = bestScore;
+        
+    //     await handleUpdateLeaderboardScore(msisdn, gameScore);
+    //     // console.log("leaderboadUodate", handleUpdateLeaderboardScore)
+        
+    //     window.removeEventListener("message", () => {});
+    //   }
+    // });
   };
+
+
+  const handleBackToApp = async () => {
+        setIframeSrc("");
+        const storedData = localStorage.getItem("com.disney.fighter.game_11.save");
+
+        const parsedData = storedData ? JSON.parse(storedData) : null;
+          
+          const bestScore = parsedData ? parsedData.bestScore : 0; 
+        
+          console.log("Stored score outside for bestScore:", bestScore);
+          const gameScore = bestScore;
+        
+        await handleUpdateLeaderboardScore(msisdn, gameScore);
+      };
+  
+  
 
   return (
     <>
@@ -278,6 +304,18 @@ const HomePage = () => {
             <BigCashGame />
           </section>
         </div>
+
+        {iframeSrc && (
+          <div className="absolute inset-0 bg-white z-50">
+            <iframe src={iframeSrc} title="Game"  sandbox="allow-scripts allow-same-origin" className="w-full h-full" />
+            <button
+              onClick={handleBackToApp}
+              className="absolute top-4 right-4 bg-sky-900 text-white px-4 py-2 rounded"
+            >
+              Back to App
+            </button>
+          </div>
+        )}
 
         <div className="fixed w-full flex justify-center  ">
           <div

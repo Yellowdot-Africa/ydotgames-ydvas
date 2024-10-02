@@ -24,7 +24,7 @@ const RedirectPage = () => {
     //   console.log('SID:', sid);
       checkSubscription(decodedCli);
 
-      navigate(`/Redirect?cli=${decodedCli}&sid=${sid}`);
+    //   navigate(`/Redirect?cli=${decodedCli}&sid=${sid}`);
     // navigate("/splashscreen");
     } else {
       console.error('CLI parameter is missing.');
