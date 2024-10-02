@@ -18,7 +18,7 @@ import RedirectPage from "./Pages/RediectPage";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RedirectPage/>,
+    element: <SplashScreen/>,
   },
   {
     path: "/Redirect",
@@ -86,6 +86,7 @@ const App = ()=> {
 }
 
 export default App;
+
 
 
 

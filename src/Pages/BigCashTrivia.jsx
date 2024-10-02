@@ -67,8 +67,9 @@ const BigCashTrivia = () => {
       });
 
       if (isAnswerCorrect) {
-        setScore((prevScore) => prevScore + 1);
-      }
+        const pointsMessage = response.message;
+        const awardedPoints = parseInt(pointsMessage.match(/\d+/)[0]);
+        setScore((prevScore) => prevScore + awardedPoints);      }
 
       setTimeout(() => {
         handleNextQuestion();
