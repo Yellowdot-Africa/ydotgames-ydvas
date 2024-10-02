@@ -13,16 +13,15 @@ const RedirectPage = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const cli = queryParams.get('cli');
-    // let msisdn = queryParams.get("msisdn");
 
-    // const sid = queryParams.get('sid');
+    const sid = queryParams.get('sid');
 
     if (cli) {
       const decodedCli = atob(cli);
       
       console.log('Decoded CLI:', decodedCli);
     //   console.log('SID:', sid);
-      checkSubscription(decodedCli);
+      checkSubscription(decodedCli, sid);
 
     //   navigate(`/Redirect?cli=${decodedCli}&sid=${sid}`);
     // navigate("/splashscreen");
