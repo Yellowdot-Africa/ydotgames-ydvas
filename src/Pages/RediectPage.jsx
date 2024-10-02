@@ -43,11 +43,11 @@ const RedirectPage = () => {
       );
 
       if (response.data.data.State === "Active") {
-    //   navigate(`/splash-sreen?cli=${decodedCli}&sid=${sid}`);
     navigate("/splashscreen");
 
       } else {
         setErrorMessage("Your subscription is inactive. Please subscribe to continue.");
+        window.location.href = "https://play.mtn.co.za/subscribe/service/10421?gv_id=4539";
       }
     } catch (error) {
       console.error("Error checking subscription status", error);

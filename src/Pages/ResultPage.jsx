@@ -11,6 +11,7 @@ const ResultPage = () => {
   const location = useLocation();
   const navigate = useNavigate(); 
   const { score, totalQuestions, statuses =[]} = location.state || {};
+  const { games, fetchGames, selectedGameId, setSelectedGameId } = useContext(TriviaContext);
 
   const correctAnswers = statuses.filter((status) => status === "correct").length;
   const wrongAnswers = statuses.filter((status) => status === "incorrect").length;
@@ -19,6 +20,11 @@ const ResultPage = () => {
 
   const handlePlayAgain = () => {
     navigate('/home'); 
+  };
+
+  const handleReplay = (gameId) => {
+    setSelectedGameId(gameId);
+    navigate(`/bigcash-trivia/${gameId}`);
   };
 
   return (
@@ -44,9 +50,7 @@ const ResultPage = () => {
      
      
       <button
-        onClick={()=> {
-          navigate(`/bigcash-trivia/${gameId}`)
-        }} 
+        onClick={handleReplay} 
         className="mt-[36px] w-full h-[50px] text-center leading-[16.51px] font-mtn-brighter-medium font-medium text-[14px] text-white rounded-[30px] border-none bg-[#19BFC1]"
       >
        Replay

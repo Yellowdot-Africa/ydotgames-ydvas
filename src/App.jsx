@@ -17,6 +17,10 @@ import RedirectPage from "./Pages/RediectPage";
 
 const router = createBrowserRouter([
   {
+    path: "/",
+    element: <RedirectPage/>,
+  },
+  {
     path: "/Redirect",
     element: <RedirectPage/>,
   },
