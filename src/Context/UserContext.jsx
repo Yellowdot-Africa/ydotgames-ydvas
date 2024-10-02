@@ -13,7 +13,7 @@ export const UserProvider = ({ children }) => {
   const msisdn ="27837441852";
   const { auth } = useContext(AuthContext);
 
-  console.log("MSISDN:", msisdn);
+//   console.log("MSISDN:", msisdn);
 
   const fetchProfile = async (msisdn) => {
     setLoading(true);
@@ -43,9 +43,9 @@ export const UserProvider = ({ children }) => {
     setLoading(true);
     setError(null);
 
-    console.log("MSISDN:", msisdn);
-    console.log("Nickname:", nickname);
-    console.log("AvatarID:", avatarId);
+    // console.log("MSISDN:", msisdn);
+    // console.log("Nickname:", nickname);
+    // console.log("AvatarID:", avatarId);
     try {
       const response = await UpdateSubscriberProfile(auth, msisdn, nickname, avatarId || '');
       if (response.statusCode === "999") {

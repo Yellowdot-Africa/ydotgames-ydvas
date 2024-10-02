@@ -15,7 +15,7 @@ export const GameProvider = ({ children }) => {
       if (response?.statusCode === "999") {
         const gamesData = response.data;
         setGames(gamesData);
-        console.log(`Fetched ${gamesData.length} games`);
+        // console.log(`Fetched ${gamesData.length} games`);
       } else {
         console.error("Error in response:", response.statusMessage);
       }

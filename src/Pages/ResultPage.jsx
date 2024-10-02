@@ -11,19 +11,13 @@ import { TriviaContext } from "../Context/TriviaContext"
 const ResultPage = () => {
   const location = useLocation();
   const navigate = useNavigate(); 
-  const { score, totalQuestions, statuses } = location.state || { score: 0, totalQuestions: 0, statuses: [] };
   // console.log('Score:', score, 'Total Questions:', totalQuestions, 'Statuses:', statuses);
+  const { score, totalQuestions, statuses = [] } = location.state || {}; 
 
-  // const { score, totalQuestions, statuses =[]} = location.state || {};
   const { games, fetchGames, selectedGameId, setSelectedGameId } = useContext(TriviaContext);
 
   const correctAnswers = statuses.filter((status) => status === "correct").length;
   const wrongAnswers = statuses.filter((status) => status === "incorrect").length;
-
-  if (!Array.isArray(statuses)) {
-    console.error('Statuses should be an array:', statuses);
-    statuses = [];
-}
 
 
   const handlePlayAgain = () => {

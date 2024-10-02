@@ -10,8 +10,8 @@ export const getSubscriberProfile = async (auth, msisdn) => {
         if (!token) {
       throw new Error("No auth token available");
     }
-    console.log("Auth Token:", token);
-    console.log("MSISDN:", msisdn);
+    // console.log("Auth Token:", token);
+    // console.log("MSISDN:", msisdn);
     const response = await axios.get(`${BASE_URL}/GetSubscriberProfile?msisdn=${msisdn}`,
     {
         headers: {
@@ -28,7 +28,7 @@ export const getSubscriberProfile = async (auth, msisdn) => {
 
 
 export const UpdateSubscriberProfile = async (auth,msisdn, nickname,avatarId) => {
-    console.log('Updating profile with:', { msisdn, nickname, avatarId });
+    // console.log('Updating profile with:', { msisdn, nickname, avatarId });
 
     try {
     const token = localStorage.getItem("authToken");
