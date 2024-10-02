@@ -135,19 +135,9 @@ const HomePage = () => {
   
     console.log("Stored score for bestScore:", bestScore);
   
-    // const gameWindow = window.open(XwingFighterUrl);
       setIframeSrc(XwingFighterUrl);
 
-    // window.addEventListener("message", async (event) => {
-    //   if (event.origin === new URL(XwingFighterUrl).origin) {
-    //     const gameScore = bestScore;
-        
-    //     await handleUpdateLeaderboardScore(msisdn, gameScore);
-    //     // console.log("leaderboadUodate", handleUpdateLeaderboardScore)
-        
-    //     window.removeEventListener("message", () => {});
-    //   }
-    // });
+    
   };
 
 
@@ -279,16 +269,14 @@ const HomePage = () => {
                         {truncateTitle(game.title)}
                       </p>
                       <div className="flex items-center justify-center mt-[9.8px]">
-                        <StarRatings />
+                        {/* <StarRatings /> */}
+                    <img src={StarYs} alt="start" />
+                    <img src={StarYs} alt="start" />
+                    <img src={StarYs} alt="start" />
+                    <img src={StarWs} alt="start" />
+                    <img src={StarWs} alt="start" />
                       </div>
-                      {/* <button   onClick={() => handlePlay(game.playUrl)}  className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center px-[30px] py-[6px] mx-auto mt-[12.87px]"> */}
-                      {/* <a
-                            href={game.playUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Play
-                          </a> */}
+                      
                       <Link to="#">
                         <button
                           onClick={() => handlePlay(XwingFighterUrl, msisdn)}

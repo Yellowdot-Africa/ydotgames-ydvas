@@ -46,7 +46,7 @@ const LeaderboardProvider = ({ children }) => {
   };
 
 
-  const handleUpdateLeaderboardScore = async (gameScore) => {
+  const handleUpdateLeaderboardScore = async (msisdn, gameScore) => {
     if (!msisdn) throw new Error("MSISDN is required for updating the score");
     
     try {
@@ -56,7 +56,11 @@ const LeaderboardProvider = ({ children }) => {
     } catch (error) {
       console.error("Error updating leaderboard score:", error);
     }
+
+
   };
+
+
 
   const saveScoreToLocalStorage = (msisdn, score) => {
     const existingScores = JSON.parse(localStorage.getItem('leaderboard')) || [];
@@ -69,7 +73,9 @@ const LeaderboardProvider = ({ children }) => {
       existingScores.push({ msisdn, score });
     }
     
-    localStorage.setItem('leaderboard', JSON.stringify(existingScores));
+    localSto
+  
+  rage.setItem('leaderboard', JSON.stringify(existingScores));
   };
 
   const getScoresFromLocalStorage = () => {

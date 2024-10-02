@@ -113,12 +113,12 @@ const CarouselSection = () => {
                         }}
                         className="bg-[#19BFC1] rounded-bl-[20px] w-[103px] h-[30px] flex items-center justify-center"
                       >
-                        {/* {Array(5)
+                        {Array(5)
                           .fill()
                           .map((_, starIndex) => (
                             <img key={starIndex} src={StarW} alt="star" />
-                          ))} */}
-                          <StarRatings/>
+                          ))}
+                          {/* <StarRatings/> */}
                       </span>
                       <button className="bg-[#2A76D8] pt-[7px] pb-[7px]  px-[15px] rounded-br-[20px]">
                         <p

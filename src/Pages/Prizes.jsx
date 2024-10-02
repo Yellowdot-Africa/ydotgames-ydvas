@@ -310,7 +310,7 @@ const PrizesPage = () => {
                         />
                       </div>
                     )}
-                  </div>
+                  </div> 
                 ))}
               </div>
             </div>
