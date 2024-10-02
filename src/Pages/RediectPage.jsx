@@ -37,7 +37,7 @@ const RedirectPage = () => {
     try {
       const response = await axios.post(
         'https://be-spin-mtn.ydafrica.com/api/v1/checkstatus',
-        { msisdn },
+        { msisdn, serviceId },
         { headers: { 'Content-Type': 'application/json' } }
       );
 
