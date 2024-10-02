@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import { useUserContext } from '../Context/UserContext';
 
 const RedirectPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { setMsisdn } = useUserContext(); 
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -18,19 +19,14 @@ const RedirectPage = () => {
 
     if (cli) {
       const decodedCli = atob(cli);
-      
+      setMsisdn(decodedCli); 
       console.log('Decoded CLI:', decodedCli);
-    //   console.log('SID:', sid);
       checkSubscription(decodedCli, sid);
-
-    //   navigate(`/Redirect?cli=${decodedCli}&sid=${sid}`);
-    // navigate("/splashscreen");
     } else {
       console.error('CLI parameter is missing.');
-    //   setErrorMessage('CLI parameter is missing.');
       setLoading(false);
     }
-  }, [location.search]);
+  }, [location.search, setMsisdn]);
 
 
   const checkSubscription = async (msisdn, serviceId) => {
@@ -74,6 +70,10 @@ const RedirectPage = () => {
 };
 
 export default RedirectPage;
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AvatarProfile from "../assets/Images/avatar-prof.png";
 import Home from "../assets/Icons/home.png";
@@ -18,6 +18,8 @@ import Avatar3 from "../assets/Icons/avatar3.png";
 import Avatar4 from "../assets/Icons/avatar4.png";
 import Avatar5 from "../assets/Icons/avatar5.png";
 import PlusIcon from "../assets/Icons/plus-icon.png";
+import UserContext from "../Context/UserContext";
+
 
 const PrizesPage = () => {
   const prizesData = [
@@ -40,6 +42,10 @@ const PrizesPage = () => {
 
   const [scrollDirection, setScrollDirection] = useState(null);
   const [lastScrollTop, setLastScrollTop] = useState(0);
+  const { userProfile, fetchProfile, msisdn, handleUpdateSubscriberProfile } =
+  useContext(UserContext);
+
+
 
   useEffect(() => {
     let lastScrollTop = 0;
@@ -129,7 +135,7 @@ const PrizesPage = () => {
 
       <div className="bg-background w-[140px] h-[28px] rounded-b-[26px] flex items-center justify-center m-auto shadow-box-shadow">
         <p className="font-mtn-brighter-medium font-medium text-[10px] leading-[13px] text-center text-[#FFFFFF]">
-          @+2778 414 2470
+        @{userProfile?.msisdn}
         </p>
       </div>
 
@@ -322,6 +328,9 @@ const PrizesPage = () => {
 };
 
 export default PrizesPage;
+
+
+
 
 
 

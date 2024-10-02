@@ -2,18 +2,24 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import { getSubscriberProfile, UpdateSubscriberProfile } from "../api/userApi";
 import AuthContext from "../Context/AuthContext";
 
+
+
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-//   const msisdn = "27687530974";
-  const msisdn ="27837441852";
+  const [msisdn, setMsisdn] = useState(""); 
   const { auth } = useContext(AuthContext);
+//   const msisdn ="07069637222";
+  useEffect(() => {
+    if (auth?.token && msisdn) {
+      fetchProfile(msisdn);
+    }
+  }, [auth?.token, msisdn]);
 
-//   console.log("MSISDN:", msisdn);
+ 
 
   const fetchProfile = async (msisdn) => {
     setLoading(true);
@@ -33,11 +39,7 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    if (auth?.token) {
-      fetchProfile(msisdn);
-    }
-  }, [auth?.token, msisdn]);
+ 
 
   const handleUpdateSubscriberProfile = async (msisdn, nickname, avatarId) => {
     setLoading(true);
@@ -46,6 +48,9 @@ export const UserProvider = ({ children }) => {
     // console.log("MSISDN:", msisdn);
     // console.log("Nickname:", nickname);
     // console.log("AvatarID:", avatarId);
+
+    // const nickname = "";
+
     try {
       const response = await UpdateSubscriberProfile(auth, msisdn, nickname, avatarId || '');
       if (response.statusCode === "999") {
@@ -68,6 +73,7 @@ export const UserProvider = ({ children }) => {
         loading,
         error,
         msisdn,
+        setMsisdn,
         fetchProfile,
         handleUpdateSubscriberProfile,
       }}
@@ -79,8 +85,6 @@ export const UserProvider = ({ children }) => {
 
 export default UserContext;
 export const useUserContext = () => useContext(UserContext);
-
-
 
 
 

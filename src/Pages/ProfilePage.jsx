@@ -120,7 +120,7 @@ useEffect(() => {
               </p>
               <p className="text-[#FFCA00] font-mtn-brighter-bold font-bold text-[16px] leading-[20.8px] text-center">
                 {/* Subscribed */}
-                {userProfile?.isSubscribed ? "Subscribed" : "Unsubscribed"}
+                {/* {userProfile?.isSubscribed ? "Subscribed" : "Unsubscribed"} */}
               </p>
             </div>
             {/* <div className="mr-[24px] md:mr-[100px] flex items-center justify-center border border-[#FFCB05] rounded-[30px] pl-[35px] pr-[44px] px-[12px] ">
