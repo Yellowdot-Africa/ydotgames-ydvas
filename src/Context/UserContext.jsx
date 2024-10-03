@@ -10,9 +10,12 @@ export const UserProvider = ({ children }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [msisdn, setMsisdn] = useState("27837441852"); 
+  // const [msisdn, setMsisdn] = useState("27837441852"); 
+  const [msisdn, setMsisdn] = useState(""); 
+
   const { auth } = useContext(AuthContext);
-  // const msisdn ="27837441852";
+
+
   useEffect(() => {
     if (auth?.token && msisdn) {
       fetchProfile(msisdn);

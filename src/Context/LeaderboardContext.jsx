@@ -20,9 +20,8 @@ const LeaderboardProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { auth } = useContext(AuthContext);
-  const { userProfile } = useContext(UserContext);
-
-  const msisdn = userProfile?.msisdn || null;
+  const { userProfile, msisdn } = useContext(UserContext);
+  // const msisdn = userProfile?.msisdn || null;
 
   useEffect(() => {
     // console.log("UserContext MSISDN:", msisdn);
@@ -31,9 +30,9 @@ const LeaderboardProvider = ({ children }) => {
   const fetchLeaderboardStanding = async () => {
     try {
       setLoading(true);
-      if (!msisdn) {
-        throw new Error("MSISDN is required");
-      }
+      // if (!msisdn) {
+      //   throw new Error("MSISDN is required");
+      // }
       const response = await getLeaderboardStanding(auth, msisdn);
       setLeaderboard(response.data);
       // console.log("Fetched leaderboard:", response.data);

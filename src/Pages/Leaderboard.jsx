@@ -30,6 +30,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
   const navigate = useNavigate();
   const [scrollDirection, setScrollDirection] = useState(null);
   const [lastScrollTop, setLastScrollTop] = useState(0);
+  const [userAvatar, setUserAvatar] = useState({AvatarProfile}); 
 
 
 
@@ -45,6 +46,13 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
     useContext(UserContext);
 
  
+    useEffect(() => {
+          const storedAvatar = localStorage.getItem("selectedAvatar");
+          if (storedAvatar) {
+            setUserAvatar(storedAvatar);
+          }
+        }, []);
+
 
   useEffect(() => {
     fetchLeaderboardStanding(subscriberMsisdn);
@@ -137,7 +145,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                     onClick={() => setShowAvatarSelector(!showAvatarSelector)}
                   >
                     <img
-                      src={currentAvatar || "/default-avatar.png"}
+                      src={userAvatar || "/default-avatar.png"}
                       alt="Profile Avatar"
                       className="-ml-[8px] -mb-[6px]"
                     />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Avatar1 from "../assets/Icons/avatar1.png";
+import AvatarProfile from "../assets/Images/avatar-prof.png";
 import Volume from "../assets/Icons/volume.png";
 import Radix from "../assets/Icons/radix.png";
 import Coins from "../assets/Icons/coins.png";
@@ -26,8 +27,14 @@ const ProfilePage = () => {
   const {leaderboard} = useContext(LeaderboardContext)
   const [myPoints, setMyPoints] = useState(0);
   const [topPoints, setTopPoints] = useState(0);
+  const [userAvatar, setUserAvatar] = useState({AvatarProfile}); 
 
-
+  useEffect(() => {
+    const storedAvatar = localStorage.getItem("selectedAvatar");
+    if (storedAvatar) {
+      setUserAvatar(storedAvatar);
+    }
+  }, []);
 
 useEffect(() => {
   if (leaderboard.length > 0 && userProfile) {
@@ -95,7 +102,7 @@ useEffect(() => {
         <div className="bg-darrk-gradient h-[749px]   w-full">
           <div className="flex justify-between items-center -mt-[47px]   ">
             <img
-              src={Avatar1}
+              src={userAvatar}
               alt="Avatar Icon"
               className="w-[108px] h-[108px] rounded-full ml-[40px] md:ml-[170px]"
             />
@@ -141,7 +148,7 @@ useEffect(() => {
 
           <div className="flex items-center justify-center gap-[15px] mt-[30px]">
             <div className="w-[158px] h-[71px] flex items-center justify-center gap-[4px] border-[1.5px] border-[#FFFFFF4A] bg-[#2C3035] shadow-box-shadow rounded-[12px] ">
-              <img src={Avatar1} alt="Score Icon" className="w-12 h-12" />
+              <img src={userAvatar} alt="Score Icon" className="w-12 h-12" />
               <div className="block">
                 <p className="font-mtn-brighter-regular font-regular text-[16px] leading-[20.8px] text-center text-[#FFFFFFCC]">
                   Your Score

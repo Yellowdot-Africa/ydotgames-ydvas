@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Timer from "../assets/Icons/timer.svg";
@@ -9,23 +13,15 @@ import { Circles } from "react-loader-spinner";
 const BigCashTrivia = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [isCorrect, setIsCorrect] = useState(null);
   const [score, setScore] = useState(0);
   const [statuses, setStatuses] = useState([]);
   const [timer, setTimer] = useState(10);
   const navigate = useNavigate();
 
-  const { userProfile, msisdn } = useContext(UserContext);
+  const { msisdn } = useContext(UserContext);
   const { gameId } = useParams();
   const { handleUpdateLeaderboardScore } = useContext(LeaderboardContext);
-
-  const {
-    loading,
-    fetchQuestions,
-    questions,
-    selectedGameId,
-    handleAnswerSubmit,
-  } = useContext(TriviaContext);
+  const { loading, fetchQuestions, questions, selectedGameId, handleAnswerSubmit } = useContext(TriviaContext);
 
   useEffect(() => {
     if (selectedGameId) {
@@ -37,7 +33,6 @@ const BigCashTrivia = () => {
     if (questions.length > 0) {
       setCurrentQuestionIndex(0);
       setSelectedAnswer(null);
-      setIsCorrect(null);
       setTimer(10);
       setStatuses(Array(questions.length).fill(null));
     }
@@ -48,8 +43,8 @@ const BigCashTrivia = () => {
       setTimer((prev) => {
         if (prev <= 1) {
           clearInterval(timerId);
-          handleNextQuestion(false);
-          return 10;
+          handleNextQuestion(false); 
+          return 10; 
         }
         return prev - 1;
       });
@@ -59,59 +54,44 @@ const BigCashTrivia = () => {
   }, [currentQuestionIndex]);
 
   const handleAnswerClick = async (answer) => {
-    if (selectedAnswer) return;
+    if (selectedAnswer) return; 
 
     setSelectedAnswer(answer);
     const questionId = questions[currentQuestionIndex].id;
     const response = await handleAnswerSubmit(msisdn, questionId, answer);
+    console.log("Submit answer response:", response);
 
-    // console.log("Submit answer response:", response);
-
-    const isAnswerCorrect =
-      answer === questions[currentQuestionIndex]?.rightAnswer;
-    setIsCorrect(isAnswerCorrect);
-
-    setStatuses((prev) => {
-      const newStatuses = [...prev];
-      newStatuses[currentQuestionIndex] = isAnswerCorrect
-        ? "correct"
-        : "incorrect";
+    const isAnswerCorrect = answer === questions[currentQuestionIndex]?.rightAnswer;
+    
+    setStatuses((prevStatuses) => {
+      const newStatuses = [...prevStatuses];
+      newStatuses[currentQuestionIndex] = isAnswerCorrect ? "correct" : "incorrect";
+      console.log("Updated statuses:", newStatuses);
       return newStatuses;
     });
 
     if (response && response.statusCode === "999") {
-      if (isAnswerCorrect) {
-        const pointsMessage = response.message;
-        const awardedPoints = parseInt(pointsMessage.match(/\d+/)[0]);
-        // console.log(`Awarded Points: ${awardedPoints}`);
-        setScore((prevScore) => prevScore + awardedPoints);
-      }
-
-      setTimeout(() => {
-        handleNextQuestion(isAnswerCorrect);
-      }, 2000);
+      const pointsMessage = response.message;
+      const awardedPoints = parseInt(pointsMessage.match(/\d+/)[0]);
+      console.log(`Awarded Points: ${awardedPoints}`);
+      setScore((prevScore) => prevScore + awardedPoints);
     } else {
       console.error("Failed to submit answer:", response);
     }
+
+    setTimeout(() => {
+      handleNextQuestion(isAnswerCorrect);
+    }, 2000);
   };
 
   const handleNextQuestion = (answeredCorrectly) => {
     setSelectedAnswer(null);
-    setIsCorrect(null);
-    setTimer(10);
-
-    setStatuses((prev) => {
-      const newStatuses = [...prev];
-      newStatuses[currentQuestionIndex] = answeredCorrectly
-        ? "correct"
-        : "incorrect";
-      return newStatuses;
-    });
+    setTimer(10); 
 
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
     } else {
-      // console.log("All questions answered. Final Score:", score);
+      console.log("All questions answered. Final Score:", score);
       handleUpdateLeaderboardScore(msisdn, score);
 
       setTimeout(() => {
@@ -122,7 +102,7 @@ const BigCashTrivia = () => {
             statuses: [...statuses],
           },
         });
-      }, 1000);
+      }, 2000);
     }
   };
 
@@ -167,30 +147,25 @@ const BigCashTrivia = () => {
         </div>
 
         <div className="flex flex-col gap-[21px]">
-          {!questions[currentQuestionIndex]?.answers ||
-          questions[currentQuestionIndex].answers.length === 0 ? (
-            <div>No answer options available.</div>
-          ) : (
-            questions[currentQuestionIndex].answers.map((answer, index) => (
-              <button
-                key={index}
-                onClick={() => handleAnswerClick(answer)}
-                className={`py-2 px-4 text-black rounded-[50px] w-[90vw] h-[60px] ${
-                  selectedAnswer === answer
-                    ? answer === questions[currentQuestionIndex].rightAnswer
-                      ? "bg-[#82e180]"
-                      : "bg-[#e37e80]"
-                    : selectedAnswer &&
-                      answer === questions[currentQuestionIndex].rightAnswer
+          {questions[currentQuestionIndex].answers.map((answer, index) => (
+            <button
+              key={index}
+              onClick={() => handleAnswerClick(answer)}
+              className={`py-2 px-4 text-black rounded-[50px] w-[90vw] h-[60px] ${
+                selectedAnswer === answer
+                  ? answer === questions[currentQuestionIndex].rightAnswer
                     ? "bg-[#82e180]"
-                    : "bg-white"
-                }`}
-                disabled={selectedAnswer !== null}
-              >
-                {answer}
-              </button>
-            ))
-          )}
+                    : "bg-[#e37e80]"
+                  : selectedAnswer &&
+                    answer === questions[currentQuestionIndex].rightAnswer
+                  ? "bg-[#82e180]"
+                  : "bg-white"
+              }`}
+              disabled={selectedAnswer !== null}
+            >
+              {answer}
+            </button>
+          ))}
         </div>
       </div>
     </div>

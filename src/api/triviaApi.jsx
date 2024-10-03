@@ -75,5 +75,3 @@ export const submitAnswer = async (msisdn, questionId, submittedAnswer) => {
   };
   
 
-
-

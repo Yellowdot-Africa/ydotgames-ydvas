@@ -39,6 +39,7 @@ const PrizesPage = () => {
   const [showAvatarSelector, setShowAvatarSelector] = useState(false);
   const [currentAvatar, setCurrentAvatar] = useState(AvatarProfile);
   const navigate = useNavigate();
+  const [userAvatar, setUserAvatar] = useState({AvatarProfile}); 
 
   const [scrollDirection, setScrollDirection] = useState(null);
   const [lastScrollTop, setLastScrollTop] = useState(0);
@@ -46,6 +47,12 @@ const PrizesPage = () => {
   useContext(UserContext);
 
 
+    useEffect(() => {
+    const storedAvatar = localStorage.getItem("selectedAvatar");
+    if (storedAvatar) {
+      setUserAvatar(storedAvatar);
+    }
+  }, []);
 
   useEffect(() => {
     let lastScrollTop = 0;
@@ -112,7 +119,7 @@ const PrizesPage = () => {
               onClick={handleAvatarClick}
             >
               <img
-                src={currentAvatar || "/default-avatar.png"}
+                src={userAvatar || "/default-avatar.png"}
                 alt="Profile Avatar"
                 className="-ml-[8px] -mb-[6px]"
               />
@@ -145,9 +152,10 @@ const PrizesPage = () => {
             </h1>
             <p className="text-[#FFFFFF] mx-auto font-mtn-brighter-regular font-regular text-[18px] w-[274px] leading-[23.4px] text-center mt-[11px]">
               The grand prize is
+              {" "}
               <span className="font-mtn-brighter-bold font-bold text-[18px] leading-[23.4px] text-center">
-                R1000!
-              </span>{" "}
+                 R1000! {" "}
+              </span>
               With lots of Airtime to be won!
             </p>
 
