@@ -105,6 +105,7 @@ const HomePage = () => {
       setCurrentAvatar(storedAvatar);
     }
   }, []);
+  const storedMsisdn = localStorage.getItem('cli');
 
   const handleAvatarClick = () => {
     setShowAvatarSelector(!showAvatarSelector);
@@ -374,7 +375,7 @@ const HomePage = () => {
                   />
 
                   <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
-                    XWINGER
+                    X WING FIGHTER
                   </p>
                   <div className="flex items-center justify-center mt-[9.8px]">
                     <img src={StarYs} alt="start" />

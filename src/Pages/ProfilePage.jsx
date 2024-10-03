@@ -7,9 +7,10 @@ import Radix from "../assets/Icons/radix.png";
 import Coins from "../assets/Icons/coins.png";
 import Trophy from "../assets/Icons/trophy.png";
 import Crown from "../assets/Icons/crown.png";
-import Gumball from "../assets/Images/gumball.png";
-import Temple from "../assets/Images/game2.png";
-import Taffy from "../assets/Images/match-up.png";
+import SkateRush from "../assets/Images/rush.jpeg";
+import XWinger from "../assets/Images/x-winger.png";
+import StarWars from "../assets/Images/ground.jpeg";
+import TempleQuest from "../assets/Images/quest.jpeg";
 import Home from "../assets/Icons/home.png";
 import Leaderboard from "../assets/Icons/leaderboard.png";
 import Profile from "../assets/Icons/profile.png";
@@ -17,17 +18,23 @@ import GameContext from "../Context/GameContext";
 import UserContext from "../Context/UserContext";
 import { LeaderboardContext } from "../Context/LeaderboardContext";
 
-
 const ProfilePage = () => {
   const navigate = useNavigate();
   const [scrollDirection, setScrollDirection] = useState(null);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const { games, loading } = useContext(GameContext);
-  const { userProfile,fetchProfile, error, handleUpdateSubscriberProfile } = useContext(UserContext);
-  const {leaderboard} = useContext(LeaderboardContext)
+  const {
+    userProfile,
+    fetchProfile,
+    error,
+    msisdn,
+    handleUpdateSubscriberProfile,
+  } = useContext(UserContext);
+  const { leaderboard } = useContext(LeaderboardContext);
   const [myPoints, setMyPoints] = useState(0);
   const [topPoints, setTopPoints] = useState(0);
-  const [userAvatar, setUserAvatar] = useState({AvatarProfile}); 
+  const [userAvatar, setUserAvatar] = useState({ AvatarProfile });
+  const [iframeSrc, setIframeSrc] = useState("");
 
   useEffect(() => {
     const storedAvatar = localStorage.getItem("selectedAvatar");
@@ -36,18 +43,19 @@ const ProfilePage = () => {
     }
   }, []);
 
-useEffect(() => {
-  if (leaderboard.length > 0 && userProfile) {
-    const myEntry = leaderboard.find(entry => entry.msisdn === userProfile.msisdn);
-    setMyPoints(myEntry ? myEntry.dailyPoints : 0);
+  useEffect(() => {
+    if (leaderboard.length > 0 && userProfile) {
+      const myEntry = leaderboard.find(
+        (entry) => entry.msisdn === userProfile.msisdn
+      );
+      setMyPoints(myEntry ? myEntry.dailyPoints : 0);
 
-    const maxPoints = Math.max(...leaderboard.map(entry => entry.dailyPoints));
-    setTopPoints(maxPoints);
-  }
-}, [leaderboard, userProfile]);
-
-  
-
+      const maxPoints = Math.max(
+        ...leaderboard.map((entry) => entry.dailyPoints)
+      );
+      setTopPoints(maxPoints);
+    }
+  }, [leaderboard, userProfile]);
 
   const truncateTitle = (title) => {
     const maxLength = 10;
@@ -90,11 +98,40 @@ useEffect(() => {
     navigate("/leaderboard");
   };
 
+  const XwingFighterUrl = "/x-wing-fighter/index.html";
+
+  const handlePlay = (XwingFighterUrl, msisdn) => {
+    const storedData = localStorage.getItem("com.disney.fighter.game_11.save");
+    console.log("Stored score for stored:", storedData);
+
+    const parsedData = storedData ? JSON.parse(storedData) : null;
+
+    const bestScore = parsedData ? parsedData.bestScore : 0;
+
+    console.log("Stored score for bestScore:", bestScore);
+
+    setIframeSrc(XwingFighterUrl);
+  };
+
+  const handleBackToApp = async () => {
+    setIframeSrc("");
+    const storedData = localStorage.getItem("com.disney.fighter.game_11.save");
+
+    const parsedData = storedData ? JSON.parse(storedData) : null;
+
+    const bestScore = parsedData ? parsedData.bestScore : 0;
+
+    console.log("Stored score outside for bestScore:", bestScore);
+    const gameScore = bestScore;
+
+    await handleUpdateLeaderboardScore(msisdn, gameScore);
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
   if (error) return <p>{error}</p>;
-  
+
   return (
     <>
       <div className="flex flex-col h-[1059px] md:h-[1390px] bg-profile-gradient   justify-center items-center">
@@ -140,7 +177,6 @@ useEffect(() => {
           <button
             className="bg-button-gradient color-[#000000] mx-auto mt-[20px] py-[14px] px-[33px]  flex items-center justify-center rounded-[42px] border border-[#00000033] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center"
             onClick={handleViewLeaderboardClick}
-
           >
             <img src={Trophy} alt="trophy" />
             View Leaderboard
@@ -154,7 +190,7 @@ useEffect(() => {
                   Your Score
                 </p>
                 <p className="font-mtn-brighter-bold font-bold text-[20px] leading-[26px] text-center text-[#FFCB05]">
-                {myPoints}
+                  {myPoints}
                 </p>
               </div>
             </div>
@@ -166,7 +202,7 @@ useEffect(() => {
                   Top Score
                 </p>
                 <p className="font-mtn-brighter-bold font-bold text-[20px] leading-[26px] text-center text-[#FFCB05]">
-                {topPoints}
+                  {topPoints}
                 </p>
               </div>
             </div>
@@ -176,41 +212,100 @@ useEffect(() => {
           </p>
 
           <div className="flex flex-col items-center justify-center gap-[14px] mt-6 w-full ">
-            {games.length > 0 ? (
-              games.slice(0, 3).map((game, index) => (
-                <div
-                  key={game.gameId}
-                  className="bg-[#2C3035] px-[25px] py-[13px] border-[1.5px] border-[#FFFFFF66] shadow-lg rounded-[12px] w-[342px] h-[71px] flex items-center "
-                >
-                  <img
-                    src={`data:image/png;base64,${game.base64}`}
-                    alt={game.title}
-                    className="w-[47px] h-[46px] rounded-[10px] object-cover"
-                  />
-                  <div className="block pl-[16px]  text-justify">
-                    <p className="font-mtn-brighter-regular font-regular w-[184px] text-[16px] leading-[20.8px]  text-[#FFFFFF]">
-                      {truncateTitle(game.title)}
-                    </p>
-                    <p className="font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-[#FFFFFF]">
-                      #200
-                    </p>
-                  </div>
-                  <div className=" flex -mb-[22px] ">
-                    <a
-                      href={game.playUrl}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      className="text-[#FFCA00] font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-center "
-                    >
-                      Play
-                    </a>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p>No games available.</p>
-            )}
+            <div className="bg-[#2C3035] px-[25px] py-[13px] border-[1.5px] border-[#FFFFFF66] shadow-lg rounded-[12px] w-[342px] h-[71px] flex items-center ">
+              <img
+                src={SkateRush}
+                alt="rush"
+                className="w-[47px] h-[46px] rounded-[10px] object-cover"
+              />
+              <div className="block pl-[16px]  text-justify">
+                <p className="font-mtn-brighter-regular font-regular w-[184px] text-[16px] leading-[20.8px]  text-[#FFFFFF]">
+                  SKATE RUSH
+                </p>
+                <p className="font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-[#FFFFFF]">
+                  #200
+                </p>
+              </div>
+              <div className=" flex -mb-[22px] ">
+                <Link to="#">
+                  <button
+                    onClick={() => handlePlay(XwingFighterUrl, msisdn)}
+                    className="text-[#FFCA00] font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-center "
+                  >
+                    Play
+                  </button>
+                </Link>
+              </div>
+            </div>
+
+            <div className="bg-[#2C3035] px-[25px] py-[13px] border-[1.5px] border-[#FFFFFF66] shadow-lg rounded-[12px] w-[342px] h-[71px] flex items-center ">
+              <img
+                src={StarWars}
+                alt="rush"
+                className="w-[47px] h-[46px] rounded-[10px] object-cover"
+              />
+              <div className="block pl-[16px]  text-justify">
+                <p className="font-mtn-brighter-regular font-regular w-[184px] text-[16px] leading-[20.8px]  text-[#FFFFFF]">
+                 STAR WARS
+                </p>
+                <p className="font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-[#FFFFFF]">
+                  #200
+                </p>
+              </div>
+              <div className=" flex -mb-[22px] ">
+                <Link to="#">
+                  <button
+                    onClick={() => handlePlay(XwingFighterUrl, msisdn)}
+                    className="text-[#FFCA00] font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-center "
+                  >
+                    Play
+                  </button>
+                </Link>
+              </div>
+            </div>
+            <div className="bg-[#2C3035] px-[25px] py-[13px] border-[1.5px] border-[#FFFFFF66] shadow-lg rounded-[12px] w-[342px] h-[71px] flex items-center ">
+              <img
+                src={TempleQuest}
+                alt="rush"
+                className="w-[47px] h-[46px] rounded-[10px] object-cover"
+              />
+              <div className="block pl-[16px]  text-justify">
+                <p className="font-mtn-brighter-regular font-regular w-[184px] text-[16px] leading-[20.8px]  text-[#FFFFFF]">
+                 TEMPLE QUEST
+                </p>
+                <p className="font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-[#FFFFFF]">
+                  #200
+                </p>
+              </div>
+              <div className=" flex -mb-[22px] ">
+                <Link to="#">
+                  <button
+                    onClick={() => handlePlay(XwingFighterUrl, msisdn)}
+                    className="text-[#FFCA00] font-mtn-brighter-medium font-medium text-[16px] leading-[20.8px] text-center "
+                  >
+                    Play
+                  </button>
+                </Link>
+              </div>
+            </div>
           </div>
+
+          {iframeSrc && (
+            <div className="absolute inset-0 bg-white z-50">
+              <iframe
+                src={iframeSrc}
+                title="Game"
+                sandbox="allow-scripts allow-same-origin"
+                className="w-full h-full"
+              />
+              <button
+                onClick={handleBackToApp}
+                className="absolute top-4 right-4 bg-sky-900 text-white px-4 py-2 rounded"
+              >
+                Back to App
+              </button>
+            </div>
+          )}
 
           <div className="fixed  flex justify-center py-4 ">
             <div
@@ -249,9 +344,3 @@ useEffect(() => {
 };
 
 export default ProfilePage;
-
-
-
-
-
-

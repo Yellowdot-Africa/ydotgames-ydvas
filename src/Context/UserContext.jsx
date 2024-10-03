@@ -11,9 +11,20 @@ export const UserProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   // const [msisdn, setMsisdn] = useState("27837441852"); 
-  const [msisdn, setMsisdn] = useState(""); 
+  // const [msisdn, setMsisdn] = useState(""); 
+
 
   const { auth } = useContext(AuthContext);
+  const [msisdn, setMsisdn] = useState(() => {
+    const savedMsisdn = localStorage.getItem('msisdn');
+    return savedMsisdn || ''; 
+  });
+
+  useEffect(() => {
+    if (msisdn) {
+      localStorage.setItem('msisdn', msisdn);
+    }
+  }, [msisdn]);
 
 
   useEffect(() => {
@@ -88,6 +99,9 @@ export const UserProvider = ({ children }) => {
 
 export default UserContext;
 export const useUserContext = () => useContext(UserContext);
+
+
+
 
 
 
