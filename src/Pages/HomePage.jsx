@@ -103,7 +103,7 @@ const HomePage = () => {
     setShowAvatarSelector(!showAvatarSelector);
   };
 
-
+  let avatarId;
 
   const handleAvatarSelect = (avatarId) => {
 
@@ -117,7 +117,7 @@ const HomePage = () => {
 
 
   } 
-  let avatarId;
+ 
   useEffect(() => {
     const selectedAvatar = localStorage.getItem('selectedAvatar');
     if (selectedAvatar) {
