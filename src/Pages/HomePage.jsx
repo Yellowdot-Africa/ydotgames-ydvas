@@ -98,6 +98,7 @@ const HomePage = () => {
     transition: "bottom 0.5s ease",
   };
 
+
   useEffect(() => {
     const storedAvatar = localStorage.getItem("selectedAvatar");
     if (storedAvatar) {
@@ -175,6 +176,8 @@ const HomePage = () => {
     await handleUpdateLeaderboardScore(msisdn, gameScore);
   };
 
+  console.log(msisdn)
+
   return (
     <>
       <div className="relative ">
@@ -192,7 +195,7 @@ const HomePage = () => {
                     onClick={handleAvatarClick}
                   >
                     <img
-                      src={currentAvatar || "/default-avatar.png"}
+                      src={currentAvatar || AvatarProfile}
                       alt="Profile Avatar"
                       className="-ml-[8px] -mb-[6px]"
                     />
@@ -228,7 +231,7 @@ const HomePage = () => {
             </div>
             <div className="bg-background w-[140px] h-[28px] rounded-b-[26px] flex items-center justify-center mx-auto shadow-box-shadow">
               <p className="font-mtn-brighter-medium font-medium text-[10px] leading-[13px] text-center text-[#FFFFFF]">
-                @{userProfile?.msisdn}
+                @{msisdn}
               </p>
             </div>
             <div className="flex flex-col items-center flex-grow mt-[20px]">
@@ -505,3 +508,22 @@ const HomePage = () => {
 export default HomePage;
 
 
+
+
+
+
+// import React, { createContext, useContext, useState } from "react";
+
+// const UserContext = createContext();
+
+// export const UserProvider = ({ children }) => {
+//   const [msisdn, setMsisdn] = useState(null);
+
+//   return (
+//     <UserContext.Provider value={{ msisdn, setMsisdn }}>
+//       {children}
+//     </UserContext.Provider>
+//   );
+// };
+
+// export const useUserContext = () => useContext(UserContext);

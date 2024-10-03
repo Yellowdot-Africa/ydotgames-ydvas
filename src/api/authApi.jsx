@@ -10,11 +10,10 @@ const authApi = async () => {
       }
     );
 
-
-    const { jwtToken, tokenExpiry } = response.data;
+    const { jwtToken, tokenExpiry, username } = response.data;
     localStorage.setItem("authToken", jwtToken);
     localStorage.setItem("tokenExpiry", tokenExpiry);
-
+    localStorage.setItem("username", username);
     return response.data;
   } catch (error) {
     console.error("Authorization failed:", error);
@@ -23,14 +22,3 @@ const authApi = async () => {
 };
 
 export default authApi;
-
-
-
-
-
-
-
-
-
-
-

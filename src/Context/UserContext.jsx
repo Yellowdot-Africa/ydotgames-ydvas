@@ -2,44 +2,35 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import { getSubscriberProfile, UpdateSubscriberProfile } from "../api/userApi";
 import AuthContext from "../Context/AuthContext";
 
-
-
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // const [msisdn, setMsisdn] = useState("27837441852"); 
-  // const [msisdn, setMsisdn] = useState(""); 
-
 
   const { auth } = useContext(AuthContext);
+
   const [msisdn, setMsisdn] = useState(() => {
-    const savedMsisdn = localStorage.getItem('msisdn');
-    return savedMsisdn || ''; 
+    const savedMsisdn = localStorage.getItem("cli");
+    return savedMsisdn || "";
   });
 
   useEffect(() => {
-    if (msisdn) {
-      localStorage.setItem('msisdn', msisdn);
-    }
-  }, [msisdn]);
-
-
-  useEffect(() => {
     if (auth?.token && msisdn) {
+      console.log("Fetching profile with MSISDN:", msisdn);
+
       fetchProfile(msisdn);
     }
   }, [auth?.token, msisdn]);
-
- 
 
   const fetchProfile = async (msisdn) => {
     setLoading(true);
     setError(null);
     try {
       const profileData = await getSubscriberProfile(auth, msisdn);
+      console.log("Profile Data:", profileData);
+
       if (profileData.statusCode === "999") {
         setUserProfile(profileData.data);
       } else {
@@ -47,26 +38,22 @@ export const UserProvider = ({ children }) => {
       }
     } catch (error) {
       console.error("Failed to fetch profile", error);
-      setError("Error fetching profile");
     } finally {
       setLoading(false);
     }
   };
 
- 
-
   const handleUpdateSubscriberProfile = async (msisdn, nickname, avatarId) => {
     setLoading(true);
     setError(null);
 
-    // console.log("MSISDN:", msisdn);
-    // console.log("Nickname:", nickname);
-    // console.log("AvatarID:", avatarId);
-
-    // const nickname = "";
-
     try {
-      const response = await UpdateSubscriberProfile(auth, msisdn, nickname, avatarId || '');
+      const response = await UpdateSubscriberProfile(
+        auth,
+        msisdn,
+        nickname,
+        avatarId || ""
+      );
       if (response.statusCode === "999") {
         setUserProfile((prev) => ({ ...prev, avatarID: avatarId }));
       } else {
@@ -99,11 +86,3 @@ export const UserProvider = ({ children }) => {
 
 export default UserContext;
 export const useUserContext = () => useContext(UserContext);
-
-
-
-
-
-
-
-

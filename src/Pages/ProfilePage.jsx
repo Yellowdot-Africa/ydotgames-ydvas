@@ -160,7 +160,7 @@ const ProfilePage = () => {
           <div className="flex items-center justify-between mt-[11px]">
             <div className="text-center text-white ml-[13px] md:ml-[170px]">
               <p className="font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-center">
-                @{userProfile?.msisdn}
+                @{msisdn}
               </p>
               <p className="text-[#FFCA00] font-mtn-brighter-bold font-bold text-[16px] leading-[20.8px] text-center">
                 {/* Subscribed */}

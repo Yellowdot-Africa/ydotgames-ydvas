@@ -171,7 +171,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
 
             <div className="bg-background w-[140px] h-[28px] rounded-b-[26px] flex items-center justify-center m-auto shadow-box-shadow">
               <p className="font-mtn-brighter-medium font-medium text-[10px] leading-[13px] text-center text-[#FFFFFF]">
-                @{userProfile?.msisdn}
+                @{msisdn}
               </p>
             </div>
 
