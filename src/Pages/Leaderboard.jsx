@@ -116,7 +116,8 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
   // console.log("subscriberMsisdn:", subscriberMsisdn);
   // console.log("leaderboard:", leaderboard);
 
-  const userPosition = leaderboard.find((player) => player.msisdn === msisdn);
+  // const userPosition = leaderboard.find((player) => player.msisdn === msisdn);
+  const userPosition = leaderboard?.length > 0 ? leaderboard.find((player) => player.msisdn === msisdn) : null;
 
   // console.log("User Position:", userPosition);
   // console.log("leaderboard:", leaderboard);
@@ -125,9 +126,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
   // if (error) {
   //   return <div>Error: {error}</div>;
   // }
-  // if (!leaderboard || leaderboard.length === 0) {
-  //   return <div>No leaderboard data available.</div>;
-  // }
+ 
 
   return (
     <>
@@ -219,10 +218,12 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                 </thead>
 
                 <tbody>
-                  {leaderboard.length === 0 ? (
+                  {/* {leaderboard.length === 0 ? ( */}
+                  {(!leaderboard || leaderboard.length === 0) ? ( 
                     <tr>
                       <td colSpan="4" className="text-center text-white">
-                        No players found
+                      
+                        No leaderboard data available.
                       </td>
                     </tr>
                   ) : (

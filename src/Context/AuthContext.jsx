@@ -17,6 +17,8 @@ export const AuthProvider = ({ children }) => {
         username: data.username,
       });
     } catch (error) {
+      setError('Internal Server Error. Please try again later.');
+
       console.error("Login error:", error);
     } finally {
       setLoading(false);

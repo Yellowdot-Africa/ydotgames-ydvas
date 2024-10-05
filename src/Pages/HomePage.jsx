@@ -162,48 +162,46 @@ const HomePage = () => {
     skateRush: {
       url: "/skate-rush/index.html",
       localStorageKey: "skateRushScore",
-      // getScore: (data) => {
-      //   const scoresArray = data ? data.split(",").map(Number) : [];
-      //   return Math.max(...scoresArray) || 0;
-      // },
-      getScore: () => {
-        const score = localStorage.getItem("skateRushScore");
-        return score ? Number(score) : 0;
+      getScore: (data) => {
+        const scoresArray = data ? data.split(",").map(Number) : [];
+        return Math.max(...scoresArray) || 0;
       },
+      // getScore: () => {
+      //   const score = localStorage.getItem("skateRushScore");
+      //   return score ? Number(score) : 0;
+      // },
     },
     starWars: {
       url: "/star-wars-rogue/index.html",
       localStorageKey: "sw_boots_1.0",
       getScore: (data) => data?.arcade?.lastScore || 0,
     },
-    templeRun: {
-      url: "/temple-run-2/index.html",
-      localStorageKey: "TR2_GAME_STATE",
-
-      getScore: (data) => {
-        const currentScore = data?.currentDayDataFinal?.score || 0;
-        const lastSessionScore = localStorage.getItem('lastTempleRunScore') || 0;
-    
-        const currentChallengeDate = data?.currentChallengeDate;
-        const lastPlayDate = localStorage.getItem('lastPlayDate');
-    
-        // Check if it's a new day, if so, reset the last session score
-        if (lastPlayDate !== currentChallengeDate) {
-          localStorage.setItem('lastTempleRunScore', 0);
-          localStorage.setItem('lastPlayDate', currentChallengeDate);
-        }
-    
-        // Calculate the session score
-        const sessionScore = currentScore - lastSessionScore;
-    
-        // Update the last session score
-        localStorage.setItem('lastTempleRunScore', currentScore);
-    
-        return sessionScore > 0 ? sessionScore : 0;
-
-     
-      // getScore: (data) => data?.currentDayDataFinal?.score || 0,
-
+ 
+  templeRun: {
+    url: "/temple-run-2/index.html",
+    localStorageKey: "TR2_GAME_STATE",
+  
+    getScore: (data) => {
+      const currentScore = data?.currentDayDataFinal?.score || 0;
+      const lastSessionScore = parseFloat(localStorage.getItem('lastTempleRunScore')) || 0; // Ensure we parse it as a number
+  
+      const currentChallengeDate = data?.currentChallengeDate;
+      const lastPlayDate = localStorage.getItem('lastPlayDate');
+  
+      // Check if it's a new day, if so, reset the last session score
+      if (lastPlayDate !== currentChallengeDate) {
+        localStorage.setItem('lastTempleRunScore', 0);
+        localStorage.setItem('lastPlayDate', currentChallengeDate);
+      }
+  
+      // Calculate the session score
+      const sessionScore = currentScore - lastSessionScore;
+  
+      // Update the last session score
+      localStorage.setItem('lastTempleRunScore', currentScore);
+  
+      // Return the session score, rounded up to the nearest integer
+      return Math.ceil(sessionScore > 0 ? sessionScore : 0);
     }
   }
   };

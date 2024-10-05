@@ -48,9 +48,9 @@ export const updateLeaderboardScore = async (auth, msisdn, gameScore) => {
       throw new Error("No auth token available");
     }
     // console.log("Updating score for:", { msisdn, gameScore });
-    console.log("Sending msisdn:", msisdn);
+    // console.log("Sending msisdn:", msisdn);
     console.log("Sending gameScore:", gameScore);
-    console.log("Authorization token:", token);
+    // console.log("Authorization token:", token);
     
     const response = await axios.put(
       `https://ydvassdp.com:5001/api/YellowdotGames/UpdateLeaderboardScore`,
