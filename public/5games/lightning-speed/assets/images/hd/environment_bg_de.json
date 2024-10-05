@@ -1,0 +1,92 @@
+{"frames": {
+
+"bg_de_01.png":
+{
+	"frame": {"x":868,"y":258,"w":866,"h":248},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":2,"w":866,"h":248},
+	"sourceSize": {"w":866,"h":250}
+},
+"bg_de_01b.png":
+{
+	"frame": {"x":1,"y":258,"w":864,"h":250},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":0,"w":864,"h":250},
+	"sourceSize": {"w":866,"h":250}
+},
+"bg_de_02.png":
+{
+	"frame": {"x":1,"y":1,"w":1020,"h":254},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1020,"h":254},
+	"sourceSize": {"w":1020,"h":254}
+},
+"bg_de_02b.png":
+{
+	"frame": {"x":1024,"y":1,"w":1020,"h":254},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1020,"h":254},
+	"sourceSize": {"w":1020,"h":254}
+},
+"bg_de_cloud_00.png":
+{
+	"frame": {"x":1737,"y":353,"w":182,"h":76},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":10,"w":182,"h":76},
+	"sourceSize": {"w":198,"h":89}
+},
+"bg_de_cloud_01.png":
+{
+	"frame": {"x":1737,"y":432,"w":200,"h":58},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":200,"h":58},
+	"sourceSize": {"w":208,"h":62}
+},
+"bg_de_cloud_02.png":
+{
+	"frame": {"x":1940,"y":258,"w":50,"h":20},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":6,"w":50,"h":20},
+	"sourceSize": {"w":63,"h":29}
+},
+"bg_de_cloud_03.png":
+{
+	"frame": {"x":1737,"y":258,"w":200,"h":92},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":200,"h":92},
+	"sourceSize": {"w":230,"h":95}
+},
+"bg_de_feature_00.png":
+{
+	"frame": {"x":1993,"y":258,"w":4,"h":4},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
+	"sourceSize": {"w":310,"h":100}
+},
+"bg_de_feature_01.png":
+{
+	"frame": {"x":1993,"y":258,"w":4,"h":4},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
+	"sourceSize": {"w":579,"h":142}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "environment_bg_de.png",
+	"format": "RGBA8888",
+	"size": {"w":2048,"h":512},
+	"scale": "0.5",
+	"smartupdate": "$TexturePacker:SmartUpdate:7365f164b619e2c85e53ccffd2016355:a51e35d44be67e8ee003b8aee668f3e0:252fc6a3d7439ddf1148dca7d1bc9c91$"
+}
+}

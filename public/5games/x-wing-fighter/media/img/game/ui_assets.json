@@ -1,0 +1,164 @@
+{"frames": {
+
+"achieve_panel.png":
+{
+	"frame": {"x":2,"y":311,"w":642,"h":52},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":642,"h":52},
+	"sourceSize": {"w":642,"h":52}
+},
+"captured_swipe.png":
+{
+	"frame": {"x":2,"y":156,"w":637,"h":85},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":637,"h":85},
+	"sourceSize": {"w":637,"h":85}
+},
+"generic_comms_panel23.png":
+{
+	"frame": {"x":2,"y":2,"w":503,"h":152},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":503,"h":152},
+	"sourceSize": {"w":503,"h":152}
+},
+"luke_locked.png":
+{
+	"frame": {"x":693,"y":308,"w":57,"h":70},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":57,"h":70},
+	"sourceSize": {"w":57,"h":70}
+},
+"luke_select_circle.png":
+{
+	"frame": {"x":693,"y":232,"w":74,"h":74},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":74,"h":74},
+	"sourceSize": {"w":74,"h":74}
+},
+"panel_narrow.png":
+{
+	"frame": {"x":507,"y":2,"w":276,"h":75},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":0,"w":276,"h":75},
+	"sourceSize": {"w":280,"h":75}
+},
+"panel_wide.png":
+{
+	"frame": {"x":2,"y":365,"w":575,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":575,"h":75},
+	"sourceSize": {"w":575,"h":75}
+},
+"personal_best_medal.png":
+{
+	"frame": {"x":641,"y":87,"w":118,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":118,"h":107},
+	"sourceSize": {"w":118,"h":107}
+},
+"rebels_phoenix_coin.png":
+{
+	"frame": {"x":507,"y":87,"w":52,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":52,"h":50},
+	"sourceSize": {"w":52,"h":50}
+},
+"saber_mid.png":
+{
+	"frame": {"x":507,"y":79,"w":241,"h":6},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":241,"h":6},
+	"sourceSize": {"w":241,"h":6}
+},
+"saber_top.png":
+{
+	"frame": {"x":750,"y":79,"w":16,"h":6},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":6},
+	"sourceSize": {"w":16,"h":6}
+},
+"score_jedi.png":
+{
+	"frame": {"x":679,"y":196,"w":32,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":34},
+	"sourceSize": {"w":32,"h":34}
+},
+"score_star.png":
+{
+	"frame": {"x":641,"y":196,"w":36,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":36,"h":34},
+	"sourceSize": {"w":36,"h":34}
+},
+"trophy_bronze.png":
+{
+	"frame": {"x":646,"y":311,"w":33,"h":47},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":2,"w":33,"h":47},
+	"sourceSize": {"w":36,"h":51}
+},
+"trophy_gold.png":
+{
+	"frame": {"x":646,"y":360,"w":33,"h":47},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":2,"w":33,"h":47},
+	"sourceSize": {"w":36,"h":51}
+},
+"trophy_none.png":
+{
+	"frame": {"x":561,"y":87,"w":36,"h":51},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":36,"h":51},
+	"sourceSize": {"w":36,"h":51}
+},
+"trophy_silver.png":
+{
+	"frame": {"x":599,"y":87,"w":34,"h":47},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":2,"w":34,"h":47},
+	"sourceSize": {"w":36,"h":51}
+},
+"trophy_steel.png":
+{
+	"frame": {"x":579,"y":365,"w":33,"h":47},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":2,"w":33,"h":47},
+	"sourceSize": {"w":36,"h":51}
+},
+"yoda_mode_bg.png":
+{
+	"frame": {"x":2,"y":243,"w":689,"h":66},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":689,"h":66},
+	"sourceSize": {"w":689,"h":66}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "ui_assets.png",
+	"format": "RGBA8888",
+	"size": {"w":785,"h":442},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:ad05fb802d340a19e5a99afd3f5cfed7:9008618af46ecc50f32403e6a40cd23d:8650151a451756dce3e191c93cc92796$"
+}
+}

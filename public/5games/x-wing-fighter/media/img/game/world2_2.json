@@ -1,0 +1,60 @@
+{"frames": {
+
+"smoke_last_world_00007.png":
+{
+	"frame": {"x":563,"y":1,"w":99,"h":226},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":14,"y":18,"w":99,"h":226},
+	"sourceSize": {"w":117,"h":254}
+},
+"smoke_last_world_00008.png":
+{
+	"frame": {"x":353,"y":1,"w":103,"h":227},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":16,"w":103,"h":227},
+	"sourceSize": {"w":117,"h":254}
+},
+"smoke_last_world_00009.png":
+{
+	"frame": {"x":458,"y":1,"w":103,"h":226},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":15,"w":103,"h":226},
+	"sourceSize": {"w":117,"h":254}
+},
+"smoke_last_world_00010.png":
+{
+	"frame": {"x":144,"y":1,"w":105,"h":229},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":8,"y":10,"w":105,"h":229},
+	"sourceSize": {"w":117,"h":254}
+},
+"smoke_last_world_00011.png":
+{
+	"frame": {"x":251,"y":1,"w":100,"h":228},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":12,"y":8,"w":100,"h":228},
+	"sourceSize": {"w":117,"h":254}
+},
+"touret_last_world_00012.png":
+{
+	"frame": {"x":1,"y":1,"w":141,"h":233},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":60,"y":5,"w":141,"h":233},
+	"sourceSize": {"w":263,"h":246}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "world2_2.png",
+	"format": "RGBA8888",
+	"size": {"w":663,"h":235},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:6fe09d306a37afc297b7f1832bada4e7:df4542fcef908a9742417a4075860aee:78c1bcd6945bbbf6c9658d83ae849dc7$"
+}
+}

@@ -1,0 +1,411 @@
+{
+    "goals": {
+        "complete_mission_1": {
+            "desc": "STR_COMPLETE_MISSION_1",
+            "property": "complete_mission_1",
+            "type": "=",
+            "target": 1,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "complete_mission_1_perfect": {
+            "desc": "STR_COMPLETE_MISSION_1_PERFECT",
+            "property": "complete_mission_1_perfect",
+            "type": "=",
+            "target": 1,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "complete_mission_2": {
+            "desc": "STR_COMPLETE_MISSION_2",
+            "property": "complete_mission_2",
+            "type": "=",
+            "target": 1,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "complete_mission_2_perfect": {
+            "desc": "STR_COMPLETE_MISSION_2_PERFECT",
+            "property": "complete_mission_2_perfect",
+            "type": "=",
+            "target": 1,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "complete_mission_without_powerup": {
+            "desc": "STR_COMPLETE_MISSION_WITHOUT_POWERUP",
+            "property": "complete_mission_without_powerup",
+            "type": "=",
+            "target": 1,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "destroy_5_enemies_row": {
+            "desc": "STR_DESTROY_5_ENEMIES_ROW",
+            "property": "destroy_5_enemies_row",
+            "type": "=",
+            "target": 1,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "destroy_10_enemies_row": {
+            "desc": "STR_DESTROY_10_ENEMIES_ROW",
+            "property": "destroy_10_enemies_row",
+            "type": "=",
+            "target": 1,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "destroy_25_enemies_row": {
+            "desc": "STR_DESTROY_25_ENEMIES_ROW",
+            "property": "destroy_25_enemies_row",
+            "type": "=",
+            "target": 1,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "destroy_50_enemies_row": {
+            "desc": "STR_DESTROY_50_ENEMIES_ROW",
+            "property": "destroy_50_enemies_row",
+            "type": "=",
+            "target": 1,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "destroy_10_enemies_laser": {
+            "desc": "STR_DESTROY_10_ENEMIES_LASER",
+            "property": "destroy_enemy_laser",
+            "type": "=",
+            "target": 10,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_20_enemies_laser": {
+            "desc": "STR_DESTROY_20_ENEMIES_LASER",
+            "property": "destroy_enemy_laser",
+            "type": "=",
+            "target": 20,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_50_enemies_laser": {
+            "desc": "STR_DESTROY_50_ENEMIES_LASER",
+            "property": "destroy_enemy_laser",
+            "type": "=",
+            "target": 50,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_100_enemies_laser": {
+            "desc": "STR_DESTROY_100_ENEMIES_LASER",
+            "property": "destroy_enemy_laser",
+            "type": "=",
+            "target": 100,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_10_enemies_wingmen": {
+            "desc": "STR_DESTROY_10_ENEMIES_WINGMEN",
+            "property": "destroy_enemy_wingmen",
+            "type": "=",
+            "target": 10,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_20_enemies_wingmen": {
+            "desc": "STR_DESTROY_20_ENEMIES_WINGMEN",
+            "property": "destroy_enemy_wingmen",
+            "type": "=",
+            "target": 20,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_50_enemies_wingmen": {
+            "desc": "STR_DESTROY_50_ENEMIES_WINGMEN",
+            "property": "destroy_enemy_wingmen",
+            "type": "=",
+            "target": 50,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_100_enemies_wingmen": {
+            "desc": "STR_DESTROY_100_ENEMIES_WINGMEN",
+            "property": "destroy_enemy_wingmen",
+            "type": "=",
+            "target": 100,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_10_enemies_rocket": {
+            "desc": "STR_DESTROY_10_ENEMIES_ROCKET",
+            "property": "destroy_enemy_rocket",
+            "type": "=",
+            "target": 10,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_20_enemies_rocket": {
+            "desc": "STR_DESTROY_20_ENEMIES_ROCKET",
+            "property": "destroy_enemy_rocket",
+            "type": "=",
+            "target": 20,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_50_enemies_rocket": {
+            "desc": "STR_DESTROY_50_ENEMIES_ROCKET",
+            "property": "destroy_enemy_rocket",
+            "type": "=",
+            "target": 50,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_100_enemies_rocket": {
+            "desc": "STR_DESTROY_100_ENEMIES_ROCKET",
+            "property": "destroy_enemy_rocket",
+            "type": "=",
+            "target": 100,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_10_enemies_blaster": {
+            "desc": "STR_DESTROY_10_ENEMIES_BLASTER",
+            "property": "destroy_enemy_blaster",
+            "type": "=",
+            "target": 10,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_20_enemies_blaster": {
+            "desc": "STR_DESTROY_20_ENEMIES_BLASTER",
+            "property": "destroy_enemy_blaster",
+            "type": "=",
+            "target": 20,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_50_enemies_blaster": {
+            "desc": "STR_DESTROY_50_ENEMIES_BLASTER",
+            "property": "destroy_enemy_blaster",
+            "type": "=",
+            "target": 50,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_100_enemies_blaster": {
+            "desc": "STR_DESTROY_100_ENEMIES_BLASTER",
+            "property": "destroy_enemy_blaster",
+            "type": "=",
+            "target": 100,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_100_ties": {
+            "desc": "STR_DESTROY_100_TIES",
+            "property": "destroy_ties",
+            "type": "=",
+            "target": 100,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_500_ties": {
+            "desc": "STR_DESTROY_500_TIES",
+            "property": "destroy_ties",
+            "type": "=",
+            "target": 500,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_1000_ties": {
+            "desc": "STR_DESTROY_1000_TIES",
+            "property": "destroy_ties",
+            "type": "=",
+            "target": 1000,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_2_transports": {
+            "desc": "STR_DESTROY_2_TRANSPORTS",
+            "property": "destroy_transports",
+            "type": "=",
+            "target": 2,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_10_transports": {
+            "desc": "STR_DESTROY_10_TRANSPORTS",
+            "property": "destroy_transports",
+            "type": "=",
+            "target": 10,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "destroy_50_transports": {
+            "desc": "STR_DESTROY_50_TRANSPORTS",
+            "property": "destroy_transports",
+            "type": "=",
+            "target": 50,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "achieve_5_combos": {
+            "desc": "STR_ACHIEVE_5_COMBOS",
+            "property": "achieve_5_combos",
+            "type": "=",
+            "target": 40000,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "achieve_10_combos": {
+            "desc": "STR_ACHIEVE_10_COMBOS",
+            "property": "achieve_10_combos",
+            "type": "=",
+            "target": 1,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "achieve_15_combos": {
+            "desc": "STR_ACHIEVE_15_COMBOS",
+            "property": "achieve_15_combos",
+            "type": "=",
+            "target": 1,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "achieve_50000_simulation_mode": {
+            "desc": "STR_ACHIEVE_50000_SIMULATION_MODE",
+            "property": "achieve_50000_simulation_mode",
+            "type": "=",
+            "target": 1,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "achieve_25000_simulation_mode": {
+            "desc": "STR_ACHIEVE_25000_SIMULATION_MODE",
+            "property": "achieve_25000_simulation_mode",
+            "type": "=",
+            "target": 1,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "achieve_15000_simulation_mode": {
+            "desc": "STR_ACHIEVE_15000_SIMULATION_MODE",
+            "property": "achieve_15000_simulation_mode",
+            "type": "=",
+            "target": 1,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "achieve_5000_simulation_mode": {
+            "desc": "STR_ACHIEVE_5000_SIMULATION_MODE",
+            "property": "achieve_5000_simulation_mode",
+            "type": "=",
+            "target": 1,
+            "value": 0,
+            "achieved": false,
+            "cumulative": false
+        },
+        "endless_change_location_10": {
+            "desc": "STR_ENDLESS_CHANGE_LOCATION_10",
+            "property": "endless_change_location",
+            "type": "=",
+            "target": 10,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        },
+        "endless_change_location_50": {
+            "desc": "STR_ENDLESS_CHANGE_LOCATION_50",
+            "property": "endless_change_location",
+            "type": "=",
+            "target": 50,
+            "value": 0,
+            "achieved": false,
+            "cumulative": true
+        }
+    },
+    "groups": {
+      "level1": {
+          "desc": "STR_GOALS_LEVEL_1_TITLE",
+          "achievements": [
+            "complete_mission_1",
+            "complete_mission_1_perfect",
+            "complete_mission_2",
+            "complete_mission_2_perfect",
+            "complete_mission_without_powerup",
+            "destroy_5_enemies_row",
+            "destroy_10_enemies_row",
+            "destroy_25_enemies_row",
+            "destroy_50_enemies_row",
+            "destroy_10_enemies_laser",
+            "destroy_20_enemies_laser",
+            "destroy_50_enemies_laser",
+            "destroy_100_enemies_laser",
+            "destroy_10_enemies_wingmen",
+            "destroy_20_enemies_wingmen",
+            "destroy_50_enemies_wingmen",
+            "destroy_100_enemies_wingmen",
+            "destroy_10_enemies_rocket",
+            "destroy_20_enemies_rocket",
+            "destroy_50_enemies_rocket",
+            "destroy_100_enemies_rocket",
+            "destroy_10_enemies_blaster",
+            "destroy_20_enemies_blaster",
+            "destroy_50_enemies_blaster",
+            "destroy_100_enemies_blaster",
+            "destroy_100_ties",
+            "destroy_500_ties",
+            "destroy_1000_ties",
+            "destroy_2_transports",
+            "destroy_10_transports",
+            "destroy_50_transports",
+            "achieve_5_combos",
+            "achieve_10_combos",
+            "achieve_15_combos",
+            "achieve_5000_simulation_mode",
+            "achieve_15000_simulation_mode",
+            "achieve_25000_simulation_mode",
+            "achieve_50000_simulation_mode",
+            "endless_change_location_10",
+            "endless_change_location_50"
+          ]
+      }
+    }
+}

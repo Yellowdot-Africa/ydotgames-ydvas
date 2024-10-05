@@ -1,0 +1,20 @@
+{"frames": {
+
+"play_button_background4.png":
+{
+	"frame": {"x":2,"y":2,"w":160,"h":177},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":32,"y":22,"w":160,"h":177},
+	"sourceSize": {"w":221,"h":221}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "menu@0.75x_2.png",
+	"format": "RGBA8888",
+	"size": {"w":164,"h":181},
+	"scale": "0.75",
+	"smartupdate": "$TexturePacker:SmartUpdate:764722d92c5d9cd7dfdb04135a61cc23:ed2fec5e7d5cf9e95d59c5af32030801:58168fc1627328bcde287324ce770d36$"
+}
+}

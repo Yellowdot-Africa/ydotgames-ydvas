@@ -1,0 +1,140 @@
+{
+  "mission": {
+    "tuto": {
+      "levels": [
+        {
+          "name": "lake",
+          "backgrounds": ["Montains", "LakeStatic", "Lake"],
+          "midgrounds": ["Clouds", "WaterClouds"],
+          "foregrounds": ["Clouds"],
+          "transitionBegin": null,
+          "transitionEnd": null
+        }
+      ]
+    },
+    "first": {
+      "levels": [
+        {
+          "name": "lake",
+          "backgrounds": ["Montains", "LakeStatic", "Lake"],
+          "midgrounds": ["Clouds", "WaterClouds"],
+          "foregrounds": ["Clouds"],
+          "transitionBegin": null,
+          "transitionEnd": null
+        },
+        {
+          "name": "forest",
+          "backgrounds": ["Montains", "LakeStatic", "Forest", "SurfaceMissile"],
+          "midgrounds": [],
+          "foregrounds": ["Montains","Trees", "ForegroundTieFighter"],
+          "transitionBegin": null,
+          "transitionEnd": null
+        },
+        {
+          "name": "castle",
+          "backgrounds": ["Montains", "Lake", "Castle", "MontainsUnderCastle", "CastleIslandsBack", "CastleIslandsFront"],
+          "midgrounds": ["Clouds", "WaterClouds"],
+          "foregrounds": ["CloudsCastle", "MontainsCastle", "PlantsCastle"],
+          "reverseSpeed": true,
+          "cleanScene": true,
+          "firstLoad": true,
+          "transitionBegin": "TransitionFlatColor",
+          "transitionEnd": null
+        }
+      ]
+    },
+    "second": {
+      "levels": [
+        {
+          "name": "evian",
+          "backgrounds": ["Stars", "MontainsSnowFarAway", "MontainsSnow", "SnowMontainsNotThatFarAway", "Floor", "ForestSnow", "MontainsSnowClose", "SurfaceMissile"],
+          "midgrounds": ["Clouds"],
+          "foregrounds": ["MontainsSnow", "CloudsSnow", "Plants"],
+          "transitionBegin": null,
+          "transitionEnd": null
+        },
+        {
+          "name": "world2env2",
+          "backgrounds": ["Stars", "MontainsSnowFarAway", "MontainsSnow", "SnowMontainsNotThatFarAway", "Floor", "Structures", "MontainsUnderStructure", "Trenches"],
+          "midgrounds": ["Clouds"],
+          "foregrounds": ["CloudsSnow", "Structures", "Plants"],
+          "transitionBegin": null,
+          "transitionEnd": null
+        },
+        {
+          "name": "world2env3",
+          "backgrounds": ["BackgroundEnv3Bottom", "Ceiling", "Pipes"],
+          "midgrounds": [],
+          "foregrounds": ["CloudsInside", "ForegroundInsideBottom", "ForegroundInsideTop"],
+          "cleanScene": true,
+          "firstLoad": true,
+          "transitionBegin": "TransitionInsideTrench",
+          "transitionEnd": null
+        }
+      ]
+    }
+  },
+  "endless": {
+    "first": {
+      "levels": [
+        {
+          "name": "lake",
+          "backgrounds": ["Montains", "Lake", "SurfaceMissile"],
+          "midgrounds": ["Clouds", "WaterClouds"],
+          "foregrounds": ["Clouds"],
+          "transitionBegin": null,
+          "transitionEnd": null
+        },
+        {
+          "name": "forest",
+          "backgrounds": ["Montains", "Forest", "SurfaceMissile"],
+          "midgrounds": ["Clouds"],
+          "foregrounds": ["Clouds", "Montains", "Trees"],
+          "transitionBegin": "TransitionToIsland",
+          "transitionEnd": "TransitionForestToLake"
+        },
+        {
+          "name": "castle",
+          "backgrounds": ["Montains", "Lake", "Castle", "MontainsUnderCastle", "CastleIslandsBack", "CastleIslandsFront", "SurfaceMissile"],
+          "midgrounds": ["Clouds", "WaterClouds"],
+          "foregrounds": ["CloudsCastle", "MontainsCastle", "PlantsCastle"],
+          "reverseSpeed": true,
+          "cleanScene": true,
+          "firstLoad": true,
+          "transitionBegin": "TransitionFlatColor",
+          "transitionEnd": null
+        }
+      ]
+    },
+    "second": {
+      "levels": [
+        {
+          "name": "evian",
+          "backgrounds": ["MontainsSnowFarAway", "MontainsSnow", "SnowMontainsNotThatFarAway", "Floor", "ForestSnow", "MontainsSnowClose", "SurfaceMissile"],
+          "midgrounds": ["Clouds"],
+          "foregrounds": ["MontainsSnow", "CloudsSnow", "Plants"],
+          "transitionBegin": null,
+          "transitionEnd": null
+        },
+        {
+          "name": "world2env2",
+          "backgrounds": ["MontainsSnowFarAway", "MontainsSnow", "SnowMontainsNotThatFarAway", "Floor", "Structures", "MontainsUnderStructure", "Trenches", "SurfaceMissile"],
+          "midgrounds": ["Clouds"],
+          "foregrounds": ["CloudsSnow", "Structures", "Plants"],
+          "transitionBegin": null,
+          "transitionEnd": null
+        },
+        {
+          "name": "world2env3",
+          "backgrounds": ["BackgroundEnv3Bottom", "Ceiling", "Pipes", "SurfaceMissile"],
+          "midgrounds": [],
+          "foregrounds": ["CloudsInside", "ForegroundInsideBottom", "ForegroundInsideTop"],
+          "cleanScene": true,
+          "firstLoad": true,
+          "transitionBegin": "TransitionInsideTrench",
+          "transitionEnd": null
+        }
+      ]
+    }
+  }
+}

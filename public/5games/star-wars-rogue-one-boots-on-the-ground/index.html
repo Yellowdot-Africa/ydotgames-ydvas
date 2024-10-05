@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Rogue One: Boots on the Ground - Star Wars - HTML5 Game</title>i
+		<!-- This is to enable fullscreen when you save the page as a bookmark to the phone desktop. -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<script src="js/libs/pixi/pixi.js"></script>
+		<script src="js/libs/pixi/pixi-spine.js"></script>
+		<script src="js/libs/pixi/pixi-ext.js"></script>
+		<script src="js/libs/pixi-particles.js"></script>
+		<script src="js/libs/p2/p2.js"></script>
+		<script src="js/libs/signals.min.js"></script>
+		<script src="js/libs/greensock/TweenMax.min.js"></script>
+		<script src="js/libs/howler.min.js"></script>
+		<script src="js/libs/bowser/bowser.min.js"></script>
+		<script src="js/libs/SAT.js"></script>
+		<script src="js/libs/binary.heap.js"></script>
+		<script src="js/libs/jquery-2.1.4.min.js"></script>
+		<script src="p3.min.js"></script>
+		<script src="bundle.min.js"></script>
+		
+		<script src="GBAPI.js"></script>
+		<script src="qwest.js"></script>
+		<script src="AES.js"></script>	
+        <script src="gameConfig/isl.js"></script>	
+		
+
+		<style>
+			body {
+				background-image: none;
+				background-color: #000000;
+			}
+			#game {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="game"></div>
+
+		<script>
+            if ($("html").hasClass("ie") || (Function("/*@cc_on return document.documentMode===10@*/")())) {
+                var nowebgl = $("<div />").attr({
+                    "id": "nowebgl"
+                }).css({
+                    "width": "100%",
+                    "height": "100%",
+                    "background-position": "50% 50%",
+                    "background-repeat": "no-repeat",
+                    "background-image": "url('./unsupported.jpg')",
+                    "background-color": "#000000",
+                    "background-size": "auto 100%"
+                }).appendTo("#game");
+            } else {
+                var language = "en";
+
+                var main = new Main(1024, 768);
+                //runISL(main);
+                main.init();
+            }		
+		</script>
+	</body>
+</html>

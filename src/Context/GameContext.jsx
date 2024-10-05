@@ -1,13 +1,14 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import gameApi from "../api/gameApi";
 import AuthContext from "../Context/AuthContext";
+// import { useAuth } from '../Context/AuthContext'; 
 
 const GameContext = createContext();
-
 export const GameProvider = ({ children }) => {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { auth } = useContext(AuthContext);
+  const { auth, setAuth } = useContext(AuthContext);
+  // const { auth, setAuth } = useAuth(); 
 
   const fetchGames = async () => {
     try {
@@ -38,3 +39,5 @@ export const GameProvider = ({ children }) => {
 };
 
 export default GameContext;
+
+

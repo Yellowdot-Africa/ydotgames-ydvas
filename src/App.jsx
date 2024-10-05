@@ -1,5 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 import SplashScreen from './Components/SplashScreen'
 import HomePage from './Pages/HomePage';
 import Leaderboard from './Pages/Leaderboard';
@@ -79,6 +81,7 @@ const App = ()=> {
 
   return (
     <>
+    <ToastContainer /> 
       <RouterProvider router={router} />
 
     </>

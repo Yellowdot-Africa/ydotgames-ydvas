@@ -1,0 +1,118 @@
+{
+    "groups":{
+        "health":[
+            {
+                "id":"force_1",
+                "price":0,
+                "thumbnail":"shop_big_icon3.png",
+                "imageUrl":"shop_big_icon3.png",
+                "name": "STR_SHOP_HEALTH",
+                "description":"STR_SHOP_HEALTH_1",
+                "purchased":true
+            },
+            {
+                "id":"force_2",
+                "price":80,
+                "thumbnail":"shop_big_icon3.png",
+                "imageUrl":"shop_big_icon3.png",
+                "name": "STR_SHOP_HEALTH",
+                "description":"STR_SHOP_HEALTH_2",
+                "purchased":false
+            },
+            {
+                "id":"force_3",
+                "price":150,
+                "thumbnail":"shop_big_icon3.png",
+                "imageUrl":"shop_big_icon3.png",
+                "name": "STR_SHOP_HEALTH",
+                "description":"STR_SHOP_HEALTH_3",
+                "purchased":false
+            },
+            {
+                "id":"force_4",
+                "price":300,
+                "thumbnail":"shop_big_icon3.png",
+                "imageUrl":"shop_big_icon3.png",
+                "name": "STR_SHOP_HEALTH",
+                "description":"STR_SHOP_HEALTH_4",
+                "purchased":false
+            }
+        ],
+        "biglaser":[
+            {
+                "id":"jump_1",
+                "price":0,
+                "thumbnail":"shop_big_icon2.png",
+                "imageUrl":"shop_big_icon2.png",
+                "name": "STR_SHOP_LASER",
+                "description":"STR_SHOP_LASER_1",
+                "purchased":true
+            },
+            {
+                "id":"jump_2",
+                "price":80,
+                "thumbnail":"shop_big_icon2.png",
+                "imageUrl":"shop_big_icon2.png",
+                "name": "STR_SHOP_LASER",
+                "description":"STR_SHOP_LASER_2",
+                "purchased":false
+            },
+            {
+                "id":"jump_3",
+                "price":150,
+                "thumbnail":"shop_big_icon2.png",
+                "imageUrl":"shop_big_icon2.png",
+                "name": "STR_SHOP_LASER",
+                "description":"STR_SHOP_LASER_3",
+                "purchased":false
+            },
+            {
+                "id":"jump_4",
+                "price":300,
+                "thumbnail":"shop_big_icon2.png",
+                "imageUrl":"shop_big_icon2.png",
+                "name": "STR_SHOP_LASER",
+                "description":"STR_SHOP_LASER_4",
+                "purchased":false
+            }
+        ],
+        "frequency_bullet":[
+            {
+                "id":"saber_1",
+                "price":0,
+                "thumbnail":"shop_big_icon1.png",
+                "imageUrl":"shop_big_icon1.png",
+                "name": "STR_SHOP_FREQUENCY",
+                "description":"STR_SHOP_FREQUENCY_1",
+                "purchased":true
+            },
+            {
+                "id":"saber_2",
+                "price":80,
+                "thumbnail":"shop_big_icon1.png",
+                "imageUrl":"shop_big_icon1.png",
+                "name": "STR_SHOP_FREQUENCY",
+                "description":"STR_SHOP_FREQUENCY_2",
+                "purchased":false
+            },
+            {
+                "id":"saber_3",
+                "price":150,
+                "thumbnail":"shop_big_icon1.png",
+                "imageUrl":"shop_big_icon1.png",
+                "name": "STR_SHOP_FREQUENCY",
+                "description":"STR_SHOP_FREQUENCY_3",
+                "purchased":false
+            },
+            {
+                "id":"saber_4",
+                "price":300,
+                "thumbnail":"shop_big_icon1.png",
+                "imageUrl":"shop_big_icon1.png",
+                "name": "STR_SHOP_FREQUENCY",
+                "description":"STR_SHOP_FREQUENCY_4",
+                "purchased":false
+            }
+        ]
+    }
+}

@@ -1,0 +1,92 @@
+{"frames": {
+
+"bg_pc_01.png":
+{
+	"frame": {"x":1,"y":1,"w":1020,"h":282},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":18,"w":1020,"h":282},
+	"sourceSize": {"w":1020,"h":300}
+},
+"bg_pc_01b.png":
+{
+	"frame": {"x":1,"y":286,"w":1020,"h":266},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":34,"w":1020,"h":266},
+	"sourceSize": {"w":1020,"h":300}
+},
+"bg_pc_02.png":
+{
+	"frame": {"x":1,"y":752,"w":1020,"h":178},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":32,"w":1020,"h":178},
+	"sourceSize": {"w":1020,"h":210}
+},
+"bg_pc_02b.png":
+{
+	"frame": {"x":1,"y":555,"w":1020,"h":194},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":16,"w":1020,"h":194},
+	"sourceSize": {"w":1020,"h":210}
+},
+"bg_pc_cloud_00.png":
+{
+	"frame": {"x":1,"y":933,"w":182,"h":76},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":10,"w":182,"h":76},
+	"sourceSize": {"w":198,"h":89}
+},
+"bg_pc_cloud_01.png":
+{
+	"frame": {"x":186,"y":933,"w":200,"h":58},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":200,"h":58},
+	"sourceSize": {"w":208,"h":62}
+},
+"bg_pc_cloud_02.png":
+{
+	"frame": {"x":186,"y":994,"w":50,"h":20},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":6,"w":50,"h":20},
+	"sourceSize": {"w":63,"h":29}
+},
+"bg_pc_cloud_03.png":
+{
+	"frame": {"x":389,"y":933,"w":102,"h":46},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":2,"w":102,"h":46},
+	"sourceSize": {"w":115,"h":48}
+},
+"bg_pc_feature_00.png":
+{
+	"frame": {"x":1,"y":1012,"w":4,"h":4},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
+	"sourceSize": {"w":483,"h":200}
+},
+"bg_pc_feature_01.png":
+{
+	"frame": {"x":1,"y":1012,"w":4,"h":4},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
+	"sourceSize": {"w":483,"h":200}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "environment_bg_pc.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":1024},
+	"scale": "0.5",
+	"smartupdate": "$TexturePacker:SmartUpdate:fcd541311227caf506a6317849610e2a:40cdd51bb34b5ec06a838ecdf2f97f54:e4892ae3063504a15a938df9e20b7e8f$"
+}
+}

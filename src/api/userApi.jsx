@@ -1,24 +1,26 @@
-import axios from 'axios';
+import axios from "axios";
 
-const BASE_URL = 'https://ydvassdp.com:5001/api/YellowdotGames';
+const BASE_URL = "https://ydvassdp.com:5001/api/YellowdotGames";
 
 export const getSubscriberProfile = async (auth, msisdn) => {
   try {
     // const token = auth?.token;
     const token = localStorage.getItem("authToken");
 
-        if (!token) {
+    if (!token) {
       throw new Error("No auth token available");
     }
     // console.log("Auth Token:", token);
     // console.log("MSISDN:", msisdn);
-    const response = await axios.get(`${BASE_URL}/GetSubscriberProfile?msisdn=${msisdn}`,
-    {
+    const response = await axios.get(
+      `${BASE_URL}/GetSubscriberProfile?msisdn=${msisdn}`,
+      {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-      });
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("Error fetching subscriber profile:", error);
@@ -26,23 +28,29 @@ export const getSubscriberProfile = async (auth, msisdn) => {
   }
 };
 
+export const UpdateSubscriberProfile = async (
+  auth,
+  msisdn,
+  nickname,
+  avatarId
+) => {
+  // console.log('Updating profile with:', { msisdn, nickname, avatarId });
 
-export const UpdateSubscriberProfile = async (auth,msisdn, nickname,avatarId) => {
-    // console.log('Updating profile with:', { msisdn, nickname, avatarId });
-
-    try {
+  try {
     const token = localStorage.getItem("authToken");
-    // const token = auth?.token; 
+    // const token = auth?.token;
     if (!token) {
       throw new Error("No auth token available");
     }
     const payload = {
       msisdn,
       nickname,
-      avatarId
+      avatarId,
     };
-    const response = await axios.put(`${BASE_URL}/UpdateSubscriberProfile`, payload,
-    {
+    const response = await axios.put(
+      `${BASE_URL}/UpdateSubscriberProfile`,
+      payload,
+      {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -55,12 +63,3 @@ export const UpdateSubscriberProfile = async (auth,msisdn, nickname,avatarId) =>
     throw error;
   }
 };
-
-
-
-
-
-
-
-
-

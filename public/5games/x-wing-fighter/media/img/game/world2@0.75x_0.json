@@ -1,0 +1,100 @@
+{"frames": {
+
+"dark_overlay.png":
+{
+	"frame": {"x":978,"y":519,"w":8,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":8},
+	"sourceSize": {"w":8,"h":8}
+},
+"end_machine_clean.png":
+{
+	"frame": {"x":855,"y":905,"w":110,"h":108},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":108},
+	"sourceSize": {"w":110,"h":108}
+},
+"env1_foreground_tree.png":
+{
+	"frame": {"x":855,"y":642,"w":121,"h":261},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":2,"w":121,"h":261},
+	"sourceSize": {"w":125,"h":263}
+},
+"env1_strate1.png":
+{
+	"frame": {"x":1,"y":1,"w":938,"h":296},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":938,"h":296},
+	"sourceSize": {"w":938,"h":296}
+},
+"env2_foreground_touet.png":
+{
+	"frame": {"x":855,"y":299,"w":80,"h":341},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":341},
+	"sourceSize": {"w":80,"h":341}
+},
+"env3_background_down.png":
+{
+	"frame": {"x":1,"y":299,"w":852,"h":352},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":852,"h":352},
+	"sourceSize": {"w":852,"h":352}
+},
+"env3_celling.png":
+{
+	"frame": {"x":1,"y":653,"w":852,"h":273},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":852,"h":273},
+	"sourceSize": {"w":852,"h":273}
+},
+"env3_pipe_lign1.png":
+{
+	"frame": {"x":1,"y":928,"w":852,"h":89},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":852,"h":89},
+	"sourceSize": {"w":852,"h":89}
+},
+"smoke_last_world_00009.png":
+{
+	"frame": {"x":941,"y":1,"w":77,"h":169},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":8,"y":12,"w":77,"h":169},
+	"sourceSize": {"w":88,"h":191}
+},
+"smoke_last_world_00010.png":
+{
+	"frame": {"x":937,"y":345,"w":79,"h":172},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":8,"w":79,"h":172},
+	"sourceSize": {"w":88,"h":191}
+},
+"smoke_last_world_00011.png":
+{
+	"frame": {"x":941,"y":172,"w":75,"h":171},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":9,"y":6,"w":75,"h":171},
+	"sourceSize": {"w":88,"h":191}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "world2@0.75x_0.png",
+	"format": "RGBA8888",
+	"size": {"w":1019,"h":1018},
+	"scale": "0.75",
+	"smartupdate": "$TexturePacker:SmartUpdate:6fe09d306a37afc297b7f1832bada4e7:df4542fcef908a9742417a4075860aee:78c1bcd6945bbbf6c9658d83ae849dc7$"
+}
+}

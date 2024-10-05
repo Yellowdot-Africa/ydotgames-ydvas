@@ -1,0 +1,100 @@
+{"frames": {
+
+"mission_endless.png":
+{
+	"frame": {"x":2,"y":2,"w":429,"h":242},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":429,"h":242},
+	"sourceSize": {"w":429,"h":242}
+},
+"mission_endless_lock.png":
+{
+	"frame": {"x":434,"y":2,"w":429,"h":242},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":429,"h":242},
+	"sourceSize": {"w":429,"h":242}
+},
+"poe_gitch.png":
+{
+	"frame": {"x":2,"y":247,"w":324,"h":241},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":324,"h":241},
+	"sourceSize": {"w":324,"h":241}
+},
+"poe_gitch2.png":
+{
+	"frame": {"x":2,"y":491,"w":317,"h":231},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":317,"h":231},
+	"sourceSize": {"w":317,"h":231}
+},
+"poe_gitch3.png":
+{
+	"frame": {"x":2,"y":725,"w":317,"h":231},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":317,"h":231},
+	"sourceSize": {"w":317,"h":231}
+},
+"poe_gitch4.png":
+{
+	"frame": {"x":322,"y":725,"w":317,"h":228},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":3,"w":317,"h":228},
+	"sourceSize": {"w":317,"h":231}
+},
+"poe_gitch5.png":
+{
+	"frame": {"x":322,"y":491,"w":317,"h":231},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":317,"h":231},
+	"sourceSize": {"w":317,"h":231}
+},
+"poe_gitch6.png":
+{
+	"frame": {"x":329,"y":247,"w":317,"h":231},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":317,"h":231},
+	"sourceSize": {"w":317,"h":231}
+},
+"poe_gitch7.png":
+{
+	"frame": {"x":649,"y":247,"w":317,"h":231},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":317,"h":231},
+	"sourceSize": {"w":317,"h":231}
+},
+"poe_gitch8.png":
+{
+	"frame": {"x":642,"y":481,"w":317,"h":231},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":317,"h":231},
+	"sourceSize": {"w":317,"h":231}
+},
+"poe_gitch9.png":
+{
+	"frame": {"x":642,"y":715,"w":317,"h":231},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":317,"h":231},
+	"sourceSize": {"w":317,"h":231}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "menu@0.75x_1.png",
+	"format": "RGBA8888",
+	"size": {"w":968,"h":958},
+	"scale": "0.75",
+	"smartupdate": "$TexturePacker:SmartUpdate:764722d92c5d9cd7dfdb04135a61cc23:ed2fec5e7d5cf9e95d59c5af32030801:58168fc1627328bcde287324ce770d36$"
+}
+}

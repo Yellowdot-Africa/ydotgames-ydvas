@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const authApi = async () => {
   try {
@@ -11,12 +12,16 @@ const authApi = async () => {
     );
 
     const { jwtToken, tokenExpiry, username } = response.data;
+    const expiryTime = new Date().getTime() + tokenExpiry * 1000;
+
     localStorage.setItem("authToken", jwtToken);
-    localStorage.setItem("tokenExpiry", tokenExpiry);
+    localStorage.setItem("tokenExpiry", expiryTime);
     localStorage.setItem("username", username);
     return response.data;
   } catch (error) {
     console.error("Authorization failed:", error);
+    toast.error("Authorization faile", error);
+
     throw error;
   }
 };

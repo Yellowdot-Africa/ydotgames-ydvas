@@ -1,0 +1,92 @@
+{"frames": {
+
+"bg_tk_01.png":
+{
+	"frame": {"x":2,"y":189,"w":1020,"h":174},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":146,"w":1020,"h":174},
+	"sourceSize": {"w":1020,"h":320}
+},
+"bg_tk_01b.png":
+{
+	"frame": {"x":2,"y":366,"w":1020,"h":174},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":146,"w":1020,"h":174},
+	"sourceSize": {"w":1020,"h":320}
+},
+"bg_tk_02.png":
+{
+	"frame": {"x":2,"y":2,"w":1020,"h":184},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":8,"w":1020,"h":184},
+	"sourceSize": {"w":1020,"h":192}
+},
+"bg_tk_02b.png":
+{
+	"frame": {"x":2,"y":543,"w":1020,"h":168},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":24,"w":1020,"h":168},
+	"sourceSize": {"w":1020,"h":192}
+},
+"bg_tk_feature_00.png":
+{
+	"frame": {"x":2,"y":714,"w":4,"h":4},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
+	"sourceSize": {"w":102,"h":287}
+},
+"bg_tk_feature_01.png":
+{
+	"frame": {"x":2,"y":714,"w":4,"h":4},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
+	"sourceSize": {"w":139,"h":159}
+},
+"bg_tk_feature_02.png":
+{
+	"frame": {"x":2,"y":714,"w":4,"h":4},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
+	"sourceSize": {"w":96,"h":110}
+},
+"bg_tk_feature_03.png":
+{
+	"frame": {"x":2,"y":714,"w":4,"h":4},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
+	"sourceSize": {"w":71,"h":139}
+},
+"bg_tk_feature_04.png":
+{
+	"frame": {"x":2,"y":714,"w":4,"h":4},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
+	"sourceSize": {"w":139,"h":174}
+},
+"bg_tk_feature_05.png":
+{
+	"frame": {"x":2,"y":714,"w":4,"h":4},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
+	"sourceSize": {"w":93,"h":166}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "environment_bg_tk.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":1024},
+	"scale": "0.5",
+	"smartupdate": "$TexturePacker:SmartUpdate:f94ef833eccebd8df1bff5b1667332d1:2b5f508785b4e391de69ffb985e826bc:3ef3a2388a0e65d7b8574b124e9186dc$"
+}
+}

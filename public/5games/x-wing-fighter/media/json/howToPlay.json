@@ -1,0 +1,30 @@
+{
+  "slides": [
+    {
+      "img": "img/tutorial/how_to_play1.png",
+      "text": "STR_HOWTOPLAY_1"
+    },
+    {
+      "img": "img/tutorial/how_to_play2.png",
+      "text": "STR_HOWTOPLAY_2"
+    },
+    {
+      "img": "img/tutorial/how_to_play3.png",
+      "text": "STR_HOWTOPLAY_3"
+    },
+    {
+      "img": "img/tutorial/how_to_play4.png",
+      "text": "STR_HOWTOPLAY_4"
+    },
+    {
+      "img": "img/tutorial/how_to_play5.png",
+      "text": "STR_HOWTOPLAY_5"
+    },
+    {
+      "img": "img/tutorial/how_to_play6.png",
+      "text": "STR_HOWTOPLAY_6"
+    }
+
+
+  ]
+}

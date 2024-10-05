@@ -119,9 +119,11 @@ const PrizesPage = () => {
               onClick={handleAvatarClick}
             >
               <img
-                src={userAvatar || "/default-avatar.png"}
+                src={userAvatar || AvatarProfile}
                 alt="Profile Avatar"
                 className="-ml-[8px] -mb-[6px]"
+                onError={(e) => { e.target.onerror = null; e.target.src = AvatarProfile; }}
+                loading="lazy"
               />
             </div>
 
@@ -283,7 +285,7 @@ const PrizesPage = () => {
             <div className="absolute top-[30px] left-auto w-[265px] h-[138px]  bg-background-avatar  rounded-[26px]  ">
               <div className="flex  ">
                 <img
-                  src={currentAvatar || "/default-avatar.png"}
+                  src={currentAvatar || AvatarProfile}
                   alt="Profile Avatar"
                 />
                 <p className="text-white pt-[12px] font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-center w-[126px]">

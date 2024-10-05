@@ -1,0 +1,92 @@
+{"frames": {
+
+"bg_bz_01.png":
+{
+	"frame": {"x":1,"y":1,"w":1020,"h":278},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":42,"w":1020,"h":278},
+	"sourceSize": {"w":1020,"h":320}
+},
+"bg_bz_01b.png":
+{
+	"frame": {"x":1,"y":282,"w":1020,"h":272},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":48,"w":1020,"h":272},
+	"sourceSize": {"w":1020,"h":320}
+},
+"bg_bz_02.png":
+{
+	"frame": {"x":1,"y":557,"w":1020,"h":192},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1020,"h":192},
+	"sourceSize": {"w":1020,"h":192}
+},
+"bg_bz_02b.png":
+{
+	"frame": {"x":1,"y":752,"w":1020,"h":192},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1020,"h":192},
+	"sourceSize": {"w":1020,"h":192}
+},
+"bg_bz_cloud_00.png":
+{
+	"frame": {"x":1,"y":947,"w":182,"h":76},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":10,"w":182,"h":76},
+	"sourceSize": {"w":198,"h":89}
+},
+"bg_bz_cloud_01.png":
+{
+	"frame": {"x":186,"y":947,"w":200,"h":58},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":200,"h":58},
+	"sourceSize": {"w":208,"h":62}
+},
+"bg_bz_cloud_02.png":
+{
+	"frame": {"x":389,"y":947,"w":50,"h":20},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":6,"w":50,"h":20},
+	"sourceSize": {"w":63,"h":29}
+},
+"bg_bz_cloud_03.png":
+{
+	"frame": {"x":186,"y":1008,"w":4,"h":4},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
+	"sourceSize": {"w":230,"h":95}
+},
+"bg_bz_feature_00.png":
+{
+	"frame": {"x":186,"y":1008,"w":4,"h":4},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
+	"sourceSize": {"w":480,"h":200}
+},
+"bg_bz_feature_01.png":
+{
+	"frame": {"x":186,"y":1008,"w":4,"h":4},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
+	"sourceSize": {"w":466,"h":200}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "environment_bg_bz.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":1024},
+	"scale": "0.5",
+	"smartupdate": "$TexturePacker:SmartUpdate:3b14afb70f63ae78161acbf77fefc2ca:7ab1a6cd3609a08d3237addb33b858e1:161486cd5efb6b3196c0a27a9c195fee$"
+}
+}

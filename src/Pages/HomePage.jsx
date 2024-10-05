@@ -11,6 +11,7 @@ import SkateRush from "../assets/Images/rush.jpeg";
 import XWinger from "../assets/Images/x-winger.png";
 import StarWars from "../assets/Images/ground.jpeg";
 import TempleQuest from "../assets/Images/quest.jpeg";
+import TempleRun from "../assets/Images/game2.png";
 import BigCash from "../assets/Images/big-cash.jpeg";
 import Home from "../assets/Icons/home.png";
 import Leaderboard from "../assets/Icons/leaderboard.png";
@@ -25,6 +26,7 @@ import Avatar3 from "../assets/Icons/avatar3.png";
 import Avatar4 from "../assets/Icons/avatar4.png";
 import Avatar5 from "../assets/Icons/avatar5.png";
 import AuthContext from "../Context/AuthContext";
+// import { useAuth } from '../Context/AuthContext';
 import GameContext from "../Context/GameContext";
 import UserContext from "../Context/UserContext";
 import BigCashGame from "../Components/BigCashGame";
@@ -39,6 +41,8 @@ const HomePage = () => {
   const [scrollDirection, setScrollDirection] = useState("null");
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const { auth } = useContext(AuthContext);
+  // const { auth, setAuth } = useAuth();
+
   const { handleUpdateSubscriberProfile, fetchProfile, userProfile, msisdn } =
     useContext(UserContext);
   const { games, loading } = useContext(GameContext);
@@ -51,6 +55,7 @@ const HomePage = () => {
 
   const navigate = useNavigate();
   const [iframeSrc, setIframeSrc] = useState("");
+  const [gameScore, setGameScore] = useState(0);
 
   useEffect(() => {
     if (games && games.length > 0) {
@@ -98,25 +103,22 @@ const HomePage = () => {
     transition: "bottom 0.5s ease",
   };
 
-
   useEffect(() => {
     const storedAvatar = localStorage.getItem("selectedAvatar");
     if (storedAvatar) {
       setSelectedAvatar(storedAvatar);
       setCurrentAvatar(storedAvatar);
+    } else {
+      setCurrentAvatar(AvatarProfile);
     }
   }, []);
-  const storedMsisdn = localStorage.getItem('cli');
+  const storedMsisdn = localStorage.getItem("cli");
 
   const handleAvatarClick = () => {
     setShowAvatarSelector(!showAvatarSelector);
   };
 
   const handleAvatarSelect = (avatarId) => {
-    // if (!userProfile) {
-    //   console.error('User profile is not loaded');
-    //   return;
-    // }
     setSelectedAvatar(avatarId);
   };
 
@@ -125,7 +127,7 @@ const HomePage = () => {
       if (!selectedAvatar) return;
       const avatarId = avatars.indexOf(selectedAvatar) + 1;
 
-      const msisdn = userProfile?.msisdn;
+      const msisdn = userProfile?.msisdn || storedMsisdn;
       if (!msisdn) {
         setError("MSISDN is required");
         console.log("MSISDN is required");
@@ -147,36 +149,177 @@ const HomePage = () => {
     }
   };
 
-  const XwingFighterUrl = "/x-wing-fighter/index.html";
+  const gameConfig = {
+    xWingFighter: {
+      url: "/x-wing-fighter/index.html",
+      localStorageKey: "x-wing-fighter-gameScore",
 
-  const handlePlay = (XwingFighterUrl, msisdn) => {
-    const storedData = localStorage.getItem("com.disney.fighter.game_11.save");
-    console.log("Stored score for stored:", storedData);
+      getScore: () => {
+        const score = localStorage.getItem("x-wing-fighter-gameScore");
+        return score ? Number(score) : 0;
+      },
+    },
+    skateRush: {
+      url: "/skate-rush/index.html",
+      localStorageKey: "skateRushScore",
+      // getScore: (data) => {
+      //   const scoresArray = data ? data.split(",").map(Number) : [];
+      //   return Math.max(...scoresArray) || 0;
+      // },
+      getScore: () => {
+        const score = localStorage.getItem("skateRushScore");
+        return score ? Number(score) : 0;
+      },
+    },
+    starWars: {
+      url: "/star-wars-rogue/index.html",
+      localStorageKey: "sw_boots_1.0",
+      getScore: (data) => data?.arcade?.lastScore || 0,
+    },
+    templeRun: {
+      url: "/temple-run-2/index.html",
+      localStorageKey: "TR2_GAME_STATE",
 
-    const parsedData = storedData ? JSON.parse(storedData) : null;
+      getScore: (data) => {
+        const currentScore = data?.currentDayDataFinal?.score || 0;
+        const lastSessionScore = localStorage.getItem('lastTempleRunScore') || 0;
+    
+        const currentChallengeDate = data?.currentChallengeDate;
+        const lastPlayDate = localStorage.getItem('lastPlayDate');
+    
+        // Check if it's a new day, if so, reset the last session score
+        if (lastPlayDate !== currentChallengeDate) {
+          localStorage.setItem('lastTempleRunScore', 0);
+          localStorage.setItem('lastPlayDate', currentChallengeDate);
+        }
+    
+        // Calculate the session score
+        const sessionScore = currentScore - lastSessionScore;
+    
+        // Update the last session score
+        localStorage.setItem('lastTempleRunScore', currentScore);
+    
+        return sessionScore > 0 ? sessionScore : 0;
 
-    const bestScore = parsedData ? parsedData.bestScore : 0;
+     
+      // getScore: (data) => data?.currentDayDataFinal?.score || 0,
 
-    console.log("Stored score for bestScore:", bestScore);
-
-    setIframeSrc(XwingFighterUrl);
+    }
+  }
   };
 
-  const handleBackToApp = async () => {
+  const handlePlay = (gameKey, msisdn) => {
+    const game = gameConfig[gameKey];
+
+    if (!game) {
+      console.error("Game configuration not found");
+      return;
+    }
+
+    const storedData = localStorage.getItem(game.localStorageKey);
+    console.log(`Stored score for ${gameKey}:`, storedData);
+
+    const parsedData = storedData ? JSON.parse(storedData) : null;
+    const gameScore = game.getScore(parsedData);
+
+    if (gameScore === undefined || gameScore === null) {
+      console.error("Score not found in localStorage for", gameKey);
+    }
+    console.log(`Best score for ${gameKey}:`, gameScore);
+
+    setIframeSrc(game.url);
+
+    return gameScore;
+  };
+
+  const handleXwingPlay = () => {
+    const gameScore = handlePlay("xWingFighter", msisdn);
+    console.log("X-Wing Fighter score:", gameScore);
+  };
+
+  const handleSkatePlay = () => {
+    const gameScore = handlePlay("skateRush", msisdn);
+    console.log("Skate Rush score:", gameScore);
+  };
+
+  const handleTemplePlay = () => {
+    const gameScore = handlePlay("templeRun", msisdn);
+    console.log("Temple run score:", gameScore);
+  };
+
+  const handleStarWarsPlay = () => {
+    const gameScore = handlePlay("starWars", msisdn);
+    console.log("Star wars score:", gameScore);
+  };
+
+  const gameMappings = {
+    "/x-wing-fighter/index.html": "xWingFighter",
+    "/skate-rush/index.html": "skateRush",
+    "/star-wars-rogue/index.html": "starWars",
+    "/temple-run-2/index.html": "templeRun",
+  };
+
+  useEffect(() => {
+    if (msisdn) {
+      console.log("Updated MSISDN:", msisdn);
+
+      handleUpdateLeaderboardScore(msisdn, gameScore);
+    }
+  }, [msisdn, gameScore]);
+
+  const handleBackToApp = async (gameKey, msisdn) => {
     setIframeSrc("");
-    const storedData = localStorage.getItem("com.disney.fighter.game_11.save");
-
+    console.log("Game Key:", gameKey);
+    const game = gameConfig[gameKey];
+    if (!game) {
+      console.error("Game configuration not found for key:", gameKey);
+      return;
+    }
+    const storedData = localStorage.getItem(game.localStorageKey);
     const parsedData = storedData ? JSON.parse(storedData) : null;
+    console.log("Parsed Data:", parsedData);
+    // const gameScore = game.getScore(parsedData);
+    // const gameScore = parsedData ? parsedData.bestScore : 0;
+    // const gameScore = parsedData ? parsedData[game.getScore] : 0;
+    const gameScore = game.getScore(parsedData);
 
-    const bestScore = parsedData ? parsedData.bestScore : 0;
+    console.log("Game Score Retrieved:", gameScore);
 
-    console.log("Stored score outside for bestScore:", bestScore);
-    const gameScore = bestScore;
+    if (gameScore !== undefined && gameScore !== null) {
+      console.log("Stored score outside for bestScore:", gameScore);
+      try {
+        console.log("MSISDN before updating leaderboard:", msisdn);
 
-    await handleUpdateLeaderboardScore(msisdn, gameScore);
+        await handleUpdateLeaderboardScore(msisdn, gameScore);
+        console.log("Leaderboard updated successfully with score:", gameScore);
+        await fetchLeaderboardStanding();
+        console.log("Leaderboard standing with score:", gameScore);
+      } catch (error) {
+        console.error("Error updating leaderboard:", error);
+      }
+    } else {
+      console.error("Game score is invalid:", gameScore);
+    }
   };
 
-  console.log(msisdn)
+  useEffect(() => {
+    if (msisdn && gameScore) {
+      console.log("Updated MSISDN:", msisdn);
+      handleUpdateLeaderboardScore(msisdn, gameScore)
+        .then(() => {
+          console.log(
+            "Leaderboard updated successfully with score:",
+            gameScore
+          );
+          fetchLeaderboardStanding();
+        })
+        .catch((error) => {
+          console.error("Error updating leaderboard:", error);
+        });
+    }
+  }, [msisdn, gameScore]);
+
+  console.log(msisdn);
 
   return (
     <>
@@ -306,7 +449,9 @@ const HomePage = () => {
 
                   <Link to="#">
                     <button
-                      onClick={() => handlePlay(XwingFighterUrl, msisdn)}
+                      onClick={() =>
+                        handleSkatePlay(gameConfig.skateRush, msisdn)
+                      }
                       className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center px-[30px] py-[6px] mx-auto mt-[12.87px]"
                     >
                       Play
@@ -334,7 +479,9 @@ const HomePage = () => {
 
                   <Link to="#">
                     <button
-                      onClick={() => handlePlay(XwingFighterUrl, msisdn)}
+                      onClick={() =>
+                        handleStarWarsPlay(gameConfig.starWars, msisdn)
+                      }
                       className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center px-[30px] py-[6px] mx-auto mt-[12.87px]"
                     >
                       Play
@@ -344,13 +491,13 @@ const HomePage = () => {
 
                 <div className="bg-custom-t-gradient flex flex-col items-center justify-center mt-[32px] rounded-[16px] w-[152px] h-[166px]">
                   <img
-                    src={TempleQuest}
+                    src={TempleRun}
                     alt="quest"
                     className="mb-[6px] -mt-[50px] w-[60px] h-[60px] rounded-[12px] object-cover"
                   />
 
                   <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
-                    TEMPLE QUEST
+                    TEMPLE RUN
                   </p>
                   <div className="flex items-center justify-center mt-[9.8px]">
                     <img src={StarYs} alt="start" />
@@ -362,7 +509,9 @@ const HomePage = () => {
 
                   <Link to="#">
                     <button
-                      onClick={() => handlePlay(XwingFighterUrl, msisdn)}
+                      onClick={() =>
+                        handleTemplePlay(gameConfig.templeRun, msisdn)
+                      }
                       className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center px-[30px] py-[6px] mx-auto mt-[12.87px]"
                     >
                       Play
@@ -390,7 +539,9 @@ const HomePage = () => {
 
                   <Link to="#">
                     <button
-                      onClick={() => handlePlay(XwingFighterUrl, msisdn)}
+                      onClick={() =>
+                        handleXwingPlay(gameConfig.xWingFighter, msisdn)
+                      }
                       className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center px-[30px] py-[6px] mx-auto mt-[12.87px]"
                     >
                       Play
@@ -414,7 +565,16 @@ const HomePage = () => {
               className="w-full h-full"
             />
             <button
-              onClick={handleBackToApp}
+              onClick={() => {
+                const gameKey = gameMappings[iframeSrc];
+                if (gameKey) {
+                  handleBackToApp(gameKey, msisdn);
+                } else {
+                  console.error(
+                    "No game mapping found for the current iframe source."
+                  );
+                }
+              }}
               className="absolute top-4 right-4 bg-sky-900 text-white px-4 py-2 rounded"
             >
               Back to App
@@ -453,7 +613,7 @@ const HomePage = () => {
             <div className="absolute top-[30px] left-auto w-[265px] h-[138px]  bg-background-avatar  rounded-[26px]  ">
               <div className="flex  ">
                 <img
-                  src={currentAvatar || "/default-avatar.png"}
+                  src={currentAvatar || AvatarProfile}
                   alt="Profile Avatar"
                 />
                 <p className="text-white pt-[12px] font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-center w-[126px]">
@@ -512,18 +672,5 @@ export default HomePage;
 
 
 
-// import React, { createContext, useContext, useState } from "react";
 
-// const UserContext = createContext();
 
-// export const UserProvider = ({ children }) => {
-//   const [msisdn, setMsisdn] = useState(null);
-
-//   return (
-//     <UserContext.Provider value={{ msisdn, setMsisdn }}>
-//       {children}
-//     </UserContext.Provider>
-//   );
-// };
-
-// export const useUserContext = () => useContext(UserContext);

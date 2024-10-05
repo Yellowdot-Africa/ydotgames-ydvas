@@ -6,8 +6,10 @@ import StarW from "../assets/Icons/Star-w.png";
 import SkateRush from "../assets/Images/rush.jpeg";
 import StarWars from "../assets/Images/ground.jpeg";
 import TempleQuest from "../assets/Images/quest.jpeg";
+import TempleRun from "../assets/Images/game2.png";
 import GameContext from "../Context/GameContext";
 import AuthContext from "../Context/AuthContext";
+// import { useAuth } from '../Context/AuthContext';
 import UserContext from "../Context/UserContext";
 import { LeaderboardContext } from "../Context/LeaderboardContext";
 import { Link } from "react-router-dom";
@@ -18,11 +20,15 @@ const CarouselSection = () => {
   const carouselRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(1);
   const { auth } = useContext(AuthContext);
+  // const { auth, setAuth } = useAuth();
+
   const { games, loading } = useContext(GameContext);
   const [iframeSrc, setIframeSrc] = useState("");
   const { handleUpdateSubscriberProfile, fetchProfile, userProfile, msisdn } =
     useContext(UserContext);
-  const { handleUpdateLeaderboardScore } = useContext(LeaderboardContext);
+  const { handleUpdateLeaderboardScore, fetchLeaderboardStanding } =
+    useContext(LeaderboardContext);
+  const [gameScore, setGameScore] = useState(0);
 
   const carouselConfig = [
     { frame: Frame1, bgColor: "#19BFC1" },
@@ -76,34 +82,186 @@ const CarouselSection = () => {
       : "scale-90 opacity-75 transition-transform duration-300";
   };
 
-  const XwingFighterUrl = "/x-wing-fighter/index.html";
+  // const XwingFighterUrl = "/x-wing-fighter/index.html";
 
-  const handlePlay = (XwingFighterUrl, msisdn) => {
-    const storedData = localStorage.getItem("com.disney.fighter.game_11.save");
-    console.log("Stored score for stored:", storedData);
+  // const handlePlay = (XwingFighterUrl, msisdn) => {
+  //   const storedData = localStorage.getItem("com.disney.fighter.game_11.save");
+  //   console.log("Stored score for stored:", storedData);
 
-    const parsedData = storedData ? JSON.parse(storedData) : null;
+  //   const parsedData = storedData ? JSON.parse(storedData) : null;
 
-    const bestScore = parsedData ? parsedData.bestScore : 0;
+  //   const bestScore = parsedData ? parsedData.bestScore : 0;
 
-    console.log("Stored score for bestScore:", bestScore);
+  //   console.log("Stored score for bestScore:", bestScore);
 
-    setIframeSrc(XwingFighterUrl);
+  //   setIframeSrc(XwingFighterUrl);
+  // };
+
+  // const handleBackToApp = async () => {
+  //   setIframeSrc("");
+  //   const storedData = localStorage.getItem("com.disney.fighter.game_11.save");
+
+  //   const parsedData = storedData ? JSON.parse(storedData) : null;
+
+  //   const bestScore = parsedData ? parsedData.bestScore : 0;
+
+  //   console.log("Stored score outside for bestScore:", bestScore);
+  //   const gameScore = bestScore;
+
+  //   await handleUpdateLeaderboardScore(msisdn, gameScore);
+  // };
+
+  const gameConfig = {
+    xWingFighter: {
+      url: "/x-wing-fighter/index.html",
+      localStorageKey: "x-wing-fighter-gameScore",
+
+      getScore: () => {
+        const score = localStorage.getItem("x-wing-fighter-gameScore");
+        return score ? Number(score) : 0;
+      },
+    },
+    skateRush: {
+      url: "/skate-rush/index.html",
+      localStorageKey: "skateRushScore",
+      // getScore: (data) => {
+      //   const scoresArray = data ? data.split(",").map(Number) : [];
+      //   return Math.max(...scoresArray) || 0;
+      // },
+      getScore: () => {
+        const score = localStorage.getItem("skateRushScore");
+        return score ? Number(score) : 0;
+      },
+    },
+    starWars: {
+      url: "/star-wars-rogue/index.html",
+      localStorageKey: "sw_boots_1.0",
+      getScore: (data) => data?.arcade?.lastScore || 0,
+    },
+    templeRun: {
+      url: "/temple-run-2/index.html",
+      // localStorageKey: "TR2_GAME_STATE",
+      localStorageKey: "templeRunCurrentScore",
+      getScore: () => {
+        const score = localStorage.getItem("templeRunCurrentScore");
+        return score ? Number(score) : 0;
+      },
+      // getScore: (data) => data?.currentDayDataFinal?.score || 0,
+
+      // getScore: (data) => data?.statsData?.highestScore || 0,
+    },
   };
 
-  const handleBackToApp = async () => {
+  const handlePlay = (gameKey, msisdn) => {
+    const game = gameConfig[gameKey];
+
+    if (!game) {
+      console.error("Game configuration not found");
+      return;
+    }
+
+    const storedData = localStorage.getItem(game.localStorageKey);
+    console.log(`Stored score for ${gameKey}:`, storedData);
+
+    const parsedData = storedData ? JSON.parse(storedData) : null;
+    const gameScore = game.getScore(parsedData);
+
+    if (gameScore === undefined || gameScore === null) {
+      console.error("Score not found in localStorage for", gameKey);
+    }
+    console.log(`Best score for ${gameKey}:`, gameScore);
+
+    setIframeSrc(game.url);
+
+    return gameScore;
+  };
+
+  const handleXwingPlay = () => {
+    const gameScore = handlePlay("xWingFighter", msisdn);
+    console.log("X-Wing Fighter score:", gameScore);
+  };
+
+  const handleSkatePlay = () => {
+    const gameScore = handlePlay("skateRush", msisdn);
+    console.log("Skate Rush score:", gameScore);
+  };
+
+  const handleTemplePlay = () => {
+    const gameScore = handlePlay("templeRun", msisdn);
+    console.log("Temple run score:", gameScore);
+  };
+
+  const handleStarWarsPlay = () => {
+    const gameScore = handlePlay("starWars", msisdn);
+    console.log("Star wars score:", gameScore);
+  };
+
+  const gameMappings = {
+    "/x-wing-fighter/index.html": "xWingFighter",
+    "/skate-rush/index.html": "skateRush",
+    "/star-wars-rogue/index.html": "starWars",
+    "/temple-run-2/index.html": "templeRun",
+  };
+
+  useEffect(() => {
+    if (msisdn) {
+      console.log("Updated MSISDN:", msisdn);
+
+      handleUpdateLeaderboardScore(msisdn, gameScore);
+    }
+  }, [msisdn, gameScore]);
+
+  const handleBackToApp = async (gameKey, msisdn) => {
     setIframeSrc("");
-    const storedData = localStorage.getItem("com.disney.fighter.game_11.save");
-
+    console.log("Game Key:", gameKey);
+    const game = gameConfig[gameKey];
+    if (!game) {
+      console.error("Game configuration not found for key:", gameKey);
+      return;
+    }
+    const storedData = localStorage.getItem(game.localStorageKey);
     const parsedData = storedData ? JSON.parse(storedData) : null;
+    console.log("Parsed Data:", parsedData);
+    // const gameScore = game.getScore(parsedData);
+    // const gameScore = parsedData ? parsedData.bestScore : 0;
+    // const gameScore = parsedData ? parsedData[game.getScore] : 0;
+    const gameScore = game.getScore(parsedData);
 
-    const bestScore = parsedData ? parsedData.bestScore : 0;
+    console.log("Game Score Retrieved:", gameScore);
 
-    console.log("Stored score outside for bestScore:", bestScore);
-    const gameScore = bestScore;
+    if (gameScore !== undefined && gameScore !== null) {
+      console.log("Stored score outside for bestScore:", gameScore);
+      try {
+        console.log("MSISDN before updating leaderboard:", msisdn);
 
-    await handleUpdateLeaderboardScore(msisdn, gameScore);
+        await handleUpdateLeaderboardScore(msisdn, gameScore);
+        console.log("Leaderboard updated successfully with score:", gameScore);
+        await fetchLeaderboardStanding();
+        console.log("Leaderboard standing with score:", gameScore);
+      } catch (error) {
+        console.error("Error updating leaderboard:", error);
+      }
+    } else {
+      console.error("Game score is invalid:", gameScore);
+    }
   };
+
+  useEffect(() => {
+    if (msisdn && gameScore) {
+      console.log("Updated MSISDN:", msisdn);
+      handleUpdateLeaderboardScore(msisdn, gameScore)
+        .then(() => {
+          console.log(
+            "Leaderboard updated successfully with score:",
+            gameScore
+          );
+          fetchLeaderboardStanding();
+        })
+        .catch((error) => {
+          console.error("Error updating leaderboard:", error);
+        });
+    }
+  }, [msisdn, gameScore]);
 
   return (
     <div className="w-full">
@@ -113,7 +271,7 @@ const CarouselSection = () => {
           {/* games.slice(0, 3).map((game, index) => ( */}
           <div
             // to="#"
-            onClick={() => handlePlay(XwingFighterUrl, msisdn)}
+            onClick={() => handleSkatePlay(gameConfig.skateRush, msisdn)}
             className={`min-w-[157px] flex-shrink-0 ${
               getCardClass()
               // index
@@ -156,7 +314,9 @@ const CarouselSection = () => {
                 </span>
                 <button className="bg-[#2A76D8] pt-[7px] pb-[7px]  px-[15px] rounded-br-[20px]">
                   <p
-                    onClick={() => handlePlay(XwingFighterUrl, msisdn)}
+                    onClick={() =>
+                      handleSkatePlay(gameConfig.skateRush, msisdn)
+                    }
                     className="font-mtn-brighter-medium font-medium text-center text-[12px] leading-[15.6px] text-white"
                   >
                     Play
@@ -170,7 +330,7 @@ const CarouselSection = () => {
               <p>No games available.</p>
             )} */}
           <div
-            onClick={() => handlePlay(XwingFighterUrl, msisdn)}
+            onClick={() => handleStarWarsPlay(gameConfig.starWars, msisdn)}
             className={`min-w-[157px] flex-shrink-0 ${getCardClass()}`}
           >
             <div className="relative rounded-[20px] pt-[7px] px-0 border border-[#FEFFD366] bg-[#2E3237] overflow-visible">
@@ -207,7 +367,9 @@ const CarouselSection = () => {
                 </span>
                 <button className="bg-[#2A76D8] pt-[7px] pb-[7px]  px-[15px] rounded-br-[20px]">
                   <p
-                    onClick={() => handlePlay(XwingFighterUrl, msisdn)}
+                    onClick={() =>
+                      handleStarWarsPlay(gameConfig.starWars, msisdn)
+                    }
                     className="font-mtn-brighter-medium font-medium text-center text-[12px] leading-[15.6px] text-white"
                   >
                     Play
@@ -218,7 +380,7 @@ const CarouselSection = () => {
           </div>
 
           <div
-            onClick={() => handlePlay(XwingFighterUrl, msisdn)}
+            onClick={() => handleTemplePlay(gameConfig.templeRun, msisdn)}
             className={`min-w-[157px] flex-shrink-0 ${getCardClass()}`}
           >
             <div className="relative rounded-[20px] pt-[7px] px-0 border border-[#FEFFD366] bg-[#2E3237] overflow-visible">
@@ -231,12 +393,12 @@ const CarouselSection = () => {
                 <img
                   style={{ top: "-15px" }}
                   alt="rush"
-                  src={TempleQuest}
+                  src={TempleRun}
                   className="w-[59px] h-[58px] rounded-[12px] absolute  object-cover z-10 "
                 />
                 <div className="absolute bottom-1 text-center">
                   <p className="font-mtn-brighter-xtra-bold font-extrabold text-[14px] leading-[18.2px] text-center text-[#002E38]">
-                    TEMPLE QUEST
+                    TEMPLE RUN
                   </p>
                 </div>
               </div>
@@ -255,7 +417,9 @@ const CarouselSection = () => {
                 </span>
                 <button className="bg-[#2A76D8] pt-[7px] pb-[7px]  px-[15px] rounded-br-[20px]">
                   <p
-                    onClick={() => handlePlay(XwingFighterUrl, msisdn)}
+                    onClick={() =>
+                      handleTemplePlay(gameConfig.templeRun, msisdn)
+                    }
                     className="font-mtn-brighter-medium font-medium text-center text-[12px] leading-[15.6px] text-white"
                   >
                     Play
@@ -276,7 +440,16 @@ const CarouselSection = () => {
             className="w-full h-full"
           />
           <button
-            onClick={handleBackToApp}
+            onClick={() => {
+              const gameKey = gameMappings[iframeSrc];
+              if (gameKey) {
+                handleBackToApp(gameKey, msisdn);
+              } else {
+                console.error(
+                  "No game mapping found for the current iframe source."
+                );
+              }
+            }}
             className="absolute top-4 right-4 bg-sky-900 text-white px-4 py-2 rounded"
           >
             Back to App

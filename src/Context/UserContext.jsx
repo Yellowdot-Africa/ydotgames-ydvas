@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { getSubscriberProfile, UpdateSubscriberProfile } from "../api/userApi";
 import AuthContext from "../Context/AuthContext";
+import { getSubscriberProfile, UpdateSubscriberProfile } from "../api/userApi";
 
 const UserContext = createContext();
 
@@ -8,7 +8,6 @@ export const UserProvider = ({ children }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const { auth } = useContext(AuthContext);
 
   const [msisdn, setMsisdn] = useState(() => {
@@ -19,10 +18,33 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (auth?.token && msisdn) {
       console.log("Fetching profile with MSISDN:", msisdn);
-
       fetchProfile(msisdn);
     }
   }, [auth?.token, msisdn]);
+
+  const handleCreateSubscriberProfile = async (msisdn, nickname, avatarId) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await createSubscriberProfile(
+        auth,
+        msisdn,
+        nickname,
+        avatarId
+      );
+      if (response.statusCode === "999") {
+        setUserProfile(response.data);
+      } else {
+        setError(response.statusMessage);
+      }
+    } catch (error) {
+      console.error("Failed to create profile", error);
+      setError("Error creating profile");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const fetchProfile = async (msisdn) => {
     setLoading(true);
@@ -33,6 +55,10 @@ export const UserProvider = ({ children }) => {
 
       if (profileData.statusCode === "999") {
         setUserProfile(profileData.data);
+        const msisdn = profileData.data?.msisdn;
+        if (msisdn) {
+          localStorage.setItem("cli", msisdn);
+        }
       } else {
         setError(profileData.statusMessage);
       }
@@ -75,6 +101,7 @@ export const UserProvider = ({ children }) => {
         error,
         msisdn,
         setMsisdn,
+        handleCreateSubscriberProfile,
         fetchProfile,
         handleUpdateSubscriberProfile,
       }}

@@ -30,9 +30,8 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
   const navigate = useNavigate();
   const [scrollDirection, setScrollDirection] = useState(null);
   const [lastScrollTop, setLastScrollTop] = useState(0);
-  const [userAvatar, setUserAvatar] = useState({AvatarProfile}); 
-
-
+  const [userAvatar, setUserAvatar] = useState({ AvatarProfile });
+  const [gameScore, setGameScore] = useState(0);
 
   const {
     leaderboard,
@@ -45,25 +44,27 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
   const { userProfile, fetchProfile, msisdn, handleUpdateSubscriberProfile } =
     useContext(UserContext);
 
- 
-    useEffect(() => {
-          const storedAvatar = localStorage.getItem("selectedAvatar");
-          if (storedAvatar) {
-            setUserAvatar(storedAvatar);
-          }
-        }, []);
-
+  useEffect(() => {
+    const storedAvatar = localStorage.getItem("selectedAvatar");
+    if (storedAvatar) {
+      setUserAvatar(storedAvatar);
+    }
+  }, []);
 
   useEffect(() => {
     fetchLeaderboardStanding(subscriberMsisdn);
   }, [subscriberMsisdn]);
 
 
-  useEffect(()=>{
-    handleUpdateLeaderboardScore();
-  }, [])
 
 
+  useEffect(() => {
+    if (msisdn) {
+      console.log("Updated MSISDN:", msisdn);
+     
+      handleUpdateLeaderboardScore(msisdn, gameScore);
+    }
+  }, [msisdn, gameScore]);
 
   useEffect(() => {
     let lastScrollTop = 0;
@@ -104,7 +105,6 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
 
   const handleAvatarSelect = (avatar) => {
     setSelectedAvatar(avatar);
-    
   };
 
   const handleSave = () => {
@@ -116,12 +116,18 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
   // console.log("subscriberMsisdn:", subscriberMsisdn);
   // console.log("leaderboard:", leaderboard);
 
-
   const userPosition = leaderboard.find((player) => player.msisdn === msisdn);
 
   // console.log("User Position:", userPosition);
   // console.log("leaderboard:", leaderboard);
-  // console.log("msisdn:", msisdn);
+  console.log("msisdn:", msisdn);
+
+  // if (error) {
+  //   return <div>Error: {error}</div>;
+  // }
+  // if (!leaderboard || leaderboard.length === 0) {
+  //   return <div>No leaderboard data available.</div>;
+  // }
 
   return (
     <>
@@ -145,9 +151,13 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                     onClick={() => setShowAvatarSelector(!showAvatarSelector)}
                   >
                     <img
-                      src={userAvatar || "/default-avatar.png"}
+                      src={userAvatar || AvatarProfile}
                       alt="Profile Avatar"
                       className="-ml-[8px] -mb-[6px]"
+                      onError={(e) => { e.target.onerror = null; e.target.src = AvatarProfile; }}
+                      loading="lazy"
+
+
                     />
                   </div>
 
@@ -237,7 +247,6 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                         player.position === 2 ||
                         player.position === 3;
 
-              
                       return (
                         <tr
                           key={index}
@@ -281,7 +290,6 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                     })
                   )}
                 </tbody>
-
               </table>
             </div>
           </div>
@@ -331,7 +339,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
             <div className="absolute top-[30px] left-auto w-[265px] h-[138px]  bg-background-avatar  rounded-[26px]  ">
               <div className="flex  ">
                 <img
-                  src={currentAvatar || "/default-avatar.png"}
+                  src={currentAvatar || AvatarProfile}
                   alt="Profile Avatar"
                 />
                 <p className="text-white pt-[12px] font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-center w-[126px]">
@@ -384,11 +392,6 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
 };
 
 export default LeaderboardPage;
-
-
-
-
-
 
 
 

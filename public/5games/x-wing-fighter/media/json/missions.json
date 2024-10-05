@@ -1,0 +1,1013 @@
+{
+  "first": {
+    "endless": false,
+    "description": "",
+    "imageUnlocked": "mission1_picture.png",
+    "imageLocked": "mission1_picture.png",
+    "name": "STR_MISSION1_NAME",
+    "waves":[
+      [
+      {
+          "johnnotes": "MISSION 1 PART 1",
+          "johnnotes": "SPIRAL ROUND BACK",
+          "enemyTypes": ["WeakTieFighter"],
+          "nbEnemiesPerType": [7],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [7],
+          "offsetsPasses": [{"x":0, "y":10}],
+          "arrayToShoot": [1,0,1],
+          "delayBulletPerPass": [20],
+          "points": [[{ "x":1200, "y":617},{ "x":479, "y":616},{ "x":230, "y":611},{ "x":74, "y":497},{ "x":18, "y":328},{ "x":63, "y":129},{ "x":272, "y":19},{ "x":772, "y":11},{ "x":919, "y":169},{ "x":903, "y":317},{ "x":636, "y":360},{ "x":-100, "y":361}]],
+          "speed": 4
+        },
+        {
+          "johnnotes": "NEW GRADIUS DOWN",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [6],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [6],
+          "offsetsPasses": [{"x":-100, "y":0}],
+          "arrayToShoot": [1,1],
+          "delayBulletPerPass": [20],
+          "points": [[{ "x":1173, "y":146},{ "x":466, "y":146},{ "x":902, "y":358},{ "x":-100, "y":358}]],
+          "speed": 3
+        },
+        {
+          "johnnotes": "NEW GRADIUS UP",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [6],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [6],
+          "offsetsPasses": [{"x":-100, "y":0}],
+          "arrayToShoot": [1,1],
+          "delayBulletPerPass": [20],
+          "points": [[{ "x":1175, "y":449},{ "x":398, "y":449},{ "x":839, "y":222},{ "x":-100, "y":222}]],
+          "speed": 3
+        },
+        {
+          "johnnotes": "NEW GRADIUS MIRROR",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [4],
+          "pattern": "ZigZagWave",
+          "type": "mirror",
+          "nbPasses": 1,
+          "enemiesPerPass": [4],
+          "offsetsPasses": [{"x":0, "y":100}],
+          "arrayToShoot": [1,1],
+          "delayBulletPerPass": [20],
+          "points": [[{ "x":1193, "y":580},{ "x":1020, "y":575},{ "x":804, "y":575},{ "x":622, "y":569},{ "x":530, "y":563},{ "x":616, "y":466},{ "x":707, "y":368},{ "x":798, "y":251},{ "x":640, "y":244},{ "x":464, "y":242},{ "x":216, "y":242},{ "x":-100, "y":240}]],
+          "speed": 2
+        },
+        {
+          "johnnotes": "SCOOP DOWN",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [6],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [6],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,1,0,1],
+          "delayBulletPerPass": [20],
+          "points": [[{ "x":814, "y":-45},{ "x":847, "y":64},{ "x":936, "y":121},{ "x":1041, "y":172},{ "x":1094, "y":251},{ "x":1100, "y":357},{ "x":1063, "y":452},{ "x":997, "y":483},{ "x":877, "y":483},{ "x":761, "y":441},{ "x":679, "y":360},{ "x":546, "y":296},{ "x":334, "y":266},{ "x":-100, "y":259}]],
+          "speed": 3
+        },
+        {
+          "johnnotes": "FIRST UP AND DOWN",
+          "pattern": "TopBottomWave",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [15],
+          "nbPasses": 3,
+          "amplitudesPasses": [100, 120, 80],
+          "enemiesPerPass": [4, 5, 6],
+          "offsetsPasses": [{"x":0, "y":350}, {"x":600, "y":100}, {"x":1300, "y":225}],
+          "arrayToShoot": [1,1,0,0,0,1,0,0,0],
+          "delayBulletPerPass": [100, 100, 100],
+          "speed": 4
+        },
+        {
+          "johnnotes": "SPIRAL ROUND BACK",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [6],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [6],
+          "arrayToShoot": [1,1,0,1],
+          "delayBulletPerPass": [20],
+          "points": [[{ "x":1200, "y":617},{ "x":479, "y":616},{ "x":230, "y":611},{ "x":74, "y":497},{ "x":18, "y":328},{ "x":63, "y":129},{ "x":272, "y":19},{ "x":772, "y":11},{ "x":919, "y":169},{ "x":903, "y":317},{ "x":636, "y":360},{ "x":-100, "y":361}]],
+          "speed": 3
+        },
+        {
+          "enemyTypes": ["HeavyTieFighter360"],
+          "pattern": "YSeekerWave",
+          "nbEnemiesPerType": [3],
+          "nbPasses": 3,
+          "enemiesPerPass": [1,1,1],
+          "offsetsPasses": [{"x":100, "y":100}, {"x":0, "y":250}, {"x":100, "y":500}],
+          "arrayToShoot": [1,1,1],
+          "delayBulletPerPass": [100],
+          "speedYPerPass": [1],
+          "speed": 4
+        }
+      ],
+
+
+
+
+
+
+
+      [
+        {
+          "johnnotes": "MISSION 1 PART 2",
+          "pattern": "FromBehindWave",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [8],
+          "nbPasses": 3,
+          "enemiesPerPass": [2, 2, 4],
+          "offsetsPasses": [{"x":-250, "y":100}, {"x":-220, "y":300}, {"x":0, "y":200}],
+          "arrayToShoot": [0],
+          "delayBulletPerPass": [0],
+          "speed": 7
+        },
+        {
+          "johnnotes": "S BEND",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [7],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [7],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,1,0,1],
+          "delayBulletPerPass": [20],
+          "points": [[{ "x":1175, "y":617},{ "x":1094, "y":611},{ "x":998, "y":614},{ "x":902, "y":615},{ "x":799, "y":607},{ "x":693, "y":601},{ "x":570, "y":560},{ "x":491, "y":492},{ "x":455, "y":435},{ "x":472, "y":398},{ "x":501, "y":376},{ "x":551, "y":361},{ "x":628, "y":359},{ "x":710, "y":350},{ "x":791, "y":340},{ "x":861, "y":337},{ "x":933, "y":326},{ "x":1012, "y":302},{ "x":1062, "y":276},{ "x":1098, "y":241},{ "x":1115, "y":179},{ "x":1112, "y":121},{ "x":1081, "y":77},{ "x":1012, "y":63},{ "x":941, "y":80},{ "x":892, "y":132},{ "x":875, "y":176},{ "x":836, "y":231},{ "x":784, "y":258},{ "x":702, "y":279},{ "x":651, "y":274},{ "x":569, "y":271},{ "x":470, "y":241},{ "x":411, "y":206},{ "x":344, "y":168},{ "x":264, "y":140},{ "x":182, "y":131},{ "x":103, "y":140},{ "x":25, "y":173},{ "x":-100, "y":207}]],
+          "speed": 3
+        },
+        {
+          "johnnotes": "KAMIKAZE SQUAD",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [6],
+          "pattern": "YSeekerWave",
+          "speedYPerPass": [3],
+          "nbPasses": 1,
+          "enemiesPerPass": [6],
+          "offsetsPasses": [{"x":800, "y":200}],
+          "arrayToShoot": [1,1,1],
+          "delayBulletPerPass": [60],
+          "speed": 6
+        },
+        {
+          "johnnotes": "FIGURE EIGHT",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [7],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [7],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,1,0,1],
+          "delayBulletPerPass": [20],
+          "points": [[{ "x":550, "y":688},{ "x":519, "y":585},{ "x":531, "y":483},{ "x":603, "y":414},{ "x":695, "y":364},{ "x":810, "y":346},{ "x":912, "y":295},{ "x":986, "y":210},{ "x":1025, "y":91},{ "x":1018, "y":-28},{ "x":967, "y":-65},{ "x":744, "y":-67},{ "x":649, "y":4},{ "x":614, "y":97},{ "x":605, "y":193},{ "x":639, "y":292},{ "x":688, "y":405},{ "x":677, "y":505},{ "x":601, "y":579},{ "x":496, "y":597},{ "x":393, "y":552},{ "x":355, "y":432},{ "x":372, "y":306},{ "x":368, "y":193},{ "x":317, "y":118},{ "x":227, "y":93},{ "x":-100, "y":85}]],
+          "speed": 3
+        },
+        {
+          "johnnotes": "FAST ATTACK V",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [5],
+          "pattern": "FlybyWave",
+          "nbPasses": 5,
+          "enemiesPerPass": [1,1,1,1,1],
+          "offsetsPasses": [{"x":0, "y":400}, {"x":80, "y":380}, {"x":80, "y":420}, {"x":160, "y":360}, {"x":260, "y":440}],
+          "arrayToShoot": [1,0,1,0,1,0,0,0,0],
+          "delayBulletPerPass": [160],
+          "speed": 5
+        },
+        {
+          "johnnotes": "S BEND",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [7],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [7],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,1,0,1],
+          "delayBulletPerPass": [20],
+          "points": [[{ "x":1175, "y":617},{ "x":1094, "y":611},{ "x":998, "y":614},{ "x":902, "y":615},{ "x":799, "y":607},{ "x":693, "y":601},{ "x":570, "y":560},{ "x":491, "y":492},{ "x":455, "y":435},{ "x":472, "y":398},{ "x":501, "y":376},{ "x":551, "y":361},{ "x":628, "y":359},{ "x":710, "y":350},{ "x":791, "y":340},{ "x":861, "y":337},{ "x":933, "y":326},{ "x":1012, "y":302},{ "x":1062, "y":276},{ "x":1098, "y":241},{ "x":1115, "y":179},{ "x":1112, "y":121},{ "x":1081, "y":77},{ "x":1012, "y":63},{ "x":941, "y":80},{ "x":892, "y":132},{ "x":875, "y":176},{ "x":836, "y":231},{ "x":784, "y":258},{ "x":702, "y":279},{ "x":651, "y":274},{ "x":569, "y":271},{ "x":470, "y":241},{ "x":411, "y":206},{ "x":344, "y":168},{ "x":264, "y":140},{ "x":182, "y":131},{ "x":103, "y":140},{ "x":25, "y":173},{ "x":-100, "y":207}]],
+          "speed": 3
+        },
+        {
+          "johnnotes": "BOX SET MED",
+          "pattern": "FollowLeaderSine",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [9],
+          "nbPasses": 3,
+          "amplitudesPasses": [50, 70, 90],
+          "enemiesPerPass": [3, 3, 3],
+          "offsetsPasses": [{"x":0, "y":200}, {"x":0, "y":250}, {"x":0, "y":300}],
+          "arrayToShoot": [1,1],
+          "delayBulletPerPass": [120, 120, 120],
+          "speed": 4
+        },
+        {
+          "johnnotes": "SCOOP DOWN",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [6],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [6],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,1,0,1],
+          "delayBulletPerPass": [20],
+          "points": [[{ "x":814, "y":-45},{ "x":847, "y":64},{ "x":936, "y":121},{ "x":1041, "y":172},{ "x":1094, "y":251},{ "x":1100, "y":357},{ "x":1063, "y":452},{ "x":997, "y":483},{ "x":877, "y":483},{ "x":761, "y":441},{ "x":679, "y":360},{ "x":546, "y":296},{ "x":334, "y":266},{ "x":-100, "y":259}]],
+          "speed": 3
+        },
+        {
+          "johnnotes": "SCOOP UP",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [6],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [6],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,1,0,1],
+          "delayBulletPerPass": [20],
+          "points": [[{ "x":548, "y":673},{ "x":563, "y":584},{ "x":633, "y":496},{ "x":731, "y":442},{ "x":836, "y":422},{ "x":938, "y":384},{ "x":1007, "y":316},{ "x":1041, "y":220},{ "x":1028, "y":114},{ "x":957, "y":39},{ "x":854, "y":17},{ "x":733, "y":36},{ "x":655, "y":106},{ "x":609, "y":195},{ "x":551, "y":268},{ "x":469, "y":323},{ "x":354, "y":348},{ "x":145, "y":365},{ "x":-100, "y":372}]],
+          "speed": 3
+        },
+        {
+          "johnnotes": "DELTA LINEUP 3 HEIGHT",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [11],
+          "pattern": "EagleWave",
+          "nbPasses": 3,
+          "enemiesPerPass": [3, 5, 3],
+          "amplitude": 50,
+          "offsetsPasses": [{"x":500, "y":150}, {"x":0, "y":250}, {"x":500, "y":350}],
+          "arrayToShoot": [1,1],
+          "delayBulletPerPass": [240],
+          "speed": 4
+        },
+        {
+          "johnnotes": "SINGLE HIGH HEAVY",
+          "enemyTypes": ["TieFighterTrench"],
+          "nbEnemiesPerType": [1],
+          "pattern": "FlybyWave",
+          "positionTheyGoUpPerPass": [-100],
+          "nbPasses": 1,
+          "enemiesPerPass": [1],
+          "offsetsPasses": [{"x":0, "y":50}],
+          "arrayToShoot": [1,1,1,1,1],
+          "delayBulletPerPass": [20],
+          "speed": 4
+        },
+        {
+          "johnnotes": "SPIRAL ROUND BACK",
+          "enemyTypes": ["LandingShip"],
+          "nbEnemiesPerType": [1],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "spread": 0.785,
+          "nbGroupsBullet": 3,
+          "nbBulletsPerGroup": 3,
+          "enemiesPerPass": [1],
+          "arrayToShoot": [1,1,0,1],
+          "delayBulletPerPass": [120],
+          "points": [[{ "x":1173, "y":537},{ "x":1034, "y":531},{ "x":849, "y":517},{ "x":721, "y":490},{ "x":662, "y":432},{ "x":644, "y":360},{ "x":663, "y":296},{ "x":709, "y":253},{ "x":775, "y":250},{ "x":823, "y":279},{ "x":854, "y":330},{ "x":875, "y":376},{ "x":928, "y":394},{ "x":979, "y":371},{ "x":1007, "y":319},{ "x":1010, "y":246},{ "x":992, "y":178},{ "x":941, "y":123},{ "x":861, "y":91},{ "x":766, "y":88},{ "x":675, "y":119},{ "x":583, "y":169},{ "x":501, "y":217},{ "x":405, "y":236},{ "x":281, "y":242},{ "x":117, "y":244},{ "x":-100, "y":238}]],
+          "speed": 0.7
+        }
+      ],
+
+
+
+
+
+
+	   [
+        {
+          "johnnotes": "MISSION 1 PART 3",
+          "johnnotes": "TIDAL WAVE NIP & TUCK",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [9],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [9],
+          "offsetsPasses": [{"x":0, "y":80}],
+          "arrayToShoot": [1,0,0,1,0,1,0,0,1,1,1,1],
+          "delayBulletPerPass": [30],
+          "points": [[{ "x":1173, "y":537},{ "x":1034, "y":531},{ "x":849, "y":517},{ "x":721, "y":490},{ "x":662, "y":432},{ "x":644, "y":360},{ "x":663, "y":296},{ "x":709, "y":253},{ "x":775, "y":250},{ "x":823, "y":279},{ "x":854, "y":330},{ "x":875, "y":376},{ "x":928, "y":394},{ "x":979, "y":371},{ "x":1007, "y":319},{ "x":1010, "y":246},{ "x":992, "y":178},{ "x":941, "y":123},{ "x":861, "y":91},{ "x":766, "y":88},{ "x":675, "y":119},{ "x":583, "y":169},{ "x":501, "y":217},{ "x":405, "y":236},{ "x":281, "y":242},{ "x":117, "y":244},{ "x":-100, "y":238}]],
+          "speed": 3
+        },
+        {
+          "johnnotes": "MISSION 1 PART 3",
+          "johnnotes": "TIDAL WAVE NIP & TUCK",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [9],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [9],
+          "offsetsPasses": [{"x":0, "y":80}],
+          "arrayToShoot": [1,0,0,1,0,1,0,0,1,1,1,1],
+          "delayBulletPerPass": [30],
+          "points": [[{ "x":1173, "y":537},{ "x":1034, "y":531},{ "x":849, "y":517},{ "x":721, "y":490},{ "x":662, "y":432},{ "x":644, "y":360},{ "x":663, "y":296},{ "x":709, "y":253},{ "x":775, "y":250},{ "x":823, "y":279},{ "x":854, "y":330},{ "x":875, "y":376},{ "x":928, "y":394},{ "x":979, "y":371},{ "x":1007, "y":319},{ "x":1010, "y":246},{ "x":992, "y":178},{ "x":941, "y":123},{ "x":861, "y":91},{ "x":766, "y":88},{ "x":675, "y":119},{ "x":583, "y":169},{ "x":501, "y":217},{ "x":405, "y":236},{ "x":281, "y":242},{ "x":117, "y":244},{ "x":-100, "y":238}]],
+          "speed": 4
+        },
+        {
+          "johnnotes": "DELTA LINEUP 3 HEIGHT",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [9],
+          "pattern": "EagleWave",
+          "nbPasses": 3,
+          "enemiesPerPass": [3, 3, 3],
+          "amplitude": 30,
+          "offsetsPasses": [{"x":500, "y":200}, {"x":0, "y":300}, {"x":500, "y":400}],
+          "arrayToShoot": [1,1],
+          "delayBulletPerPass": [240],
+          "speed": 4
+        },
+        {
+          "johnnotes": "FIGURE EIGHT MIRROR",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [7],
+          "pattern": "ZigZagWave",
+          "type": "mirror",
+          "nbPasses": 1,
+          "enemiesPerPass": [7],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,0,0,1,0,1,0,0,1,1,1,1],
+          "delayBulletPerPass": [30],
+          "points": [[{ "x":550, "y":688},{ "x":519, "y":585},{ "x":531, "y":483},{ "x":603, "y":414},{ "x":695, "y":364},{ "x":810, "y":346},{ "x":912, "y":295},{ "x":986, "y":210},{ "x":1025, "y":91},{ "x":1018, "y":-28},{ "x":967, "y":-65},{ "x":744, "y":-67},{ "x":649, "y":4},{ "x":614, "y":97},{ "x":605, "y":193},{ "x":639, "y":292},{ "x":688, "y":405},{ "x":677, "y":505},{ "x":601, "y":579},{ "x":496, "y":597},{ "x":393, "y":552},{ "x":355, "y":432},{ "x":372, "y":306},{ "x":368, "y":193},{ "x":317, "y":118},{ "x":227, "y":93},{ "x":-100, "y":85}]],
+          "speed": 2
+        },
+        {
+          "johnnotes": "CHUNKY SINE",
+          "pattern": "FollowLeaderSine",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [9],
+          "nbPasses": 3,
+          "amplitudesPasses": [100, 100, 100],
+          "enemiesPerPass": [3, 3, 3],
+          "offsetsPasses": [{"x":50, "y":100}, {"x":0, "y":150}, {"x":50, "y":200}],
+          "arrayToShoot": [1,1],
+          "delayBulletPerPass": [120, 120, 120],
+          "speed": 3
+        },
+        {
+          "johnnotes": "TIDAL WAVE MIRROR",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [7],
+          "pattern": "ZigZagWave",
+          "type": "mirror",
+          "nbPasses": 1,
+          "enemiesPerPass": [7],
+          "offsetsPasses": [{"x":0, "y":80}],
+          "arrayToShoot": [1,0,0,1,0,1,0,0,1,1,1,1],
+          "delayBulletPerPass": [30],
+          "points": [[{ "x":1173, "y":537},{ "x":1034, "y":531},{ "x":849, "y":517},{ "x":721, "y":490},{ "x":662, "y":432},{ "x":644, "y":360},{ "x":663, "y":296},{ "x":709, "y":253},{ "x":775, "y":250},{ "x":823, "y":279},{ "x":854, "y":330},{ "x":875, "y":376},{ "x":928, "y":394},{ "x":979, "y":371},{ "x":1007, "y":319},{ "x":1010, "y":246},{ "x":992, "y":178},{ "x":941, "y":123},{ "x":861, "y":91},{ "x":766, "y":88},{ "x":675, "y":119},{ "x":583, "y":169},{ "x":501, "y":217},{ "x":405, "y":236},{ "x":281, "y":242},{ "x":117, "y":244},{ "x":-100, "y":238}]],
+          "speed": 3
+        },
+        {
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [5],
+          "pattern": "YSeekerWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [5],
+          "offsetsPasses": [{"x":0, "y":400}],
+          "arrayToShoot": [1,0,0,1],
+          "delayBulletPerPass": [100],
+          "speed": 5
+        },
+        {
+          "johnnotes": "TIDAL WAVE SNAKE",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [9],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [9],
+          "offsetsPasses": [{"x":0, "y":80}],
+          "arrayToShoot": [1,0,0,1,0,1,0,0,1,1,1,1],
+          "delayBulletPerPass": [30],
+          "points": [[{ "x":357, "y":-54},{ "x":401, "y":20},{ "x":491, "y":59},{ "x":612, "y":84},{ "x":734, "y":60},{ "x":848, "y":21},{ "x":969, "y":17},{ "x":1049, "y":76},{ "x":1095, "y":202},{ "x":1104, "y":384},{ "x":1086, "y":511},{ "x":1026, "y":606},{ "x":909, "y":620},{ "x":822, "y":607},{ "x":769, "y":560},{ "x":736, "y":462},{ "x":752, "y":338},{ "x":741, "y":248},{ "x":683, "y":183},{ "x":611, "y":162},{ "x":535, "y":178},{ "x":409, "y":248},{ "x":259, "y":284},{ "x":84, "y":293},{ "x":-100, "y":292}]],
+          "speed": 3
+        },
+      {
+          "johnnotes": "FAST FAT V - PRE TROOPSHIP",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [10],
+          "pattern": "FlybyWave",
+          "nbPasses": 5,
+          "enemiesPerPass": [2,2,2,2,2],
+          "offsetsPasses": [{"x":0, "y":400}, {"x":50, "y":350}, {"x":50, "y":450}, {"x":160, "y":300}, {"x":160, "y":500}],
+          "arrayToShoot": [1,0,1,0,1,0,0,0,0],
+          "delayBulletPerPass": [80, 0, 120, 0, 111],
+          "speed": 5
+        },
+        {
+          "johnnotes": "SINGLE HIGH HEAVY",
+          "enemyTypes": ["TieFighterTrench"],
+          "nbEnemiesPerType": [1],
+          "pattern": "FlybyWave",
+          "positionTheyGoUpPerPass": [-100],
+          "nbPasses": 1,
+          "enemiesPerPass": [1],
+          "offsetsPasses": [{"x":0, "y":50}],
+          "arrayToShoot": [1,1,1,1,1],
+          "delayBulletPerPass": [20],
+          "speed": 4
+        },
+      {
+          "johnnotes": "SPIRAL ROUND BACK",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [13],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "spread": 0.795,
+          "nbGroupsBullet": 2,
+          "nbBulletsPerGroup": 5,
+          "enemiesPerPass": [13],
+          "arrayToShoot": [1,0,1,0,0,1,1,1],
+          "delayBulletPerPass": [120],
+          "points": [[{ "x":1173, "y":537},{ "x":1034, "y":531},{ "x":849, "y":517},{ "x":721, "y":490},{ "x":662, "y":432},{ "x":644, "y":360},{ "x":663, "y":296},{ "x":709, "y":253},{ "x":775, "y":250},{ "x":823, "y":279},{ "x":854, "y":330},{ "x":875, "y":376},{ "x":928, "y":394},{ "x":979, "y":371},{ "x":1007, "y":319},{ "x":1010, "y":246},{ "x":992, "y":178},{ "x":941, "y":123},{ "x":861, "y":91},{ "x":766, "y":88},{ "x":675, "y":119},{ "x":583, "y":169},{ "x":501, "y":217},{ "x":405, "y":236},{ "x":281, "y":242},{ "x":117, "y":244},{ "x":-100, "y":238}]],
+          "speed": 4,
+          "kyloren": true
+        },
+      {
+          "johnnotes": "KAMIKAZE SQUAD",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [8],
+          "pattern": "YSeekerWave",
+          "speedYPerPass": [3],
+          "nbPasses": 1,
+          "enemiesPerPass": [8],
+          "offsetsPasses": [{"x":1200, "y":200}],
+          "arrayToShoot": [1,1,1],
+          "delayBulletPerPass": [60],
+          "speed": 8
+        },
+      {
+          "johnnotes": "SPIRAL ROUND BACK",
+          "enemyTypes": ["LandingShip"],
+          "nbEnemiesPerType": [1],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "spread": 0.585,
+          "nbGroupsBullet": 3,
+          "nbBulletsPerGroup": 4,
+          "enemiesPerPass": [1],
+          "arrayToShoot": [1,0,1,0,0,1,1,1,1],
+          "delayBulletPerPass": [120],
+          "points": [[{ "x":1173, "y":537},{ "x":1034, "y":531},{ "x":849, "y":517},{ "x":721, "y":490},{ "x":662, "y":432},{ "x":644, "y":360},{ "x":663, "y":296},{ "x":709, "y":253},{ "x":775, "y":250},{ "x":823, "y":279},{ "x":854, "y":330},{ "x":875, "y":376},{ "x":928, "y":394},{ "x":979, "y":371},{ "x":1007, "y":319},{ "x":1010, "y":246},{ "x":992, "y":178},{ "x":941, "y":123},{ "x":861, "y":91},{ "x":766, "y":88},{ "x":675, "y":119},{ "x":583, "y":169},{ "x":501, "y":217},{ "x":405, "y":236},{ "x":281, "y":242},{ "x":117, "y":244},{ "x":-100, "y":238}]],
+          "speed": 0.6
+        },
+        {
+          "johnnotes": "FINAL MEGAGRESSION",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [7],
+          "pattern": "ZigZagWave",
+          "type": "mirror",
+          "nbPasses": 1,
+          "enemiesPerPass": [7],
+          "offsetsPasses": [{"x":-10, "y":140}],
+          "arrayToShoot": [1,1,1,1,1,1,1],
+          "delayBulletPerPass": [30],
+          "points": [[{ "x":809, "y":676},{ "x":801, "y":500},{ "x":835, "y":382},{ "x":958, "y":269},{ "x":1019, "y":178},{ "x":996, "y":43},{ "x":927, "y":-3},{ "x":793, "y":-4},{ "x":716, "y":46},{ "x":680, "y":148},{ "x":684, "y":250},{ "x":713, "y":310},{ "x":760, "y":357},{ "x":774, "y":411},{ "x":755, "y":481},{ "x":685, "y":526},{ "x":609, "y":540},{ "x":538, "y":498},{ "x":509, "y":424},{ "x":521, "y":346},{ "x":560, "y":295},{ "x":607, "y":241},{ "x":633, "y":182},{ "x":623, "y":89},{ "x":570, "y":31},{ "x":498, "y":38},{ "x":420, "y":91},{ "x":405, "y":164},{ "x":423, "y":230},{ "x":456, "y":294},{ "x":469, "y":353},{ "x":451, "y":409},{ "x":408, "y":445},{ "x":335, "y":447},{ "x":253, "y":396},{ "x":199, "y":351},{ "x":121, "y":329},{ "x":-100, "y":321}]],
+          "speed": 4
+        }
+      ]
+    ]
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "second": {
+    "endless": false,
+    "description": "",
+    "imageUnlocked": "mission2_picture.png",
+    "imageLocked": "mission2_picture_lock.png",
+    "name": "STR_MISSION2_NAME",
+    "waves":[
+    [
+
+        {
+          "johnnotes": "MISSION 2 PART 1",
+          "johnnotes": "FROM BEHIND ATTACK",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [6],
+          "nbTimeToFire": 2,
+          "pattern": "ChasingWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [6],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,0,0,1,0,1,0,0,1,1],
+          "delayBulletPerPass": [30],
+          "points": [
+            [{ "x":-49, "y":30},{ "x":141, "y":45},{ "x":265, "y":105},{ "x":349, "y":198},{ "x":416, "y":337},{ "x":466, "y":462},{ "x":526, "y":570},{ "x":659, "y":601},{ "x":765, "y":605},{ "x":873, "y":560},{ "x":976, "y":429},{ "x":1031, "y":267},{ "x":1005, "y":112},{ "x":893, "y":11},{ "x":750, "y":30},{ "x":688, "y":112},{ "x":644, "y":232},{ "x":609, "y":313},{ "x":497, "y":374},{ "x":340, "y":403},{ "x":138, "y":413},{ "x":-100, "y":414}]
+          ],
+          "speed": 4
+        },
+        {
+          "johnnotes": "DROP IN LOOP BACK",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [8],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [8],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,0,0,1,0,1,0,0,1,1,1,1],
+          "delayBulletPerPass": [30],
+          "points": [[{ "x":547, "y":-31},{ "x":650, "y":28},{ "x":710, "y":138},{ "x":743, "y":253},{ "x":769, "y":385},{ "x":845, "y":448},{ "x":950, "y":460},{ "x":1032, "y":434},{ "x":1081, "y":334},{ "x":1054, "y":244},{ "x":953, "y":188},{ "x":815, "y":178},{ "x":457, "y":180},{ "x":-100, "y":173}]],
+          "speed": 4
+        },
+        {
+          "pattern": "FromBehindWave",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [9],
+          "nbPasses": 3,
+          "enemiesPerPass": [3, 3, 3],
+          "offsetsPasses": [{"x":0, "y":200}, {"x":50, "y":300}, {"x":100, "y":400}],
+          "arrayToShoot": [1,0,0,1,0,1,0,0,1,1],
+          "delayBulletPerPass": [30],
+          "speed": 6
+        },
+        {
+          "johnnotes": "EAGLE WAVE",
+          "enemyTypes": ["TieFighter"],
+          "pattern": "EagleWave",
+          "nbEnemiesPerType": [8],
+          "nbPasses": 2,
+          "enemiesPerPass": [3, 5],
+          "amplitude": 50,
+          "offsetsPasses": [{"x":0, "y":300}, {"x":300, "y":300}],
+          "arrayToShoot": [1],
+          "delayBulletPerPass": [45],
+          "speed": 3
+        },
+        {
+          "johnnotes": "DROP IN LOOP BACK MIRROR",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [6],
+          "pattern": "ZigZagWave",
+          "type": "mirror",
+          "nbPasses": 1,
+          "enemiesPerPass": [6],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,0,0,1,0,1,0,0,1,1],
+          "delayBulletPerPass": [30],
+          "points": [[{ "x":400, "y":-48},{ "x":400, "y":118},{ "x":401, "y":272},{ "x":423, "y":405},{ "x":473, "y":516},{ "x":548, "y":573},{ "x":643, "y":592},{ "x":751, "y":576},{ "x":854, "y":492},{ "x":904, "y":384},{ "x":894, "y":287},{ "x":846, "y":202},{ "x":761, "y":169},{ "x":671, "y":187},{ "x":609, "y":245},{ "x":533, "y":288},{ "x":434, "y":296},{ "x":-100, "y":291}]],
+          "speed": 3
+        },
+        {
+          "johnnotes": "TROOPSHIP BACK AND LEAVE",
+          "enemyTypes": ["LandingShip"],
+          "nbEnemiesPerType": [1],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [1],
+          "spread": 0.785,
+          "nbGroupsBullet": 3,
+          "nbBulletsPerGroup": 3,
+          "arrayToShoot": [1,0,0,0],
+          "delayBulletPerPass": [88],
+          "points": [[{ "x":1173, "y":437},{ "x":1034, "y":431},{ "x":849, "y":417},{ "x":721, "y":390},{ "x":662, "y":332},{ "x":644, "y":260},{ "x":663, "y":196},{ "x":709, "y":153},{ "x":775, "y":250},{ "x":823, "y":279},{ "x":854, "y":330},{ "x":875, "y":376},{ "x":928, "y":394},{ "x":979, "y":371},{ "x":1007, "y":319},{ "x":1010, "y":246},{ "x":992, "y":78},{ "x":941, "y":23},{ "x":861, "y":0},{ "x":766, "y":0},{ "x":675, "y":19},{ "x":583, "y":69},{ "x":501, "y":117},{ "x":405, "y":136},{ "x":281, "y":142},{ "x":117, "y":144},{ "x":-100, "y":138}]],
+          "speed": 0.6
+        },
+
+        {
+          "johnnotes": "BIG EAGLE WAVE",
+          "enemyTypes": ["TieFighter"],
+          "pattern": "EagleWave",
+          "nbEnemiesPerType": [15],
+          "nbPasses": 3,
+          "enemiesPerPass": [3, 5, 7],
+          "amplitude": 50,
+          "offsetsPasses": [{"x":0, "y":300}, {"x":300, "y":300}, {"x":600, "y":300}],
+          "arrayToShoot": [1,0,0,0,1],
+          "delayBulletPerPass": [88],
+          "speed": 3
+        },
+        {
+          "johnnotes": "TIDAL WAVE NIP & TUCK",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [9],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [9],
+          "offsetsPasses": [{"x":0, "y":80}],
+          "arrayToShoot": [1,0,0,1,0,1,0,0,1,1],
+          "delayBulletPerPass": [30],
+          "points": [[{ "x":1173, "y":537},{ "x":1034, "y":531},{ "x":849, "y":517},{ "x":721, "y":490},{ "x":662, "y":432},{ "x":644, "y":360},{ "x":663, "y":296},{ "x":709, "y":253},{ "x":775, "y":250},{ "x":823, "y":279},{ "x":854, "y":330},{ "x":875, "y":376},{ "x":928, "y":394},{ "x":979, "y":371},{ "x":1007, "y":319},{ "x":1010, "y":246},{ "x":992, "y":178},{ "x":941, "y":123},{ "x":861, "y":91},{ "x":766, "y":88},{ "x":675, "y":119},{ "x":583, "y":169},{ "x":501, "y":217},{ "x":405, "y":236},{ "x":281, "y":242},{ "x":117, "y":244},{ "x":-100, "y":238}]],
+          "speed": 4
+        },
+        {
+          "johnnotes": "SINGLE HIGH HEAVY",
+          "enemyTypes": ["TieFighterTrench"],
+          "nbEnemiesPerType": [1],
+          "pattern": "FlybyWave",
+          "positionTheyGoUpPerPass": [-100],
+          "nbPasses": 1,
+          "enemiesPerPass": [1],
+          "offsetsPasses": [{"x":0, "y":50}],
+          "arrayToShoot": [1,1,1,1,1],
+          "delayBulletPerPass": [20],
+          "speed": 4
+        },
+        {
+          "johnnotes": "SCOOP DOWN",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [6],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [6],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,0,0,1,0,1,0,0,1,1],
+          "delayBulletPerPass": [30],
+          "points": [[{ "x":814, "y":-45},{ "x":847, "y":64},{ "x":936, "y":121},{ "x":1041, "y":172},{ "x":1094, "y":251},{ "x":1100, "y":357},{ "x":1063, "y":452},{ "x":997, "y":483},{ "x":877, "y":483},{ "x":761, "y":441},{ "x":679, "y":360},{ "x":546, "y":296},{ "x":334, "y":266},{ "x":-100, "y":259}]],
+          "speed": 3
+        },
+        {
+          "johnnotes": "SCOOP UP",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [6],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [6],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,0,0,1,0,1,0,0,1,1],
+          "delayBulletPerPass": [30],
+          "points": [[{ "x":548, "y":673},{ "x":563, "y":584},{ "x":633, "y":496},{ "x":731, "y":442},{ "x":836, "y":422},{ "x":938, "y":384},{ "x":1007, "y":316},{ "x":1041, "y":220},{ "x":1028, "y":114},{ "x":957, "y":39},{ "x":854, "y":17},{ "x":733, "y":36},{ "x":655, "y":106},{ "x":609, "y":195},{ "x":551, "y":268},{ "x":469, "y":323},{ "x":354, "y":348},{ "x":145, "y":365},{ "x":-100, "y":372}]],
+          "speed": 4
+        },
+        {
+          "pattern": "FollowLeaderSine",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [15],
+          "nbPasses": 3,
+          "amplitudesPasses": [100, 150, 200],
+          "enemiesPerPass": [5, 5, 5],
+          "offsetsPasses": [{"x":0, "y":300}, {"x":500, "y":250}, {"x":1000, "y":200}],
+          "arrayToShoot": [1],
+          "delayBulletPerPass": [180],
+          "speed": 6
+        },
+        {
+          "johnnotes": "FROM BEHIND ATTACK",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [5],
+          "nbTimeToFire": 1,
+          "pattern": "ChasingWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [5],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,0,0,1,0,1,0,0,1,1],
+          "delayBulletPerPass": [30],
+          "points": [
+            [{ "x":-49, "y":30},{ "x":141, "y":45},{ "x":265, "y":105},{ "x":349, "y":198},{ "x":416, "y":337},{ "x":466, "y":462},{ "x":526, "y":570},{ "x":659, "y":601},{ "x":765, "y":605},{ "x":873, "y":560},{ "x":976, "y":429},{ "x":1031, "y":267},{ "x":1005, "y":112},{ "x":893, "y":11},{ "x":750, "y":30},{ "x":688, "y":112},{ "x":644, "y":232},{ "x":609, "y":313},{ "x":497, "y":374},{ "x":340, "y":403},{ "x":138, "y":413},{ "x":-100, "y":414}]
+          ],
+          "speed": 5
+        }
+    ],
+
+
+
+
+	[
+        {
+          "johnnotes": "MISSION 2 PART 2",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [15],
+          "pattern": "EagleWave",
+          "amplitude": 40,
+          "nbPasses": 3,
+          "enemiesPerPass": [5, 5, 5],
+          "offsetsPasses": [{"x":0, "y":200}, {"x":200, "y":200}, {"x":800, "y":200}, {"x":600, "y":200}, {"x":1600, "y":200}],
+          "arrayToShoot": [1,0,0,1],
+          "delayBulletPerPass": [240, 120, 800],
+          "speed": 3
+        },
+        {
+          "johnnotes": "SINGLE HIGH HEAVY",
+          "enemyTypes": ["TieFighterTrench"],
+          "nbEnemiesPerType": [1],
+          "pattern": "FlybyWave",
+          "positionTheyGoUpPerPass": [-100],
+          "nbPasses": 1,
+          "enemiesPerPass": [1],
+          "offsetsPasses": [{"x":0, "y":50}],
+          "arrayToShoot": [1,1,1,1,1],
+          "delayBulletPerPass": [30],
+          "speed": 4
+        },
+        {
+          "johnnotes": "TROOPSHIP HEAVY GAURD",
+          "enemyTypes": ["TieFighter360", "LandingShip"],
+          "nbEnemiesPerType": [9, 1],
+          "pattern": "TankDefenceWave",
+          "nbPasses": 1,
+          "radiusPerPass": [150, 150],
+          "enemiesPerPass": [[9, 1]],
+          "spread": 0.785,
+          "nbGroupsBullet": 3,
+          "nbBulletsPerGroup": 3,
+          "arrayToShoot": [1,1,1,0,0,0,0,0,1,0,1,0],
+          "delayBulletPerPass": [240],
+          "howMuchDoTheyDisplace": [300],
+          "offsetsPasses": [{"x":0, "y":88}]
+        },
+        {
+          "johnnotes": "MEGA BULLETS FAST ATTACK V",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [4],
+          "pattern": "FlybyWave",
+          "nbPasses": 4,
+          "enemiesPerPass": [1,1,1,1],
+          "offsetsPasses": [{"x":0, "y":200}, {"x":80, "y":180}, {"x":80, "y":220}, {"x":160, "y":160}, {"x":160, "y":240}, {"x":240, "y":140}, {"x":240, "y":260}],
+          "arrayToShoot": [1,0,1,0,1],
+          "delayBulletPerPass": [120, 0, 200, 0, 200, 0, 120],
+          "speed": 4
+        },
+        {
+          "johnnotes": "MEGA EAGLE WAVE",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [15],
+          "pattern": "EagleWave",
+          "nbPasses": 3,
+          "enemiesPerPass": [5, 5, 5],
+          "amplitude": 50,
+          "offsetsPasses": [{"x":0, "y":200}, {"x":400, "y":200}, {"x":800, "y":200}],
+          "arrayToShoot": [1],
+          "delayBulletPerPass": [240],
+          "speed": 4
+        },
+        {
+          "johnnotes": "BOTTOM RIGHT BACK",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [6],
+          "pattern": "ZigZagWave",
+          "nbPasses": 1,
+          "enemiesPerPass": [6],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,0,0,1],
+          "delayBulletPerPass": [30],
+          "points": [[{ "x":52, "y":682},{ "x":109, "y":488},{ "x":213, "y":268},{ "x":360, "y":142},{ "x":580, "y":98},{ "x":822, "y":104},{ "x":936, "y":170},{ "x":998, "y":287},{ "x":999, "y":386},{ "x":942, "y":449},{ "x":852, "y":477},{ "x":714, "y":442},{ "x":664, "y":355},{ "x":593, "y":295},{ "x":437, "y":258},{ "x":-100, "y":266}]],
+          "speed": 5
+        },
+        {
+          "johnnotes": "FAST FAT V",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [10],
+          "pattern": "FlybyWave",
+          "nbPasses": 5,
+          "enemiesPerPass": [2,2,2,2,2],
+          "offsetsPasses": [{"x":0, "y":300}, {"x":50, "y":250}, {"x":50, "y":350}, {"x":160, "y":200}, {"x":160, "y":400}],
+          "arrayToShoot": [1],
+          "delayBulletPerPass": [70, 80, 100, 110, 120],
+          "positionTheyGoUpPerPass": [-100, -100, -100, -100, -100],
+          "speed": 6
+        },
+        {
+          "johnnotes": "UP AND DOWN MODERATE",
+          "pattern": "TopBottomWave",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [18],
+          "nbPasses": 3,
+          "amplitudesPasses": [80, 120, 60],
+          "enemiesPerPass": [4, 6, 8],
+          "offsetsPasses": [{"x":0, "y":150}, {"x":600, "y":250}, {"x":1000, "y":350}],
+          "arrayToShoot": [1,1,0,1,0,1],
+          "delayBulletPerPass": [100, 30, 900],
+          "speed": 4
+        },
+        {
+          "johnnotes": "DOUBLE WEAVE",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [14],
+          "pattern": "ZigZagWave",
+          "nbPasses": 2,
+          "enemiesPerPass": [7, 7],
+          "offsetsPasses": [{"x":0, "y":10}, {"x":500, "y":10}],
+          "arrayToShoot": [1,0,0,1],
+          "delayBulletPerPass": [55],
+          "points": [
+            [{ "x":647, "y":-37},{ "x":651, "y":144},{ "x":953, "y":136},{ "x":959, "y":352},{ "x":475, "y":354},{ "x":343, "y":536},{ "x":110, "y":530},{ "x":284, "y":222},{ "x":-100, "y":213}],
+            [{ "x":1184, "y":263},{ "x":961, "y":259},{ "x":714, "y":556},{ "x":495, "y":563},{ "x":299, "y":333},{ "x":522, "y":30},{ "x":748, "y":27},{ "x":745, "y":28},{ "x":846, "y":158},{ "x":735, "y":296},{ "x":-100, "y":285}]
+            ],
+          "speed": 4
+        },
+        {
+          "johnnotes": "SINGLE HIGH HEAVY",
+          "enemyTypes": ["TieFighterTrench"],
+          "nbEnemiesPerType": [1],
+          "pattern": "FlybyWave",
+          "positionTheyGoUpPerPass": [-100],
+          "nbPasses": 1,
+          "enemiesPerPass": [1],
+          "offsetsPasses": [{"x":0, "y":50}],
+          "arrayToShoot": [1,1,1,1,1],
+          "delayBulletPerPass": [20],
+          "speed": 4
+        },
+        {
+          "johnnotes": "TROOPSHIP MEGAGEDDON",
+          "enemyTypes": ["TieFighter", "LandingShip"],
+          "nbEnemiesPerType": [18, 2],
+          "pattern": "TankDefenceWave",
+          "nbPasses": 2,
+          "radiusPerPass": [150, 150],
+          "enemiesPerPass": [[9, 1], [9, 1]],
+          "spread": 0.785,
+          "nbGroupsBullet": 3,
+          "nbBulletsPerGroup": 3,
+          "arrayToShoot": [1,1],
+          "delayBulletPerPass": [180],
+          "howMuchDoTheyDisplace": [300, 250],
+          "offsetsPasses": [{"x":0, "y":160}, {"x":150, "y":400}]
+        },
+        {
+          "johnnotes": "FINAL MEGAGRESSION",
+          "enemyTypes": ["HeavyTieFighter360"],
+          "nbEnemiesPerType": [5],
+          "pattern": "ZigZagWave",
+          "type": "mirror",
+          "nbPasses": 1,
+          "enemiesPerPass": [5],
+          "offsetsPasses": [{"x":-10, "y":140}],
+          "arrayToShoot": [1,1,1],
+          "delayBulletPerPass": [30],
+          "points": [[{ "x":809, "y":676},{ "x":801, "y":500},{ "x":835, "y":382},{ "x":958, "y":269},{ "x":1019, "y":178},{ "x":996, "y":43},{ "x":927, "y":-3},{ "x":793, "y":-4},{ "x":716, "y":46},{ "x":680, "y":148},{ "x":684, "y":250},{ "x":713, "y":310},{ "x":760, "y":357},{ "x":774, "y":411},{ "x":755, "y":481},{ "x":685, "y":526},{ "x":609, "y":540},{ "x":538, "y":498},{ "x":509, "y":424},{ "x":521, "y":346},{ "x":560, "y":295},{ "x":607, "y":241},{ "x":633, "y":182},{ "x":623, "y":89},{ "x":570, "y":31},{ "x":498, "y":38},{ "x":420, "y":91},{ "x":405, "y":164},{ "x":423, "y":230},{ "x":456, "y":294},{ "x":469, "y":353},{ "x":451, "y":409},{ "x":408, "y":445},{ "x":335, "y":447},{ "x":253, "y":396},{ "x":199, "y":351},{ "x":121, "y":329},{ "x":-100, "y":321}]],
+          "speed": 4
+        },
+        {
+          "johnnotes": "SINGLE HIGH HEAVY",
+          "enemyTypes": ["TieFighterTrench"],
+          "nbEnemiesPerType": [3],
+          "pattern": "FlybyWave",
+          "positionTheyGoUpPerPass": [-100],
+          "nbPasses": 1,
+          "enemiesPerPass": [3],
+          "offsetsPasses": [{"x":0, "y":300}, {"x":50, "y":300}, {"x":100, "y":300}],
+          "arrayToShoot": [1,1,1,1,1,1,1],
+          "delayBulletPerPass": [60],
+          "speed": 6
+        }
+     ],
+
+
+
+
+
+	[
+        {
+          "johnnotes": "MISSION 2 TRENCH RUN!!",
+          "johnnotes": "FROM BEHIND ATTACK",
+          "clemnotes": "do not forget the 'nbTimeToFire' property",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [3],
+          "nbTimeToFire": 1,
+          "pattern": "ChasingWave",
+          "type": "mirror",
+          "nbPasses": 1,
+          "enemiesPerPass": [3],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,1,1,0,0,1,1],
+          "delayBulletPerPass": [30],
+          "points": [
+            [{ "x":-36, "y":487},{ "x":142, "y":483},{ "x":304, "y":482},{ "x":489, "y":477},{ "x":656, "y":471},{ "x":822, "y":475},{ "x":1000, "y":463},{ "x":1095, "y":427},{ "x":1139, "y":365},{ "x":1149, "y":276},{ "x":1134, "y":211},{ "x":1081, "y":173},{ "x":1011, "y":168},{ "x":946, "y":193},{ "x":904, "y":240},{ "x":853, "y":271},{ "x":776, "y":287},{ "x":-100, "y":287}]
+          ],
+          "speed": 6
+        },
+     {
+       "enemyTypes": ["Obstacle"],
+       "nbEnemiesPerType": [],
+       "pattern": "ObstaclesWave",
+       "nbPasses": 1
+     },
+        {
+          "johnnotes": "MISSION 2 TRENCH RUN!!",
+          "johnnotes": "FROM BEHIND ATTACK",
+          "clemnotes": "do not forget the 'nbTimeToFire' property",
+          "enemyTypes": ["TieFighter"],
+          "nbEnemiesPerType": [5],
+          "nbTimeToFire": 1,
+          "pattern": "ChasingWave",
+          "type": "mirror",
+          "nbPasses": 1,
+          "enemiesPerPass": [5],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,0,0,1,0,1,0,0,1,1],
+          "delayBulletPerPass": [30],
+          "points": [
+            [{ "x":-43, "y":33},{ "x":71, "y":72},{ "x":146, "y":160},{ "x":194, "y":305},{ "x":216, "y":418},{ "x":266, "y":524},{ "x":350, "y":593},{ "x":434, "y":610},{ "x":554, "y":605},{ "x":709, "y":593},{ "x":833, "y":550},{ "x":1013, "y":453},{ "x":1074, "y":368},{ "x":1101, "y":279},{ "x":1099, "y":199},{ "x":1051, "y":145},{ "x":982, "y":108},{ "x":867, "y":100},{ "x":755, "y":139},{ "x":668, "y":211},{ "x":602, "y":253},{ "x":500, "y":275},{ "x":317, "y":282},{ "x":-100, "y":280}]
+          ],
+          "speed": 6
+        },
+        {
+          "enemyTypes": ["Obstacle"],
+          "nbEnemiesPerType": [],
+          "pattern": "ObstaclesWave",
+          "nbPasses": 4
+        },
+        {
+          "johnnotes": "MISSION 2 TRENCH RUN!!",
+          "johnnotes": "FROM BEHIND ATTACK",
+          "clemnotes": "do not forget the 'nbTimeToFire' property",
+          "enemyTypes": ["TieFighter360"],
+          "nbEnemiesPerType": [7],
+          "nbTimeToFire": 1,
+          "pattern": "ChasingWave",
+          "type": "mirror",
+          "nbPasses": 1,
+          "enemiesPerPass": [7],
+          "offsetsPasses": [{"x":0, "y":0}],
+          "arrayToShoot": [1,0,0,1,0,1,0,0,1,1],
+          "delayBulletPerPass": [30],
+          "points": [
+            [{ "x":-38, "y":482},{ "x":172, "y":479},{ "x":392, "y":474},{ "x":612, "y":475},{ "x":707, "y":438},{ "x":779, "y":351},{ "x":837, "y":233},{ "x":882, "y":115},{ "x":866, "y":17},{ "x":797, "y":-28},{ "x":676, "y":-45},{ "x":572, "y":-11},{ "x":517, "y":81},{ "x":528, "y":193},{ "x":596, "y":236},{ "x":718, "y":245},{ "x":872, "y":241},{ "x":973, "y":256},{ "x":1047, "y":312},{ "x":1081, "y":441},{ "x":1077, "y":532},{ "x":1053, "y":613},{ "x":965, "y":663},{ "x":834, "y":675},{ "x":715, "y":615},{ "x":645, "y":535},{ "x":561, "y":505},{ "x":388, "y":509},{ "x":169, "y":506},{ "x":-100, "y":506}]
+          ],
+          "speed": 7
+        },
+        {
+          "enemyTypes": ["Obstacle"],
+          "nbEnemiesPerType": [],
+          "pattern": "DestroySwitchWave"
+        }
+      ]
+
+
+
+
+    ]
+  },
+  "third": {
+    "endless": true,
+    "description": "",
+    "imageUnlocked": "mission_endless.png",
+    "imageLocked": "mission_endless_lock.png",
+    "name": "STR_MISSION3_NAME",
+    "waves":[]
+  },
+  "tuto": {
+    "endless": true,
+    "description": "",
+    "imageUnlocked": "mission1_picture.png",
+    "imageLocked": "mission1_picture_lock.png",
+    "name": "STR_MISSION3_NAME",
+    "steps":[
+      {
+        "info": {
+          "desktop": "STR_TUTO_MOVE_SHIP_DESKTOP",
+          "mobile": "STR_TUTO_MOVE_SHIP_MOBILE"
+        },
+        "image": {
+          "desktop": "tutorial_move_destop.png",
+          "mobile": "tutorial_move_mobile.png"
+        },
+        "signal": "onShipMoveFast"
+      },
+      {
+        "info": {
+          "desktop": "STR_TUTO_BIG_LASER_DESKTOP",
+          "mobile": "STR_TUTO_BIG_LASER_MOBILE"
+        },
+        "image": {
+          "desktop": "tutorial_laser_destop.png",
+          "mobile": "tutorial_laser_mobile.png"
+        },
+        "signal": "onSuperLaserUsed"
+      },
+      {
+        "info": {
+          "desktop": "STR_TUTO_COINS_DESKTOP",
+          "mobile": "STR_TUTO_COINS_MOBILE"
+        },
+        "image": {
+          "desktop": "tutorial_shop.png",
+          "mobile": "tutorial_shop.png"
+        },
+        "signal": "onShipDestroyed"
+      },
+      {
+        "info": {
+          "desktop": "STR_TUTO_PICKUPS_DESKTOP",
+          "mobile": "STR_TUTO_PICKUPS_MOBILE"
+        },
+        "image": {
+          "desktop": "tutorial_icons.png",
+          "mobile": "tutorial_icons.png"
+        },
+        "signal": "onShipWithPickupDestroyed"
+      }
+    ]
+  }
+}

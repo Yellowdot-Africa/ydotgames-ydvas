@@ -1,0 +1,183 @@
+{
+    "strings": {
+        "//!\\ IMPORTANT NOTES ---- //!\\ ": "for the texts using the font 'Star Jedi', always write in little character (no caps)",
+
+        "STR_LOADING": "LOADING",
+
+        "STR_EARNED_TROPHY" : "You just earned a trophy: ",
+        "STR_SAVE_NAME": "SAVE NAME",
+
+        "STR_TOKEN_TUESDAY": "It's Token Tuesday - All Arcade tokens are worth double today",
+
+        "STR_WOOKIE_WEDNESDAY": "It's Wookiee Wednesday - All Coins are worth double today",
+
+        "STR_SELECT_SCREEN" : "SELECT MISSION",
+        "STR_SELECT_GAME_1" : "1st Mission",
+        "STR_SELECT_GAME_2" : "2nd Mission",
+        "STR_SELECT_GAME_3" : "Simulation Mode",
+
+        "STR_ARCADE_SPEND" : "Go to the Star Wars Arcade to spend your tokens",
+        "STR_GOALS_COMPLETE" : " Complete!",
+
+        "STR_SHOP_OWNED": "OWNED",
+
+        "FIRST_ARCADE_TOKEN": "Arcade Token Collected! - spend it in the Arcade!",
+
+        "STR_OVERLAY_SHOP": "Upgrades",
+
+        "STR_OVERLAY_TUTORIAL": "How to Play",
+
+        "STR_OVERLAY_COMPLETION": "RESULTS",
+        "STR_LEADERBOARD_NO_DATA": "BE THE FIRST TO SUBMIT A SCORE!",
+        "STR_OVERLAY_GAME_FINISHED_TITLE": "GAME FINISHED",
+        "STR_OVERLAY_GAMEOVER": "Game Over",
+
+        "STR_OVERLAY_LEADERBOARD": "Leaderboard",
+        "STR_OVERLAY_LEADERBOARD_INFO": "YOUR BEST SCORE",
+
+        "STR_OVERLAY_SUBMIT": "Enter Name",
+        "STR_OVERLAY_NAME": "ENTER NAME",
+        "STR_OVERLAY_SUBMIT_INFOS": "SUBMIT YOUR SCORE",
+        "STR_OVERLAY_HIGHSCORE": "High Score",
+        "STR_OVERLAY_HIGHSCORE_DAY": "TODAY",
+        "STR_OVERLAY_HIGHSCORE_WEEK": "THIS WEEK",
+        "STR_OVERLAY_HIGHSCORE_ALL_TIME": "ALL TIME",
+        "STR_OVERLAY_HIGHSCORE_SCORE": "YOUR SCORE:",
+        "STR_OVERLAY_HIGHSCORE_TIME": "YOUR TIME:",
+        "STR_OVERLAY_HIGHSCORE_INFO": "SUBMIT YOUR SCORE",
+        "STR_OVERLAY_CHALLENGES": "Challenges",
+        "STR_OVERLAY_CHALLENGES_INFO": "CHALLENGES COMPLETE",
+        "STR_OVERLAY_PAUSE": "Pause",
+
+
+        "STR_GAME_SCORE": "SCORE:",
+        "STR_GAME_SUBMIT": "SUBMIT SCORE",
+
+        "STR_STARWARS_ARCADE": "STAR WARS ARCADE",
+        "STR_BUTTON_ARCADE": "Star Wars Arcade",
+        "STR_BUTTON_ROOM": "My Star Wars Room",
+        "STR_BUTTON_REBELS": "",
+        "STR_BUTTON_FIGHTER": "",
+        "STR_BUTTON_YODA": "",
+
+        "STR_HOWTOPLAY_1_DESKTOP": "Move your MOUSE or use ARROW KEYS to move",
+        "STR_HOWTOPLAY_2_DESKTOP": "Hold MOUSE BUTTON or SPACEBAR to charge Laser Cannon",
+        "STR_HOWTOPLAY_3_DESKTOP": "Collect PICK-UPS for extra weapons and abilities",
+        "STR_HOWTOPLAY_4_DESKTOP": "In Simulation mode, pick up icon to change zone",
+        "STR_HOWTOPLAY_5_DESKTOP": "Earn a new Trophy for every 10 Challenges Completed",
+        "STR_HOWTOPLAY_6_DESKTOP": "Click top right icon \n or press 'P' to pause the game",
+        "STR_HOWTOPLAY_1_MOBILE": "Touch and move your finger to pilot ship",
+        "STR_HOWTOPLAY_2_MOBILE": "Touch and HOLD to charge Laser Cannon! Release to fire",
+        "STR_HOWTOPLAY_3_MOBILE": "Collect PICK-UPS for extra weapons and abilities",
+        "STR_HOWTOPLAY_4_MOBILE": "In Simulation mode, pick up this icon to change zone",
+        "STR_HOWTOPLAY_5_MOBILE": "Earn a new Trophy every 10 Challenges Completed",
+        "STR_HOWTOPLAY_6_MOBILE": "Tap on the top right icon to pause the the game",
+
+        "STR_YOUR_SCORE": "Your Score:",
+
+        "firstTimeShop": "Buy new upgrades for your X-wing",
+        "firstTimeShopItemAvailable": "You've earned enough credits - click the trolley to upgrade your X-wing",
+        "continue": "You can continue to play in Simulation mode!",
+
+        "trophies": "See Challenges for you to complete!",
+        "trophies2": "Earn a new trophy for every 10 challenges Completed!",
+        "trophies3": "Check out your trophies in the Star Wars Arcade!",
+
+        "STR_PAUSED_TITLE": "Paused",
+
+
+        "STR_TROPHY_DURASTEEL" : " You won the Durasteel Trophy",
+        "STR_TROPHY_BRONZE" : " You won the Bronze Trophy",
+        "STR_TROPHY_SILVER" : " You won the Silver Trophy",
+        "STR_TROPHY_GOLD" : " You won the Gold Trophy",
+
+        "STR_POP_UP_COMPLETE" : "Completed",
+
+        "STR_GOALS_LEVEL_1_TITLE" : "---- leave empty",
+
+
+        "STR_DISTANCE":"DISTANCE: ",
+
+        "STR_SHOP_HEALTH_1" : "Health",
+        "STR_SHOP_HEALTH_2" : "Level 2 - Increase Health",
+        "STR_SHOP_HEALTH_3" : "Level 3 - Increase Health",
+        "STR_SHOP_HEALTH_4" : "Level 4 - Increase Health",
+
+        "STR_SHOP_LASER_1" : "Laser Cannon",
+        "STR_SHOP_LASER_2" : "Level 2 - Increase strength of Cannon",
+        "STR_SHOP_LASER_3" : "Level 3 - Increase strength of Cannon",
+        "STR_SHOP_LASER_4" : "Level 4 - Increase strength of Cannon",
+
+        "STR_SHOP_FREQUENCY_1" : "Rate of fire",
+        "STR_SHOP_FREQUENCY_2" : "Level 2 - Increases rate of fire",
+        "STR_SHOP_FREQUENCY_3" : "Level 3 - Increases rate of fire",
+        "STR_SHOP_FREQUENCY_4" : "Level 4 - Increases rate of fire",
+
+        "STR_SHOP_HEALTH": "X-WING HEALTH",
+        "STR_SHOP_LASER": "LASER CANNON POWER",
+        "STR_SHOP_FREQUENCY": "SHOT FREQUENCY",
+        "STR_MISSION1_NAME" : "Battle on Takodana",
+        "STR_MISSION2_NAME" : "Starkiller Base Assault",
+        "STR_MISSION3_NAME" : "Simulation Mode",
+        "STR_HIT" : "HIT:",
+        "STR_MISSION_COMPLETE" : "Mission Complete",
+        "STR_MISS" : "MISS:",
+        "STR_SCORE" : "SCORE ",
+        "STR_COINS" : "COINS ",
+        "STR_HEALTH" : "HEALTH",
+        "STR_POWER_CHARGE" : "POWER CHARGE",
+
+        "STR_PICKUPS_INFO_HEART": "Health Repair",
+        "STR_PICKUPS_INFO_ROCKET": "Missiles",
+        "STR_PICKUPS_INFO_SHIELD": "Deflector Shield",
+        "STR_PICKUPS_INFO_BROWINGS": "Blue Squadron",
+        "STR_PICKUPS_INFO_HHANGERCOIN": "Arcade Token",
+        "STR_PICKUPS_INFO_SPREADFIRE": "Blaster Cannon",
+        "STR_PICKUPS_INFO_SLOWMO": "Slow Motion",
+        "STR_PICKUPS_INFO_GLITCH": "Simulation Change",
+
+        "STR_TUTO_LASER_HELP_TEXT" : "HOLD",
+        "STR_CRITICAL_HIT" : "Critical Hit",
+        "STR_MISSION_COMPLETE" : "Mission Complete",
+        "STR_MISSION_COMPLETE_CONGRATS" : "congratulations",
+
+
+        "STR_OVERLAY_LEVEL_CLEAR" : "LEVEL CLEAR",
+        "STR_SCORE_OVERLAY" : "YOUR SCORE",
+        "STR_COINS_X2" : "x2",
+        "STR_COMBO_NONE" : "+NONE",
+        "STR_COMBO_FLIP" : "+STYLE",
+        "STR_COMBO_ENEMY_DIE" : "+HIT",
+        "STR_COMBO_ROADIE_RUN" : "+ROADIE RUN",
+        "STR_COMBO_DOUBLE_FLIP" : "+DOUBLE FLIP",
+        "STR_COMBO_TRIPLE_FLIP" : "+TRIPLE FLIP",
+        "STR_COMBO_WALL_JUMP" : "+WALL JUMP",
+        "STR_COMBO_VINE_SWING" : "+VINE SWING",
+
+        "STR_WARNING_OBSTACLES" : "Caution! Avoid structures!",
+        "STR_WARNING_TIES_BEHIND" : "Watch out! Incoming TIE Fighters!",
+
+        "STR_SELECT_SCREEN_HIGHSCORE": "HIGH SCORE",
+        "STR_TUTO_MOVE_SHIP_MOBILE" : "Move your finger on the screen to move",
+        "STR_TUTO_MOVE_SHIP_DESKTOP" : "Move MOUSE or ARROWS to move",
+        "STR_TUTO_BIG_LASER_MOBILE" : "Touch and hold to charge Laser Cannon",
+        "STR_TUTO_BIG_LASER_DESKTOP" : "Click and hold to charge Laser Cannon",
+        "STR_TUTO_COINS_MOBILE" : "Collect coins to buy X-wing upgrades",
+        "STR_TUTO_COINS_DESKTOP" : "Collect coins to buy X-wing upgrades",
+        "STR_TUTO_PICKUPS_MOBILE" : "Collect Power-Ups",
+        "STR_TUTO_PICKUPS_DESKTOP" : "Collect Power-Ups",
+        "STR_ENDLESS_NEW_HIGHSCORE" : "New Highscore",
+        "STR_ENDLESS_INTRO" : "Beat your Best Score: ",
+
+        "STR_DEFEND_CASTLE" : "Defend Maz's Castle",
+        "STR_DESTROY_SWITCHES" : "Destroy the Thermal Oscillator!",
+
+        "STR_TAKEDOWN_STARKILLER_BASE" : "take down starkiller base",
+
+        "STR_FIRST_TIME_ENDLESS" : "set a high score!",
+        "STR_MISSION_2_INTRO_STRAP" : "mission 2"
+
+
+
+    }
+}

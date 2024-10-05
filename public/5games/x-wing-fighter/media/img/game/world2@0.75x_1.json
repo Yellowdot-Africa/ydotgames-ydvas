@@ -1,0 +1,180 @@
+{"frames": {
+
+"env1_foreground_cloud2.png":
+{
+	"frame": {"x":1,"y":648,"w":436,"h":142},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":2,"w":436,"h":142},
+	"sourceSize": {"w":440,"h":146}
+},
+"env1_foreground_grass2.png":
+{
+	"frame": {"x":776,"y":826,"w":97,"h":150},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":1,"w":97,"h":150},
+	"sourceSize": {"w":97,"h":151}
+},
+"env1_stars_sky.png":
+{
+	"frame": {"x":1,"y":1,"w":812,"h":221},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":812,"h":221},
+	"sourceSize": {"w":812,"h":221}
+},
+"env1_strate_montaign_back.png":
+{
+	"frame": {"x":1,"y":502,"w":646,"h":103},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":646,"h":103},
+	"sourceSize": {"w":646,"h":103}
+},
+"env2_batiment_strate.png":
+{
+	"frame": {"x":439,"y":648,"w":272,"h":119},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":272,"h":119},
+	"sourceSize": {"w":272,"h":119}
+},
+"env2_lor_montaign.png":
+{
+	"frame": {"x":1,"y":607,"w":852,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":852,"h":39},
+	"sourceSize": {"w":852,"h":39}
+},
+"env2_ouret_shot.png":
+{
+	"frame": {"x":206,"y":944,"w":43,"h":25},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":1,"w":43,"h":25},
+	"sourceSize": {"w":43,"h":26}
+},
+"env2_strate1.png":
+{
+	"frame": {"x":1,"y":224,"w":608,"h":276},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":608,"h":276},
+	"sourceSize": {"w":608,"h":276}
+},
+"env2_structure_back.png":
+{
+	"frame": {"x":1,"y":944,"w":203,"h":74},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":203,"h":74},
+	"sourceSize": {"w":203,"h":74}
+},
+"env3_background_plateform.png":
+{
+	"frame": {"x":611,"y":224,"w":215,"h":194},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":215,"h":194},
+	"sourceSize": {"w":215,"h":194}
+},
+"env3_foreground_structure2.png":
+{
+	"frame": {"x":1,"y":792,"w":373,"h":150},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":373,"h":150},
+	"sourceSize": {"w":373,"h":150}
+},
+"smoke_last_world_00004.png":
+{
+	"frame": {"x":875,"y":771,"w":69,"h":154},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":15,"y":22,"w":69,"h":154},
+	"sourceSize": {"w":88,"h":191}
+},
+"smoke_last_world_00008.png":
+{
+	"frame": {"x":862,"y":598,"w":77,"h":171},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":8,"y":12,"w":77,"h":171},
+	"sourceSize": {"w":88,"h":191}
+},
+"touret_last_world_00003.png":
+{
+	"frame": {"x":376,"y":792,"w":145,"h":176},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":44,"y":3,"w":145,"h":176},
+	"sourceSize": {"w":197,"h":185}
+},
+"touret_last_world_00004.png":
+{
+	"frame": {"x":523,"y":769,"w":141,"h":176},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":44,"y":3,"w":141,"h":176},
+	"sourceSize": {"w":197,"h":185}
+},
+"touret_last_world_00005.png":
+{
+	"frame": {"x":815,"y":1,"w":137,"h":176},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":44,"y":3,"w":137,"h":176},
+	"sourceSize": {"w":197,"h":185}
+},
+"touret_last_world_00007.png":
+{
+	"frame": {"x":797,"y":420,"w":128,"h":176},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":44,"y":3,"w":128,"h":176},
+	"sourceSize": {"w":197,"h":185}
+},
+"touret_last_world_00008.png":
+{
+	"frame": {"x":828,"y":179,"w":117,"h":176},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":44,"y":3,"w":117,"h":176},
+	"sourceSize": {"w":197,"h":185}
+},
+"touret_last_world_00013.png":
+{
+	"frame": {"x":666,"y":826,"w":108,"h":176},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":44,"y":3,"w":108,"h":176},
+	"sourceSize": {"w":197,"h":185}
+},
+"touret_last_world_00023.png":
+{
+	"frame": {"x":649,"y":420,"w":146,"h":176},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":3,"w":146,"h":176},
+	"sourceSize": {"w":197,"h":185}
+},
+"touret_last_world_00024.png":
+{
+	"frame": {"x":713,"y":648,"w":147,"h":176},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":3,"w":147,"h":176},
+	"sourceSize": {"w":197,"h":185}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "world2@0.75x_1.png",
+	"format": "RGBA8888",
+	"size": {"w":953,"h":1019},
+	"scale": "0.75",
+	"smartupdate": "$TexturePacker:SmartUpdate:6fe09d306a37afc297b7f1832bada4e7:df4542fcef908a9742417a4075860aee:78c1bcd6945bbbf6c9658d83ae849dc7$"
+}
+}

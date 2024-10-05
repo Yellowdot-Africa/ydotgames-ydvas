@@ -1,14 +1,14 @@
 import axios from "axios";
 
-const gameApi = async (auth, count=4) => {
 
 
+const gameApi = async (auth, count = 4) => {
 
   try {
     const token = localStorage.getItem("authToken");
     if (!token) {
-        throw new Error("No auth token available");
-      }
+      throw new Error("No auth token available");
+    }
     const response = await axios.get(
       `https://ydvassdp.com:5001/api/YellowdotGames/YdotGames/GetHomePageGames?count=${count}`,
       {
@@ -27,11 +27,3 @@ const gameApi = async (auth, count=4) => {
 };
 
 export default gameApi;
-
-
-
-
-
-
-
-
