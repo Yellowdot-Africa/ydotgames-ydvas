@@ -2,6 +2,22 @@ import axios from "axios";
 
 const BASE_URL = "https://ydvassdp.com:5001/api/YellowdotGames";
 
+
+// export const createSubscriberProfile = async (auth, msisdn, nickname, avatarId) =>{
+//   try{
+//     const token = localStorage.getItem("authToken");
+
+//     if (!token) {
+//       throw new Error("No auth token available");
+//     }
+
+//     const response = await axios.post(
+//       `${BASE_URL}/CreateSubscriberProfile?msisdn=${msisdn}`,
+
+//     )
+//   }
+// }
+
 export const getSubscriberProfile = async (auth, msisdn) => {
   try {
     // const token = auth?.token;
