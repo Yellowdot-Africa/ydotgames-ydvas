@@ -1,10 +1,17 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState} from 'react';
 import { TriviaContext } from '../Context/TriviaContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Home from "../assets/Icons/home.png";
+import Leaderboard from "../assets/Icons/leaderboard.png";
+import Profile from "../assets/Icons/profile.png";
+
 
 const TriviaGames = () => {
   const { games, fetchGames, selectedGameId, setSelectedGameId } = useContext(TriviaContext);
   const navigate = useNavigate();
+  const [scrollDirection, setScrollDirection] = useState("null");
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+
 
   useEffect(() => {
     fetchGames(); 
@@ -15,9 +22,39 @@ const TriviaGames = () => {
     navigate(`/bigcash-trivia/${gameId}`);
   };
 
+  useEffect(() => {
+    let lastScrollTop = 0;
+
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop) {
+        setScrollDirection("down");
+      } else {
+        setScrollDirection("up");
+      }
+      setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollTop]);
+
+  const navStyle = {
+    position: "fixed",
+    bottom: scrollDirection === "down" ? "0px" : "0px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    transition: "bottom 0.5s ease",
+  };
+
+
+
   return (
     <>
-    <div className="flex flex-col items-center  min-h-screen bg-[#EFF3F5] p-4 pt-[100px]">
+    <div className="flex flex-col items-center   min-h-screen  h-[1040px] bg-[#EFF3F5] p-4 pt-[100px] md:w-[500px] md:mx-auto md:flex-col md:h-[1000px]">
       <h1 className="text-[30px] leading-[36px] font-mtn-brighter-bold font-bold text-center text-gray-800 mb-6">
         Choose a Trivia Category
       </h1>
@@ -26,12 +63,37 @@ const TriviaGames = () => {
           <div
             key={game.id}
             onClick={() => handleCategoryClick(game.id)}
-            className="cursor-pointer bg-white border rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:scale-105 p-4 text-center"
+            className="cursor-pointer bg-white  border rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:scale-105 p-4 text-center"
           >
             <h2 className="text-[20px] leading-[28px] font-mtn-brighter-medium font-medium text-gray-700">{game.name}</h2>
           </div>
         ))}
       </div>
+      <div className="fixed w-full flex justify-center ">
+          <div
+            style={navStyle}
+            className="bottom-0 backdrop-blur-sm mb-[15px] md:mb-[50px]   left-0px flex justify-between items-center w-[90%] h-[82px] mx-auto md:w-[402px] bg-darrk-gradient  rounded-b-[60px] pt-[12px] pb-[20px] px-[46px] "
+          >
+            <Link
+              to="/home"
+              className="bg-foot-nav-gradient rounded-[50px] w-[60px] h-[60px] flex items-center justify-center"
+            >
+              <img src={Home} alt="home" />
+            </Link>
+            <Link
+              to="/user-profile"
+              className="bg-[#FFCB05] rounded-[50px] w-[76px] h-[76px] flex items-center justify-center -mt-[40px]"
+            >
+              <img src={Profile} alt="profile" className="w-[40px] h-[40px]" />
+            </Link>
+            <Link
+              to="/leaderboard"
+              className="bg-foot-nav-gradient rounded-[50px] w-[60px] h-[60px] flex items-center justify-center"
+            >
+              <img src={Leaderboard} alt="leaderboard" />
+            </Link>
+          </div>
+        </div>
     </div>
     </>
   );
