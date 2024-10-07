@@ -60,7 +60,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
 
   useEffect(() => {
     if (msisdn) {
-      console.log("Updated MSISDN:", msisdn);
+      // console.log("Updated MSISDN:", msisdn);
      
       handleUpdateLeaderboardScore(msisdn, gameScore);
     }
@@ -121,7 +121,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
 
   // console.log("User Position:", userPosition);
   // console.log("leaderboard:", leaderboard);
-  console.log("msisdn:", msisdn);
+  // console.log("msisdn:", msisdn);
 
   // if (error) {
   //   return <div>Error: {error}</div>;

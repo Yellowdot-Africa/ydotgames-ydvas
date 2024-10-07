@@ -17,6 +17,7 @@ export const getTriviaGames = async (count) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching games:", error);
+    // throw error;
     return [];
   }
 };
@@ -70,7 +71,8 @@ export const submitAnswer = async (msisdn, questionId, submittedAnswer) => {
       return response.data; 
     } catch (error) {
       console.error("Error submitting answer:", error);
-      throw new Error('Error submitting answer'); 
+      throw new Error(`Error submitting answer: ${error.message}`);
+
     }
   };
   

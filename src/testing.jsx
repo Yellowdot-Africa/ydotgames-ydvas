@@ -3011,3 +3011,863 @@ export default QuestionScreen;
 
 // export default UserContext;
 // export const useUserContext = () => useContext(UserContext);
+
+
+// 
+
+
+
+// const handleNextQuestion = useCallback( async () => {
+//     setSelectedAnswer(null);
+//     setTimer(10);
+
+//     if (currentQuestionIndex < questions.length - 1) {
+//       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+//     } else {
+//       await finalizeGame();
+//     }
+//   },  [currentQuestionIndex, questions.length, finalizeGame]);
+
+// const handleTimerExpiration = useCallback (async () => {
+//     if (selectedAnswer === null) {
+//       console.log("Time's up! No answer was selected for the question.");
+//       setStatuses((prevStatuses) => {
+//         const newStatuses = [...prevStatuses];
+//         newStatuses[currentQuestionIndex] = "incorrect";
+//         return newStatuses;
+//       });
+
+//       await handleNextQuestion(false);
+//     }
+//   }, [selectedAnswer, currentQuestionIndex, handleNextQuestion])  
+
+// const handleAnswerClick = useCallback( async (answer) => {
+//     if (selectedAnswer) return;
+
+//     setSelectedAnswer(answer);
+//     const questionId = questions[currentQuestionIndex].id;
+//     const response = await handleAnswerSubmit(msisdn, questionId, answer);
+//     console.log("Submit answer response:", response);
+
+//     const isAnswerCorrect =
+//       answer === questions[currentQuestionIndex].rightAnswer;
+
+//     setStatuses((prevStatuses) => {
+//       const newStatuses = [...prevStatuses];
+//       newStatuses[currentQuestionIndex] = isAnswerCorrect
+//         ? "correct"
+//         : "incorrect";
+//       return newStatuses;
+//     });
+
+//     console.log("Updated statuses:", statuses);
+
+//     setScore((prevScore) => {
+//       let awardedPoints = 0;
+//       if (response && response.statusCode === "999") {
+//         const pointsMessage = response.message;
+//         awardedPoints = parseInt(pointsMessage.match(/\d+/)[0]);
+//       }
+//       return prevScore + awardedPoints;
+//     });
+
+//     setTimeout(() => {
+//       handleNextQuestion();
+//     }, 2000);
+//   },
+//   [selectedAnswer, currentQuestionIndex, questions, msisdn, handleAnswerSubmit, handleNextQuestion]
+//   );
+
+
+
+
+//   const finalizeGame = useCallback(async () => {
+//     const finalScore = await new Promise((resolve) => {
+//       setScore((prevScore) => {
+//         resolve(prevScore);
+//         return prevScore;
+//       });
+//     });
+
+//     // console.log("All questions answered. Final Score:", finalScore, statuses);
+//     console.log(statuses);
+//     await handleUpdateLeaderboardScore(msisdn, finalScore);
+
+//     setTimeout(() => {
+//       navigate("/result-page", {
+//         state: {
+//           score: finalScore,
+//           totalQuestions: questions.length,
+//           statuses: statuses,
+//         },
+//       });
+//     }, 2000);
+//   }, [msisdn, statuses, questions.length, navigate, handleUpdateLeaderboardScore]);
+
+// const handleNextQuestion = useCallback( async () => {
+//     setSelectedAnswer(null);
+//     setTimer(10);
+
+//     if (currentQuestionIndex < questions.length - 1) {
+//       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+//     } else {
+//       await finalizeGame();
+//     }
+//   },  [currentQuestionIndex, questions.length, finalizeGame]);
+
+// const handleTimerExpiration = useCallback (async () => {
+//     if (selectedAnswer === null) {
+//       console.log("Time's up! No answer was selected for the question.");
+//       setStatuses((prevStatuses) => {
+//         const newStatuses = [...prevStatuses];
+//         newStatuses[currentQuestionIndex] = "incorrect";
+//         return newStatuses;
+//       });
+
+//       await handleNextQuestion(false);
+//     }
+//   }, [selectedAnswer, currentQuestionIndex, handleNextQuestion]);  
+
+// const handleAnswerClick = useCallback( async (answer) => {
+//     if (selectedAnswer) return;
+
+//     setSelectedAnswer(answer);
+//     const questionId = questions[currentQuestionIndex].id;
+//     const response = await handleAnswerSubmit(msisdn, questionId, answer);
+//     console.log("Submit answer response:", response);
+
+//     const isAnswerCorrect =
+//       answer === questions[currentQuestionIndex].rightAnswer;
+
+//     setStatuses((prevStatuses) => {
+//       const newStatuses = [...prevStatuses];
+//       newStatuses[currentQuestionIndex] = isAnswerCorrect
+//         ? "correct"
+//         : "incorrect";
+//       return newStatuses;
+//     });
+
+//     console.log("Updated statuses:", statuses);
+
+//     setScore((prevScore) => {
+//       let awardedPoints = 0;
+//       if (response && response.statusCode === "999") {
+//         const pointsMessage = response.message;
+//         awardedPoints = parseInt(pointsMessage.match(/\d+/)[0]);
+//       }
+//       return prevScore + awardedPoints;
+//     });
+
+//     setTimeout(() => {
+//       handleNextQuestion();
+//     }, 2000);
+//   },
+//   [selectedAnswer, currentQuestionIndex, questions, msisdn, handleAnswerSubmit, handleNextQuestion]);
+
+
+
+  
+  
+
+// import { createContext, useState, useEffect, useContext } from 'react';
+// import { getTriviaGames,getTriviaQuestions, submitAnswer } from '../api/triviaApi';
+// import { TriviaAuthContext } from './TriviaAuthContext';
+
+// export const TriviaContext = createContext();
+
+// export const TriviaProvider = ({ children }) => {
+//   const { authToken } = useContext(TriviaAuthContext);
+//   const [games, setGames] = useState([]);
+//   const [questions, setQuestions] = useState([]);
+//   const [selectedGameId, setSelectedGameId] = useState(null);
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState(null);
+
+//   const fetchGames = async () => {
+//     setLoading(true);
+//     try {
+//       const response = await getTriviaGames(10);
+//       const sortedGames = response.data.sort((a, b) => a.name.localeCompare(b.name));
+
+//       setGames(sortedGames);
+//     } catch (error) {
+//         setError("Error fetching trivia games");
+//       console.error('Error fetching games:', error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const fetchQuestions = async (gameId) => {
+//     if (questions.length > 0) {
+//         // console.log(`Questions already fetched for gameId: ${gameId}`);
+//         return;
+//       }
+//     // console.log(`Fetching questions for gameId: ${gameId}`);
+//     setLoading(true);
+
+//     try {
+
+//         const response = await getTriviaQuestions(gameId);
+//         // console.log("Fetched Questions:", response.data);
+//         const structuredQuestions = response.data.map(question => ({
+//             id: question.id,
+//             text: question.text,
+//             rightAnswer: question.rightAnswer,
+//             answers: [question.rightAnswer, question.wrongAnswer]
+//         }));
+//         setQuestions(structuredQuestions);
+
+//     } catch (error) {
+//         setError("Error fetching trivia questions");
+
+//       console.error('Error fetching questions:', error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const handleAnswerSubmit = async (msisdn, questionId, submittedAnswer) => {
+//     try {
+//       const data = await submitAnswer(msisdn, questionId, submittedAnswer);
+//       return data;
+//     } catch (err) {
+//       setError(err.message);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchGames();
+//   }, []);
+
+//   useEffect(() => {
+//     if (selectedGameId) {
+//       fetchQuestions(selectedGameId);
+//     }
+//   }, [selectedGameId]);
+
+//   return (
+//     <TriviaContext.Provider
+//       value={{
+//         games,
+//         fetchGames,
+//         questions,
+//         selectedGameId,
+//         setSelectedGameId,
+//         fetchQuestions,
+//         handleAnswerSubmit,
+//         loading,
+//         error
+//       }}
+//     >
+//       {children}
+//     </TriviaContext.Provider>
+//   );
+// };
+
+
+
+
+
+
+// import React, { useState, useEffect, useContext, useCallback } from "react";
+// import { useNavigate, useParams } from "react-router-dom";
+// import Timer from "../assets/Icons/timer.svg";
+// import { LeaderboardContext } from "../Context/LeaderboardContext";
+// import { TriviaContext } from "../Context/TriviaContext";
+// import UserContext from "../Context/UserContext";
+// import { Circles } from "react-loader-spinner";
+// import { submitAnswer } from "../api/triviaApi";
+
+// const BigCashTrivia = () => {
+//   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+//   const [selectedAnswer, setSelectedAnswer] = useState(null);
+//   const [score, setScore] = useState(0);
+//   const [statuses, setStatuses] = useState([]);
+//   const [timer, setTimer] = useState(10);
+//   const navigate = useNavigate();
+
+//   const { msisdn } = useContext(UserContext);
+//   const { gameId } = useParams();
+//   const { handleUpdateLeaderboardScore } = useContext(LeaderboardContext);
+//   const {
+//     loading,
+//     fetchQuestions,
+//     questions,
+//     selectedGameId,
+//     handleAnswerSubmit,
+//   } = useContext(TriviaContext);
+
+//   useEffect(() => {
+//     if (selectedGameId) {
+//       fetchQuestions(selectedGameId);
+//     }
+//   }, [selectedGameId, fetchQuestions]);
+
+//   useEffect(() => {
+//     if (questions.length > 0) {
+//       setCurrentQuestionIndex(0);
+//       setSelectedAnswer(null);
+//       setTimer(10);
+//       setStatuses(Array(questions.length).fill(null));
+//     }
+//   }, [questions]);
+
+//   useEffect(() => {
+//     if (currentQuestionIndex >= questions.length) return;
+
+//     const timerId = setInterval(() => {
+//       setTimer((prev) => {
+//         if (prev <= 1) {
+//           clearInterval(timerId);
+//           handleTimerExpiration();
+//           return 10; // Reset timer
+//         }
+//         return prev - 1;
+//       });
+//     }, 1000);
+
+//     return () => clearInterval(timerId);
+//   }, [currentQuestionIndex]);
+
+//   const finalizeGame = useCallback(async () => {
+//     const finalScore = score; // Directly use score state here
+//     console.log(statuses);
+//     await handleUpdateLeaderboardScore(msisdn, finalScore);
+
+//     setTimeout(() => {
+//       navigate("/result-page", {
+//         state: {
+//           score: finalScore,
+//           totalQuestions: questions.length,
+//           statuses: statuses,
+//         },
+//       });
+//     }, 2000);
+//   }, [msisdn, statuses, questions.length, navigate, handleUpdateLeaderboardScore, score]);
+
+//   const handleNextQuestion = useCallback(async () => {
+//     setSelectedAnswer(null);
+//     setTimer(10);
+
+//     if (currentQuestionIndex < questions.length - 1) {
+//       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+//     } else {
+//       await finalizeGame();
+//     }
+//   }, [currentQuestionIndex, questions.length, finalizeGame]);
+
+//   const handleTimerExpiration = useCallback(async () => {
+//     if (selectedAnswer === null) {
+//       console.log("Time's up! No answer was selected for the question.");
+//       setStatuses((prevStatuses) => {
+//         const newStatuses = [...prevStatuses];
+//         newStatuses[currentQuestionIndex] = "incorrect";
+//         return newStatuses;
+//       });
+//       await handleNextQuestion();
+//     }
+//   }, [selectedAnswer, currentQuestionIndex, handleNextQuestion]);
+
+//   const handleAnswerClick = useCallback(async (answer) => {
+//     if (selectedAnswer) return;
+
+//     setSelectedAnswer(answer);
+//     const questionId = questions[currentQuestionIndex].id;
+//     const response = await handleAnswerSubmit(msisdn, questionId, answer);
+//     console.log("Submit answer response:", response);
+
+//     const isAnswerCorrect = answer === questions[currentQuestionIndex].rightAnswer;
+
+//     setStatuses((prevStatuses) => {
+//       const newStatuses = [...prevStatuses];
+//       newStatuses[currentQuestionIndex] = isAnswerCorrect
+//         ? "correct"
+//         : "incorrect";
+//       return newStatuses;
+//     });
+
+//     console.log("Updated statuses:", statuses);
+
+//     setScore((prevScore) => {
+//       let awardedPoints = 0;
+//       if (response && response.statusCode === "999") {
+//         const pointsMessage = response.message;
+//         awardedPoints = parseInt(pointsMessage.match(/\d+/)[0]);
+//       }
+//       return prevScore + awardedPoints;
+//     });
+
+//     setTimeout(() => {
+//       handleNextQuestion();
+//     }, 2000);
+//   }, [selectedAnswer, currentQuestionIndex, questions, msisdn, handleAnswerSubmit, handleNextQuestion]);
+
+//   if (loading || !questions || questions.length === 0) {
+//     return (
+//       <div className="flex items-center justify-center mx-auto mt-[50px]">
+//         <Circles color="black" height={50} width={50} />
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div className="flex flex-col items-center w-full min-h-screen bg-darrk-gradient text-white">
+//       <div className="mt-[60px] mb-[30px]">
+//         <div className="flex items-center justify-center bg-white w-[46px] h-[46px] border rounded-[50px]">
+//           <img className="img-timer" src={Timer} alt="timer" />
+//           <p className="text-black text-[18px] font-mtn-brighter-medium font-medium text-center">
+//             {timer}
+//           </p>
+//         </div>
+//       </div>
+
+//       <div className="p-4 text-center">
+//         <h2 className="text-[24px] text-white leading-[24px] font-bold font-mtn-brighter-bold text-center mb-[47px]">
+//           {questions[currentQuestionIndex]?.text || "No question available."}
+//         </h2>
+
+//         {/* Pagination Dots */}
+//         <div className="flex items-center justify-center mt-4 mb-[59px] gap-[25px] px-4">
+//           {questions.map((_, index) => (
+//             <div
+//               key={index}
+//               className={`w-3 h-3 rounded-full ${
+//                 statuses[index] === "correct"
+//                   ? "bg-[#82e180]"
+//                   : statuses[index] === "incorrect"
+//                   ? "bg-[#e37e80]"
+//                   : "bg-gray-500"
+//               }`}
+//             />
+//           ))}
+//         </div>
+
+//         <div className="flex flex-col gap-[21px]">
+//           {questions[currentQuestionIndex]?.answers?.map((answer, index) => (
+//             <button
+//               key={index}
+//               onClick={() => handleAnswerClick(answer)}
+//               className={`py-2 px-4 text-black rounded-[50px] w-[90vw] h-[60px] ${
+//                 selectedAnswer === answer
+//                   ? answer === questions[currentQuestionIndex].rightAnswer
+//                     ? "bg-[#82e180]"
+//                     : "bg-[#e37e80]"
+//                   : selectedAnswer &&
+//                     answer === questions[currentQuestionIndex].rightAnswer
+//                   ? "bg-[#82e180]"
+//                   : "bg-white"
+//               }`}
+//               disabled={selectedAnswer !== null}
+//             >
+//               {answer}
+//             </button>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default React.memo(BigCashTrivia);
+
+
+
+
+
+
+
+// import React, { useState, useEffect, useContext } from "react";
+// import { useNavigate, useParams } from "react-router-dom";
+// import Timer from "../assets/Icons/timer.svg";
+// import { LeaderboardContext } from "../Context/LeaderboardContext";
+// import { TriviaContext } from "../Context/TriviaContext";
+// import UserContext from "../Context/UserContext";
+// import { Circles } from "react-loader-spinner";
+// import { submitAnswer } from "../api/triviaApi";
+
+// const BigCashTrivia = () => {
+//   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+//   const [selectedAnswer, setSelectedAnswer] = useState([]);
+//   const [score, setScore] = useState(0);
+//   const [statuses, setStatuses] = useState([]);
+//   const [timer, setTimer] = useState(10);
+//   const navigate = useNavigate();
+
+//   const { msisdn } = useContext(UserContext);
+//   const { gameId } = useParams();
+//   const { handleUpdateLeaderboardScore } = useContext(LeaderboardContext);
+//   const {
+//     loading,
+//     fetchQuestions,
+//     questions,
+//     selectedGameId,
+//     handleAnswerSubmit,
+//   } = useContext(TriviaContext);
+
+//   useEffect(() => {
+//     if (selectedGameId) {
+//       fetchQuestions(selectedGameId);
+//     }
+//   }, [selectedGameId]);
+
+//   useEffect(() => {
+//     if (questions.length > 0) {
+//       setCurrentQuestionIndex(0);
+//       setSelectedAnswer(null);
+//       setTimer(10);
+//       setStatuses(Array(questions.length).fill(null));
+//     }
+//   }, [questions]);
+
+//   useEffect(() => {
+//     if (currentQuestionIndex >= questions.length) return;
+
+//     const timerId = setInterval(() => {
+//       setTimer((prev) => {
+//         if (prev <= 1) {
+//           clearInterval(timerId);
+//           handleTimerExpiration(null);
+//           return 10;
+//         }
+//         return prev - 1;
+//       });
+//     }, 1000);
+
+//     return () => clearInterval(timerId);
+//   }, [currentQuestionIndex]);
+
+//   const handleTimerExpiration = async () => {
+//     if (selectedAnswer === null) {
+//       console.log("Time's up! No answer was selected for the question.");
+//       setStatuses((prevStatuses) => {
+//         const newStatuses = [...prevStatuses];
+//         newStatuses[currentQuestionIndex] = "incorrect";
+//         return newStatuses;
+//       });
+
+//       await handleNextQuestion(false);
+//     }
+//   };
+
+//   const handleAnswerClick = async (answer) => {
+//     if (selectedAnswer) return;
+
+//     setSelectedAnswer(answer);
+//     const questionId = questions[currentQuestionIndex].id;
+//     const response = await handleAnswerSubmit(msisdn, questionId, answer);
+//     console.log("Submit answer response:", response);
+
+//     const isAnswerCorrect =
+//       answer === questions[currentQuestionIndex].rightAnswer;
+
+//     setStatuses((prevStatuses) => {
+//       const newStatuses = [...prevStatuses];
+//       newStatuses[currentQuestionIndex] = isAnswerCorrect
+//         ? "correct"
+//         : "incorrect";
+//       return newStatuses;
+//     });
+
+//     console.log("Updated statuses:", statuses);
+
+//     setScore((prevScore) => {
+//       let awardedPoints = 0;
+//       if (response && response.statusCode === "999") {
+//         const pointsMessage = response.message;
+//         awardedPoints = parseInt(pointsMessage.match(/\d+/)[0]);
+//       }
+//       return prevScore + awardedPoints;
+//     });
+
+//     setTimeout(() => {
+//       handleNextQuestion();
+//     }, 2000);
+//   };
+
+//   const handleNextQuestion = async () => {
+//     setSelectedAnswer(null);
+//     setTimer(10);
+
+//     if (currentQuestionIndex < questions.length - 1) {
+//       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+//     } else {
+//       await finalizeGame();
+//     }
+//   };
+
+//   const finalizeGame = async () => {
+//     const finalScore = await new Promise((resolve) => {
+//       setScore((prevScore) => {
+//         resolve(prevScore);
+//         return prevScore;
+//       });
+//     });
+
+//     console.log(statuses);
+//     await handleUpdateLeaderboardScore(msisdn, finalScore);
+
+//     setTimeout(() => {
+//       navigate("/result-page", {
+//         state: {
+//           score: finalScore,
+//           totalQuestions: questions.length,
+//           statuses: statuses,
+//         },
+//       });
+//     }, 2000);
+//   };
+
+//   if (loading || !questions || questions.length === 0) {
+//     return (
+//       <div className="flex items-center justify-center mx-auto mt-[50px]">
+//         <Circles color="black" height={50} width={50} />
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div className="flex flex-col items-center w-full min-h-screen bg-darrk-gradient text-white">
+//       <div className="mt-[60px] mb-[30px]">
+//         <div className="flex items-center justify-center bg-white w-[46px] h-[46px] border rounded-[50px]">
+//           <img className="img-timer" src={Timer} alt="timer" />
+//           <p className="text-black text-[18px] font-mtn-brighter-medium font-medium text-center">
+//             {timer}
+//           </p>
+//         </div>
+//       </div>
+
+//       <div className="p-4 text-center">
+//         <h2 className="text-[24px] text-white leading-[24px] font-bold font-mtn-brighter-bold text-center mb-[47px]">
+//           {questions[currentQuestionIndex]?.text || "No question available."}
+//         </h2>
+
+//         {/* Pagination Dots */}
+//         <div className="flex items-center justify-center mt-4 mb-[59px] gap-[25px] px-4">
+//           {questions.map((_, index) => (
+//             <div
+//               key={index}
+//               className={`w-3 h-3 rounded-full ${
+//                 statuses[index] === "correct"
+//                   ? "bg-[#82e180]"
+//                   : statuses[index] === "incorrect"
+//                   ? "bg-[#e37e80]"
+//                   : "bg-gray-500"
+//               }`}
+//             />
+//           ))}
+//         </div>
+
+//         <div className="flex flex-col gap-[21px]">
+//           {questions[currentQuestionIndex]?.answers?.map((answer, index) => (
+//             <button
+//               key={index}
+//               onClick={() => handleAnswerClick(answer)}
+//               className={`py-2 px-4 text-black rounded-[50px] w-[90vw] h-[60px] ${
+//                 selectedAnswer === answer
+//                   ? answer === questions[currentQuestionIndex].rightAnswer
+//                     ? "bg-[#82e180]"
+//                     : "bg-[#e37e80]"
+//                   : selectedAnswer &&
+//                     answer === questions[currentQuestionIndex].rightAnswer
+//                   ? "bg-[#82e180]"
+//                   : "bg-white"
+//               }`}
+//               disabled={selectedAnswer !== null}
+//             >
+//               {answer}
+//             </button>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default React.memo(BigCashTrivia);
+
+
+
+
+
+
+
+
+// import React, { useState, useEffect, useContext } from "react";
+// import { useNavigate, useParams } from "react-router-dom";
+// import Timer from "../assets/Icons/timer.svg";
+// import { LeaderboardContext } from "../Context/LeaderboardContext";
+// import { TriviaContext } from "../Context/TriviaContext";
+// import UserContext from "../Context/UserContext";
+// import { Circles } from "react-loader-spinner";
+
+// const BigCashTrivia = () => {
+//   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+//   const [selectedAnswer, setSelectedAnswer] = useState(null);
+//   const [score, setScore] = useState(0);
+//   const [statuses, setStatuses] = useState([]);
+//   const [timer, setTimer] = useState(10);
+//   const navigate = useNavigate();
+
+//   const { msisdn } = useContext(UserContext);
+//   const { gameId } = useParams();
+//   const { handleUpdateLeaderboardScore } = useContext(LeaderboardContext);
+//   const { loading, fetchQuestions, questions, selectedGameId, handleAnswerSubmit } = useContext(TriviaContext);
+
+//   useEffect(() => {
+//     if (selectedGameId) {
+//       fetchQuestions(selectedGameId);
+//     }
+//   }, [selectedGameId]);
+
+//   useEffect(() => {
+//     if (questions.length > 0) {
+//       setCurrentQuestionIndex(0);
+//       setSelectedAnswer(null);
+//       setTimer(10);
+//       setStatuses(Array(questions.length).fill(null));
+//     }
+//   }, [questions]);
+
+//   useEffect(() => {
+//     const timerId = setInterval(() => {
+//       setTimer((prev) => {
+//         if (prev <= 1) {
+//           clearInterval(timerId);
+//           handleNextQuestion(false); 
+//           return 10; 
+//         }
+//         return prev - 1;
+//       });
+//     }, 1000);
+
+//     return () => clearInterval(timerId);
+//   }, [currentQuestionIndex]);
+
+//   const handleAnswerClick = async (answer) => {
+//     if (selectedAnswer) return; 
+
+//     setSelectedAnswer(answer);
+//     const questionId = questions[currentQuestionIndex].id;
+//     const response = await handleAnswerSubmit(msisdn, questionId, answer);
+//     console.log("Submit answer response:", response);
+
+//     const isAnswerCorrect = answer === questions[currentQuestionIndex]?.rightAnswer;
+    
+//     setStatuses((prevStatuses) => {
+//       const newStatuses = [...prevStatuses];
+//       newStatuses[currentQuestionIndex] = isAnswerCorrect ? "correct" : "incorrect";
+//       console.log("Updated statuses:", newStatuses);
+//       return newStatuses;
+//     });
+
+//     if (response && response.statusCode === "999") {
+//       const pointsMessage = response.message;
+//       const awardedPoints = parseInt(pointsMessage.match(/\d+/)[0]);
+//       console.log(`Awarded Points: ${awardedPoints}`);
+//       setScore((prevScore) => prevScore + awardedPoints);
+//     } else {
+//       console.error("Failed to submit answer:", response);
+//     }
+
+//     setTimeout(() => {
+//       handleNextQuestion(isAnswerCorrect);
+//     }, 2000);
+//   };
+
+//   const handleNextQuestion = (answeredCorrectly) => {
+//     setSelectedAnswer(null);
+//     setTimer(10); 
+
+//     if (currentQuestionIndex < questions.length - 1) {
+//       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+//     } else {
+//       console.log("All questions answered. Final Score:", score);
+//       handleUpdateLeaderboardScore(msisdn, score);
+
+//       setTimeout(() => {
+//         navigate("/result-page", {
+//           state: {
+//             score: score,
+//             totalQuestions: questions.length,
+//             statuses: [...statuses],
+//           },
+//         });
+//       }, 2000);
+//     }
+//   };
+
+//   if (loading || !questions || questions.length === 0) {
+//     return (
+//       <div className="flex items-center justify-center mx-auto mt-[50px]">
+//         <Circles color="black" height={50} width={50} />
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div className="flex flex-col items-center w-full min-h-screen bg-darrk-gradient text-white">
+//       <div className="mt-[60px] mb-[30px]">
+//         <div className="flex items-center justify-center bg-white w-[46px] h-[46px] border rounded-[50px]">
+//           <img className="img-timer" src={Timer} alt="timer" />
+//           <p className="text-black text-[18px] font-mtn-brighter-medium font-medium text-center">
+//             {timer}
+//           </p>
+//         </div>
+//       </div>
+
+//       <div className="p-4 text-center">
+//         <h2 className="text-[24px] text-white leading-[24px] font-bold font-mtn-brighter-bold text-center mb-[47px]">
+//           {questions[currentQuestionIndex]?.text || "No question available."}
+//         </h2>
+
+//         {/* Pagination Dots */}
+//         <div className="flex items-center justify-center mt-4 mb-[59px] gap-[25px] px-4">
+//           {questions.map((_, index) => (
+//             <div
+//               key={index}
+//               className={`w-3 h-3 rounded-full ${
+//                 statuses[index] === "correct"
+//                   ? "bg-[#82e180]"
+//                   : statuses[index] === "incorrect"
+//                   ? "bg-[#e37e80]"
+//                   : "bg-gray-500"
+//               }`}
+//             />
+//           ))}
+//         </div>
+
+//         <div className="flex flex-col gap-[21px]">
+//           {questions[currentQuestionIndex].answers.map((answer, index) => (
+//             <button
+//               key={index}
+//               onClick={() => handleAnswerClick(answer)}
+//               className={`py-2 px-4 text-black rounded-[50px] w-[90vw] h-[60px] ${
+//                 selectedAnswer === answer
+//                   ? answer === questions[currentQuestionIndex].rightAnswer
+//                     ? "bg-[#82e180]"
+//                     : "bg-[#e37e80]"
+//                   : selectedAnswer &&
+//                     answer === questions[currentQuestionIndex].rightAnswer
+//                   ? "bg-[#82e180]"
+//                   : "bg-white"
+//               }`}
+//               disabled={selectedAnswer !== null}
+//             >
+//               {answer}
+//             </button>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default React.memo(BigCashTrivia);
+
+
+
+
+
+
+  

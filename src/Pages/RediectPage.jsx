@@ -41,7 +41,7 @@ if (cli) {
     const decodedCli = atob(cli);
     setMsisdn(decodedCli); 
     localStorage.setItem("cli", decodedCli);
-    console.log("Decoded CLI:", decodedCli);
+    // console.log("Decoded CLI:", decodedCli);
     checkSubscription(decodedCli, sid);
   } else {
     console.error("CLI parameter is missing.");

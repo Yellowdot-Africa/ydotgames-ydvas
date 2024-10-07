@@ -130,13 +130,13 @@ const HomePage = () => {
       const msisdn = userProfile?.msisdn || storedMsisdn;
       if (!msisdn) {
         setError("MSISDN is required");
-        console.log("MSISDN is required");
+        // console.log("MSISDN is required");
         return;
       }
       const nickname = msisdn;
-      console.log("avatar saved", avatarId);
+      // console.log("avatar saved", avatarId);
 
-      console.log("avatar saved in storage", localStorage);
+      // console.log("avatar saved in storage", localStorage);
       localStorage.setItem("selectedAvatar", selectedAvatar);
 
       await handleUpdateSubscriberProfile(msisdn, nickname, avatarId);
@@ -159,51 +159,98 @@ const HomePage = () => {
         return score ? Number(score) : 0;
       },
     },
+
+    templeQuest: {
+      url: "/temple-quest/index.html",
+      localStorageKey: "inl-tmpl-qst",
+
+      // Get the current session score by subtracting PlayerCoinsAtStart from PlayerCoins
+      getScore: (data) => {
+        const playerCoins = data?.PlayerCoins || 0;
+        const playerCoinsAtStart = data?.PlayerCoinsAtStart || 0;
+
+        // Calculate the current score by subtracting the initial coins from the current coins
+        const currentScore = playerCoins - playerCoinsAtStart;
+
+        // If the score is negative (which shouldn't happen), return 0
+        return currentScore > 0 ? currentScore : 0;
+      },
+    },
+
     skateRush: {
       url: "/skate-rush/index.html",
-      localStorageKey: "skateRushScore",
-      getScore: (data) => {
-        const scoresArray = data ? data.split(",").map(Number) : [];
-        return Math.max(...scoresArray) || 0;
+      localStorageKey: "skaterushv4",
+
+      // Method to get the highest score
+      getScore: () => {
+        const localStorageScore = localStorage.getItem("skaterushv4");
+
+        // Convert stored string to an array of numbers
+        const scoresArray = localStorageScore
+          ? localStorageScore.split(",").map(Number) // Convert to numbers
+          : [];
+
+        // Get the last score from the array
+        const lastScore =
+          scoresArray.length > 0 ? scoresArray[scoresArray.length - 1] : 0;
+
+        return lastScore; // Return the last score or 0 if array is empty
       },
-      // getScore: () => {
-      //   const score = localStorage.getItem("skateRushScore");
-      //   return score ? Number(score) : 0;
-      // },
+
+      // Method to set a new score
+      setScore: (newScore) => {
+        // Ensure the new score is a number and greater than zero
+        if (!isNaN(newScore) && newScore > 0) {
+          const currentScores = localStorage.getItem("skaterushv4");
+
+          // Parse the current scores or initialize an empty array
+          const scoresArray = currentScores
+            ? currentScores.split(",").map(Number) // Convert to numbers
+            : [];
+
+          // Add the new score to the array
+          scoresArray.push(Number(newScore));
+
+          // Update the localStorage with the new scores
+          localStorage.setItem("skaterushv4", scoresArray.join(","));
+        }
+      },
     },
+
     starWars: {
       url: "/star-wars-rogue/index.html",
       localStorageKey: "sw_boots_1.0",
       getScore: (data) => data?.arcade?.lastScore || 0,
     },
- 
-  templeRun: {
-    url: "/temple-run-2/index.html",
-    localStorageKey: "TR2_GAME_STATE",
-  
-    getScore: (data) => {
-      const currentScore = data?.currentDayDataFinal?.score || 0;
-      const lastSessionScore = parseFloat(localStorage.getItem('lastTempleRunScore')) || 0; // Ensure we parse it as a number
-  
-      const currentChallengeDate = data?.currentChallengeDate;
-      const lastPlayDate = localStorage.getItem('lastPlayDate');
-  
-      // Check if it's a new day, if so, reset the last session score
-      if (lastPlayDate !== currentChallengeDate) {
-        localStorage.setItem('lastTempleRunScore', 0);
-        localStorage.setItem('lastPlayDate', currentChallengeDate);
-      }
-  
-      // Calculate the session score
-      const sessionScore = currentScore - lastSessionScore;
-  
-      // Update the last session score
-      localStorage.setItem('lastTempleRunScore', currentScore);
-  
-      // Return the session score, rounded up to the nearest integer
-      return Math.ceil(sessionScore > 0 ? sessionScore : 0);
-    }
-  }
+
+    templeRun: {
+      url: "/temple-run-2/index.html",
+      localStorageKey: "TR2_GAME_STATE",
+
+      getScore: (data) => {
+        const currentScore = data?.currentDayDataFinal?.score || 0;
+        const lastSessionScore =
+          parseFloat(localStorage.getItem("lastTempleRunScore")) || 0; // Ensure we parse it as a number
+
+        const currentChallengeDate = data?.currentChallengeDate;
+        const lastPlayDate = localStorage.getItem("lastPlayDate");
+
+        // Check if it's a new day, if so, reset the last session score
+        if (lastPlayDate !== currentChallengeDate) {
+          localStorage.setItem("lastTempleRunScore", 0);
+          localStorage.setItem("lastPlayDate", currentChallengeDate);
+        }
+
+        // Calculate the session score
+        const sessionScore = currentScore - lastSessionScore;
+
+        // Update the last session score
+        localStorage.setItem("lastTempleRunScore", currentScore);
+
+        // Return the session score, rounded up to the nearest integer
+        return Math.ceil(sessionScore > 0 ? sessionScore : 0);
+      },
+    },
   };
 
   const handlePlay = (gameKey, msisdn) => {
@@ -215,15 +262,25 @@ const HomePage = () => {
     }
 
     const storedData = localStorage.getItem(game.localStorageKey);
-    console.log(`Stored score for ${gameKey}:`, storedData);
+    // console.log(`Stored score for ${gameKey}:`, storedData);
 
-    const parsedData = storedData ? JSON.parse(storedData) : null;
+    let parsedData;
+    try {
+      // Try to parse the data as JSON
+      parsedData = storedData ? JSON.parse(storedData) : null;
+    } catch (error) {
+      console.warn("Data is not in JSON format, handling as a string:", error);
+      // Handle SkateRush data as a comma-separated string
+      parsedData = storedData ? storedData.split(",") : null;
+    }
+
+    // If the game score is stored as JSON, use the game's getScore function
     const gameScore = game.getScore(parsedData);
 
     if (gameScore === undefined || gameScore === null) {
       console.error("Score not found in localStorage for", gameKey);
     }
-    console.log(`Best score for ${gameKey}:`, gameScore);
+    // console.log(`Best score for ${gameKey}:`, gameScore);
 
     setIframeSrc(game.url);
 
@@ -232,34 +289,35 @@ const HomePage = () => {
 
   const handleXwingPlay = () => {
     const gameScore = handlePlay("xWingFighter", msisdn);
-    console.log("X-Wing Fighter score:", gameScore);
+    // console.log("X-Wing Fighter score:", gameScore);
   };
 
   const handleSkatePlay = () => {
     const gameScore = handlePlay("skateRush", msisdn);
-    console.log("Skate Rush score:", gameScore);
+    // console.log("Skate Rush score:", gameScore);
   };
 
   const handleTemplePlay = () => {
-    const gameScore = handlePlay("templeRun", msisdn);
-    console.log("Temple run score:", gameScore);
+    const gameScore = handlePlay("templeQuest", msisdn);
+    // console.log("Temple run score:", gameScore);
   };
 
   const handleStarWarsPlay = () => {
     const gameScore = handlePlay("starWars", msisdn);
-    console.log("Star wars score:", gameScore);
+    // console.log("Star wars score:", gameScore);
   };
 
   const gameMappings = {
     "/x-wing-fighter/index.html": "xWingFighter",
     "/skate-rush/index.html": "skateRush",
     "/star-wars-rogue/index.html": "starWars",
-    "/temple-run-2/index.html": "templeRun",
+    // "/temple-run-2/index.html": "templeRun",
+    "/temple-quest/index.html": "templeQuest",
   };
 
   useEffect(() => {
     if (msisdn) {
-      console.log("Updated MSISDN:", msisdn);
+      // console.log("Updated MSISDN:", msisdn);
 
       handleUpdateLeaderboardScore(msisdn, gameScore);
     }
@@ -267,31 +325,39 @@ const HomePage = () => {
 
   const handleBackToApp = async (gameKey, msisdn) => {
     setIframeSrc("");
-    console.log("Game Key:", gameKey);
+    // console.log("Game Key:", gameKey);
     const game = gameConfig[gameKey];
     if (!game) {
       console.error("Game configuration not found for key:", gameKey);
       return;
     }
+
     const storedData = localStorage.getItem(game.localStorageKey);
-    const parsedData = storedData ? JSON.parse(storedData) : null;
-    console.log("Parsed Data:", parsedData);
-    // const gameScore = game.getScore(parsedData);
-    // const gameScore = parsedData ? parsedData.bestScore : 0;
-    // const gameScore = parsedData ? parsedData[game.getScore] : 0;
+    let parsedData;
+    try {
+      // Try to parse the data as JSON
+      parsedData = storedData ? JSON.parse(storedData) : null;
+    } catch (error) {
+      console.warn("Data is not in JSON format, handling as a string:", error);
+      // Handle SkateRush data as a comma-separated string
+      parsedData = storedData ? storedData.split(",") : null;
+    }
+
+    // console.log("Parsed Data:", parsedData);
+
     const gameScore = game.getScore(parsedData);
 
-    console.log("Game Score Retrieved:", gameScore);
+    // console.log("Game Score Retrieved:", gameScore);
 
     if (gameScore !== undefined && gameScore !== null) {
-      console.log("Stored score outside for bestScore:", gameScore);
+      // console.log("Stored score outside for bestScore:", gameScore);
       try {
-        console.log("MSISDN before updating leaderboard:", msisdn);
+        // console.log("MSISDN before updating leaderboard:", msisdn);
 
         await handleUpdateLeaderboardScore(msisdn, gameScore);
-        console.log("Leaderboard updated successfully with score:", gameScore);
+        // console.log("Leaderboard updated successfully with score:", gameScore);
         await fetchLeaderboardStanding();
-        console.log("Leaderboard standing with score:", gameScore);
+        // console.log("Leaderboard standing with score:", gameScore);
       } catch (error) {
         console.error("Error updating leaderboard:", error);
       }
@@ -302,13 +368,13 @@ const HomePage = () => {
 
   useEffect(() => {
     if (msisdn && gameScore) {
-      console.log("Updated MSISDN:", msisdn);
+      // console.log("Updated MSISDN:", msisdn);
       handleUpdateLeaderboardScore(msisdn, gameScore)
         .then(() => {
-          console.log(
-            "Leaderboard updated successfully with score:",
-            gameScore
-          );
+          // console.log(
+          //   "Leaderboard updated successfully with score:",
+          //   gameScore
+          // );
           fetchLeaderboardStanding();
         })
         .catch((error) => {
@@ -317,7 +383,7 @@ const HomePage = () => {
     }
   }, [msisdn, gameScore]);
 
-  console.log(msisdn);
+  // console.log(msisdn);
 
   return (
     <>
@@ -489,13 +555,13 @@ const HomePage = () => {
 
                 <div className="bg-custom-t-gradient flex flex-col items-center justify-center mt-[32px] rounded-[16px] w-[152px] h-[166px]">
                   <img
-                    src={TempleRun}
+                    src={TempleQuest}
                     alt="quest"
                     className="mb-[6px] -mt-[50px] w-[60px] h-[60px] rounded-[12px] object-cover"
                   />
 
                   <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
-                    TEMPLE RUN
+                    TEMPLE QUEST
                   </p>
                   <div className="flex items-center justify-center mt-[9.8px]">
                     <img src={StarYs} alt="start" />
@@ -508,7 +574,7 @@ const HomePage = () => {
                   <Link to="#">
                     <button
                       onClick={() =>
-                        handleTemplePlay(gameConfig.templeRun, msisdn)
+                        handleTemplePlay(gameConfig.templeQuest, msisdn)
                       }
                       className="bg-[#FFCB05] w-[108px] h-[30px] rounded-[15px] font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center flex items-center justify-center px-[30px] py-[6px] mx-auto mt-[12.87px]"
                     >
@@ -664,11 +730,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-
-
-
-
-
-
-

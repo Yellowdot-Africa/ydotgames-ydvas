@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<stringresources>
+    <languages>
+        <language>en</language>
+        <language>sk</language>
+        <language>es</language>
+        <language>cz</language>
+        <language>de</language>
+        <language>it</language>
+        <language>fr</language>
+        <language>pt</language>
+        <language>ru</language>
+        <language>tw</language>
+    </languages>
+    <strings>
+        <string id="YES" index="0">
+            <en>YES</en>
+            <sk/>
+            <es>SI</es>
+            <cz/>
+            <de>JA</de>
+            <it>SÌ</it>
+            <fr>OUI</fr>
+            <pt>SIM</pt>
+            <ru>ДА</ru>
+            <tw/>
+        </string>
+        <string id="NO" index="1">
+            <en>NO</en>
+            <sk/>
+            <es>NO</es>
+            <cz/>
+            <de>NEIN</de>
+            <it>NO</it>
+            <fr>NON</fr>
+            <pt>NÃO</pt>
+            <ru>НЕТ</ru>
+            <tw/>
+        </string>
+        <string id="PLEASE_WAIT" index="2">
+            <en>WAIT</en>
+            <sk/>
+            <es>ESPERA, POR FAVOR</es>
+            <cz/>
+            <de>BITTE WARTEN</de>
+            <it>ATTENDERE PREGO</it>
+            <fr>ATTENDEZ, S'IL VOUS PLAÎT</fr>
+            <pt>POR FAVOR, AGUARDE</pt>
+            <ru>ПОДОЖДИТЕ</ru>
+            <tw/>
+        </string>
+        <string id="CONTINUE" index="3">
+            <en>CONTINUE</en>
+            <sk/>
+            <es>CONTINUAR</es>
+            <cz/>
+            <de>WEITER</de>
+            <it>CONTINUA</it>
+            <fr>CONTINUER</fr>
+            <pt>CONTINUAR</pt>
+            <ru>ПРОДОЛЖИТЬ</ru>
+            <tw/>
+        </string>
+        <string id="NEW_GAME" index="4">
+            <en>NEW GAME</en>
+            <sk/>
+            <es>NUEVO JUEGO</es>
+            <cz/>
+            <de>NEUES SPIEL</de>
+            <it>NUOVO GIOCO</it>
+            <fr>NOUVELLE PARTIE</fr>
+            <pt>NOVO JOGO</pt>
+            <ru>НОВАЯ ИГРА</ru>
+            <tw/>
+        </string>
+        <string id="TOP_SCORE" index="5">
+            <en>TOP SCORE</en>
+            <sk/>
+            <es>MÁX. PUNTOS</es>
+            <cz/>
+            <de>HIGHSCORE</de>
+            <it>PUNTEGGIO PIÙ ALTO</it>
+            <fr>MEILLEUR SCORE</fr>
+            <pt>TOP ESCORE</pt>
+            <ru>РЕКОРД</ru>
+            <tw/>
+        </string>
+        <string id="OK" index="6">
+            <en>OK</en>
+            <sk/>
+            <es>OK</es>
+            <cz/>
+            <de>OK</de>
+            <it>OK</it>
+            <fr>OK</fr>
+            <pt>OK</pt>
+            <ru>ХОРОШО</ru>
+            <tw/>
+        </string>
+        <string id="ON" index="7">
+            <en>ON</en>
+            <sk/>
+            <es>SI</es>
+            <cz/>
+            <de>AN</de>
+            <it>ACC.</it>
+            <fr>ON</fr>
+            <pt>LIG.</pt>
+            <ru>ВКЛЮЧЕНА</ru>
+            <tw/>
+        </string>
+        <string id="OFF" index="8">
+            <en>OFF</en>
+            <sk/>
+            <es>NO</es>
+            <cz/>
+            <de>AUS</de>
+            <it>CHIUD.</it>
+            <fr>OFF</fr>
+            <pt>DESL.</pt>
+            <ru>ВЫКЛЮЧЕНА</ru>
+            <tw/>
+        </string>
+        <string id="MENU" index="9">
+            <en>MENU</en>
+            <sk/>
+            <es>MENÚ</es>
+            <cz/>
+            <de>MENU</de>
+            <it>MENU</it>
+            <fr>MENU</fr>
+            <pt>MENU</pt>
+            <ru>МЕНЮ</ru>
+            <tw/>
+        </string>
+        <string id="GAME_OVER" index="10">
+            <en>GAME OVER</en>
+            <sk/>
+            <es>FIN DE JUEGO</es>
+            <cz/>
+            <de>SPIELE ENDE</de>
+            <it>FINE DEL GIOCO</it>
+            <fr>GAME OVER</fr>
+            <pt>FIM DO JOGO</pt>
+            <ru>ИГРА ОКОНЧЕНА</ru>
+            <tw/>
+        </string>
+        <string id="SCORE_DONE" index="11">
+            <en>SCORE</en>
+            <sk/>
+            <es>PUNTUACIÓN</es>
+            <cz/>
+            <de>SCORE</de>
+            <it>PUNTEGGIO</it>
+            <fr>SCORE</fr>
+            <pt>PONTUAÇÃO</pt>
+            <ru>СЧЕТ</ru>
+            <tw/>
+        </string>
+        <string id="COST" index="12">
+            <en>COST:</en>
+            <sk/>
+            <es>PRECIO:</es>
+            <cz/>
+            <de>PREIS:</de>
+            <it>PREZZO:</it>
+            <fr>PRIX:</fr>
+            <pt>CUSTO:</pt>
+            <ru>СТОИМОСТЬ:</ru>
+            <tw/>
+        </string>
+        <string id="MONEY_CONF" index="13">
+            <en>YOU DO NOT HAVE ENOUGH COINS!</en>
+            <sk/>
+            <es>NO TIENES MONEDAS SUFICIENTES.</es>
+            <cz/>
+            <de>DU HAST NICHT GENUG MÜNZEN.</de>
+            <it>NON HAI ABBASTANZA MONETE!</it>
+            <fr>TU N´AS PAS ASSEZ DE PIÈCES !</fr>
+            <pt>VOCÊ NÃO TEM BASTANTE MOEDAS!</pt>
+            <ru>ВЫ НЕ ИМЕЕТЕ ДОСТАТОЧНО МОНЕТ!</ru>
+            <tw/>
+        </string>
+        <string id="BONUS_ITM" index="14">
+            <en>BONUS ITEM</en>
+            <sk/>
+            <es>OBJETO BONUS</es>
+            <cz/>
+            <de>BONUSGEGENSTAND</de>
+            <it>OGGETTO BONUS</it>
+            <fr>OBJETS BONUS</fr>
+            <pt>ITEM DE BÓNUS</pt>
+            <ru>БОНУСНЫЙ</ru>
+            <tw/>
+        </string>
+        <string id="TOTAL" index="15">
+            <en>TOTAL</en>
+            <sk/>
+            <es>TOTAL</es>
+            <cz/>
+            <de>INSGESAMT</de>
+            <it>TOTALE</it>
+            <fr>TOTAL</fr>
+            <pt>TOTAL</pt>
+            <ru>ВСЕГО</ru>
+            <tw/>
+        </string>
+        <string id="YOU_LOST" index="16">
+            <en>YOU LOST</en>
+            <sk/>
+            <es>¡HAS PERDIDO</es>
+            <cz/>
+            <de>SIE HABEN VERLOREN</de>
+            <it>HAI PERSO</it>
+            <fr>VOUS AVEZ PERDU </fr>
+            <pt>VOCÊ PERDEU</pt>
+            <ru>ВЫ ПРОИГРАЛИ</ru>
+            <tw/>
+        </string>
+        <string id="TOTAL_SC" index="17">
+            <en>TOTAL SCORE</en>
+            <sk/>
+            <es>PUNTUACIÓN TOTAL</es>
+            <cz/>
+            <de>GESAMTSCORE</de>
+            <it>PUNTEGGIO TOTALE</it>
+            <fr>SCORE TOTAL</fr>
+            <pt>PONTUAÇÃO TOTAL</pt>
+            <ru>ОБЩИЙ СЧЕТ</ru>
+            <tw/>
+        </string>
+        <string id="MONEY_LOST1" index="18">
+            <en>YOU LOST </en>
+            <sk/>
+            <es>¡HAS PERDIDO</es>
+            <cz/>
+            <de>DU HAST VERLOREN</de>
+            <it>HAI PERSO </it>
+            <fr>TU AS PERDU</fr>
+            <pt>PERDEU</pt>
+            <ru>ВЫ ПРОИГРАЛИ</ru>
+            <tw/>
+        </string>
+        <string id="MONEY_WIN1" index="19">
+            <en>YOU WON</en>
+            <sk/>
+            <es>¡HAS GANADO </es>
+            <cz/>
+            <de>DU HAST GEWINNEN</de>
+            <it>HAI GUADAGNATO</it>
+            <fr>TU AS GAGNÉ </fr>
+            <pt>GANHOU</pt>
+            <ru>ВЫ ВЫИГРАЛИ</ru>
+            <tw/>
+        </string>
+        <string id="CONF_ITEM" index="20">
+            <en>DO YOU WANT TO PURCHASE THIS ITEM ?</en>
+            <sk/>
+            <es>¿QUIERES COMPRAR ESTE ÍTEM? </es>
+            <cz/>
+            <de>MÖCHTEST DU DIESES ITEM KAUFEN?</de>
+            <it>VUOI ACQUISTARE QUESTO ARTICOLO ?</it>
+            <fr>VEUX-TU ACHETER CET ARTICLE?</fr>
+            <pt>QUER COMPRAR ESTE ITEM?</pt>
+            <ru>ВЫ ХОТИТЕ КУПИТЬ ЭТУ ВЕЩЬ?</ru>
+            <tw/>
+        </string>
+        <string id="CONF_MENU" index="21">
+            <en>MENU ?</en>
+            <sk/>
+            <es>MENU ?</es>
+            <cz/>
+            <de>MENU ?</de>
+            <it>MENU ?</it>
+            <fr>MENU ?</fr>
+            <pt>MENU ?</pt>
+            <ru>МЕНЮ?</ru>
+            <tw/>
+        </string>
+        <string id="PRESS_TO_CONT" index="22">
+            <en>PRESS TO CONTINUE </en>
+            <sk/>
+            <es>PULSA PARA CONTINUAR</es>
+            <cz/>
+            <de>ZUM FORTFAHREN DRÜCKEN</de>
+            <it>PRESS TO CONTINUE </it>
+            <fr>APPUYEZ POUR CONTINUER</fr>
+            <pt>PRIME PARA CONTINUAR</pt>
+            <ru>НАЖМИТЕ, ЧТОБЫ ПРОДОЛЖИТЬ</ru>
+            <tw/>
+        </string>
+        <string id="ENABLE_MUSIC" index="23">
+            <en>ENABLE MUSIC?</en>
+            <sk/>
+            <es>ENCENDER LA MÚSICA?</es>
+            <cz/>
+            <de>MUSIK EINSCHALTEN?</de>
+            <it>ACCENDERE SUONI?</it>
+            <fr>ALLUMER LA MUSIQUE?</fr>
+            <pt>LIGAR SONS?</pt>
+            <ru>ВКЛЮЧИТЬ МУЗЫКУ?</ru>
+            <tw/>
+        </string>
+        <string id="MAIN_MENU" index="24">
+            <en>MAIN MENU</en>
+            <sk/>
+            <es>LISTA PRINCIPAL</es>
+            <cz/>
+            <de>HAUPTMENÜ</de>
+            <it>MENÙ PRINCIPALE</it>
+            <fr>MENU PRINCIPAL</fr>
+            <pt>MENU PRINCIPAL</pt>
+            <ru>ГЛАВНОЕ МЕНЮ</ru>
+            <tw/>
+        </string>
+        <string id="INSTRUCTIONS" index="25">
+            <en>INSTRUCTIONS</en>
+            <sk/>
+            <es>INSTRUCCIONES</es>
+            <cz/>
+            <de>ANLEITUNG</de>
+            <it>ISTRUZIONI</it>
+            <fr>INSTRUCTIONS</fr>
+            <pt>INSTRUÇÕES</pt>
+            <ru>ИНСТРУКЦИЯ</ru>
+            <tw/>
+        </string>
+        <string id="ABOUT" index="26">
+            <en>ABOUT</en>
+            <sk/>
+            <es>SOBRE EL JUEGO </es>
+            <cz/>
+            <de>ÜBER UNS</de>
+            <it>INFORMAZIONI SU</it>
+            <fr>À PROPOS</fr>
+            <pt>SOBRE O JOGO</pt>
+            <ru>ОБ ИГРЕ</ru>
+            <tw/>
+        </string>
+        <string id="OPTIONS" index="27">
+            <en>OPTIONS</en>
+            <sk/>
+            <es>AJUSTES</es>
+            <cz/>
+            <de>EINSTELLUNGEN</de>
+            <it>IMPOSTAZIONI</it>
+            <fr>PARAMÈTRES</fr>
+            <pt>DEFINIÇÕES</pt>
+            <ru>НАСТРОЙКИ</ru>
+            <tw/>
+        </string>
+        <string id="REALLY_QUIT" index="28">
+            <en>EXIT THE GAME?</en>
+            <sk/>
+            <es>¿SALIR DE JUEGO?</es>
+            <cz/>
+            <de>SPIEL VERLASSEN?</de>
+            <it>FINE?</it>
+            <fr>QUITTER LE JEU ?</fr>
+            <pt>DESLIGAR O JOGO?</pt>
+            <ru>ВЫЙТИ ИЗ ИГРЫ?</ru>
+            <tw/>
+        </string>
+        <string id="PLAY" index="29">
+            <en>PLAY</en>
+            <sk/>
+            <es>JUEGO</es>
+            <cz/>
+            <de>SPIEL</de>
+            <it>GIOCA</it>
+            <fr>JOUER</fr>
+            <pt>JOGAR</pt>
+            <ru>ИГРАТЬ</ru>
+            <tw/>
+        </string>
+        <string id="RESTART" index="30">
+            <en>RESTART</en>
+            <sk/>
+            <es>REINICIO</es>
+            <cz/>
+            <de>NEUSTART</de>
+            <it>RIAVVIARE</it>
+            <fr>RECOMMENCER</fr>
+            <pt>REINICIAR</pt>
+            <ru>ЗАПУСТИТЬ СНОВА</ru>
+            <tw/>
+        </string>
+        <string id="MUSIC" index="31">
+            <en>MUSIC</en>
+            <sk/>
+            <es>MÚSICA</es>
+            <cz/>
+            <de>MUSIK</de>
+            <it>MUSICA</it>
+            <fr>MUSIQUE</fr>
+            <pt>MÚSICA</pt>
+            <ru>МУЗЫКА</ru>
+            <tw/>
+        </string>
+        <string id="RESTART_GAME" index="32">
+            <en>RESTART THE GAME?</en>
+            <sk/>
+            <es>¿REINICIAR JUEGO?</es>
+            <cz/>
+            <de>SPIEL NEU STARTEN?</de>
+            <it>RIAVVIARE IL GIOCO?</it>
+            <fr>RECOMMENCER LA PARTIE ?</fr>
+            <pt>REINICIAR O JOGO?</pt>
+            <ru>ПЕРЕЗАПУСТИТЬ ИГРУ?</ru>
+            <tw/>
+        </string>
+        <string id="TO_MENU" index="33">
+            <en>QUIT TO MAIN MENU?</en>
+            <sk/>
+            <es>¿VOLVER AL MENÚ PRINCIPAL?</es>
+            <cz/>
+            <de>RÜCKKEHR INS HAUPTMENÜ?</de>
+            <it>VUOI USCIRE AL MENU? </it>
+            <fr>QUITTER POUR LE MENU PRINCIPAL ?</fr>
+            <pt>VOLTAR AO MENU PRINCIPAL?</pt>
+            <ru>ВЫЙТИ В ГЛАВНОЕ МЕНЮ?</ru>
+            <tw/>
+        </string>
+        <string id="RESUME" index="34">
+            <en>RESUME</en>
+            <sk/>
+            <es>CONTINUAR</es>
+            <cz/>
+            <de>WEITER</de>
+            <it>RIPRENDERE</it>
+            <fr>REPRENDRE</fr>
+            <pt>CONTINUAR</pt>
+            <ru>ПРОДОЛЖИТЬ</ru>
+            <tw/>
+        </string>
+        <string id="PAUSE_MENU" index="35">
+            <en>PAUSED</en>
+            <sk/>
+            <es>PAUSADO</es>
+            <cz/>
+            <de>PAUSE</de>
+            <it>PAUSA</it>
+            <fr>PAUSE</fr>
+            <pt>PAUSA</pt>
+            <ru>ПАУЗА</ru>
+            <tw/>
+        </string>
+        <string id="BEST_SCORE" index="36">
+            <en>BEST</en>
+            <sk/>
+            <es>LO MEJOR</es>
+            <cz/>
+            <de>BESTLEISTUNG</de>
+            <it>RECORD</it>
+            <fr>MEILLEUR</fr>
+            <pt>MELHOR</pt>
+            <ru>ЛУЧШИЙ СЧЕТ</ru>
+            <tw/>
+        </string>
+        <string id="PERFECT" index="37">
+            <en>PERFECT!</en>
+            <sk/>
+            <es>¡PERFECTO!</es>
+            <cz/>
+            <de>PERFEKT!</de>
+            <it>PERFETTO!</it>
+            <fr>PARFAIT!</fr>
+            <pt>PERFEITO!</pt>
+            <ru>ИДЕАЛЬНО!</ru>
+            <tw/>
+        </string>
+        <string id="I_SHP" index="38">
+            <en>SHOP</en>
+            <sk/>
+            <es>COMPRAR</es>
+            <cz/>
+            <de>SHOP</de>
+            <it>NEGOZIO</it>
+            <fr>BOUTIQUE</fr>
+            <pt>LOJA</pt>
+            <ru>МАГАЗИН</ru>
+            <tw/>
+        </string>
+        <string id="I_OBJ" index="39">
+            <en>OBJECTIVES</en>
+            <sk/>
+            <es>OBJETIVOS</es>
+            <cz/>
+            <de>AUFGABEN</de>
+            <it>OBIETTIVI</it>
+            <fr>OBJECTIFS</fr>
+            <pt>OBJETIVOS</pt>
+            <ru>ЦЕЛИ</ru>
+            <tw/>
+        </string>
+        <string id="REVIVE" index="40">
+            <en>SAVE ME?</en>
+            <sk/>
+            <es>¿GUARDAR?</es>
+            <cz/>
+            <de>SPEICHERN?</de>
+            <it>SALVARE?</it>
+            <fr>SAUVEGARDER?</fr>
+            <pt>GUARDAR?</pt>
+            <ru>СОХРАНИТЬ МЕНЯ?</ru>
+            <tw/>
+        </string>
+        <string id="INS_SHORT" index="41">
+            <en>Run and avoid obstacles. Collect coins and upgrade power-ups. Try abilities. </en>
+            <sk/>
+            <es>Corre y evita los obstáculos. Recoge monedas y potenciadores. Prueba habilidades. </es>
+            <cz/>
+            <de>Lauf und umgehe Hindernisse. Sammle Münzen, steigere Power-ups. </de>
+            <it>Corri e evita ostacoli. Raccogli monete e migliora potenziamenti. </it>
+            <fr>Courez, évitez les obstacles. Prenez les pièces, améliorez les power-ups.</fr>
+            <pt>Corra e evite obstáculos. Recolha moedas e power-ups. Experimente habilidades.</pt>
+            <ru>БЕГИТЕ И ИЗБЕГАЙТЕ ПРЕПЯТСТВИЯ. СОБИРАЙТЕ МОНЕТЫ И ДЕЛАЙТЕ УЛУЧШЕНИЯ. ПРОВЕРЬТЕ СВОЮ ЛОВКОСТЬ.</ru>
+            <tw/>
+        </string>
+        <string id="CNTRL" index="42">
+            <en>Controls:</en>
+            <sk/>
+            <es>Controles:</es>
+            <cz/>
+            <de>Steuerung:</de>
+            <it>Comandi:</it>
+            <fr>Commandes:</fr>
+            <pt>Controles:</pt>
+            <ru>КАК УПРАВЛЯТЬ:</ru>
+            <tw/>
+        </string>
+        <string id="KEYS" index="43">
+            <en>2 / 5 or navigation key up - jump in game or up in menu \n 8 or navigation key down - slide in game or down in menu \n 4 or navigation key left - left in game or in menu \n 6 or navigation key right - right in game or in menu \n 5 or central navigation key - select in game or in menu \n Left soft key - select, turn sound on/off in main menu \n Right soft key - quit in main menu, back, pause in game \n</en>
+            <sk/>
+            <es>2 / 5 o botón de navegación hacia arriba: saltar en el juego o arriba en el menú \n 8 o botón de navegación hacia abajo: deslizarte en el juego o abajo en el menú \n 4 o botón de navegación hacia la izquierda: izquierda en el juego o en el menú \n 6 o botón de navegación hacia la derecha: derecha en el juego o en el menú \n 5 o botón de navegación central: seleccionar en el juego o en el menú \n Botón de selección izquierdo: seleccionar, activar/desactivar sonido en el menú principal \n Botón de selección derecho: salir en el menú principal, atrás, pausa en el juego \n</es>
+            <cz/>
+            <de>2 / 5 oder obere Navigationstaste - Springen im Spiel oder hoch im Menü \n 8 oder untere Navigationstaste - Rutschen im Spiel oder runter im Menü \n 4 oder linke Navigationstaste - Nach links im Spiel oder im Menü \n 6 oder rechte Navigationstaste - Nach rechts im Spiel oder im Menü \n 5 oder mittlere Navigationstaste - Auswahl im Spiel oder im Menü \n Linke Funktionstaste - Auswahl, Ton an/aus im Hauptmenü \n Rechte Funktionstaste - Verlassen im Hauptmenü, zurück, Pause im Spiel \n</de>
+            <it>2 / 5 o tasto di navigazione su - sali nel gioco o scendi nel menu \n 8 o tasto di navigazione giù - scivola nel gioco o scendi nel menu \n 4 o tasto di navigazione sinistro - sinistra nel gioco o nel menu \n 6 o tasto di navigazione destro - destra nel gioco o nel menu \n 5 o tasto di navigazione centrale - seleziona nel gioco o nel menu \n Tasto funzione sinistro - seleziona, attiva/disattiva il sonoro nel menu principale \n Tasto funzione destro - esci nel menu principale, indietro, pausa nel gioco \n</it>
+            <fr>2 / 5 ou touche de navigation haute - sauter dans le jeu ou en haut dans le menu \n 8 ou touche de navigation basse - glisser dans le jeu ou en bas dans le menu \n 4 ou touche de navigation gauche - à gauche dans le jeu ou le menu \n 6 ou touche de navigation droite - à droite dans le jeu ou le menu \n 5 ou touche de navigation centrale - sélectionner dans le jeu ou le menu \n Touche programmable gauche - sélectionner, activer/désactiver les sons dans le menu \n Touche programmable droite - retour au menu, pause \n</fr>
+            <pt>2 / 5 ou tecla de navegação para cima - salte no jogo ou acima no menu \n 8 ou tecla de navegação para baixa - escorregue no jogo ou desça no menu \n 4 ou tecla de navegação esquerda - à esquerda no jogo ou no menu \n 6 ou tecla de navegação direita - à direita no jogo ou no menu \n 5 ou tecla de navegação central - selecionar jogo ou no menu \n Tecla de função esquerda - selecionar, ligar/desligar o som no menu principal \n Tecla de função direita - sair para o menu principal, voltar, pausar no jogo</pt>
+            <ru>2 / 5 ИЛИ ДЖОЙСТИК ВВЕРХ – ПРЫГНУТЬ В ИГРЕ ИЛИ ПОДНЯТЬСЯ В МЕНЮ \n 8 ИЛИ ДЖОЙСТИК ВНИЗ – СКОЛЬЗИТЬ ИЛИ ОПУСТИТЬСЯ В МЕНЮ \n 4 ИЛИ ДЖОЙСТИК ВЛЕВО – ВЛЕВО В ИГРЕ ИЛИ ПО МЕНЮ \n 6 ИЛИ ДЖОЙСТИК ВПРАВО – ВПРАВО В ИГРЕ ИЛИ ПО МЕНЮ \n 5 ИЛИ НАЖАТЬ НА ДЖОЙСТИК – ВЫБРАТЬ В ИГРЕ ИЛИ В МЕНЮ\nЛЕВАЯ ФУНКЦИОНАЛЬНАЯ КНОПКА - ВЫБРАТЬ, ВКЛЮЧИТЬ / ВЫКЛЮЧИТЬ ЗВУК В ГЛАВНОМ МЕНЮ
+                ПРАВАЯ ФУНКЦИОНАЛЬНАЯ КНОПКА - ВЫЙТИ В ГЛАВНОЕ МЕНЮ, НАЗАД , ПАУЗА В ИГРЕ</ru>
+            <tw/>
+        </string>
+        <string id="TOUCH" index="44">
+            <en>Swipe left or right to turn. Swipe up to jump. Swipe down to slide.</en>
+            <sk/>
+            <es>Desliza a la izquierda o derecha para girar. Desliza hacia arriba para saltar. Desliza hacia abajo para deslizarte.</es>
+            <cz/>
+            <de>Wische nach links oder rechts, um abzubiegen. Wische nach oben, um zu springen. Wische nach unten, um zu rutschen.</de>
+            <it>Scorri il dito a sinistra o a destra per girare. Scorri il dito in alto per saltare. Scorri il dito in basso per scivolare.</it>
+            <fr>Balayez l'écran vers la gauche ou vers la droite pour tourner. Balayez vers le haut pour sauter. Balayez vers le bas pour glisser.</fr>
+            <pt>Deslize para a esquerda ou para a direita para virar. Deslize para baixo para escorregar.</pt>
+            <ru>ВОДИТЕ ПАЛЬЦЕМ ПО ЭКРАНУ ЧТО БЫ ПЕРЕХОДИТЬ ВПРАВО ИЛИ ВЛЕВО. ПРОВЕДИТЕ ВВЕРХ, ЧТОБЫ ПРЫГНУТЬ. ПРОВЕДИТЕ ВНИЗ, ЧТОБЫ СКОЛЬЗИТЬ</ru>
+            <tw/>
+        </string>
+        <string id="MAXED" index="45">
+            <en>Fully upgraded</en>
+            <sk/>
+            <es>Totalmente mejorado</es>
+            <cz/>
+            <de>Vollständige Steigerung</de>
+            <it>Migliorato al massimo</it>
+            <fr>Amélioré au max</fr>
+            <pt>Totalmente atualizado</pt>
+            <ru>ОБНОВЛЕН ПОЛНОСТЬЮ</ru>
+            <tw/>
+        </string>
+        <string id="UPGR" index="46">
+            <en>upgrade</en>
+            <sk/>
+            <es>mejorar</es>
+            <cz/>
+            <de>upgrade</de>
+            <it>migliora</it>
+            <fr>améliorer</fr>
+            <pt>atualize</pt>
+            <ru>ОБНОВИТЬ</ru>
+            <tw/>
+        </string>
+        <string id="UPGR_2" index="47">
+            <en>Increase power-up duration by 25</en>
+            <sk/>
+            <es>Incrementa la duración del potenciador en 25</es>
+            <cz/>
+            <de>Power-up Dauer verlängern um 25</de>
+            <it>Aumenta la durata dell'poneziamento di 25</it>
+            <fr>Augmente la durée de power-up de 25</fr>
+            <pt>Aumente a duração o power-up em 25</pt>
+            <ru>УВЕЛИЧИТЬ УЛУЧШЕНИЕ НА 25</ru>
+            <tw/>
+        </string>
+        <string id="A_1_N" index="48">
+            <en>WARM UP</en>
+            <sk/>
+            <es>CALENTAMIENTO</es>
+            <cz/>
+            <de>WARM-UP </de>
+            <it>RISCALDAMENTO</it>
+            <fr>ÉCHAUFFEMENT</fr>
+            <pt>AQUECIMENTO </pt>
+            <ru>РАЗОГРЕТЫЙ</ru>
+            <tw/>
+        </string>
+        <string id="A_2_N" index="49">
+            <en>MORNING RUN</en>
+            <sk/>
+            <es>EJERCICIO MATUTINO</es>
+            <cz/>
+            <de>MORGENRUNDE </de>
+            <it>CORSA MATTUTINA</it>
+            <fr>FOOTING MATINAL</fr>
+            <pt>CORRIDA MATINA</pt>
+            <ru>УТРЕНЯЯ ПРОБЕЖКА</ru>
+            <tw/>
+        </string>
+        <string id="A_3_N" index="50">
+            <en>JOGGER</en>
+            <sk/>
+            <es>RUNNER</es>
+            <cz/>
+            <de>JOGGER</de>
+            <it>AMANTE DEL JOGGING</it>
+            <fr>JOGGER</fr>
+            <pt>JOGGER</pt>
+            <ru>БЕГУН ТРУСЦОЙ</ru>
+            <tw/>
+        </string>
+        <string id="A_4_N" index="51">
+            <en>SPRINTER</en>
+            <sk/>
+            <es>VELOCISTA</es>
+            <cz/>
+            <de>SPRINTER</de>
+            <it>SPRINTER</it>
+            <fr>SPRINTER</fr>
+            <pt>VELOCISTA</pt>
+            <ru>БЕГУН НА КОРОТКИЕ ДИСТАНЦИИ</ru>
+            <tw/>
+        </string>
+        <string id="A_5_N" index="52">
+            <en>SPARTAN</en>
+            <sk/>
+            <es>ESPARTANO</es>
+            <cz/>
+            <de>SPARTANER</de>
+            <it>SPARTANO</it>
+            <fr>SPARTIATE</fr>
+            <pt>ESPARTANO</pt>
+            <ru>СПАРТАНЕЦ</ru>
+            <tw/>
+        </string>
+        <string id="A_1_D" index="53">
+            <en>RAN * METERS</en>
+            <sk/>
+            <es>HAS CORRIDO * METROS</es>
+            <cz/>
+            <de>* M GELAUFEN</de>
+            <it>HAI PERCORSO * METRI</it>
+            <fr>COURU * MÈTRES</fr>
+            <pt>CORREU * METROS</pt>
+            <ru>ПРОБЕЖАЛ * МЕТРОВ</ru>
+            <tw/>
+        </string>
+        <string id="A_6_N" index="54">
+            <en>SMALL CHANGE</en>
+            <sk/>
+            <es>ALGO DE CAMBIO</es>
+            <cz/>
+            <de>KLEINGELD</de>
+            <it>QUALCHE SPICCIOLO</it>
+            <fr>PETIT CHANGEMENT </fr>
+            <pt>PEQUENO TROCO </pt>
+            <ru>МЕЛОЧЬ</ru>
+            <tw/>
+        </string>
+        <string id="A_7_N" index="55">
+            <en>POCKET MONEY</en>
+            <sk/>
+            <es>PROPINA</es>
+            <cz/>
+            <de>TASCHENGELD</de>
+            <it>PAGHETTA</it>
+            <fr>ARGENT DE POCHE</fr>
+            <pt>MESADA</pt>
+            <ru>КАРМАННЫЕ ДЕНЬГИ</ru>
+            <tw/>
+        </string>
+        <string id="A_8_N" index="56">
+            <en>LITTLE RICHES</en>
+            <sk/>
+            <es>PEQUEÑA RIQUEZA</es>
+            <cz/>
+            <de>KLEINES VERMÖGEN</de>
+            <it>PICCOLE RICCHEZZE</it>
+            <fr>PETITE RICHESSE</fr>
+            <pt>RIQUEZA</pt>
+            <ru>МАЛЕНЬКИЙ БАГАЧ</ru>
+            <tw/>
+        </string>
+        <string id="A_9_N" index="57">
+            <en>FULL BAG</en>
+            <sk/>
+            <es>MONEDERO LLENO</es>
+            <cz/>
+            <de>VOLLE TASCHEN</de>
+            <it>BORSA PIENA</it>
+            <fr>SAC PLEIN</fr>
+            <pt>SACO CHEIO</pt>
+            <ru>ПОЛНАЯ СУМКА</ru>
+            <tw/>
+        </string>
+        <string id="A_10_N" index="58">
+            <en>WELL PAID</en>
+            <sk/>
+            <es>SUELDO DE RICACHÓN</es>
+            <cz/>
+            <de>GROSSVERDIENER</de>
+            <it>BEN PAGATO</it>
+            <fr>BIEN PAYÉ</fr>
+            <pt>BEM PAGO</pt>
+            <ru>ХОРОШО ОПЛАЧИВАЕМЫЙ</ru>
+            <tw/>
+        </string>
+        <string id="A_2_D" index="59">
+            <en>COLLECTED * COINS</en>
+            <sk/>
+            <es>HAS RECOGIDO * MONEDAS</es>
+            <cz/>
+            <de>* MÜNZEN GESAMMELT</de>
+            <it>HAI RACCOLTO * MONETE</it>
+            <fr>RÉCUPÉRÉ * PIÈCES</fr>
+            <pt>FORAM RECOLHIDAS * MOEDAS</pt>
+            <ru>СОБРАНО * МОНЕТ</ru>
+            <tw/>
+        </string>
+        <string id="A_11_N" index="60">
+            <en>FIRST ONE</en>
+            <sk/>
+            <es>EL PRIMERO</es>
+            <cz/>
+            <de>ERSTER ERFOLG</de>
+            <it>IL PRIMO</it>
+            <fr>PREMIER</fr>
+            <pt>PRIMEIRO</pt>
+            <ru>ПЕРВЫЙ</ru>
+            <tw/>
+        </string>
+        <string id="A_12_N" index="61">
+            <en>MAXED OUT</en>
+            <sk/>
+            <es>A TOPE</es>
+            <cz/>
+            <de>AUSGEREIZT</de>
+            <it>MASSIMIZZAZIONE</it>
+            <fr>AU MAX</fr>
+            <pt>MAXIMIZADO</pt>
+            <ru>МАКСИМАЛЬНО</ru>
+            <tw/>
+        </string>
+        <string id="A_3_D" index="62">
+            <en>FULLY UPGRADED ONE POWER UP</en>
+            <sk/>
+            <es>HAS MEJORADO DEL TODO UN POTENCIADOR</es>
+            <cz/>
+            <de>1 POWER-UP VOLLSTÄNDIG GESTEIGERT</de>
+            <it>UN POTENZIAMENTO MIGLIORATO AL MASSIMO</it>
+            <fr>AMÉLIORÉ AU MAXIMUM UN POWER-UP</fr>
+            <pt>TOTALMENTE ATUALIZADO</pt>
+            <ru>ПОЛНОСТЬЮ УЛУЧШЕНО ОДНО УЛУЧШЕНИЕ</ru>
+            <tw/>
+        </string>
+        <string id="A_4_D" index="63">
+            <en>FULLY UPGRADED ALL POWERUPS</en>
+            <sk/>
+            <es>HAS MEJORADO DEL TODO TODOS LOS POTENCIADORES</es>
+            <cz/>
+            <de>ALLE POWER-UPS VOLLSTÄNDIG GESTEIGERT</de>
+            <it>TUTTI I POTENZIAMENTI MIGLIORATI AL MASSIMO</it>
+            <fr>AMÉLIORÉ AU MAXIMUM TOUS LES POWER-UPS</fr>
+            <pt>TODOS OS POWER-UPS TOTALMENTE ATUALIZADOS</pt>
+            <ru>ПОЛНОСТЬЮ УЛУЧШЕНЫ ВСЕ УЛУЧШЕНИЯ</ru>
+            <tw/>
+        </string>
+        <string id="A_13_N" index="64">
+            <en>25K RUNNER</en>
+            <sk/>
+            <es>CORREDOR DE 25K</es>
+            <cz/>
+            <de>LÄUFER 25.000 M</de>
+            <it>CORRIDORE DA 25K</it>
+            <fr>ADEPTE DU 25K</fr>
+            <pt>CORREDOR 25 MIL</pt>
+            <ru>25К БЕГУН</ru>
+            <tw/>
+        </string>
+        <string id="A_14_N" index="65">
+            <en>50K RUNNER</en>
+            <sk/>
+            <es>CORREDOR DE 50K</es>
+            <cz/>
+            <de>LÄUFER 50.000 M  </de>
+            <it>CORRIDORE DA 50K</it>
+            <fr>ADEPTE DU 50K</fr>
+            <pt>CORREDOR 50 MIL</pt>
+            <ru>50К БЕГУН</ru>
+            <tw/>
+        </string>
+        <string id="A_15_N" index="66">
+            <en>100K RUNNER</en>
+            <sk/>
+            <es>CORREDOR DE 100K</es>
+            <cz/>
+            <de>LÄUFER 100.000 M</de>
+            <it>CORRIDORE DA 100K</it>
+            <fr>ADEPTE DU 100K</fr>
+            <pt>CORREDOR 100 MIL</pt>
+            <ru>100К БЕГУН</ru>
+            <tw/>
+        </string>
+        <string id="A_5_D" index="67">
+            <en>* LIFETIME METERS</en>
+            <sk/>
+            <es>* M EN UNA VIDA</es>
+            <cz/>
+            <de>* LEBENSAUFGABE</de>
+            <it>* METRI PERCORSI IN TOTALE</it>
+            <fr>* MÈTRES EN UNE VIE</fr>
+            <pt>* METROS PELA VIDA</pt>
+            <ru>* МЕТРОВ ЗА ЦЕЛУЮ ЖИЗНЬ</ru>
+            <tw/>
+        </string>
+        <string id="A_16_N" index="68">
+            <en>NUMISMATIST</en>
+            <sk/>
+            <es>NUMISMÁTICO</es>
+            <cz/>
+            <de>NUMISMATIKER</de>
+            <it>NUMISMATICO</it>
+            <fr>NUMISMATE</fr>
+            <pt>NUMISMATA </pt>
+            <ru>НУМИЗМАТ</ru>
+            <tw/>
+        </string>
+        <string id="A_17_N" index="69">
+            <en>COLLECTOR</en>
+            <sk/>
+            <es>COLECCIONISTA</es>
+            <cz/>
+            <de>SAMMLER</de>
+            <it>COLLEZIONISTA</it>
+            <fr>COLLECTIONNEUR</fr>
+            <pt>COLECIONADOR</pt>
+            <ru>КОЛЛЕКТОР</ru>
+            <tw/>
+        </string>
+        <string id="A_18_N" index="70">
+            <en>GREEDY</en>
+            <sk/>
+            <es>AVARICIOSO</es>
+            <cz/>
+            <de>GIER</de>
+            <it>AVIDO</it>
+            <fr>CUPIDE</fr>
+            <pt>GANANCIOSO</pt>
+            <ru>ЖАДНЫЙ</ru>
+            <tw/>
+        </string>
+        <string id="A_19_N" index="71">
+            <en>BANKER</en>
+            <sk/>
+            <es>BANQUERO</es>
+            <cz/>
+            <de>BANKER</de>
+            <it>BANCHIERE</it>
+            <fr>BANQUIER</fr>
+            <pt>BANQUEIRO</pt>
+            <ru>БАНКИР</ru>
+            <tw/>
+        </string>
+        <string id="A_20_N" index="72">
+            <en>TREASURE HUNTER</en>
+            <sk/>
+            <es>CAZADOR DE TESOROS</es>
+            <cz/>
+            <de>SCHATZSUCHER</de>
+            <it>CACCIATORE DI TESORI</it>
+            <fr>CHASSEUR DE TRÉSORS</fr>
+            <pt>CAÇADOR DE TESOUROS</pt>
+            <ru>ОХОТНИК ЗА СОКРОВИЩАМИ</ru>
+            <tw/>
+        </string>
+        <string id="A_6_D" index="73">
+            <en>* LIFETIME COINS</en>
+            <sk/>
+            <es>* MONEDAS EN UNA VIDA</es>
+            <cz/>
+            <de>* LEBENSAUFGABE</de>
+            <it>* MONETE RACCOLTE IN TOTALE</it>
+            <fr>* PIÈCES EN UNE VIE</fr>
+            <pt>* MOEDAS PELA VIDA</pt>
+            <ru>* МОНЕТ ЗА ЦЕЛУЮ ЖИЗНЬ</ru>
+            <tw/>
+        </string>
+        <string id="GO_1" index="74">
+            <en>COINS</en>
+            <sk/>
+            <es>MONEDAS</es>
+            <cz/>
+            <de>MÜNZEN</de>
+            <it>MONETE</it>
+            <fr>PIÈCES</fr>
+            <pt>MOEDAS</pt>
+            <ru>МОНЕТ</ru>
+            <tw/>
+        </string>
+        <string id="GO_2" index="75">
+            <en>METERS</en>
+            <sk/>
+            <es>METROS</es>
+            <cz/>
+            <de>METERN</de>
+            <it>METRI</it>
+            <fr>MÈTRES</fr>
+            <pt>METROS</pt>
+            <ru>МЕТРОВ</ru>
+            <tw/>
+        </string>
+        <string id="GO_3" index="76">
+            <en>MULTIPLIER:</en>
+            <es>MULTIPLICADOR:</es>
+            <de>MULTIPLIKATOR:</de>
+            <it>MOLTIPLICATORE:</it>
+            <fr>MULTIPLICATEUR:</fr>
+            <pt>MULTIPLICADOR</pt>
+            <ru>МНОЖИТЕЛЕЙ:</ru>
+            <tw/>
+        </string>
+        <string id="S_D" index="77">
+            <en>DURATION:</en>
+            <es>DURACIÓN:</es>
+            <de>DAUER:</de>
+            <it>DURATA:</it>
+            <fr>DURÉE:</fr>
+            <pt>DURAÇÃO:</pt>
+            <ru>ДЛИТЕЛЬНОСТЬ:</ru>
+            <tw/>
+        </string>
+    </strings>
+</stringresources>

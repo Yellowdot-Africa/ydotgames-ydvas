@@ -23,7 +23,7 @@ export const getLeaderboardStanding = async (auth, msisdn) => {
         },
       }
     );
-    console.log("API Response:", response.data);
+    // console.log("API Response:", response.data);
 
     return response.data;
   } catch (error) {
@@ -49,7 +49,7 @@ export const updateLeaderboardScore = async (auth, msisdn, gameScore) => {
     }
     // console.log("Updating score for:", { msisdn, gameScore });
     // console.log("Sending msisdn:", msisdn);
-    console.log("Sending gameScore:", gameScore);
+    // console.log("Sending gameScore:", gameScore);
     // console.log("Authorization token:", token);
     
     const response = await axios.put(
@@ -65,8 +65,8 @@ export const updateLeaderboardScore = async (auth, msisdn, gameScore) => {
         },
       }
     );
-    console.log("Leaderboard scorenapi updated:", response.data);
-    console.log("API Response:", response.data);
+    // console.log("Leaderboard scorenapi updated:", response.data);
+    // console.log("API Response:", response.data);
     return response.data;
 
     

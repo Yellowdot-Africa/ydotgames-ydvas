@@ -1,0 +1,15 @@
+#game {
+	z-index: 10;
+	position: relative;
+}
+
+#menu {
+	position: fixed;
+}
+
+@font-face {
+	font-family: 'gameFont';
+	src: url('../assets/fnt/gamefont_mahjong.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}

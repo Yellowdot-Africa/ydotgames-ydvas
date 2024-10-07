@@ -60,8 +60,10 @@ const CarouselSection = () => {
       carousel.addEventListener("scroll", handleScroll);
 
       const carouselWidth = carousel.offsetWidth;
-      const itemWidth = 189;
-      const middleItemIndex = Math.floor(3 / 2);
+      const itemWidth = 160;
+      // const middleItemIndex = Math.floor(3 / 2);
+      const middleItemIndex = Math.floor(carouselConfig.length / 2); 
+
       const scrollPosition =
         middleItemIndex * itemWidth - carouselWidth / 2 + itemWidth / 2;
 
@@ -82,35 +84,6 @@ const CarouselSection = () => {
       : "scale-90 opacity-75 transition-transform duration-300";
   };
 
-  // const XwingFighterUrl = "/x-wing-fighter/index.html";
-
-  // const handlePlay = (XwingFighterUrl, msisdn) => {
-  //   const storedData = localStorage.getItem("com.disney.fighter.game_11.save");
-  //   console.log("Stored score for stored:", storedData);
-
-  //   const parsedData = storedData ? JSON.parse(storedData) : null;
-
-  //   const bestScore = parsedData ? parsedData.bestScore : 0;
-
-  //   console.log("Stored score for bestScore:", bestScore);
-
-  //   setIframeSrc(XwingFighterUrl);
-  // };
-
-  // const handleBackToApp = async () => {
-  //   setIframeSrc("");
-  //   const storedData = localStorage.getItem("com.disney.fighter.game_11.save");
-
-  //   const parsedData = storedData ? JSON.parse(storedData) : null;
-
-  //   const bestScore = parsedData ? parsedData.bestScore : 0;
-
-  //   console.log("Stored score outside for bestScore:", bestScore);
-  //   const gameScore = bestScore;
-
-  //   await handleUpdateLeaderboardScore(msisdn, gameScore);
-  // };
-
   const gameConfig = {
     xWingFighter: {
       url: "/x-wing-fighter/index.html",
@@ -121,34 +94,67 @@ const CarouselSection = () => {
         return score ? Number(score) : 0;
       },
     },
+
+    templeQuest: {
+      url: "/temple-quest/index.html",
+      localStorageKey: "inl-tmpl-qst",
+
+      // Get the current session score by subtracting PlayerCoinsAtStart from PlayerCoins
+      getScore: (data) => {
+        const playerCoins = data?.PlayerCoins || 0;
+        const playerCoinsAtStart = data?.PlayerCoinsAtStart || 0;
+
+        // Calculate the current score by subtracting the initial coins from the current coins
+        const currentScore = playerCoins - playerCoinsAtStart;
+
+        // If the score is negative (which shouldn't happen), return 0
+        return currentScore > 0 ? currentScore : 0;
+      },
+    },
+
     skateRush: {
       url: "/skate-rush/index.html",
-      localStorageKey: "skateRushScore",
-      // getScore: (data) => {
-      //   const scoresArray = data ? data.split(",").map(Number) : [];
-      //   return Math.max(...scoresArray) || 0;
-      // },
+      localStorageKey: "skaterushv4",
+
+      // Method to get the highest score
       getScore: () => {
-        const score = localStorage.getItem("skateRushScore");
-        return score ? Number(score) : 0;
+        const localStorageScore = localStorage.getItem("skaterushv4");
+
+        // Convert stored string to an array of numbers
+        const scoresArray = localStorageScore
+          ? localStorageScore.split(",").map(Number) // Convert to numbers
+          : [];
+
+        // Get the last score from the array
+        const lastScore =
+          scoresArray.length > 0 ? scoresArray[scoresArray.length - 1] : 0;
+
+        return lastScore; // Return the last score or 0 if array is empty
+      },
+
+      // Method to set a new score
+      setScore: (newScore) => {
+        // Ensure the new score is a number and greater than zero
+        if (!isNaN(newScore) && newScore > 0) {
+          const currentScores = localStorage.getItem("skaterushv4");
+
+          // Parse the current scores or initialize an empty array
+          const scoresArray = currentScores
+            ? currentScores.split(",").map(Number) // Convert to numbers
+            : [];
+
+          // Add the new score to the array
+          scoresArray.push(Number(newScore));
+
+          // Update the localStorage with the new scores
+          localStorage.setItem("skaterushv4", scoresArray.join(","));
+        }
       },
     },
     starWars: {
       url: "/star-wars-rogue/index.html",
       localStorageKey: "sw_boots_1.0",
       getScore: (data) => data?.arcade?.lastScore || 0,
-    },
-    templeRun: {
-      url: "/temple-run-2/index.html",
-      // localStorageKey: "TR2_GAME_STATE",
-      localStorageKey: "templeRunCurrentScore",
-      getScore: () => {
-        const score = localStorage.getItem("templeRunCurrentScore");
-        return score ? Number(score) : 0;
-      },
-      // getScore: (data) => data?.currentDayDataFinal?.score || 0,
-
-      // getScore: (data) => data?.statsData?.highestScore || 0,
     },
   };
 
@@ -161,15 +167,25 @@ const CarouselSection = () => {
     }
 
     const storedData = localStorage.getItem(game.localStorageKey);
-    console.log(`Stored score for ${gameKey}:`, storedData);
+    // console.log(`Stored score for ${gameKey}:`, storedData);
 
-    const parsedData = storedData ? JSON.parse(storedData) : null;
+    let parsedData;
+    try {
+      // Try to parse the data as JSON
+      parsedData = storedData ? JSON.parse(storedData) : null;
+    } catch (error) {
+      console.warn("Data is not in JSON format, handling as a string:", error);
+      // Handle SkateRush data as a comma-separated string
+      parsedData = storedData ? storedData.split(",") : null;
+    }
+
+    // If the game score is stored as JSON, use the game's getScore function
     const gameScore = game.getScore(parsedData);
 
     if (gameScore === undefined || gameScore === null) {
       console.error("Score not found in localStorage for", gameKey);
     }
-    console.log(`Best score for ${gameKey}:`, gameScore);
+    // console.log(`Best score for ${gameKey}:`, gameScore);
 
     setIframeSrc(game.url);
 
@@ -178,34 +194,35 @@ const CarouselSection = () => {
 
   const handleXwingPlay = () => {
     const gameScore = handlePlay("xWingFighter", msisdn);
-    console.log("X-Wing Fighter score:", gameScore);
+    // console.log("X-Wing Fighter score:", gameScore);
   };
 
   const handleSkatePlay = () => {
     const gameScore = handlePlay("skateRush", msisdn);
-    console.log("Skate Rush score:", gameScore);
+    // console.log("Skate Rush score:", gameScore);
   };
 
   const handleTemplePlay = () => {
-    const gameScore = handlePlay("templeRun", msisdn);
-    console.log("Temple run score:", gameScore);
+    const gameScore = handlePlay("templeQuest", msisdn);
+    // console.log("Temple run score:", gameScore);
   };
 
   const handleStarWarsPlay = () => {
     const gameScore = handlePlay("starWars", msisdn);
-    console.log("Star wars score:", gameScore);
+    // console.log("Star wars score:", gameScore);
   };
 
   const gameMappings = {
     "/x-wing-fighter/index.html": "xWingFighter",
     "/skate-rush/index.html": "skateRush",
     "/star-wars-rogue/index.html": "starWars",
-    "/temple-run-2/index.html": "templeRun",
+    // "/temple-run-2/index.html": "templeRun",
+    "/temple-quest/index.html": "templeQuest",
   };
 
   useEffect(() => {
     if (msisdn) {
-      console.log("Updated MSISDN:", msisdn);
+      // console.log("Updated MSISDN:", msisdn);
 
       handleUpdateLeaderboardScore(msisdn, gameScore);
     }
@@ -213,31 +230,39 @@ const CarouselSection = () => {
 
   const handleBackToApp = async (gameKey, msisdn) => {
     setIframeSrc("");
-    console.log("Game Key:", gameKey);
+    // console.log("Game Key:", gameKey);
     const game = gameConfig[gameKey];
     if (!game) {
       console.error("Game configuration not found for key:", gameKey);
       return;
     }
+
     const storedData = localStorage.getItem(game.localStorageKey);
-    const parsedData = storedData ? JSON.parse(storedData) : null;
-    console.log("Parsed Data:", parsedData);
-    // const gameScore = game.getScore(parsedData);
-    // const gameScore = parsedData ? parsedData.bestScore : 0;
-    // const gameScore = parsedData ? parsedData[game.getScore] : 0;
+    let parsedData;
+    try {
+      // Try to parse the data as JSON
+      parsedData = storedData ? JSON.parse(storedData) : null;
+    } catch (error) {
+      console.warn("Data is not in JSON format, handling as a string:", error);
+      // Handle SkateRush data as a comma-separated string
+      parsedData = storedData ? storedData.split(",") : null;
+    }
+
+    // console.log("Parsed Data:", parsedData);
+
     const gameScore = game.getScore(parsedData);
 
-    console.log("Game Score Retrieved:", gameScore);
+    // console.log("Game Score Retrieved:", gameScore);
 
     if (gameScore !== undefined && gameScore !== null) {
-      console.log("Stored score outside for bestScore:", gameScore);
+      // console.log("Stored score outside for bestScore:", gameScore);
       try {
-        console.log("MSISDN before updating leaderboard:", msisdn);
+        // console.log("MSISDN before updating leaderboard:", msisdn);
 
         await handleUpdateLeaderboardScore(msisdn, gameScore);
-        console.log("Leaderboard updated successfully with score:", gameScore);
+        // console.log("Leaderboard updated successfully with score:", gameScore);
         await fetchLeaderboardStanding();
-        console.log("Leaderboard standing with score:", gameScore);
+        // console.log("Leaderboard standing with score:", gameScore);
       } catch (error) {
         console.error("Error updating leaderboard:", error);
       }
@@ -248,13 +273,13 @@ const CarouselSection = () => {
 
   useEffect(() => {
     if (msisdn && gameScore) {
-      console.log("Updated MSISDN:", msisdn);
+      // console.log("Updated MSISDN:", msisdn);
       handleUpdateLeaderboardScore(msisdn, gameScore)
         .then(() => {
-          console.log(
-            "Leaderboard updated successfully with score:",
-            gameScore
-          );
+          // console.log(
+          //   "Leaderboard updated successfully with score:",
+          //   gameScore
+          // );
           fetchLeaderboardStanding();
         })
         .catch((error) => {
@@ -380,7 +405,7 @@ const CarouselSection = () => {
           </div>
 
           <div
-            onClick={() => handleTemplePlay(gameConfig.templeRun, msisdn)}
+            onClick={() => handleTemplePlay(gameConfig.templeQuest, msisdn)}
             className={`min-w-[157px] flex-shrink-0 ${getCardClass()}`}
           >
             <div className="relative rounded-[20px] pt-[7px] px-0 border border-[#FEFFD366] bg-[#2E3237] overflow-visible">
@@ -393,12 +418,12 @@ const CarouselSection = () => {
                 <img
                   style={{ top: "-15px" }}
                   alt="rush"
-                  src={TempleRun}
+                  src={TempleQuest}
                   className="w-[59px] h-[58px] rounded-[12px] absolute  object-cover z-10 "
                 />
                 <div className="absolute bottom-1 text-center">
                   <p className="font-mtn-brighter-xtra-bold font-extrabold text-[14px] leading-[18.2px] text-center text-[#002E38]">
-                    TEMPLE RUN
+                    TEMPLE QUEST
                   </p>
                 </div>
               </div>
@@ -418,7 +443,7 @@ const CarouselSection = () => {
                 <button className="bg-[#2A76D8] pt-[7px] pb-[7px]  px-[15px] rounded-br-[20px]">
                   <p
                     onClick={() =>
-                      handleTemplePlay(gameConfig.templeRun, msisdn)
+                      handleTemplePlay(gameConfig.templeQuest, msisdn)
                     }
                     className="font-mtn-brighter-medium font-medium text-center text-[12px] leading-[15.6px] text-white"
                   >

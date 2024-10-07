@@ -17,7 +17,7 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     if (auth?.token && msisdn) {
-      console.log("Fetching profile with MSISDN:", msisdn);
+      // console.log("Fetching profile with MSISDN:", msisdn);
       fetchProfile(msisdn);
     }
   }, [auth?.token, msisdn]);
@@ -51,7 +51,7 @@ export const UserProvider = ({ children }) => {
     setError(null);
     try {
       const profileData = await getSubscriberProfile(auth, msisdn);
-      console.log("Profile Data:", profileData);
+      // console.log("Profile Data:", profileData);
 
       if (profileData.statusCode === "999") {
         setUserProfile(profileData.data);

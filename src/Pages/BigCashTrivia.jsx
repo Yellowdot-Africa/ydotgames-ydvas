@@ -5,16 +5,15 @@ import { LeaderboardContext } from "../Context/LeaderboardContext";
 import { TriviaContext } from "../Context/TriviaContext";
 import UserContext from "../Context/UserContext";
 import { Circles } from "react-loader-spinner";
-import { submitAnswer } from "../api/triviaApi";
+// import { submitAnswer } from "../api/triviaApi";
 
 const BigCashTrivia = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState([]);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
   const [statuses, setStatuses] = useState([]);
-  // const [statuses, setStatuses] = useState(Array(text?.length).fill(null));
-
   const [timer, setTimer] = useState(10);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const { msisdn } = useContext(UserContext);
@@ -44,13 +43,13 @@ const BigCashTrivia = () => {
   }, [questions]);
 
   useEffect(() => {
-    if (currentQuestionIndex >= questions.length) return;
+    // if (currentQuestionIndex >= questions.length) return;
 
     const timerId = setInterval(() => {
       setTimer((prev) => {
         if (prev <= 1) {
           clearInterval(timerId);
-          handleTimerExpiration(null);
+          handleTimerExpiration(false);
           return 10;
         }
         return prev - 1;
@@ -62,14 +61,14 @@ const BigCashTrivia = () => {
 
   const handleTimerExpiration = async () => {
     if (selectedAnswer === null) {
-      console.log("Time's up! No answer was selected for the question.");
+      // console.log("Time's up! No answer was selected for the question.");
       setStatuses((prevStatuses) => {
         const newStatuses = [...prevStatuses];
         newStatuses[currentQuestionIndex] = "incorrect";
         return newStatuses;
       });
 
-      await handleNextQuestion(false);
+      await handleNextQuestion();
     }
   };
 
@@ -79,7 +78,7 @@ const BigCashTrivia = () => {
     setSelectedAnswer(answer);
     const questionId = questions[currentQuestionIndex].id;
     const response = await handleAnswerSubmit(msisdn, questionId, answer);
-    console.log("Submit answer response:", response);
+    // console.log("Submit answer response:", response);
 
     const isAnswerCorrect =
       answer === questions[currentQuestionIndex].rightAnswer;
@@ -92,7 +91,7 @@ const BigCashTrivia = () => {
       return newStatuses;
     });
 
-    console.log("Updated statuses:", statuses);
+    // console.log("Updated statuses:", statuses);
 
     setScore((prevScore) => {
       let awardedPoints = 0;
@@ -127,8 +126,10 @@ const BigCashTrivia = () => {
       });
     });
 
-    // console.log("All questions answered. Final Score:", finalScore, statuses);
-    console.log(statuses);
+    // console.log(statuses);
+    // console.log("Final Statuses:", statuses);
+    // console.log("Final Score:", finalScore);
+
     await handleUpdateLeaderboardScore(msisdn, finalScore);
 
     setTimeout(() => {
@@ -137,12 +138,13 @@ const BigCashTrivia = () => {
           score: finalScore,
           totalQuestions: questions.length,
           statuses: statuses,
+          gameId: selectedGameId,
         },
       });
     }, 2000);
   };
 
-  if (loading || !questions || questions.length === 0) {
+  if (loading) {
     return (
       <div className="flex items-center justify-center mx-auto mt-[50px]">
         <Circles color="black" height={50} width={50} />
@@ -150,16 +152,13 @@ const BigCashTrivia = () => {
     );
   }
 
-  // useEffect(()=>{
-  //   const handleScoreUpdate=()=>{
-  //       setStatuses((prevStatus)=> [...prevStatus, statuses])
-  //   }
-  //   handleScoreUpdate()
-
-  // }, [])
-  // useEffect(()=>{
-  //   console.log(statuses)
-  // }, [statuses])
+  if (error) {
+    return (
+      <div className="flex items-center justify-center mx-auto mt-[50px]">
+        <p className="text-white text-lg">{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center w-full min-h-screen bg-darrk-gradient text-white">
@@ -174,7 +173,10 @@ const BigCashTrivia = () => {
 
       <div className="p-4 text-center">
         <h2 className="text-[24px] text-white leading-[24px] font-bold font-mtn-brighter-bold text-center mb-[47px]">
-          {questions[currentQuestionIndex]?.text || "No question available."}
+          {/* {questions[currentQuestionIndex]?.text || "No question available."} */}
+          {questions.length > 0
+            ? questions[currentQuestionIndex]?.text
+            : "No question available."}
         </h2>
 
         {/* Pagination Dots */}
@@ -194,29 +196,31 @@ const BigCashTrivia = () => {
         </div>
 
         <div className="flex flex-col gap-[21px]">
-          {questions[currentQuestionIndex].answers.map((answer, index) => (
-            <button
-              key={index}
-              onClick={() => handleAnswerClick(answer)}
-              className={`py-2 px-4 text-black rounded-[50px] w-[90vw] h-[60px] ${
-                selectedAnswer === answer
-                  ? answer === questions[currentQuestionIndex].rightAnswer
+          {/* {questions[currentQuestionIndex]?.answers?.map((answer, index) => ( */}
+          {questions.length > 0 &&
+            questions[currentQuestionIndex]?.answers?.map((answer, index) => (
+              <button
+                key={index}
+                onClick={() => handleAnswerClick(answer)}
+                className={`py-2 px-4 text-black rounded-[50px] w-[90vw] h-[60px] ${
+                  selectedAnswer === answer
+                    ? answer === questions[currentQuestionIndex].rightAnswer
+                      ? "bg-[#82e180]"
+                      : "bg-[#e37e80]"
+                    : selectedAnswer &&
+                      answer === questions[currentQuestionIndex].rightAnswer
                     ? "bg-[#82e180]"
-                    : "bg-[#e37e80]"
-                  : selectedAnswer &&
-                    answer === questions[currentQuestionIndex].rightAnswer
-                  ? "bg-[#82e180]"
-                  : "bg-white"
-              }`}
-              disabled={selectedAnswer !== null}
-            >
-              {answer}
-            </button>
-          ))}
+                    : "bg-white"
+                }`}
+                disabled={selectedAnswer !== null}
+              >
+                {answer}
+              </button>
+            ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default React.memo(BigCashTrivia);
+export default BigCashTrivia;

@@ -39,7 +39,7 @@ const LeaderboardProvider = ({ children }) => {
 
   useEffect(() => {
     if (msisdn) {
-      console.log("Updated MSISDN:", msisdn);
+      // console.log("Updated MSISDN:", msisdn);
 
       handleUpdateLeaderboardScore(msisdn, gameScore);
     }
@@ -66,7 +66,7 @@ const LeaderboardProvider = ({ children }) => {
     } catch (error) {
       const errorMessage =
         "An error occurred while fetching the leaderboard. Please try again later.";
-      toast.error(errorMessage);
+      // toast.error(errorMessage);
       setError(error.message || "Failed to fetch leaderboard.");
       console.error("Error fetching leaderboard standing:", error);
     } finally {
@@ -82,16 +82,16 @@ const LeaderboardProvider = ({ children }) => {
     }
 
     if (!msisdn) throw new Error("MSISDN is required for updating the score");
-    console.log(
-      "Updating leaderboard score for",
-      msisdn,
-      "with score:",
-      gameScore
-    );
+    // console.log(
+    //   "Updating leaderboard score for",
+    //   msisdn,
+    //   "with score:",
+    //   gameScore
+    // );
 
     try {
       const response = await updateLeaderboardScore(auth, msisdn, gameScore);
-      console.log("Leaderboard score updated:", response);
+      // console.log("Leaderboard score updated:", response);
       await fetchLeaderboardStanding();
     } catch (error) {
       console.error("Error updating leaderboard score:", error);

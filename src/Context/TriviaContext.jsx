@@ -1,6 +1,10 @@
-import { createContext, useState, useEffect, useContext } from 'react';
-import { getTriviaGames,getTriviaQuestions, submitAnswer } from '../api/triviaApi'; 
-import { TriviaAuthContext } from './TriviaAuthContext';
+import { createContext, useState, useEffect, useContext } from "react";
+import {
+  getTriviaGames,
+  getTriviaQuestions,
+  submitAnswer,
+} from "../api/triviaApi";
+import { TriviaAuthContext } from "./TriviaAuthContext";
 
 export const TriviaContext = createContext();
 
@@ -12,74 +16,82 @@ export const TriviaProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-
-
   const fetchGames = async () => {
     setLoading(true);
+    setError(null);
     try {
       const response = await getTriviaGames(10);
-      const sortedGames = response.data.sort((a, b) => a.name.localeCompare(b.name));
+      // const sortedGames = response.data.sort((a, b) => a.name.localeCompare(b.name));
+      // console.log("API Response:", response);
 
-      setGames(sortedGames); 
+      const sortedGames = Array.isArray(response.data)
+        ? response.data.sort((a, b) => a.name.localeCompare(b.name))
+        : [];
+
+      setGames(sortedGames);
     } catch (error) {
-        setError("Error fetching trivia games");
-      console.error('Error fetching games:', error);
+      setError("Error fetching trivia games");
+      console.error("Error fetching games:", error);
     } finally {
       setLoading(false);
     }
   };
-
 
   const fetchQuestions = async (gameId) => {
-    if (questions.length > 0) {
-        // console.log(`Questions already fetched for gameId: ${gameId}`);
-        return; 
-      }
-    // console.log(`Fetching questions for gameId: ${gameId}`);
     setLoading(true);
-
+    setError(null);
     try {
+      const response = await getTriviaQuestions(gameId);
 
-     
-        const response = await getTriviaQuestions(gameId);
-        // console.log("Fetched Questions:", response.data);
-        const structuredQuestions = response.data.map(question => ({
-            id: question.id,
-            text: question.text,
-            rightAnswer: question.rightAnswer,
-            answers: [question.rightAnswer, question.wrongAnswer] 
-        }));
-        setQuestions(structuredQuestions); 
+      if (!Array.isArray(response.data)) {
+        setError("No questions available");
+        setQuestions([]);
+        return;
+      }
 
+      // if (Array.isArray(response.data)) {
 
-       
-        
+      const structuredQuestions = response.data.map((question) => ({
+        id: question.id,
+        text: question.text,
+        rightAnswer: question.rightAnswer,
+        answers: [question.rightAnswer, question.wrongAnswer],
+      }));
+
+      structuredQuestions.forEach((q) => {
+        q.answers.sort(() => Math.random() - 0.5);
+      });
+
+      setQuestions(structuredQuestions);
+      // }
     } catch (error) {
-        setError("Error fetching trivia questions");
-
-      console.error('Error fetching questions:', error);
+      setError(`Error fetching trivia questions: ${error.message}`);
+      setQuestions([]);
+      console.error("Error fetching questions:", error);
     } finally {
       setLoading(false);
     }
   };
-
 
   const handleAnswerSubmit = async (msisdn, questionId, submittedAnswer) => {
     try {
       const data = await submitAnswer(msisdn, questionId, submittedAnswer);
-      return data; 
+      return data;
     } catch (err) {
-      setError(err.message); 
+      setError(err.message);
+      return null;
     }
   };
 
   useEffect(() => {
-    fetchGames(); 
+    fetchGames();
   }, []);
 
   useEffect(() => {
     if (selectedGameId) {
       fetchQuestions(selectedGameId);
+    } else {
+      setQuestions([]);
     }
   }, [selectedGameId]);
 
@@ -94,7 +106,7 @@ export const TriviaProvider = ({ children }) => {
         fetchQuestions,
         handleAnswerSubmit,
         loading,
-        error
+        error,
       }}
     >
       {children}
@@ -102,10 +114,6 @@ export const TriviaProvider = ({ children }) => {
   );
 };
 
-
-
-
-  
 
 
 
