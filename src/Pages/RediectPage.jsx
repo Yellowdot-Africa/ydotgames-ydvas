@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useUserContext } from "../Context/UserContext";
-// import { useAuth } from '../Context/AuthContext';
-// import {handleCreateSubscriberProfile} from "../Context/UserContext";
-
+import { Circles } from "react-loader-spinner";
 
 const RedirectPage = () => {
   const location = useLocation();
@@ -15,42 +13,39 @@ const RedirectPage = () => {
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-
     const cli = queryParams.get("cli");
     const sid = queryParams.get("sid");
 
-  //   const setNewID = localStorage.setItem("newID", cli);
+    //   //   if (setNewID) {
+    //   //     setMsisdn(setNewID);
+    //   //     console.log("Retrieved MSISDN from localStorage:", storedMsisdn);
+    //   //     checkSubscription(storedMsisdn, sid);
+    //   //   } else if (cli) {
+    //   //     const decodedCli = atob(cli);
+    //   //     setMsisdn(decodedCli);
+    //   //     localStorage.setItem("cli", decodedCli);
+    //   //     console.log("Decoded CLI:", decodedCli);
+    //   //     checkSubscription(decodedCli, sid);
+    //   //   } else {
+    //   //     console.error("CLI parameter is missing.");
+    //   //     setLoading(false);
+    //   //   }
+    //   // }, [location.search, setMsisdn]);
 
-  //   if (setNewID) {
-  //     setMsisdn(setNewID);
-  //     console.log("Retrieved MSISDN from localStorage:", storedMsisdn);
-  //     checkSubscription(storedMsisdn, sid);
-  //   } else if (cli) {
-  //     const decodedCli = atob(cli);
-  //     setMsisdn(decodedCli);
-  //     localStorage.setItem("cli", decodedCli);
-  //     console.log("Decoded CLI:", decodedCli);
-  //     checkSubscription(decodedCli, sid);
-  //   } else {
-  //     console.error("CLI parameter is missing.");
-  //     setLoading(false);
-  //   }
-  // }, [location.search, setMsisdn]);
+    //   // const setNewID = localStorage.setItem("newID", cli);
 
-  // const setNewID = localStorage.setItem("newID", cli); // This doesn't need to be assigned to a variable
-if (cli) {
-    const decodedCli = atob(cli);
-    setMsisdn(decodedCli); 
-    localStorage.setItem("cli", decodedCli);
-    // console.log("Decoded CLI:", decodedCli);
-    checkSubscription(decodedCli, sid);
-  } else {
-    console.error("CLI parameter is missing.");
-    setLoading(false);
-}
-}, [location.search, setMsisdn]);
+    if (cli) {
+      const decodedCli = atob(cli);
+      setMsisdn(decodedCli);
+      localStorage.setItem("cli", decodedCli);
+      // console.log("Decoded CLI:", decodedCli);
 
-
+      checkSubscription(decodedCli, sid);
+    } else {
+      console.error("CLI parameter is missing.");
+      setLoading(false);
+    }
+  }, [location.search, setMsisdn]);
 
   const checkSubscription = async (msisdn, serviceId) => {
     try {
@@ -62,9 +57,9 @@ if (cli) {
 
       if (response.data.data.State === "Active") {
         // await handleCreateSubscriberProfile(msisdn, nickname, avatarId);
-        // if (auth?.token) {
-        //   handleCreateSubscriberProfile(msisdn, nickname, avatarId); 
-        // }
+        //         // if (auth?.token) {
+        //         //   handleCreateSubscriberProfile(msisdn, nickname, avatarId);
+        //         // }
         navigate("/");
       } else {
         setErrorMessage(
@@ -82,15 +77,19 @@ if (cli) {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       {loading ? (
-        <h1>Redirecting...</h1>
+        <div className="flex flex-col items-center">
+          <Circles color="black" height={50} width={50} />
+
+          <h1 className="text-xl font-semibold mt-4">Redirecting...</h1>
+        </div>
       ) : (
-        <div>
+        <div className="text-center">
           {errorMessage ? (
-            <p className="text-red-500">{errorMessage}</p>
+            <p className="text-red-500 font-medium">{errorMessage}</p>
           ) : (
-            <p>Please wait while we redirect you.</p>
+            <p className="text-gray-700">Please wait while we redirect you.</p>
           )}
         </div>
       )}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Logo from "../assets/Images/logo.png";
+import Logo from "../assets/Images/new-logo.png";
 import SplashIcon from "../assets/Icons/splash.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -26,7 +26,7 @@ const SplashScreen = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen bg-custom-gradient">
+      <div className="flex flex-col items-center justify-center h-screen bg-new-background">
         <div className="flex flex-col items-center justify-center">
           <img
             src={Logo}
@@ -34,7 +34,7 @@ const SplashScreen = () => {
             className="w-[100%] h-[auto] max-w-[225.31px] mb-5"
           />
 
-          <h1 className="text-[20px] font-bold font-mtn-brighter-bold text-center text-dark-gradient leading-[26px] mb-[100px] w-[342px] h-[52px] ">
+          <h1 className="text-[20px] font-bold font-mtn-brighter-bold text-center text-[#FFFFFF] leading-[26px] mb-[100px] w-[342px] h-[52px] ">
             Gain Access To Multiple Games,
             <br /> And Have An Amazing Experience!
           </h1>

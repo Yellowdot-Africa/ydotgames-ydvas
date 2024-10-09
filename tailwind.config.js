@@ -16,7 +16,8 @@ export default {
         'profile-gradient': 'linear-gradient(174.25deg, #FFCB05 9.24%, #000000 41.91%)',
         'button-gradient': 'linear-gradient(90deg, #4A3B0B 0%, #FFCB05 50%, #4A3B0B 100%)',
         'background-avatar': 'linear-gradient(132.65deg, #000000 26.03%, #1D1D1D 90.9%)',
-
+        'new-background': 'linear-gradient(0deg, #FFCB05 20.38%, #000000 105.92%)',
+        
       },
       boxShadow: {
         'custom-shadow': '0px 3px 4px 0px #00000040',
