@@ -11,12 +11,14 @@ const authApi = async () => {
       }
     );
 
-    const { jwtToken, tokenExpiry, username } = response.data;
+    const { jwtToken, tokenExpiry, username,bigCashTriviaId } = response.data;
     const expiryTime = new Date().getTime() + tokenExpiry * 1000;
 
     localStorage.setItem("authToken", jwtToken);
     localStorage.setItem("tokenExpiry", expiryTime);
     localStorage.setItem("username", username);
+    localStorage.setItem("bigCashTriviaId", bigCashTriviaId); 
+
     return response.data;
   } catch (error) {
     console.error("Authorization failed:", error);
@@ -43,10 +45,12 @@ export default authApi;
 //       }
 //     );
 
-//     const { jwtToken, tokenExpiry, username } = response.data;
+//     const { jwtToken, tokenExpiry, username, bigCashTriviaId } = response.data;
 //     localStorage.setItem("authToken", jwtToken);
 //     localStorage.setItem("tokenExpiry", tokenExpiry);
 //     localStorage.setItem("username", username);
+// localStorage.setItem("bigCashTriviaId", bigCashTriviaId);
+
 //     return response.data;
 //   } catch (error) {
 //     console.error("Authorization failed:", error);

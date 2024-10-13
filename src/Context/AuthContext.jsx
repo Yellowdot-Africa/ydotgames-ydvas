@@ -15,6 +15,7 @@
 //         token: data.jwtToken,
 //         tokenExpiry: data.tokenExpiry,
 //         username: data.username,
+// bigCashTriviaId: data.bigCashTriviaId,
 //       });
 //     } catch (error) {
 //       setError('Internal Server Error. Please try again later.');
@@ -86,6 +87,7 @@ export const AuthProvider = ({ children }) => {
         token: data.jwtToken,
         tokenExpiry: data.tokenExpiry,
         username: data.username,
+        bigCashTriviaId: data.bigCashTriviaId,
       });
     } catch (error) {
       console.error("Login error:", error);
@@ -104,3 +106,11 @@ export const AuthProvider = ({ children }) => {
 
 
 export default AuthContext;
+
+
+
+
+
+
+
+

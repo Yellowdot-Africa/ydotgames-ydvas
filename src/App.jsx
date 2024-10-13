@@ -43,7 +43,7 @@ const router = createBrowserRouter([
     element: <HomePage/>,
   },
   {
-    path: "/bigcash-trivia/:gameId",
+    path: "/bigcash-trivia/:categoryId",
     element: <BigCashTrivia />,
    
   },
@@ -89,8 +89,6 @@ const App = ()=> {
 }
 
 export default App;
-
-
 
 
 
