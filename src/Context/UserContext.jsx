@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import AuthContext from "../Context/AuthContext";
-import { getSubscriberProfile, UpdateSubscriberProfile } from "../api/userApi";
+// import { createSubscriberProfile, getSubscriberProfile, UpdateSubscriberProfile } from "../api/userApi";
+import {  getSubscriberProfile, UpdateSubscriberProfile } from "../api/userApi";
 
 const UserContext = createContext();
 
@@ -22,29 +23,29 @@ export const UserProvider = ({ children }) => {
     }
   }, [auth?.token, msisdn]);
 
-  const handleCreateSubscriberProfile = async (msisdn, nickname, avatarId) => {
-    setLoading(true);
-    setError(null);
+  // const handleCreateSubscriberProfile = async (msisdn, nickname, avatarId) => {
+  //   setLoading(true);
+  //   setError(null);
 
-    try {
-      const response = await createSubscriberProfile(
-        auth,
-        msisdn,
-        nickname,
-        avatarId
-      );
-      if (response.statusCode === "999") {
-        setUserProfile(response.data);
-      } else {
-        setError(response.statusMessage);
-      }
-    } catch (error) {
-      console.error("Failed to create profile", error);
-      setError("Error creating profile");
-    } finally {
-      setLoading(false);
-    }
-  };
+  //   try {
+  //     const response = await createSubscriberProfile(
+  //       auth,
+  //       msisdn,
+  //       nickname,
+  //       avatarId
+  //     );
+  //     if (response.statusCode === "999") {
+  //       setUserProfile(response.data);
+  //     } else {
+  //       setError(response.statusMessage);
+  //     }
+  //   } catch (error) {
+  //     console.error("Failed to create profile", error);
+  //     setError("Error creating profile");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const fetchProfile = async (msisdn) => {
     setLoading(true);
@@ -101,7 +102,7 @@ export const UserProvider = ({ children }) => {
         error,
         msisdn,
         setMsisdn,
-        handleCreateSubscriberProfile,
+        // handleCreateSubscriberProfile,
         fetchProfile,
         handleUpdateSubscriberProfile,
       }}

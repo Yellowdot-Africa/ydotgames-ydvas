@@ -47,7 +47,7 @@ const LeaderboardProvider = ({ children }) => {
 
   const fetchLeaderboardStanding = async () => {
     if (!auth?.token) {
-      console.error("No auth token available");
+      // console.error("No auth token available");
 
       return;
     }
@@ -77,7 +77,7 @@ const LeaderboardProvider = ({ children }) => {
   const handleUpdateLeaderboardScore = async (msisdn, gameScore) => {
     // console.log('msisdn in handleUpdateLeaderboardScore:', msisdn);
     if (!auth?.token) {
-      console.error("No auth token available");
+      // console.error("No auth token available");
       return;
     }
 

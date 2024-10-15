@@ -116,7 +116,10 @@
 
 
 
-// TriviaContext.js
+
+
+
+
 import React, { createContext, useState, useEffect } from 'react';
 import { getTriviaGame, getTriviaQuestions,submitAnswer } from '../api/triviaApi';
 
@@ -208,4 +211,3 @@ export const TriviaProvider = ({ children }) => {
     </TriviaContext.Provider>
   );
 };
-

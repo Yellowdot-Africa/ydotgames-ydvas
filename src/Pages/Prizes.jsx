@@ -27,11 +27,11 @@ const PrizesPage = () => {
     { position: 2, dailyAirtime: "R55", monthlyCash: "R750" },
     { position: 3, dailyAirtime: "R50", monthlyCash: "R500" },
     { position: 4, dailyAirtime: "R45", monthlyCash: "R450" },
-    { position: 5, dailyAirtime: "R35", monthlyCash: "R400" },
+    { position: 5, dailyAirtime: "R40", monthlyCash: "R400" },
     { position: 6, dailyAirtime: "R35", monthlyCash: "R350" },
-    { position: 7, dailyAirtime: "R35", monthlyCash: "R300" },
-    { position: 8, dailyAirtime: "R35", monthlyCash: "R250" },
-    { position: 9, dailyAirtime: "R35", monthlyCash: "R200" },
+    { position: 7, dailyAirtime: "R30", monthlyCash: "R300" },
+    { position: 8, dailyAirtime: "R25", monthlyCash: "R250" },
+    { position: 9, dailyAirtime: "R20", monthlyCash: "R200" },
     { position: 10, dailyAirtime: "R10", monthlyCash: "R100" },
   ];
   const avatars = [Avatar1, Avatar2, Avatar3, Avatar4, Avatar5];

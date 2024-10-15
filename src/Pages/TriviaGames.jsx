@@ -175,7 +175,7 @@ const TriviaGames = () => {
               <div
                 key={category.id}
                 className="cursor-pointer bg-white  border rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:scale-105 p-4 text-center"
-                onClick={() => handleCategoryClick(category.id)} // Add onClick event
+                onClick={() => handleCategoryClick(category.id)} 
               >
                 <h2 className="text-[20px] leading-[28px] font-mtn-brighter-medium font-medium text-gray-700">
                   {category.name}

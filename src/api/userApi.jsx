@@ -3,7 +3,7 @@ import axios from "axios";
 const BASE_URL = "https://ydvassdp.com:5001/api/YellowdotGames";
 
 
-// export const createSubscriberProfile = async (auth, msisdn, nickname, avatarId) =>{
+// export const createSubscriberProfile = async (auth, msisdn, nickname, avatarId) => {
 //   try{
 //     const token = localStorage.getItem("authToken");
 
@@ -11,12 +11,30 @@ const BASE_URL = "https://ydvassdp.com:5001/api/YellowdotGames";
 //       throw new Error("No auth token available");
 //     }
 
-//     const response = await axios.post(
-//       `${BASE_URL}/CreateSubscriberProfile?msisdn=${msisdn}`,
+//     const payload = {
+//       msisdn,
+//       nickname,
+//       avatarId,
+//     };
 
-//     )
+//   // console.log("Auth Token:", token);
+//   //   console.log("MSISDN:", msisdn, nickname, avatarId);
+//     const response = await axios.post(
+//       `${BASE_URL}/CreateSubscriberProfile`,
+//       payload,
+//       {
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${token}`,
+//         },
+//       }
+//     );
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error creating subscriber profile:", error);
+//     throw error;
 //   }
-// }
+// };
 
 export const getSubscriberProfile = async (auth, msisdn) => {
   try {
@@ -75,7 +93,7 @@ export const UpdateSubscriberProfile = async (
     );
     return response.data;
   } catch (error) {
-    console.error("Error updating leaderboard score:", error);
+    console.error("Error updating user profile:", error);
     throw error;
   }
 };
