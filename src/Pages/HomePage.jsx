@@ -315,13 +315,13 @@ const HomePage = () => {
     "/temple-quest/index.html": "templeQuest",
   };
 
-  useEffect(() => {
-    if (msisdn) {
-      // console.log("Updated MSISDN:", msisdn);
+  // useEffect(() => {
+  //   if (msisdn) {
+  //     // console.log("Updated MSISDN:", msisdn);
 
-      handleUpdateLeaderboardScore(msisdn, gameScore);
-    }
-  }, [msisdn, gameScore]);
+  //     handleUpdateLeaderboardScore(msisdn, gameScore);
+  //   }
+  // }, [msisdn, gameScore]);
 
   const handleBackToApp = async (gameKey, msisdn) => {
     setIframeSrc("");

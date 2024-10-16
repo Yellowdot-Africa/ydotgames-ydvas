@@ -220,13 +220,13 @@ const CarouselSection = () => {
     "/temple-quest/index.html": "templeQuest",
   };
 
-  useEffect(() => {
-    if (msisdn) {
-      // console.log("Updated MSISDN:", msisdn);
+  // useEffect(() => {
+  //   if (msisdn) {
+  //     // console.log("Updated MSISDN:", msisdn);
 
-      handleUpdateLeaderboardScore(msisdn, gameScore);
-    }
-  }, [msisdn, gameScore]);
+  //     handleUpdateLeaderboardScore(msisdn, gameScore);
+  //   }
+  // }, [msisdn, gameScore]);
 
   const handleBackToApp = async (gameKey, msisdn) => {
     setIframeSrc("");
@@ -272,7 +272,7 @@ const CarouselSection = () => {
   };
 
   useEffect(() => {
-    if (msisdn && gameScore) {
+    if (msisdn && gameScore > 0) {
       // console.log("Updated MSISDN:", msisdn);
       handleUpdateLeaderboardScore(msisdn, gameScore)
         .then(() => {

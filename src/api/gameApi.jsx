@@ -5,7 +5,10 @@ import axios from "axios";
 const gameApi = async (auth, count = 4) => {
 
   try {
-    const token = localStorage.getItem("authToken");
+    const token = auth?.token;
+  
+    
+    // const token = localStorage.getItem("authToken");
     if (!token) {
       throw new Error("No auth token available");
     }
@@ -14,7 +17,7 @@ const gameApi = async (auth, count = 4) => {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${auth.token}`,
         },
       }
     );

@@ -19,7 +19,7 @@ export const getLeaderboardStanding = async (auth, msisdn) => {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${auth.token}`,
         },
       }
     );
@@ -61,7 +61,7 @@ export const updateLeaderboardScore = async (auth, msisdn, gameScore) => {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${auth.token}`,
         },
       }
     );

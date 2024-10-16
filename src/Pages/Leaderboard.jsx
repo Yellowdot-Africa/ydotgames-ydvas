@@ -58,13 +58,13 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
 
 
 
-  useEffect(() => {
-    if (msisdn) {
-      // console.log("Updated MSISDN:", msisdn);
+  // useEffect(() => {
+  //   if (msisdn) {
+  //     // console.log("Updated MSISDN:", msisdn);
      
-      handleUpdateLeaderboardScore(msisdn, gameScore);
-    }
-  }, [msisdn, gameScore]);
+  //     handleUpdateLeaderboardScore(msisdn, gameScore);
+  //   }
+  // }, [msisdn, gameScore]);
 
   useEffect(() => {
     let lastScrollTop = 0;

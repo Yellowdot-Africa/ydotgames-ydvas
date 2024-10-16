@@ -38,8 +38,8 @@ const BASE_URL = "https://ydvassdp.com:5001/api/YellowdotGames";
 
 export const getSubscriberProfile = async (auth, msisdn) => {
   try {
-    // const token = auth?.token;
-    const token = localStorage.getItem("authToken");
+    const token = auth?.token;
+    // const token = localStorage.getItem("authToken");
 
     if (!token) {
       throw new Error("No auth token available");
@@ -51,7 +51,7 @@ export const getSubscriberProfile = async (auth, msisdn) => {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${auth.token}`,
         },
       }
     );
@@ -71,8 +71,8 @@ export const UpdateSubscriberProfile = async (
   // console.log('Updating profile with:', { msisdn, nickname, avatarId });
 
   try {
-    const token = localStorage.getItem("authToken");
-    // const token = auth?.token;
+    // const token = localStorage.getItem("authToken");
+    const token = auth?.token;
     if (!token) {
       throw new Error("No auth token available");
     }
@@ -87,7 +87,7 @@ export const UpdateSubscriberProfile = async (
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${auth.token}`,
         },
       }
     );
