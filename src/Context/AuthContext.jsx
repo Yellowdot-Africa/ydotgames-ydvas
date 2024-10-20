@@ -20,6 +20,11 @@ export const AuthProvider = ({ children }) => {
     setError(null); 
 
     try {
+
+      if (auth && !isTokenExpired(auth.tokenExpiry)) {
+// IF THERE IS A TOKEN AND IT IS STILL VALID, NO NEED TO RE-LOGIN
+        return;
+      }
       const data = await authApi();
 
 
@@ -40,45 +45,26 @@ export const AuthProvider = ({ children }) => {
   };
 
 
+  // THIS Automatically check token expiration and refresh it
+  // useEffect(() => {
+  //   if (auth) {
+  //     const tokenCheckInterval = setInterval(() => {
+  //       if (isTokenExpired(auth.tokenExpiry)) {
+  //         console.log("Token expired, refreshing...");
+  //         login(); // Refresh the token if expired
+  //       }
+  //     }, 60000); // Check every 60 seconds
 
-//   if (jwtToken && tokenExpiry && username) {
-//     if (!isTokenExpired(tokenExpiry)) {
-//       // Token is still valid, set auth state
-//       setAuth({
-//         token: jwtToken,
-//         tokenExpiry,
-//         username,
-//       });
-//     } else {
-//       // Token expired, clear storage and re-login
-//       localStorage.clear();
-//       login();
-//     }
-//   } else {
-//     // No token available, perform login
-//     login();
-//   }
-// };
+  //     return () => clearInterval(tokenCheckInterval); // Clear interval when component unmount
+  //   }
+  // }, [auth]);
 
-  // Effect to automatically check token expiration and refresh if necessary
-  useEffect(() => {
-    if (auth) {
-      const tokenCheckInterval = setInterval(() => {
-        if (isTokenExpired(auth.tokenExpiry)) {
-          console.log("Token expired, refreshing...");
-          login(); // Refresh the token if expired
-        }
-      }, 60000); // Check every 60 seconds
-
-      return () => clearInterval(tokenCheckInterval); // Clear interval on component unmount
-    }
-  }, [auth]);
    // perform login when the component is first mounted
    useEffect(() => {
     login();
   }, []);
 
-  
+
   // if (loading) {
   //   return <div>Loading...</div>;
   // }
@@ -146,48 +132,6 @@ export default AuthContext;
 
 
 
-
-// import React, { createContext, useContext, useState, useEffect } from "react";
-// import axios from "axios";
-
-// // Create a context for Auth
-// const AuthContext = createContext();
-
-// // Create a provider component
-// export const AuthProvider = ({ children }) => {
-//   const [token, setToken] = useState(null);
-
-//   // Fetch the token only once
-//   const fetchAuthToken = async () => {
-//     try {
-//       const response = await axios.post("https://ydvassdp.com:5001/api/auth", {
-//         username: "games_sa_ydotgames",
-//         password: "password"
-//       });
-//       setToken(response.data.token); // Store the token
-//     } catch (error) {
-//       console.error("Error fetching auth token:", error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     if (!token) {
-//       fetchAuthToken(); // Fetch token on first mount
-//     }
-//   }, [token]);
-
-//   // Provide the token and a function to refresh it
-//   return (
-//     <AuthContext.Provider value={{ token, fetchAuthToken }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
-
-// // Hook to use the Auth context
-// export const useAuth = () => {
-//   return useContext(AuthContext);
-// };
 
 
 

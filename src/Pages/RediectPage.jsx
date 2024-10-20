@@ -6,6 +6,9 @@ import { useUserContext } from "../Context/UserContext";
 import { Circles } from "react-loader-spinner";
 
 
+
+
+
 const RedirectPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -60,14 +63,14 @@ const RedirectPage = () => {
 
       if (response.data.data.State === "Active") {
        
-        // const nickname = msisdn; 
-        // const avatarId = 1; 
+        const nickname = msisdn; 
+        const avatarId = 1; 
 
        
-        // await handleCreateSubscriberProfile(msisdn, nickname, avatarId);
-        //         if (auth?.token) {
-        //           handleCreateSubscriberProfile(msisdn, nickname, avatarId);
-        //         }
+        await handleCreateSubscriberProfile(msisdn, nickname, avatarId);
+                if (auth?.token) {
+                  handleCreateSubscriberProfile(msisdn, nickname, avatarId);
+                }
         navigate("/");
       } else {
         setErrorMessage(
@@ -190,11 +193,11 @@ export default RedirectPage;
 //         const avatarId = 1; 
 
 //         console.log("Creating new profile..."); 
-//         await handleCreateSubscriberProfile(auth, msisdn, nickname, avatarId);
+//         // await handleCreateSubscriberProfile(auth, msisdn, nickname, avatarId);
 //                 // if (auth?.token) {
 //                 //   handleCreateSubscriberProfile(msisdn, nickname, avatarId);
 //                 // }
-//                 console.log("Profile created successfully.");
+//                 // console.log("Profile created successfully.");
 
 //         navigate("/");
 //               }

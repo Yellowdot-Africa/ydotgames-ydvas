@@ -3,38 +3,39 @@ import axios from "axios";
 const BASE_URL = "https://ydvassdp.com:5001/api/YellowdotGames";
 
 
-// export const createSubscriberProfile = async (auth, msisdn, nickname, avatarId) => {
-//   try{
-//     const token = localStorage.getItem("authToken");
+export const createSubscriberProfile = async (auth, msisdn, nickname, avatarId) => {
+  try{
+    // const token = localStorage.getItem("authToken");
+    const token = auth?.token;
 
-//     if (!token) {
-//       throw new Error("No auth token available");
-//     }
+    if (!token) {
+      throw new Error("No auth token available");
+    }
 
-//     const payload = {
-//       msisdn,
-//       nickname,
-//       avatarId,
-//     };
+    const payload = {
+      msisdn,
+      nickname,
+      avatarId,
+    };
 
-//   // console.log("Auth Token:", token);
-//   //   console.log("MSISDN:", msisdn, nickname, avatarId);
-//     const response = await axios.post(
-//       `${BASE_URL}/CreateSubscriberProfile`,
-//       payload,
-//       {
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: `Bearer ${token}`,
-//         },
-//       }
-//     );
-//     return response.data;
-//   } catch (error) {
-//     console.error("Error creating subscriber profile:", error);
-//     throw error;
-//   }
-// };
+  // console.log("Auth Token:", token);
+  //   console.log("MSISDN:", msisdn, nickname, avatarId);
+    const response = await axios.post(
+      `${BASE_URL}/CreateSubscriberProfile`,
+      payload,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error creating subscriber profile:", error);
+    throw error;
+  }
+};
 
 export const getSubscriberProfile = async (auth, msisdn) => {
   try {

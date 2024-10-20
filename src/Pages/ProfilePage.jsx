@@ -63,12 +63,24 @@ const ProfilePage = () => {
     }
   }, [leaderboard, userProfile]);
 
+  // const truncateTitle = (title) => {
+  //   const maxLength = 10;
+  //   if (title.length > maxLength) {
+  //     return title.substring(0, maxLength) + "...";
+  //   }
+  //   return title;
+  // };
+
+
   const truncateTitle = (title) => {
     const maxLength = 10;
-    if (title.length > maxLength) {
+  
+    if (title && title.length > maxLength) {
       return title.substring(0, maxLength) + "...";
     }
-    return title;
+    
+    // Return the title as-is, or an empty string if title is undefined or null
+    return title || "";
   };
 
   useEffect(() => {
