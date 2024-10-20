@@ -106,3 +106,38 @@ export default App;
 
 
 
+
+
+
+
+// const handleAnswerClick = async (answer) => {
+//   if (selectedAnswer) return;
+
+//   setSelectedAnswer(answer);
+//   const questionId = questions[currentQuestionIndex].id;
+//   const response = await handleAnswerSubmit(msisdn, questionId, answer);
+
+//   const isAnswerCorrect =
+//     answer === questions[currentQuestionIndex].rightAnswer;
+
+//   setStatuses((prevStatuses) => {
+//     const newStatuses = [...prevStatuses];
+//     newStatuses[currentQuestionIndex] = isAnswerCorrect
+//       ? "correct"
+//       : "incorrect";
+//     return newStatuses;
+//   });
+
+//   setScore((prevScore) => {
+//     let awardedPoints = 0;
+//     if (response && response.statusCode === "999") {
+//       const pointsMessage = response.message;
+//       awardedPoints = parseInt(pointsMessage.match(/\d+/)[0]);
+//     }
+//     return prevScore + awardedPoints;
+//   });
+
+//   // Ensure everything updates before moving to the next question
+//   await new Promise((resolve) => setTimeout(resolve, 2000));
+//   handleNextQuestion();
+// };

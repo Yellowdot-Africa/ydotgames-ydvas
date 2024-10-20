@@ -59,6 +59,8 @@ const BigCashTrivia = () => {
     return () => clearInterval(timerId);
   }, [currentQuestionIndex]);
 
+
+  
   const handleTimerExpiration = async () => {
     if (selectedAnswer === null) {
       // console.log("Time's up! No answer was selected for the question.");

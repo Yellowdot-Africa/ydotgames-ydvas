@@ -13,7 +13,7 @@ const gameApi = async (auth, count = 4) => {
       throw new Error("No auth token available");
     }
     const response = await axios.get(
-      `http://69.197.174.10:8084/api/YellowdotGames/YdotGames/GetHomePageGames?count=${count}`,
+      `https://onlinetriviaapi.ydplatform.com:1990/api/YellowdotGames/YdotGames/GetHomePageGames?count=${count}`,
       {
         headers: {
           "Content-Type": "application/json",
