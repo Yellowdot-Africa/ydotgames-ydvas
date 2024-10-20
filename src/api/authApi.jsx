@@ -14,7 +14,9 @@ const authApi = async () => {
 
   try {
     const response = await axios.post(
-      "https://ydvassdp.com:5001/api/YellowdotGames/Authorization/Login",
+      "http://69.197.174.10:8084/api/YellowdotGames/Authorization/Login",
+
+
       {
         username: "games_sa_ydotgames",
         password: "password",

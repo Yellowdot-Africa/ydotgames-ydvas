@@ -12,7 +12,7 @@ import { Circles } from "react-loader-spinner";
 const RedirectPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { setMsisdn, handleCreateSubscriberProfile  } = useUserContext();
+  const { setMsisdn  } = useUserContext();
   const { auth } = useContext(AuthContext); 
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
@@ -67,10 +67,10 @@ const RedirectPage = () => {
         const avatarId = 1; 
 
        
-        await handleCreateSubscriberProfile(msisdn, nickname, avatarId);
-                if (auth?.token) {
-                  handleCreateSubscriberProfile(msisdn, nickname, avatarId);
-                }
+        // await handleCreateSubscriberProfile(msisdn, nickname, avatarId);
+        //         if (auth?.token) {
+        //           handleCreateSubscriberProfile(msisdn, nickname, avatarId);
+        //         }
         navigate("/");
       } else {
         setErrorMessage(

@@ -195,7 +195,7 @@ const BigCashTrivia = () => {
           ))}
         </div>
 
-        <div className="flex flex-col gap-[21px]">
+        <div className="flex flex-col gap-[21px] items-center">
           {/* {questions[currentQuestionIndex]?.answers?.map((answer, index) => ( */}
           {questions.length > 0 &&
             questions[currentQuestionIndex]?.answers?.map((answer, index) => (
