@@ -16,6 +16,7 @@ import SubscriptionPage from './Pages/SubscriptionPage';
 import ErrorPage from './Pages/ErrorPage';
 import TriviaGames from './Pages/TriviaGames';
 import RedirectPage from "./Pages/RediectPage";
+import ErrorBoundary from './Pages/ErrorBoundary';
 
 const router = createBrowserRouter([
   {
@@ -82,7 +83,10 @@ const App = ()=> {
   return (
     <>
     <ToastContainer /> 
+    <ErrorBoundary>
+
       <RouterProvider router={router} />
+      </ErrorBoundary>
 
     </>
   )
