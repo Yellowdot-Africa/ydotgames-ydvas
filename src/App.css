@@ -5,12 +5,12 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
 }
 
 html, body {
   width: 100%;
   min-height: 100%;
-  overflow-x: hidden; 
 }
 
 .container {
@@ -19,8 +19,12 @@ html, body {
 
 }
 
+/* .iframer{
+  overflow: hidden; 
 
-.scrollbar-hide {
+} */
+
+/* .scrollbar-hide {
     -ms-overflow-style: none;  
     scrollbar-width: none;  
   }
@@ -44,4 +48,4 @@ html, body {
   .slick-active {
     opacity: 1; 
   }
-  
+   */

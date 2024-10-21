@@ -56,6 +56,17 @@ const HomePage = () => {
   const navigate = useNavigate();
   const [iframeSrc, setIframeSrc] = useState("");
   const [gameScore, setGameScore] = useState(0);
+  const [isLandscape, setIsLandscape] = useState(false);
+
+  const handleOrientationChange = () => {
+    setIsLandscape(window.innerWidth > window.innerHeight);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleOrientationChange);
+    handleOrientationChange();
+    return () => window.removeEventListener("resize", handleOrientationChange);
+  }, []);
 
   useEffect(() => {
     if (games && games.length > 0) {
@@ -620,13 +631,29 @@ const HomePage = () => {
           </section>
         </div>
 
+
+         {/* <div className={`absolute inset-0 bg-black mx-[2px] z-50 ${
+          //   isLandscape ? "rotate-90 scale-[calc(1/1.5)] origin-center" : ""
+          // }`}
+          // style={{ width: isLandscape ? '100vh' : '100vw', height: isLandscape ? '100vw' : '100vh' }}
+
+          //   >
+        {/* <div className="fixed"> */}
+       {/* */} 
+
         {iframeSrc && (
-          <div className="absolute inset-0 bg-white z-50">
+         
+           <div className="absolute inset-0 bg-black mx-[2px] z-50 overflow-hidden">
             <iframe
               src={iframeSrc}
               title="Game"
-              sandbox="allow-scripts allow-same-origin"
-              className="w-full h-full"
+              seamless
+              // scrolling="no"
+              // sandbox="allow-scripts allow-same-origin"
+              // sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+              className="iframer w-full h-[90vh] overflow-hidden"
+              style={{ border: 'none', overflow: 'hidden' }} 
+
             />
             <button
               onClick={() => {
@@ -639,13 +666,14 @@ const HomePage = () => {
                   );
                 }
               }}
-              className="absolute top-4 right-4 bg-sky-900 text-white px-4 py-2 rounded"
+              className="absolute mt-2 mx-[60px] w-[70%]  bg-sky-900 text-white px-4 py-[12px] rounded-[28px] font-mtn-brighter-medium font-medium text-[18px]"
             >
               Back to App
             </button>
           </div>
+         
         )}
-
+ {/* </div> */}
         <div className="fixed w-full flex justify-center  ">
           <div
             style={navStyle}
