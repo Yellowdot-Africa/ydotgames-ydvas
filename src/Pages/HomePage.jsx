@@ -651,7 +651,7 @@ const HomePage = () => {
               // scrolling="no"
               // sandbox="allow-scripts allow-same-origin"
               // sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-              className="iframer w-full h-[90vh] overflow-hidden"
+              className="iframer w-full h-[75vh] overflow-hidden"
               style={{ border: 'none', overflow: 'hidden' }} 
 
             />
