@@ -120,6 +120,7 @@ const BigCashTrivia = () => {
     }
   };
 
+
   const finalizeGame = async () => {
     const finalScore = await new Promise((resolve) => {
       setScore((prevScore) => {
@@ -127,24 +128,53 @@ const BigCashTrivia = () => {
         return prevScore;
       });
     });
-
-    // console.log(statuses);
-    // console.log("Final Statuses:", statuses);
-    // console.log("Final Score:", finalScore);
-
+  
+    // Calculate the number of correct and incorrect answers
+    const correctAnswers = statuses.filter((status) => status === "correct").length;
+    const incorrectAnswers = statuses.filter((status) => status === "incorrect").length;
+  
     await handleUpdateLeaderboardScore(msisdn, finalScore);
-
+  
     setTimeout(() => {
       navigate("/result-page", {
         state: {
           score: finalScore,
           totalQuestions: questions.length,
           statuses: statuses,
+          correctAnswers: correctAnswers,
+          incorrectAnswers: incorrectAnswers,
           gameId: selectedGameId,
         },
       });
     }, 2000);
   };
+  
+
+  // const finalizeGame = async () => {
+  //   const finalScore = await new Promise((resolve) => {
+  //     setScore((prevScore) => {
+  //       resolve(prevScore);
+  //       return prevScore;
+  //     });
+  //   });
+
+  //   // console.log(statuses);
+  //   // console.log("Final Statuses:", statuses);
+  //   // console.log("Final Score:", finalScore);
+
+  //   await handleUpdateLeaderboardScore(msisdn, finalScore);
+
+  //   setTimeout(() => {
+  //     navigate("/result-page", {
+  //       state: {
+  //         score: finalScore,
+  //         totalQuestions: questions.length,
+  //         statuses: statuses,
+  //         gameId: selectedGameId,
+  //       },
+  //     });
+  //   }, 2000);
+  // };
 
   if (loading) {
     return (

@@ -9,18 +9,20 @@ const ResultPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   // console.log('Score:', score, 'Total Questions:', totalQuestions, 'Statuses:', statuses);
-  const { score, totalQuestions, statuses = [] } = location.state || {};
+  // const { score, totalQuestions, statuses = [] } = location.state || {};
+  const { score, totalQuestions, correctAnswers, incorrectAnswers } =
+    location.state;
 
   const { games, fetchGames, selectedGameId, setSelectedGameId } =
     useContext(TriviaContext);
   const gameId = location.state?.gameId || selectedGameId;
 
-  const correctAnswers = statuses.filter(
-    (status) => status === "correct"
-  ).length;
-  const wrongAnswers = statuses.filter(
-    (status) => status === "incorrect"
-  ).length;
+  // const correctAnswers = statuses.filter(
+  //   (status) => status === "correct"
+  // ).length;
+  // const wrongAnswers = statuses.filter(
+  //   (status) => status === "incorrect"
+  // ).length;
 
   const handlePlayAgain = () => {
     navigate("/home");
@@ -61,7 +63,8 @@ const ResultPage = () => {
             alt="red"
           />
           <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[19px] text-[#221E1E] text-center p-[20px]">
-            {wrongAnswers}
+            {/* {wrongAnswers} */}
+            {incorrectAnswers}
           </p>
           <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[22px] text-[#221E1E]">
             Wrong

@@ -83,34 +83,7 @@ const ProfilePage = () => {
     return title || "";
   };
 
-  useEffect(() => {
-    let lastScrollTop = 0;
-
-    const handleScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-      if (scrollTop > lastScrollTop) {
-        setScrollDirection("down");
-      } else {
-        setScrollDirection("up");
-      }
-      setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollTop]);
-
-  const navStyle = {
-    position: "fixed",
-    bottom: scrollDirection === "down" ? "0px" : "0px",
-    left: "50%",
-    transform: "translateX(-50%)",
-    transition: "bottom 0.5s ease",
-  };
+ 
 
   const handleViewLeaderboardClick = () => {
     navigate("/leaderboard");
@@ -354,6 +327,8 @@ const ProfilePage = () => {
 
   return (
     <>
+     {!iframeSrc ? (
+
       <div className="flex flex-col h-[1059px] md:h-[1390px] bg-profile-gradient   justify-center items-center">
         {/* <div className="bg-[#FFCB05] w-full h-[143px] mx-0"></div> */}
         <div className="bg-darrk-gradient h-[749px]   w-full">
@@ -407,7 +382,7 @@ const ProfilePage = () => {
           </button>
 
           <div className="flex items-center justify-center gap-[15px] mt-[30px]">
-            <div className="w-[158px] h-[71px] flex items-center justify-center gap-[4px] border-[1.5px] border-[#FFFFFF4A] bg-[#2C3035] shadow-box-shadow rounded-[12px] ">
+            <div className="w-[168px] h-[71px] flex items-center justify-center gap-[4px] border-[1.5px] border-[#FFFFFF4A] bg-[#2C3035] shadow-box-shadow rounded-[12px] ">
               <img
                 src={userAvatar || Avatar1}
                 alt="Score Icon"
@@ -428,7 +403,7 @@ const ProfilePage = () => {
               </div>
             </div>
 
-            <div className="w-[158px] h-[71px] flex items-center justify-center gap-[10px] border-[1.5px] border-[#FFFFFF4A] bg-[#2C3035] shadow-box-shadow rounded-[12px] ">
+            <div className="w-[168px] h-[71px] flex items-center justify-center gap-[10px] border-[1.5px] border-[#FFFFFF4A] bg-[#2C3035] shadow-box-shadow rounded-[12px] ">
               <img src={Crown} alt="Score Icon" className="w-12 h-12" />
               <div className="block">
                 <p className="font-mtn-brighter-regular font-regular text-[16px] leading-[20.8px] text-center text-[#FFFFFFCC]">
@@ -532,37 +507,14 @@ const ProfilePage = () => {
             </div>
           </div>
 
-          {iframeSrc && (
-            <div className="absolute inset-0 bg-white z-50">
-              <iframe
-                src={iframeSrc}
-                title="Game"
-                sandbox="allow-scripts allow-same-origin"
-                className="w-full h-full"
-                loading="lazy"
-              />
-              <button
-                onClick={() => {
-                  const gameKey = gameMappings[iframeSrc];
-                  if (gameKey) {
-                    handleBackToApp(gameKey, msisdn);
-                  } else {
-                    console.error(
-                      "No game mapping found for the current iframe source."
-                    );
-                  }
-                }}
-                className="absolute top-4 right-4 bg-sky-900 text-white px-4 py-2 rounded"
-              >
-                Back to App
-              </button>
-            </div>
-          )}
+         
 
-          <div className="fixed  flex justify-center py-4 ">
+          {/* <div className="fixed  flex justify-center py-4 "> */}
+          <div className="w-max mx-auto">
+
             <div
-              style={navStyle}
-              className=" backdrop-blur-sm mb-[15px] md:mb-[90px]  w-[342px] h-[82px] flex justify-between items-center  bg-foot-nav-gradient rounded-b-[60px] pt-[12px] pb-[20px] px-[46px]  "
+              // style={navStyle}
+              className="fixed mx-auto left-0 right-0 bottom-0  backdrop-blur-sm   w-[342px] h-[82px] flex justify-between items-center  bg-foot-nav-gradient rounded-b-[60px] pt-[12px] pb-[20px] px-[46px]  "
             >
               <Link
                 to="/home"
@@ -591,7 +543,35 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> ):(
+
+            // <div className="absolute inset-0 bg-white z-50">
+            <div className="mx-auto h-screen bg-black">
+ 
+              <iframe
+                src={iframeSrc}
+                title="Game"
+                // sandbox="allow-scripts allow-same-origin"
+                className="w-full h-[88vh]"
+                loading="lazy"
+              />
+              <button
+                onClick={() => {
+                  const gameKey = gameMappings[iframeSrc];
+                  if (gameKey) {
+                    handleBackToApp(gameKey, msisdn);
+                  } else {
+                    console.error(
+                      "No game mapping found for the current iframe source."
+                    );
+                  }
+                }}
+                className="my-4 w-full bg-sky-900 text-white px-4 py-2 rounded-[28px] font-mtn-brighter-medium font-medium text-[18px]"
+              >
+                Back to App
+              </button>
+            </div>
+          )}
     </>
   );
 };

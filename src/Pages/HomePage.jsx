@@ -86,33 +86,33 @@ const HomePage = () => {
     return title;
   };
 
-  useEffect(() => {
-    let lastScrollTop = 0;
+  // useEffect(() => {
+  //   let lastScrollTop = 0;
 
-    const handleScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  //   const handleScroll = () => {
+  //     const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
-      if (scrollTop > lastScrollTop) {
-        setScrollDirection("down");
-      } else {
-        setScrollDirection("up");
-      }
-      setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
-    };
-    window.addEventListener("scroll", handleScroll);
+  //     if (scrollTop > lastScrollTop) {
+  //       setScrollDirection("down");
+  //     } else {
+  //       setScrollDirection("up");
+  //     }
+  //     setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
+  //   };
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollTop]);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, [lastScrollTop]);
 
-  const navStyle = {
-    position: "fixed",
-    bottom: scrollDirection === "down" ? "0px" : "0px",
-    left: "50%",
-    transform: "translateX(-50%)",
-    transition: "bottom 0.5s ease",
-  };
+  // const navStyle = {
+  //   position: "fixed",
+  //   bottom: scrollDirection === "down" ? "0px" : "0px",
+  //   left: "50%",
+  //   transform: "translateX(-50%)",
+  //   transition: "bottom 0.5s ease",
+  // };
 
   useEffect(() => {
     const storedAvatar = localStorage.getItem("selectedAvatar");
@@ -398,9 +398,10 @@ const HomePage = () => {
 
   return (
     <>
+    {!iframeSrc ? (
       <div className="relative ">
         <div
-          className={`flex flex-col min-h-screen  h-[1240px] bg-darrk-gradient  ${
+          className={`flex flex-col min-h-screen bg-darrk-gradient  ${
             showAvatarSelector ? " blur-[3px]" : ""
           }`}
         >
@@ -641,43 +642,11 @@ const HomePage = () => {
         {/* <div className="fixed"> */}
        {/* */} 
 
-        {iframeSrc && (
-         
-           <div className="absolute inset-0 bg-black mx-[2px] z-50 overflow-hidden">
-            <iframe
-              src={iframeSrc}
-              title="Game"
-              seamless
-              // scrolling="no"
-              // sandbox="allow-scripts allow-same-origin"
-              // sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-              className="iframer w-full h-[75vh] overflow-hidden"
-              style={{ border: 'none', overflow: 'hidden' }} 
-
-            />
-            <button
-              onClick={() => {
-                const gameKey = gameMappings[iframeSrc];
-                if (gameKey) {
-                  handleBackToApp(gameKey, msisdn);
-                } else {
-                  console.error(
-                    "No game mapping found for the current iframe source."
-                  );
-                }
-              }}
-              className="absolute mt-2 mx-[60px] w-[70%]  bg-sky-900 text-white px-4 py-[12px] rounded-[28px] font-mtn-brighter-medium font-medium text-[18px]"
-            >
-              Back to App
-            </button>
-          </div>
-         
-        )}
- {/* </div> */}
-        <div className="fixed w-full flex justify-center  ">
+       
+        <div className="w-max mx-auto">
           <div
-            style={navStyle}
-            className="bottom-0 backdrop-blur-sm mb-[15px] md:mb-[50px]   left-0px flex justify-between items-center w-[342px] h-[82px] bg-foot-nav-gradient rounded-b-[60px] pt-[12px] pb-[20px] px-[46px] "
+            // style={navStyle}
+            className="fixed mx-auto left-0 right-0 bottom-0 backdrop-blur-sm flex justify-between items-center w-[342px] h-[82px] bg-foot-nav-gradient rounded-b-[60px] pt-[12px] pb-[20px] px-[46px] "
           >
             <Link
               to="/home"
@@ -752,7 +721,37 @@ const HomePage = () => {
             </div>
           </div>
         )}
-      </div>
+      </div>):(
+
+         <div className="mx-auto h-screen bg-black">
+          <iframe
+            src={iframeSrc}
+            title="Game"
+            seamless
+            // scrolling="no"
+            // sandbox="allow-scripts allow-same-origin"
+            // sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+            className="iframer h-[88vh] w-full"
+
+          />
+          <button
+            onClick={() => {
+              const gameKey = gameMappings[iframeSrc];
+              if (gameKey) {
+                handleBackToApp(gameKey, msisdn);
+              } else {
+                console.error(
+                  "No game mapping found for the current iframe source."
+                );
+              }
+            }}
+            className="my-4 w-full  bg-sky-900 text-white px-4 py-[12px] rounded-[28px] font-mtn-brighter-medium font-medium text-[18px]"
+          >
+            Back to App
+          </button>
+        </div>
+       
+      )}
     </>
   );
 };

@@ -289,6 +289,7 @@ const CarouselSection = () => {
   }, [msisdn, gameScore]);
 
   return (
+    <>
     <div className="w-full">
       <div className="overflow-x-auto scrollbar-hide" ref={carouselRef}>
         <div className="flex space-x-[12px] w-max mx-0 md:mx-auto">
@@ -457,12 +458,14 @@ const CarouselSection = () => {
       </div>
       {/* )} */}
       {iframeSrc && (
-        <div className="absolute inset-0 bg-white z-50">
+        <div className=" fixed inset-0 mx-auto h-screen bg-black z-50">
+                  {/* // <div className="mx-auto h-screen bg-black"> */}
+
           <iframe
             src={iframeSrc}
             title="Game"
             sandbox="allow-scripts allow-same-origin"
-            className="w-full h-full"
+            className="w-full h-[88vh]"
           />
           <button
             onClick={() => {
@@ -475,13 +478,16 @@ const CarouselSection = () => {
                 );
               }
             }}
-            className="absolute top-4 right-4 bg-sky-900 text-white px-4 py-2 rounded"
+            className="my-4 w-full  bg-sky-900 text-white px-4 py-[12px] rounded-[28px] font-mtn-brighter-medium font-medium text-[18px]"
+
+            // className="absolute top-4 right-4 bg-sky-900 text-white px-4 py-2 rounded"
           >
             Back to App
           </button>
         </div>
       )}
     </div>
+    </>
   );
 };
 

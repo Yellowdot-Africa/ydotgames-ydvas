@@ -4,7 +4,7 @@ import BigCash from "../assets/Images/big-cash.jpeg";
 
 const BigCashGame = () => {
   return (
-    <div className="w-full mt-6 flex items-center justify-center mx-auto">
+    <div className="w-full mt-6 flex items-center justify-center mx-auto mb-[110px]">
       <Link to="/trivia-games">
         <div className="flex justify-center items-center">
           <div className="relative w-[344px] h-[166px]  bg-custom-t-gradient rounded-[16px] shadow-md flex flex-col items-center justify-between p-4">
