@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://onlinetriviaapi.ydplatform.com:1990/api/YellowdotGames";
+const BASE_URL = "https://69.197.174.10:8084/api/YellowdotGames";
 
 
 export const createSubscriberProfile = async (auth, msisdn, nickname, avatarId) => {

@@ -14,7 +14,7 @@ export const getLeaderboardStanding = async (auth, msisdn) => {
     }
 
     const response = await axios.get(
-      `https://onlinetriviaapi.ydplatform.com:1990/api/YellowdotGames/GetLeaderboardStanding?msisdn=${msisdn}`,
+      `https://69.197.174.10:8084/api/YellowdotGames/GetLeaderboardStanding?msisdn=${msisdn}`,
 
       {
         headers: {
@@ -53,7 +53,7 @@ export const updateLeaderboardScore = async (auth, msisdn, gameScore) => {
     // console.log("Authorization token:", token);
     
     const response = await axios.put(
-      `https://onlinetriviaapi.ydplatform.com:1990/api/YellowdotGames/UpdateLeaderboardScore`,
+      `https://69.197.174.10:8084/api/YellowdotGames/UpdateLeaderboardScore`,
       {
         msisdn: msisdn,
         gameScore: gameScore,
