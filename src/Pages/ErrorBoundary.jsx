@@ -1,30 +1,35 @@
-import React, { Component } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { ErrorBoundary as ReactErrorBoundary } from "react-error-boundary";
+import { useNavigate } from "react-router-dom";
+import { Circles } from "react-loader-spinner";
 
-class ErrorBoundary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
 
-  static getDerivedStateFromError(error) {
-    // Update state so the next render shows the fallback UI
-    return { hasError: true };
-  }
 
-  componentDidCatch(error, errorInfo) {
-    //  log the error to an error reporting service here
-    console.error("Error caught by ErrorBoundary: ", error, errorInfo);
-  }
 
-  render() {
-    if (this.state.hasError) {
-      // Redirect to the error page when an error is caught
-      return <Navigate to="/error" />;
-    }
+const ErrorFallback = () => {
+  const navigate = useNavigate();
 
-    return this.props.children; 
-  }
-}
+  useEffect(() => {
+    navigate("/error");
+  }, [navigate]);
+
+  return (
+    <div>
+      <h1>Something went wrong!</h1>
+      <Circles color="black" height={50} width={50} />
+
+      {/* <p>Redirecting to the error page...</p> */}
+    </div>
+  );
+};
+
+const ErrorBoundary = ({ children }) => {
+  return (
+    <ReactErrorBoundary FallbackComponent={ErrorFallback}>
+      {children}
+    </ReactErrorBoundary>
+  );
+};
 
 export default ErrorBoundary;
+

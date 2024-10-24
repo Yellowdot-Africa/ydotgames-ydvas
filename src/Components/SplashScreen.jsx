@@ -24,6 +24,15 @@ const SplashScreen = () => {
     return () => clearInterval(interval);
   }, []);
 
+
+  useEffect(() => {
+    if (loadingComplete) {
+      navigate("/home");
+    }
+  }, [loadingComplete, navigate]);
+
+
+
   return (
     <>
       <div className="flex flex-col items-center justify-center h-screen bg-new-background">
@@ -54,7 +63,7 @@ const SplashScreen = () => {
             </div>
           )}
 
-          {loadingComplete && (
+          {/* {loadingComplete && (
             <div className="h-[60px] w-[230px] flex justify-center items-center">
               <button
                 className="relative bg-darrk-gradient shadow-custom-shadow w-full h-full text-white text-[20px] text-center font-bold font-mtn-brighter-bold leading-[26px] rounded-[30px] transition-all"
@@ -68,7 +77,7 @@ const SplashScreen = () => {
                 />
               </button>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </>

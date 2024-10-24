@@ -97,9 +97,6 @@
 
 // export default TriviaGames;
 
-
-
-
 import React, { useContext, useEffect, useState } from "react";
 import { TriviaContext } from "../Context/TriviaContext";
 import { Link, useNavigate } from "react-router-dom";
@@ -109,8 +106,14 @@ import Profile from "../assets/Icons/profile.png";
 import { Circles } from "react-loader-spinner";
 
 const TriviaGames = () => {
-  const { triviaGame, fetchTriviaGame, setSelectedGameId, selectedGameId, loading, error } =
-    useContext(TriviaContext);
+  const {
+    triviaGame,
+    fetchTriviaGame,
+    setSelectedGameId,
+    selectedGameId,
+    loading,
+    error,
+  } = useContext(TriviaContext);
   const navigate = useNavigate();
   const [scrollDirection, setScrollDirection] = useState("null");
   const [lastScrollTop, setLastScrollTop] = useState(0);
@@ -153,7 +156,7 @@ const TriviaGames = () => {
   //     };
 
   const handleCategoryClick = (categoryId) => {
-            setSelectedGameId(categoryId);
+    setSelectedGameId(categoryId);
 
     navigate(`/bigcash-trivia/${categoryId}`);
   };
@@ -170,7 +173,8 @@ const TriviaGames = () => {
     <>
       <div className="flex flex-col items-center  min-h-screen mb-12  bg-[#EFF3F5] p-4 pt-[100px] md:w-[500px] md:mx-auto md:flex-col md:h-[1000px]">
         <h1 className="text-[30px] leading-[36px] font-mtn-brighter-bold font-bold text-center text-gray-800 mb-6">
-          {triviaGame?.name}
+          {/* {triviaGame?.name} */}
+          Big Cash Trivia
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
           {triviaGame?.categories && triviaGame.categories.length > 0 ? (
@@ -178,7 +182,7 @@ const TriviaGames = () => {
               <div
                 key={category.id}
                 className="cursor-pointer bg-white  border rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:scale-105 p-4 text-center"
-                onClick={() => handleCategoryClick(category.id)} 
+                onClick={() => handleCategoryClick(category.id)}
               >
                 <h2 className="text-[20px] leading-[28px] font-mtn-brighter-medium font-medium text-gray-700">
                   {category.name}
@@ -186,7 +190,7 @@ const TriviaGames = () => {
               </div>
             ))
           ) : (
-            <p>No categories available</p>
+            <p className="flex items-center justify-center font-mtn-brighter-regular font-normal text-[18px]">No categories available</p>
           )}
         </div>
 

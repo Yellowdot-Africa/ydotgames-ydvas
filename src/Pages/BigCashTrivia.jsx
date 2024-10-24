@@ -49,7 +49,7 @@ const BigCashTrivia = () => {
       setTimer((prev) => {
         if (prev <= 1) {
           clearInterval(timerId);
-          handleTimerExpiration(false);
+          handleTimerExpiration();
           return 10;
         }
         return prev - 1;
@@ -59,8 +59,6 @@ const BigCashTrivia = () => {
     return () => clearInterval(timerId);
   }, [currentQuestionIndex]);
 
-
-  
   const handleTimerExpiration = async () => {
     if (selectedAnswer === null) {
       // console.log("Time's up! No answer was selected for the question.");
@@ -120,7 +118,6 @@ const BigCashTrivia = () => {
     }
   };
 
-
   const finalizeGame = async () => {
     const finalScore = await new Promise((resolve) => {
       setScore((prevScore) => {
@@ -128,13 +125,17 @@ const BigCashTrivia = () => {
         return prevScore;
       });
     });
-  
-    // Calculate the number of correct and incorrect answers
+
+    // console.log(statuses);
+    // console.log("Final Statuses:", statuses);
+    // console.log("Final Score:", finalScore);
+
     const correctAnswers = statuses.filter((status) => status === "correct").length;
     const incorrectAnswers = statuses.filter((status) => status === "incorrect").length;
   
+
     await handleUpdateLeaderboardScore(msisdn, finalScore);
-  
+
     setTimeout(() => {
       navigate("/result-page", {
         state: {
@@ -148,33 +149,6 @@ const BigCashTrivia = () => {
       });
     }, 2000);
   };
-  
-
-  // const finalizeGame = async () => {
-  //   const finalScore = await new Promise((resolve) => {
-  //     setScore((prevScore) => {
-  //       resolve(prevScore);
-  //       return prevScore;
-  //     });
-  //   });
-
-  //   // console.log(statuses);
-  //   // console.log("Final Statuses:", statuses);
-  //   // console.log("Final Score:", finalScore);
-
-  //   await handleUpdateLeaderboardScore(msisdn, finalScore);
-
-  //   setTimeout(() => {
-  //     navigate("/result-page", {
-  //       state: {
-  //         score: finalScore,
-  //         totalQuestions: questions.length,
-  //         statuses: statuses,
-  //         gameId: selectedGameId,
-  //       },
-  //     });
-  //   }, 2000);
-  // };
 
   if (loading) {
     return (
@@ -193,16 +167,7 @@ const BigCashTrivia = () => {
   }
 
   return (
-    <div className="flex flex-col items-center w-full min-h-screen bg-darrk-gradient text-white">
-      <div className="mt-[60px] mb-[30px]">
-        <div className="flex items-center justify-center bg-white w-[46px] h-[46px] border rounded-[50px]">
-          <img className="img-timer" src={Timer} alt="timer" />
-          <p className="text-black text-[18px] font-mtn-brighter-medium font-medium text-center">
-            {timer}
-          </p>
-        </div>
-      </div>
-
+    <div className="flex flex-col items-center w-full min-h-screen bg-darrk-gradient text-white pt-[60px] ">
       <div className="p-4 text-center">
         <h2 className="text-[24px] text-white leading-[24px] font-bold font-mtn-brighter-bold text-center mb-[47px]">
           {/* {questions[currentQuestionIndex]?.text || "No question available."} */}
@@ -216,16 +181,52 @@ const BigCashTrivia = () => {
           {questions.map((_, index) => (
             <div
               key={index}
-              className={`w-3 h-3 rounded-full ${
-                statuses[index] === "correct"
-                  ? "bg-[#82e180]"
-                  : statuses[index] === "incorrect"
-                  ? "bg-[#e37e80]"
-                  : "bg-gray-500"
-              }`}
-            />
+              className="w-3 h-3 flex items-center justify-center rounded-full "
+            >
+              {statuses[index] === "correct" ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="green"
+                  viewBox="0 0 24 24"
+                  stroke="green"
+                  className="w-8 h-8"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={5}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              ) : statuses[index] === "incorrect" ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="red"
+                  viewBox="0 0 24 24"
+                  stroke="red"
+                  className="w-8 h-8"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={5}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="gray"
+                  className="w-6 h-6"
+                >
+                  <circle cx="12" cy="12" r="4" />
+                </svg>
+              )}
+            </div>
           ))}
         </div>
+
 
         <div className="flex flex-col gap-[21px] items-center">
           {/* {questions[currentQuestionIndex]?.answers?.map((answer, index) => ( */}
@@ -249,6 +250,14 @@ const BigCashTrivia = () => {
                 {answer}
               </button>
             ))}
+        </div>
+      </div>
+      <div className="pt-[90px]">
+        <div className="flex items-center justify-center bg-white w-[86px] h-[86px] border rounded-[50px]">
+          <img className="img-timer w-[30%]" src={Timer} alt="timer" />
+          <p className="text-black text-[28px] font-mtn-brighter-medium font-medium text-center">
+            {timer}
+          </p>
         </div>
       </div>
     </div>

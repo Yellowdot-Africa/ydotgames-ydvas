@@ -74,7 +74,7 @@ const ResultPage = () => {
 
       <div className="flex flex-col mt-[66px] items-center justify-center">
         <img src={Trophy} alt="trophy" />
-        <p className="font-mtn-brighter-medium font-medium text-[24px] text-[#221E1E] w-[155px] h-[32px] rounded-[10px] text-center bg-[#e0f5e5]">
+        <p className="font-mtn-brighter-medium font-medium text-[24px] text-[#221E1E] w-[155px] h-[32px] rounded-[10px] text-center bg-[#e0f5e5] mt-[35px]">
           Welldone
         </p>
       </div>
@@ -96,3 +96,11 @@ const ResultPage = () => {
 };
 
 export default ResultPage;
+
+
+
+
+
+
+
+

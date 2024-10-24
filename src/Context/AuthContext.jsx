@@ -1,5 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 import authApi from "../api/authApi";
+import ErrorPage from "../Pages/ErrorPage"; 
+
+
 
 const AuthContext = createContext();
 
@@ -36,8 +39,7 @@ export const AuthProvider = ({ children }) => {
       });
 
     } catch (error) {
-      setError('Internal Server Error. Please try again later.');
-
+      setError(true);
       console.error("Login error:", error);
     } finally {
       setLoading(false);
@@ -70,7 +72,7 @@ export const AuthProvider = ({ children }) => {
   // }
 
   if (error) {
-    return <div>{error}</div>; 
+    return <ErrorPage />;
   }
 
 
