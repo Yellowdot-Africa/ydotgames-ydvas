@@ -488,9 +488,9 @@ const HomePage = () => {
                       {/* {truncateTitle(game.title.toUpperCase())} */}
                       SKATE RUSH
                     </p>
-                    <p className="font-mtn-brighter-bold font-bold  mt-1 text-[12px] leading-[16px] text-center text-[#FFFFFF]">
+                    {/* <p className="font-mtn-brighter-bold font-bold  mt-1 text-[12px] leading-[16px] text-center text-[#FFFFFF]">
                       FPB Rating: PG
-                    </p>
+                    </p> */}
                     <div className="flex items-center justify-center mt-[9.8px]">
                       {/* <StarRatings /> */}
                       <img src={StarYs} alt="start" />
@@ -522,9 +522,9 @@ const HomePage = () => {
                     <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
                       STAR WARS
                     </p>
-                    <p className="font-mtn-brighter-bold mt-1  font-bold text-[12px] leading-[16px] text-center text-[#FFFFFF]">
+                    {/* <p className="font-mtn-brighter-bold mt-1  font-bold text-[12px] leading-[16px] text-center text-[#FFFFFF]">
                       FPB Rating: 12
-                    </p>
+                    </p> */}
                     <div className="flex items-center justify-center mt-[9.8px]">
                       <img src={StarYs} alt="start" />
                       <img src={StarYs} alt="start" />
@@ -555,9 +555,9 @@ const HomePage = () => {
                     <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
                       TEMPLE QUEST
                     </p>
-                    <p className="font-mtn-brighter-bold mt-1  font-bold text-[12px] leading-[16px] text-center text-[#FFFFFF]">
+                    {/* <p className="font-mtn-brighter-bold mt-1  font-bold text-[12px] leading-[16px] text-center text-[#FFFFFF]">
                       FPB Rating: G
-                    </p>
+                    </p> */}
                     <div className="flex items-center justify-center mt-[9.8px]">
                       <img src={StarYs} alt="start" />
                       <img src={StarYs} alt="start" />
@@ -588,9 +588,9 @@ const HomePage = () => {
                     <p className="font-mtn-brighter-bold font-bold text-[14px] leading-[18.2px] text-center text-[#FFFFFF]">
                       X WING FIGHTER
                     </p>
-                    <p className="font-mtn-brighter-bold  mt-1 font-bold text-[12px] leading-[16px] text-center text-[#FFFFFF]">
+                    {/* <p className="font-mtn-brighter-bold  mt-1 font-bold text-[12px] leading-[16px] text-center text-[#FFFFFF]">
                       FPB Rating: PG-13
-                    </p>
+                    </p> */}
                     <div className="flex items-center justify-center mt-[9.8px]">
                       <img src={StarYs} alt="start" />
                       <img src={StarYs} alt="start" />

@@ -21,9 +21,9 @@ const BigCashGame = () => {
               <p className="text-gray-400 text-[14px] font-mtn-brighter-regular font-regular text-center leading-[18.2px] mt-2">
                 Test your trivia knowledge!
               </p>
-              <p className="font-mtn-brighter-bold  mt-1 font-bold text-[12px] leading-[16px] text-center text-[#FFFFFF]">
+              {/* <p className="font-mtn-brighter-bold  mt-1 font-bold text-[12px] leading-[16px] text-center text-[#FFFFFF]">
                       FPB Rating: PG-13
-                    </p>
+                    </p> */}
             </div>
 
             <button className="mt-4 bg-[#19BFC1] text-white px-4 py-2 rounded-lg font-mtn-brighter-medium font-medium text-[16px] text-center">
