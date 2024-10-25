@@ -1,16 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-import {
-  getLeaderboardStanding,
-  updateLeaderboardScore,
-} from "../api/leaderboardApi";
+import { getLeaderboardStanding, updateLeaderboardScore,} from "../api/leaderboardApi";
 import AuthContext from "../Context/AuthContext";
 // import useUserApi from "../api/userApi";
 // import { useAuth } from '../Context/AuthContext';
-
 import UserContext from "../Context/UserContext";
+
+
 
 const obscureMSISDN = (msisdn) => {
   if (!msisdn || msisdn.length < 5) return msisdn;

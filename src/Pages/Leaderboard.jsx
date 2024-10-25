@@ -19,6 +19,8 @@ import Avatar3 from "../assets/Icons/avatar3.png";
 import Avatar4 from "../assets/Icons/avatar4.png";
 import Avatar5 from "../assets/Icons/avatar5.png";
 import PlusIcon from "../assets/Icons/plus-icon.png";
+// import { useLeaderboard } from '../Context/LeaderboardContext';
+
 import { LeaderboardContext } from "../Context/LeaderboardContext";
 import UserContext from "../Context/UserContext";
 
@@ -40,7 +42,9 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
     obscureMSISDN,
     loading,
     error,
-  } = useContext(LeaderboardContext);
+  } = 
+  useContext(LeaderboardContext);
+
   const { userProfile, fetchProfile, msisdn, handleUpdateSubscriberProfile } =
     useContext(UserContext);
 
@@ -124,7 +128,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
   // console.log("msisdn:", msisdn);
 
   // if (error) {
-  //   return <div>Error: {error}</div>;
+  //   return <div>{navigate("/error")}</div>;
   // }
  
 

@@ -20,7 +20,9 @@ class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       // Redirect to the error page when an error is caught
-      return <Navigate to="/error" />;
+      // return <Navigate to="/error" />;
+      return <h1>Something went wrong. Please try again later.</h1>;
+
     }
 
     return this.props.children; 
@@ -28,3 +30,5 @@ class ErrorBoundary extends Component {
 }
 
 export default ErrorBoundary;
+
+

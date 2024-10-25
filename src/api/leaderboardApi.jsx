@@ -1,9 +1,10 @@
 import axios from "axios";
 import { toast } from 'react-toastify'; 
-
+import { useNavigate } from "react-router-dom";
 
 export const getLeaderboardStanding = async (auth, msisdn) => {
   // const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
 
   try {
     // const token = localStorage.getItem("authToken");
@@ -28,7 +29,8 @@ export const getLeaderboardStanding = async (auth, msisdn) => {
     return response.data;
   } catch (error) {
     // toast.error("Failed to fetch leaderboard standing. Please try again.");
-   
+    navigate("/error");
+
     console.error("Error fetching leaderboard standing:", error);
 
     throw error;
