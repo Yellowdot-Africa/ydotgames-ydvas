@@ -128,6 +128,10 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
   // }
  
 
+  if (error) {
+    navigate('/error');
+  }
+
   return (
     <>
       <div className="relative">

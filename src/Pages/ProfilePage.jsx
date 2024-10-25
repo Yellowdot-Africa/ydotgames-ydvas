@@ -323,7 +323,11 @@ const ProfilePage = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
-  if (error) return <p>{error}</p>;
+  // if (error) return <p>{error}</p>;
+
+    if (error) {
+    navigate('/error');
+  }
 
   return (
     <>

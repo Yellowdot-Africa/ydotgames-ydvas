@@ -10,7 +10,7 @@ const ErrorPage = () => {
       <img src={Logo} alt="Logo" className="w-[100%] h-[auto] max-w-[225.31px] mb-5" />
       <h1 className="text-2xl font-bold font-mtn-brighter-bold text-red-600 mb-5">Oops! Something went wrong.</h1>
       <p className="text-lg text-center font-mtn-brighter-medium font-medium mb-5">
-      We're sorry for the inconvenience.
+      We're sorry for the inconvenience, and we’ll be back up shortly!
       </p>
       <button
         onClick={() => navigate("/home")}

@@ -19,6 +19,8 @@ import RedirectPage from "./Pages/RediectPage";
 import ErrorBoundary from "./Pages/ErrorBoundary";
 
 const router = createBrowserRouter([
+
+ 
   {
     path: "/",
     element: <SplashScreen />,

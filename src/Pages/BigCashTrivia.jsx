@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Timer from "../assets/Icons/timer.svg";
 import { LeaderboardContext } from "../Context/LeaderboardContext";
 import { TriviaContext } from "../Context/TriviaContext";
 import UserContext from "../Context/UserContext";
 import { Circles } from "react-loader-spinner";
-// import { submitAnswer } from "../api/triviaApi";
+import { submitAnswer } from "../api/triviaApi";
 
 const BigCashTrivia = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -14,8 +14,10 @@ const BigCashTrivia = () => {
   const [statuses, setStatuses] = useState([]);
   const [timer, setTimer] = useState(10);
   const [error, setError] = useState(null);
+  const [isFetchingResult, setIsFetchingResult] = useState(false); 
   const navigate = useNavigate();
-
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [wrongAnswers, setWrongAnswers] = useState(0);
   const { msisdn } = useContext(UserContext);
   const { gameId } = useParams();
   const { handleUpdateLeaderboardScore } = useContext(LeaderboardContext);
@@ -77,83 +79,126 @@ const BigCashTrivia = () => {
 
     setSelectedAnswer(answer);
     const questionId = questions[currentQuestionIndex].id;
-    const response = await handleAnswerSubmit(msisdn, questionId, answer);
-    // console.log("Submit answer response:", response);
 
-    const isAnswerCorrect =
-      answer === questions[currentQuestionIndex].rightAnswer;
+    try {
+      const response = await handleAnswerSubmit(msisdn, questionId, answer);
+      const isAnswerCorrect =
+        answer === questions[currentQuestionIndex].rightAnswer;
 
-    setStatuses((prevStatuses) => {
-      const newStatuses = [...prevStatuses];
+      const newStatuses = [...statuses];
       newStatuses[currentQuestionIndex] = isAnswerCorrect
         ? "correct"
         : "incorrect";
-      return newStatuses;
-    });
+      setStatuses(newStatuses);
 
-    // console.log("Updated statuses:", statuses);
+      setScore((prevScore) => {
+        let awardedPoints = 0;
+        if (response && response.statusCode === "999") {
+          const pointsMessage = response.message;
+          awardedPoints = parseInt(pointsMessage.match(/\d+/)[0]);
+        }
+        return prevScore + awardedPoints;
+      });
 
-    setScore((prevScore) => {
-      let awardedPoints = 0;
-      if (response && response.statusCode === "999") {
-        const pointsMessage = response.message;
-        awardedPoints = parseInt(pointsMessage.match(/\d+/)[0]);
-      }
-      return prevScore + awardedPoints;
-    });
+      const updatedCorrectAnswers = isAnswerCorrect
+        ? correctAnswers + 1
+        : correctAnswers;
+      const updatedWrongAnswers = isAnswerCorrect
+        ? wrongAnswers
+        : wrongAnswers + 1;
 
-    setTimeout(() => {
-      handleNextQuestion();
-    }, 2000);
+      setCorrectAnswers(updatedCorrectAnswers);
+      setWrongAnswers(updatedWrongAnswers);
+
+      // Proceed to next question after a 2-second delay
+      setTimeout(() => {
+        if (currentQuestionIndex === questions.length - 1) {
+          finalizeGame(); // Call the function to handle the last question and navigate
+        } else {
+          handleNextQuestion();
+        }
+      }, 2000);
+    } catch (err) {
+      setError("An error occurred while submitting your answer.");
+    }
   };
 
   const handleNextQuestion = async () => {
     setSelectedAnswer(null);
     setTimer(10);
-
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
     } else {
+      // Ensure selectedAnswer is updated
+      if (selectedAnswer === null) {
+        // Handle case where user didn't select an answer
+        const newStatuses = [...statuses];
+        // newStatuses[currentQuestionIndex] = "incorrect";
+        newStatuses[currentQuestionIndex] =
+          selectedAnswer === questions[currentQuestionIndex].rightAnswer
+            ? "correct"
+            : "incorrect";
+
+        setStatuses(newStatuses);
+      }
       await finalizeGame();
     }
   };
 
   const finalizeGame = async () => {
-    const finalScore = await new Promise((resolve) => {
-      setScore((prevScore) => {
-        resolve(prevScore);
-        return prevScore;
+    setIsFetchingResult(true); 
+    try {
+
+      const finalScore = await new Promise((resolve) => {
+        setScore((prevScore) => {
+          resolve(prevScore);
+          return prevScore;
+        });
       });
-    });
 
-    // console.log(statuses);
-    // console.log("Final Statuses:", statuses);
-    // console.log("Final Score:", finalScore);
-
-    const correctAnswers = statuses.filter((status) => status === "correct").length;
-    const incorrectAnswers = statuses.filter((status) => status === "incorrect").length;
   
 
-    await handleUpdateLeaderboardScore(msisdn, finalScore);
-
-    setTimeout(() => {
-      navigate("/result-page", {
-        state: {
-          score: finalScore,
-          totalQuestions: questions.length,
-          statuses: statuses,
-          correctAnswers: correctAnswers,
-          incorrectAnswers: incorrectAnswers,
-          gameId: selectedGameId,
-        },
+      // Replace null with correct status
+      const completedStatuses = statuses.map((status, index) => {
+        if (status === null) {
+          return selectedAnswer === questions[index].rightAnswer
+            ? "correct"
+            : "incorrect";
+        }
+        return status;
       });
-    }, 2000);
+
+      const correctAnswers = completedStatuses.filter(
+        (status) => status === "correct"
+      ).length;
+      const incorrectAnswers = completedStatuses.filter(
+        (status) => status === "incorrect"
+      ).length;
+
+
+      await handleUpdateLeaderboardScore(msisdn, finalScore);
+      setTimeout(() => {
+        setIsFetchingResult(false); 
+        navigate("/result-page", {
+          state: {
+            score: finalScore,
+            totalQuestions: questions.length,
+            statuses: completedStatuses,
+            correctAnswers: correctAnswers,
+            incorrectAnswers: incorrectAnswers,
+            gameId: selectedGameId,
+          },
+        });
+      }, 1000);
+    } catch (err) {
+      setError("An error occurred while updating the leaderboard.");
+    }
   };
 
-  if (loading) {
+  if (loading || isFetchingResult) {
     return (
-      <div className="flex items-center justify-center mx-auto mt-[50px]">
-        <Circles color="black" height={50} width={50} />
+      <div className="flex items-center justify-center bg-darrk-gradient h-screen mx-auto">
+        <Circles color="white" height={50} width={50} />
       </div>
     );
   }
@@ -227,7 +272,6 @@ const BigCashTrivia = () => {
           ))}
         </div>
 
-
         <div className="flex flex-col gap-[21px] items-center">
           {/* {questions[currentQuestionIndex]?.answers?.map((answer, index) => ( */}
           {questions.length > 0 &&
@@ -265,6 +309,10 @@ const BigCashTrivia = () => {
 };
 
 export default BigCashTrivia;
+
+
+
+
 
 
 

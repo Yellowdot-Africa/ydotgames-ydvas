@@ -69,6 +69,12 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
+    if (error) {
+      navigate("/error");
+    }
+  }, [error, navigate]);
+
+  useEffect(() => {
     if (games && games.length > 0) {
       const uniqueCategories = [
         ...new Set(games.map((game) => game.category[0])),

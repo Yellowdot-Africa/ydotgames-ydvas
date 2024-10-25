@@ -10,9 +10,12 @@ const ResultPage = () => {
   const navigate = useNavigate();
   // console.log('Score:', score, 'Total Questions:', totalQuestions, 'Statuses:', statuses);
   // const { score, totalQuestions, statuses = [] } = location.state || {};
-  const { score, totalQuestions, correctAnswers, incorrectAnswers } =
-    location.state;
+  // const { score, totalQuestions, correctAnswers, incorrectAnswers } =
+  //   location.state;
 
+    const { score = 0, totalQuestions = 0, correctAnswers = [], incorrectAnswers = [] } = location.state || {};
+
+    // console.log('Location state:', location.state); 
   const { games, fetchGames, selectedGameId, setSelectedGameId } =
     useContext(TriviaContext);
   const gameId = location.state?.gameId || selectedGameId;
@@ -74,7 +77,7 @@ const ResultPage = () => {
 
       <div className="flex flex-col mt-[66px] items-center justify-center">
         <img src={Trophy} alt="trophy" />
-        <p className="font-mtn-brighter-medium font-medium text-[24px] text-[#221E1E] w-[155px] h-[32px] rounded-[10px] text-center bg-[#e0f5e5] mt-[35px]">
+        <p className="font-mtn-brighter-medium font-medium text-[24px] text-[#221E1E] w-[155px] h-[52px] rounded-[10px] flex items-center justify-center text-center bg-[#e0f5e5] mt-[35px]">
           Welldone
         </p>
       </div>

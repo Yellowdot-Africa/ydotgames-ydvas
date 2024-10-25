@@ -167,7 +167,13 @@ const TriviaGames = () => {
   //       <Circles color="black" height={50} width={50} />
   //     </div>
   //   );
-  if (error) return <p>{error}</p>;
+  // if (error) return <p>{error}</p>;
+
+
+
+  if (error) {
+    navigate('/error');
+  }
 
   return (
     <>
