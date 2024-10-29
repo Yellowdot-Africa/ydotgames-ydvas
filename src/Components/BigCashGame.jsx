@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BigCash from "../assets/Images/big-cash.jpeg";
+import FPBRating from "../assets/Images/FPBrating.png";
+
 
 const BigCashGame = () => {
   return (
@@ -24,9 +26,15 @@ const BigCashGame = () => {
               {/* <p className="font-mtn-brighter-bold  mt-1 font-bold text-[12px] leading-[16px] text-center text-[#FFFFFF]">
                       FPB Rating: PG-13
                     </p> */}
+                    <div className="flex items-center justify-center">
+                    <img src={FPBRating} alt="rating" className=" pt-[5.87px] " />
+
+                    </div>
+
+                    
             </div>
 
-            <button className="mt-4 bg-[#19BFC1] text-white px-4 py-2 rounded-lg font-mtn-brighter-medium font-medium text-[16px] text-center">
+            <button className="mt-2 bg-[#19BFC1] text-white px-4 py-2 rounded-lg font-mtn-brighter-medium font-medium text-[16px] text-center">
               Play Now
             </button>
           </div>
@@ -37,15 +45,6 @@ const BigCashGame = () => {
 };
 
 export default BigCashGame;
-
-
-
-
-
-
-
-
-
 
 // import React, { useEffect, useState, useCallback } from "react";
 // import { useSelector, useDispatch } from "react-redux";
@@ -403,9 +402,3 @@ export default BigCashGame;
 // };
 
 // export default QuestionScreen;
-
-
-
-
-
-

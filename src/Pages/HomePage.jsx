@@ -10,6 +10,7 @@ import StarWs from "../assets/Icons/Star-ws.png";
 import SkateRush from "../assets/Images/rush.jpeg";
 import XWinger from "../assets/Images/x-winger.png";
 import StarWars from "../assets/Images/ground.jpeg";
+import FPBRating from "../assets/Images/FPBrating.png";
 import TempleQuest from "../assets/Images/quest.jpeg";
 import TempleRun from "../assets/Images/game2.png";
 import BigCash from "../assets/Images/big-cash.jpeg";
@@ -506,6 +507,8 @@ const HomePage = () => {
                       <img src={StarYs} alt="start" />
                     </div>
 
+                    <img src={FPBRating} alt="rating" className=" pt-[5.87px]" />
+
                     <Link to="#">
                       <button
                         onClick={() =>
@@ -539,6 +542,9 @@ const HomePage = () => {
                       <img src={StarYs} alt="start" />
                     </div>
 
+                    <img src={FPBRating} alt="rating" className=" pt-[5.87px]" />
+
+
                     <Link to="#">
                       <button
                         onClick={() =>
@@ -571,6 +577,7 @@ const HomePage = () => {
                       <img src={StarYs} alt="start" />
                       <img src={StarYs} alt="start" />
                     </div>
+                    <img src={FPBRating} alt="rating" className=" pt-[5.87px]"  />
 
                     <Link to="#">
                       <button
@@ -604,6 +611,7 @@ const HomePage = () => {
                       <img src={StarYs} alt="start" />
                       <img src={StarYs} alt="start" />
                     </div>
+                    <img src={FPBRating} alt="rating" className=" pt-[5.87px]"  />
 
                     <Link to="#">
                       <button

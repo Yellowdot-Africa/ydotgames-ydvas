@@ -71,12 +71,6 @@ export const AuthProvider = ({ children }) => {
   //   return <div>Loading...</div>;
   // }
 
-  // if (error) {
-  //   return <ErrorPage />;
-  // }
-  // if (error) {
-  //   navigate('/error');
-  // }
 
   return (
     <AuthContext.Provider value={{ auth }}>{children}</AuthContext.Provider>

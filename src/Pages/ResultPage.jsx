@@ -78,7 +78,7 @@ const ResultPage = () => {
       <div className="flex flex-col mt-[66px] items-center justify-center">
         <img src={Trophy} alt="trophy" />
         <p className="font-mtn-brighter-medium font-medium text-[24px] text-[#221E1E] w-[155px] h-[52px] rounded-[10px] flex items-center justify-center text-center bg-[#e0f5e5] mt-[35px]">
-          Welldone
+          Well Done
         </p>
       </div>
 

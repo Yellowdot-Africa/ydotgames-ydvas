@@ -97,6 +97,8 @@
 
 // export default TriviaGames;
 
+
+
 import React, { useContext, useEffect, useState } from "react";
 import { TriviaContext } from "../Context/TriviaContext";
 import { Link, useNavigate } from "react-router-dom";
@@ -150,6 +152,13 @@ const TriviaGames = () => {
     fetchTriviaGame(12);
   }, []);
 
+
+  useEffect(() => {
+    if (error) {
+      navigate("/error");
+    }
+  }, [error, navigate]);
+  
   // const handleCategoryClick = (gameId) => {
   //       setSelectedGameId(gameId);
   //       navigate(`/bigcash-trivia/${gameId}`);
@@ -171,9 +180,9 @@ const TriviaGames = () => {
 
 
 
-  if (error) {
-    navigate('/error');
-  }
+  // if (error) {
+  //   navigate('/error');
+  // }
 
   return (
     <>
