@@ -42,7 +42,10 @@ export default {
         'medium': 500,
         'bold': 700,
         'extrabold': 800,
-      }
+      },
+      padding: {
+        'custom-pt': '50px', 
+      },
     },
   },
   plugins: [],

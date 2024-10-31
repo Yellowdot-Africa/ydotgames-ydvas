@@ -21,6 +21,7 @@ import Avatar5 from "../assets/Icons/avatar5.png";
 import PlusIcon from "../assets/Icons/plus-icon.png";
 import { LeaderboardContext } from "../Context/LeaderboardContext";
 import UserContext from "../Context/UserContext";
+import { Circles } from "react-loader-spinner";
 
 const LeaderboardPage = ({ subscriberMsisdn }) => {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
@@ -55,13 +56,10 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
     fetchLeaderboardStanding(subscriberMsisdn);
   }, [subscriberMsisdn]);
 
-
-
-
   // useEffect(() => {
   //   if (msisdn) {
   //     // console.log("Updated MSISDN:", msisdn);
-     
+
   //     handleUpdateLeaderboardScore(msisdn, gameScore);
   //   }
   // }, [msisdn, gameScore]);
@@ -117,7 +115,10 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
   // console.log("leaderboard:", leaderboard);
 
   // const userPosition = leaderboard.find((player) => player.msisdn === msisdn);
-  const userPosition = leaderboard?.length > 0 ? leaderboard.find((player) => player.msisdn === msisdn) : null;
+  const userPosition =
+    leaderboard?.length > 0
+      ? leaderboard.find((player) => player.msisdn === msisdn)
+      : null;
 
   // console.log("User Position:", userPosition);
   // console.log("leaderboard:", leaderboard);
@@ -126,11 +127,12 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
   // if (error) {
   //   return <div>Error: {error}</div>;
   // }
- 
 
-  if (error) {
-    navigate('/error');
-  }
+  useEffect(() => {
+    if (error) {
+      navigate("/error");
+    }
+  }, [error, navigate]);
 
   return (
     <>
@@ -157,10 +159,11 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                       src={userAvatar || AvatarProfile}
                       alt="Profile Avatar"
                       className="-ml-[8px] -mb-[6px]"
-                      onError={(e) => { e.target.onerror = null; e.target.src = AvatarProfile; }}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = AvatarProfile;
+                      }}
                       loading="lazy"
-
-
                     />
                   </div>
 
@@ -223,11 +226,13 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
 
                 <tbody>
                   {/* {leaderboard.length === 0 ? ( */}
-                  {(!leaderboard || leaderboard.length === 0) ? ( 
+                  {!leaderboard || leaderboard.length === 0 ? (
                     <tr>
                       <td colSpan="4" className="text-center text-white">
-                      
-                        No leaderboard data available.
+                        <div className="flex items-center justify-center  h-[100%] pt-custom-pt mx-auto">
+                          <Circles color="white" height={50} width={50} />
+                        </div>
+                        {/* No leaderboard data available. */}
                       </td>
                     </tr>
                   ) : (
@@ -397,9 +402,3 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
 };
 
 export default LeaderboardPage;
-
-
-
-
-
-
