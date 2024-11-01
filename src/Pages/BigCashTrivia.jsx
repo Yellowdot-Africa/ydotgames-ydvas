@@ -84,6 +84,10 @@ const BigCashTrivia = () => {
       const response = await handleAnswerSubmit(msisdn, questionId, answer);
       const isAnswerCorrect =
         answer === questions[currentQuestionIndex].rightAnswer;
+        console.log(`Current Question Index: ${currentQuestionIndex}`);
+
+      console.log(`Answer selected: ${answer}, Correct answer: ${questions[currentQuestionIndex].rightAnswer}`);
+      console.log(`Is answer correct: ${isAnswerCorrect}`);
 
       const newStatuses = [...statuses];
       newStatuses[currentQuestionIndex] = isAnswerCorrect
@@ -133,6 +137,7 @@ const BigCashTrivia = () => {
       if (selectedAnswer === null) {
         // Handle case where user didn't select an answer
         const newStatuses = [...statuses];
+        console.log(`Updated statuses: ${JSON.stringify(newStatuses)}`);
         // newStatuses[currentQuestionIndex] = "incorrect";
         newStatuses[currentQuestionIndex] =
           selectedAnswer === questions[currentQuestionIndex].rightAnswer
@@ -147,6 +152,9 @@ const BigCashTrivia = () => {
 
   const finalizeGame = async () => {
     setIsFetchingResult(true);
+
+        console.log("Statuses array before finalizeGame:", statuses);
+
     try {
 
       const finalScore = await new Promise((resolve) => {
@@ -158,6 +166,7 @@ const BigCashTrivia = () => {
 
       // Replace null with correct status
       const completedStatuses = statuses.map((status, index) => {
+        console.log(`Updated statuses: ${JSON.stringify(completedStatuses)}`);
         if (status === null) {
           return selectedAnswer === questions[index].rightAnswer
             ? "correct"

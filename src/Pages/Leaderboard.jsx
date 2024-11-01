@@ -22,6 +22,12 @@ import PlusIcon from "../assets/Icons/plus-icon.png";
 import { LeaderboardContext } from "../Context/LeaderboardContext";
 import UserContext from "../Context/UserContext";
 import { Circles } from "react-loader-spinner";
+// import MyLoader from "../Components/MyLoader"; 
+
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
+
 
 const LeaderboardPage = ({ subscriberMsisdn }) => {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
@@ -142,10 +148,16 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
             showAvatarSelector ? " blur-[3px]" : ""
           }`}
         >
-          {error && (
+          {/* {error && (
             <div className="text-red-500 text-center mt-4">{error}</div>
-          )}
+          )} */}
 
+       {!leaderboard || leaderboard.length === 0 ? (
+        //  <MyLoader /> 
+        <div className=" flex justify-center items-center mt-[30px] mx-[20px]">
+         <Skeleton count={18}  baseColor="#202020" highlightColor="#444" containerClassName="flex-1" /> 
+        </div>
+       ) : (
           <div className="bg-[#E2EEF60D] w-[342px] h-[933px] mt-[17px] mx-auto">
             <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[175px] h-[49px]  mt-[21px] mx-auto">
               {/* Avatar and Coin Section */}
@@ -155,6 +167,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                     className="w-[50px] h-[50px]  flex items-center justify-center cursor-pointer"
                     onClick={() => setShowAvatarSelector(!showAvatarSelector)}
                   >
+                   
                     <img
                       src={userAvatar || AvatarProfile}
                       alt="Profile Avatar"
@@ -165,6 +178,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                       }}
                       loading="lazy"
                     />
+            
                   </div>
 
                   {/* <div className="flex items-center justify-center">
@@ -186,22 +200,27 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
             </div>
 
             <div className="bg-background w-[140px] h-[28px] rounded-b-[26px] flex items-center justify-center m-auto shadow-box-shadow">
-              <p className="font-mtn-brighter-medium font-medium text-[10px] leading-[13px] text-center text-[#FFFFFF]">
+          
+             <p className="font-mtn-brighter-medium font-medium text-[10px] leading-[13px] text-center text-[#FFFFFF]">
                 @{msisdn}
               </p>
+          
             </div>
 
             <img src={Trophy} alt="trophy" className="mx-auto mt-[4px]" />
             <h1 className="font-mtn-brighter-xtra-bold font-extrabold text-[18px] text-center leading-[23.4px] mx-auto text-[#FFFFFF]">
               Leaderboard
+
             </h1>
 
             <p className="text-[#FFFFFF] mx-auto font-mtn-brighter-regular font-regular text-[18px] w-[274px] leading-[23.4px] text-center mt-[11px]">
-              These are our{" "}
+           
+                  These are our{" "}
               <span className="font-mtn-brighter-bold font-bold text-[18px] leading-[23.4px] text-center">
                 Top Players
               </span>{" "}
-              and you are currently #{userPosition?.position}
+              and you are currently #{userPosition?.position} 
+         
             </p>
 
             {/* Table */}
@@ -229,9 +248,12 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                   {!leaderboard || leaderboard.length === 0 ? (
                     <tr>
                       <td colSpan="4" className="text-center text-white">
-                        <div className="flex items-center justify-center  h-[100%] pt-custom-pt mx-auto">
+                        {/* <div className="flex items-center justify-center  h-[100%] pt-custom-pt mx-auto">
                           <Circles color="white" height={50} width={50} />
-                        </div>
+                        </div> */}
+                        {/* <Skeleton count={18} /> */}
+                        {/* <Skeleton height={100} /> */}
+                        {/* <MyLoader />  */}
                         {/* No leaderboard data available. */}
                       </td>
                     </tr>
@@ -303,9 +325,11 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
               </table>
             </div>
           </div>
+       )}
+     
         </div>
-
         <div className="w-full " style={navStyle}>
+        {leaderboard?.length !== 0 && (
           <div className="flex justify-center mb-[51px] ">
             <button
               className="bg-button-gradient mx-auto py-[14px] px-[33px] rounded-[42px] border border-[#00000033] font-mtn-brighter-bold text-[14px] text-black"
@@ -314,7 +338,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
               View Prizes
             </button>
           </div>
-
+)}
           <div className=" flex justify-center py-8 ">
             <div className="w-full max-w-[336px]  h-[82px] backdrop-blur-sm flex justify-between items-center bg-foot-nav-gradient rounded-b-[60px] pt-[12px] pb-[20px] px-[46px]">
               <Link
@@ -402,3 +426,9 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
 };
 
 export default LeaderboardPage;
+
+
+
+
+
+
