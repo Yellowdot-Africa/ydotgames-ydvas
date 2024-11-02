@@ -14,7 +14,8 @@ const authApi = async () => {
 
   try {
     const response = await axios.post(
-      "https://onlinetriviaapi.ydplatform.com:1990/api/YellowdotGames/Authorization/Login",
+      // "https://onlinetriviaapi.ydplatform.com:1990/api/YellowdotGames/Authorization/Login",
+         "https://ydotgames.runasp.net/api/YellowdotGames/Authorization/Login",
 
 
       {
@@ -23,7 +24,7 @@ const authApi = async () => {
       }
     );
 
-    const { jwtToken, tokenExpiry, username,bigCashTriviaId } = response.data;
+    const { jwtToken, tokenExpiry, username,bigCashTriviaId } = response.data.data;
     const expiryTime = new Date().getTime() + tokenExpiry * 1000;
 
    

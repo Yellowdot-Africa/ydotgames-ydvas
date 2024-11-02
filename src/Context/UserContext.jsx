@@ -1,6 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import AuthContext from "../Context/AuthContext";
-import { createSubscriberProfile, getSubscriberProfile, UpdateSubscriberProfile } from "../api/userApi";
+import {
+  createSubscriberProfile,
+  getSubscriberProfile,
+  UpdateSubscriberProfile,
+} from "../api/userApi";
 // import {  getSubscriberProfile, UpdateSubscriberProfile } from "../api/userApi";
 
 const UserContext = createContext();
@@ -18,7 +22,6 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     if (auth?.token && msisdn) {
-      // console.log("Fetching profile with MSISDN:", msisdn);
       fetchProfile(msisdn);
     }
   }, [auth?.token, msisdn]);
@@ -34,10 +37,10 @@ export const UserProvider = ({ children }) => {
         nickname,
         avatarId
       );
-      if (response.statusCode === "999") {
+      if (response.isSuccessful) {
         setUserProfile(response.data);
       } else {
-        setError(response.statusMessage);
+        setError(response.message);
       }
     } catch (error) {
       console.error("Failed to create profile", error);
@@ -52,19 +55,21 @@ export const UserProvider = ({ children }) => {
     setError(null);
     try {
       const profileData = await getSubscriberProfile(auth, msisdn);
-      // console.log("Profile Data:", profileData);
 
-      if (profileData.statusCode === "999") {
+      if (profileData.isSuccessful) {
         setUserProfile(profileData.data);
+        //  localStorage.setItem("cli", profileData?.data.msisdn);
+
         const msisdn = profileData.data?.msisdn;
         if (msisdn) {
           localStorage.setItem("cli", msisdn);
         }
       } else {
-        setError(profileData.statusMessage);
+        setError(profileData.message);
       }
     } catch (error) {
       console.error("Failed to fetch profile", error);
+      setError("Error fetching profile");
     } finally {
       setLoading(false);
     }
@@ -81,10 +86,11 @@ export const UserProvider = ({ children }) => {
         nickname,
         avatarId || ""
       );
-      if (response.statusCode === "999") {
+      if (response.isSuccessful) {
         setUserProfile((prev) => ({ ...prev, avatarID: avatarId }));
       } else {
-        setError(response.statusMessage);
+        setError(response.message);
+        console.error("Update error:", response.message);
       }
     } catch (error) {
       console.error("Failed to update profile", error);

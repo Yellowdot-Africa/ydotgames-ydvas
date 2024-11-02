@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { AuthProvider } from "./Context/AuthContext";
-import { GameProvider } from "./Context/GameContext";
+// import { GameProvider } from "./Context/GameContext";
 import { TriviaProvider } from "./Context/TriviaContext";
 import { TriviaAuthProvider } from "./Context/TriviaAuthContext";
 import App from "./App.jsx";
@@ -12,7 +12,7 @@ import { LeaderboardProvider } from "./Context/LeaderboardContext";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
-      <GameProvider>
+      {/* <GameProvider> */}
         <UserProvider>
           <LeaderboardProvider>
             <TriviaAuthProvider>
@@ -22,7 +22,7 @@ createRoot(document.getElementById("root")).render(
             </TriviaAuthProvider>
           </LeaderboardProvider>
         </UserProvider>
-      </GameProvider>
+      {/* </GameProvider> */}
     </AuthProvider>
   </StrictMode>
 );

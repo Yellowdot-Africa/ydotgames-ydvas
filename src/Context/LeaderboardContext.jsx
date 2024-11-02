@@ -26,7 +26,6 @@ const LeaderboardProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { auth } = useContext(AuthContext);
-
   // const { auth, setAuth } = useAuth();
 
   const { userProfile, msisdn } = useContext(UserContext);
@@ -38,6 +37,7 @@ const LeaderboardProvider = ({ children }) => {
   // }, [msisdn]);
 
   useEffect(() => {
+    
     if (msisdn) {
       // console.log("Updated MSISDN:", msisdn);
 
@@ -46,6 +46,7 @@ const LeaderboardProvider = ({ children }) => {
   }, [msisdn, gameScore]);
 
   const fetchLeaderboardStanding = async () => {
+
     if (!auth?.token) {
       // console.error("No auth token available");
 
@@ -58,9 +59,26 @@ const LeaderboardProvider = ({ children }) => {
       //   throw new Error("MSISDN is required");
       // }
       const response = await getLeaderboardStanding(auth, msisdn);
-      setLeaderboard(response.data);
 
+      // setLeaderboard(response.data);
+      // setLeaderboard(response.data.data || []);
       // toast.success("Leaderboard fetched successfully!");
+      // if (response && response.data && response.data.data) {
+      //   console.log("Leaderboard response:", response.data.data);
+      //   setLeaderboard(response.data.data); // Set leaderboard to the data array
+      // } else {
+      //   console.error("Unexpected response format:", response);
+      //   setLeaderboard([]); // Set to empty if the format is unexpected
+      // }
+
+      if (Array.isArray(response)) {
+        // console.log("Leaderboard response:", response);
+        setLeaderboard(response); 
+      } else {
+        console.error("Unexpected response format:", response);
+        setLeaderboard([]); 
+      }
+  
       setError(null);
       // console.log("Fetched leaderboard:", response.data);
     } catch (error) {
@@ -68,6 +86,7 @@ const LeaderboardProvider = ({ children }) => {
         "An error occurred while fetching the leaderboard. Please try again later.";
       // toast.error(errorMessage);
       setError(error.message || "Failed to fetch leaderboard.");
+      setLeaderboard([]);
       console.error("Error fetching leaderboard standing:", error);
     } finally {
       setLoading(false);
@@ -91,8 +110,12 @@ const LeaderboardProvider = ({ children }) => {
 
     try {
       const response = await updateLeaderboardScore(auth, msisdn, gameScore);
-      // console.log("Leaderboard score updated:", response);
       await fetchLeaderboardStanding();
+      //       if (response.data?.isSuccessful) {
+      //     await fetchLeaderboardStanding();
+      // } else {
+      //     throw new Error(response.data?.message || "Failed to update score");
+      // }
     } catch (error) {
       console.error("Error updating leaderboard score:", error);
     }
@@ -123,6 +146,8 @@ const LeaderboardProvider = ({ children }) => {
   };
 
   useEffect(() => {
+
+    // console.log("MSISDN:", msisdn);
     if (auth?.token) {
       fetchLeaderboardStanding();
 

@@ -15,7 +15,7 @@ import TempleQuest from "../assets/Images/quest.jpeg";
 import Home from "../assets/Icons/home.png";
 import Leaderboard from "../assets/Icons/leaderboard.png";
 import Profile from "../assets/Icons/profile.png";
-import GameContext from "../Context/GameContext";
+// import GameContext from "../Context/GameContext";
 import UserContext from "../Context/UserContext";
 import { LeaderboardContext } from "../Context/LeaderboardContext";
 
@@ -23,10 +23,11 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const [scrollDirection, setScrollDirection] = useState(null);
   const [lastScrollTop, setLastScrollTop] = useState(0);
-  const { games, loading } = useContext(GameContext);
+  // const { games, loading } = useContext(GameContext);
   const {
     userProfile,
     fetchProfile,
+  
     error,
     msisdn,
     handleUpdateSubscriberProfile,
@@ -41,7 +42,8 @@ const ProfilePage = () => {
   const [userAvatar, setUserAvatar] = useState({ AvatarProfile });
   const [iframeSrc, setIframeSrc] = useState("");
   const [gameScore, setGameScore] = useState(0);
-
+  const [games, setGames] = useState("");
+  const [loading, setLoading] = useState("");
   useEffect(() => {
     const storedAvatar = localStorage.getItem("selectedAvatar");
     if (storedAvatar) {
@@ -50,19 +52,28 @@ const ProfilePage = () => {
   }, []);
 
   useEffect(() => {
-    if (leaderboard.length > 0 && userProfile) {
+   
+    if (leaderboard?.length > 0 && userProfile) {
       const myEntry = leaderboard.find(
         (entry) => entry.msisdn === userProfile.msisdn
       );
+
       setMyPoints(myEntry ? myEntry.dailyPoints : 0);
 
       const maxPoints = Math.max(
         ...leaderboard.map((entry) => entry.dailyPoints)
       );
       setTopPoints(maxPoints);
+
     }
   }, [leaderboard, userProfile]);
 
+  
+
+
+ 
+ 
+  
   // const truncateTitle = (title) => {
   //   const maxLength = 10;
   //   if (title.length > maxLength) {
@@ -320,14 +331,18 @@ const ProfilePage = () => {
     }
   }, [msisdn, gameScore]);
 
+ 
+
   if (loading) {
     return <div>Loading...</div>;
   }
   // if (error) return <p>{error}</p>;
 
+  useEffect(() => {
     if (error) {
-    navigate('/error');
-  }
+      navigate("/error");
+    }
+  }, [error, navigate]);
 
   return (
     <>
@@ -385,8 +400,8 @@ const ProfilePage = () => {
             View Leaderboard
           </button>
 
-          <div className="flex items-center justify-center gap-[15px] mt-[30px]">
-            <div className="w-[168px] h-[71px] flex items-center justify-center gap-[4px] border-[1.5px] border-[#FFFFFF4A] bg-[#2C3035] shadow-box-shadow rounded-[12px] ">
+          <div className="flex items-center justify-center gap-[10px] mt-[30px] mx-[10px]">
+            <div className="w-full max-w-[200px] h-[71px] flex items-center justify-center gap-[4px] border-[1.5px] border-[#FFFFFF4A] bg-[#2C3035] shadow-box-shadow rounded-[12px] ">
               <img
                 src={userAvatar || Avatar1}
                 alt="Score Icon"
@@ -398,22 +413,22 @@ const ProfilePage = () => {
                 loading="lazy"
               />
               <div className="block">
-                <p className="font-mtn-brighter-regular font-regular text-[16px] leading-[20.8px] text-center text-[#FFFFFFCC]">
+                <p className="font-mtn-brighter-regular font-regular text-[16px] leading-[20.8px] text-center text-[#FFFFFFCC]   ">
                   Your Score
                 </p>
-                <p className="font-mtn-brighter-bold font-bold text-[20px] leading-[26px] text-center text-[#FFCB05]">
+                <p className="font-mtn-brighter-bold font-bold text-[20px] leading-[26px] text-center text-[#FFCB05] overflow-hidden text-ellipsis w-[120px]">
                   {myPoints}
                 </p>
               </div>
             </div>
 
-            <div className="w-[168px] h-[71px] flex items-center justify-center gap-[10px] border-[1.5px] border-[#FFFFFF4A] bg-[#2C3035] shadow-box-shadow rounded-[12px] ">
-              <img src={Crown} alt="Score Icon" className="w-12 h-12" />
+            <div className="w-full max-w-[200px] h-[71px] flex items-center justify-center gap-[10px] border-[1.5px] border-[#FFFFFF4A] bg-[#2C3035] shadow-box-shadow rounded-[12px]">
+              <img src={Crown} alt="Score Icon" className="w-10 h-10" />
               <div className="block">
                 <p className="font-mtn-brighter-regular font-regular text-[16px] leading-[20.8px] text-center text-[#FFFFFFCC]">
                   Top Score
                 </p>
-                <p className="font-mtn-brighter-bold font-bold text-[20px] leading-[26px] text-center text-[#FFCB05]">
+                <p className="font-mtn-brighter-bold font-bold text-[20px] leading-[26px] text-center text-[#FFCB05] overflow-hidden text-ellipsis w-[120px]">
                   {topPoints}
                 </p>
               </div>

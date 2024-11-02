@@ -28,7 +28,7 @@ import Avatar4 from "../assets/Icons/avatar4.png";
 import Avatar5 from "../assets/Icons/avatar5.png";
 import AuthContext from "../Context/AuthContext";
 // import { useAuth } from '../Context/AuthContext';
-import GameContext from "../Context/GameContext";
+// import GameContext from "../Context/GameContext";
 import UserContext from "../Context/UserContext";
 import BigCashGame from "../Components/BigCashGame";
 import StarRatings from "../Components/StarRatings";
@@ -46,7 +46,7 @@ const HomePage = () => {
 
   const { handleUpdateSubscriberProfile, fetchProfile, userProfile, msisdn } =
     useContext(UserContext);
-  const { games, loading } = useContext(GameContext);
+  // const { games, loading } = useContext(GameContext);
   const [categories, setCategories] = useState([]);
   const [nickname, setNickname] = useState("Racer001");
   const { handleUpdateLeaderboardScore } = useContext(LeaderboardContext);
@@ -58,7 +58,8 @@ const HomePage = () => {
   const [iframeSrc, setIframeSrc] = useState("");
   const [gameScore, setGameScore] = useState(0);
   const [isLandscape, setIsLandscape] = useState(false);
-
+const [games, setGames] = useState("");
+const [loading, setLoading] = useState("");
   const handleOrientationChange = () => {
     setIsLandscape(window.innerWidth > window.innerHeight);
   };

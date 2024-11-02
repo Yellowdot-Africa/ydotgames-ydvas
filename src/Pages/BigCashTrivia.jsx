@@ -12,6 +12,8 @@ const BigCashTrivia = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
   const [statuses, setStatuses] = useState([]);
+  // const [statuses, setStatuses] = useState(Array(questions.length).fill(null));
+
   const [timer, setTimer] = useState(10);
   const [error, setError] = useState(null);
   const [isFetchingResult, setIsFetchingResult] = useState(false);
@@ -73,6 +75,8 @@ const BigCashTrivia = () => {
       await handleNextQuestion();
     }
   };
+
+
 
   const handleAnswerClick = async (answer) => {
     if (selectedAnswer) return;
@@ -151,7 +155,7 @@ const BigCashTrivia = () => {
   };
 
   const finalizeGame = async () => {
-    setIsFetchingResult(true);
+    // setIsFetchingResult(true);
 
         console.log("Statuses array before finalizeGame:", statuses);
 
@@ -165,39 +169,47 @@ const BigCashTrivia = () => {
       });
 
       // Replace null with correct status
-      const completedStatuses = statuses.map((status, index) => {
-        console.log(`Updated statuses: ${JSON.stringify(completedStatuses)}`);
-        if (status === null) {
-          return selectedAnswer === questions[index].rightAnswer
-            ? "correct"
-            : "incorrect";
-        }
-        return status;
-      });
+      // const completedStatuses = statuses.map((status, index) => {
+      //   console.log(`Updated statuses: ${JSON.stringify(completedStatuses)}`);
+      //   if (status === null) {
+      //     return selectedAnswer === questions[index].rightAnswer
+      //       ? "correct"
+      //       : "incorrect";
+      //   }
+      //   return status;
+      // });
 
-      const correctAnswers = completedStatuses.filter(
-        (status) => status === "correct"
-      ).length;
-      const incorrectAnswers = completedStatuses.filter(
-        (status) => status === "incorrect"
-      ).length;
+
+      const correctAnswers = statuses.filter((status) => status === "correct").length;
+      const incorrectAnswers = statuses.filter((status) => status === "incorrect").length;
+
+      // const correctAnswers = completedStatuses.filter(
+      //   (status) => status === "correct"
+      // ).length;
+      // const incorrectAnswers = completedStatuses.filter(
+      //   (status) => status === "incorrect"
+      // ).length;
 
       await handleUpdateLeaderboardScore(msisdn, finalScore);
       setTimeout(() => {
-        setIsFetchingResult(false);
+        // setIsFetchingResult(false);
         navigate("/result-page", {
           state: {
             score: finalScore,
             totalQuestions: questions.length,
-            statuses: completedStatuses,
+            // statuses: completedStatuses,
+            statuses: statuses,
+
             correctAnswers: correctAnswers,
             incorrectAnswers: incorrectAnswers,
             gameId: selectedGameId,
           },
         });
       }, 1000);
-    } catch (err) {
+    }
+    catch (err) {
       setError("An error occurred while updating the leaderboard.");
+      console.log("Error fetching leaderboard");
     }
   };
 
@@ -315,6 +327,8 @@ const BigCashTrivia = () => {
 };
 
 export default BigCashTrivia;
+
+
 
 
 

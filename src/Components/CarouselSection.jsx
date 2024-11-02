@@ -7,7 +7,7 @@ import SkateRush from "../assets/Images/rush.jpeg";
 import StarWars from "../assets/Images/ground.jpeg";
 import TempleQuest from "../assets/Images/quest.jpeg";
 import TempleRun from "../assets/Images/game2.png";
-import GameContext from "../Context/GameContext";
+// import GameContext from "../Context/GameContext";
 import AuthContext from "../Context/AuthContext";
 // import { useAuth } from '../Context/AuthContext';
 import UserContext from "../Context/UserContext";
@@ -22,7 +22,7 @@ const CarouselSection = () => {
   const { auth } = useContext(AuthContext);
   // const { auth, setAuth } = useAuth();
 
-  const { games, loading } = useContext(GameContext);
+  // const { games, loading } = useContext(GameContext);
   const [iframeSrc, setIframeSrc] = useState("");
   const { handleUpdateSubscriberProfile, fetchProfile, userProfile, msisdn } =
     useContext(UserContext);
