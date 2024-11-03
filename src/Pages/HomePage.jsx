@@ -508,7 +508,7 @@ const [loading, setLoading] = useState("");
                       <img src={StarYs} alt="start" />
                     </div>
 
-                    <img src={FPBRating} alt="rating" className=" pt-[5.87px]" />
+                    <img src={FPBRating} alt="rating" className="w-8 h-8 pt-[5.87px]" />
 
                     <Link to="#">
                       <button
@@ -543,7 +543,7 @@ const [loading, setLoading] = useState("");
                       <img src={StarYs} alt="start" />
                     </div>
 
-                    <img src={FPBRating} alt="rating" className=" pt-[5.87px]" />
+                    <img src={FPBRating} alt="rating" className="w-8 h-8 pt-[5.87px]" />
 
 
                     <Link to="#">
@@ -578,7 +578,7 @@ const [loading, setLoading] = useState("");
                       <img src={StarYs} alt="start" />
                       <img src={StarYs} alt="start" />
                     </div>
-                    <img src={FPBRating} alt="rating" className=" pt-[5.87px]"  />
+                    <img src={FPBRating} alt="rating" className="w-8 h-8 pt-[5.87px]"  />
 
                     <Link to="#">
                       <button
@@ -612,7 +612,7 @@ const [loading, setLoading] = useState("");
                       <img src={StarYs} alt="start" />
                       <img src={StarYs} alt="start" />
                     </div>
-                    <img src={FPBRating} alt="rating" className=" pt-[5.87px]"  />
+                    <img src={FPBRating} alt="rating" className="w-8 h-8 pt-[5.87px]"  />
 
                     <Link to="#">
                       <button
