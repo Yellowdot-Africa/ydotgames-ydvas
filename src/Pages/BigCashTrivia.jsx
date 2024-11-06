@@ -100,10 +100,9 @@ const BigCashTrivia = () => {
         return prevScore + awardedPoints;
       });
 
-      // Proceed to next question after a 2-second delay
       setTimeout(() => {
         if (currentQuestionIndex === questions.length - 1) {
-          finalizeGame(); // Call the function to handle the last question and navigate
+          finalizeGame(); 
         } else {
           handleNextQuestion();
         }
@@ -117,7 +116,7 @@ const BigCashTrivia = () => {
     const newStatuses = [...statuses];
     newStatuses[currentQuestionIndex] = status;
     setStatuses(newStatuses);
-    statusesRef.current = newStatuses; // Keep ref in sync
+    statusesRef.current = newStatuses; 
   };
 
   const handleNextQuestion = () => {

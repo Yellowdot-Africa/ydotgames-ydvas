@@ -22,12 +22,8 @@ import PlusIcon from "../assets/Icons/plus-icon.png";
 import { LeaderboardContext } from "../Context/LeaderboardContext";
 import UserContext from "../Context/UserContext";
 import { Circles } from "react-loader-spinner";
-// import MyLoader from "../Components/MyLoader"; 
-
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-
-
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const LeaderboardPage = ({ subscriberMsisdn }) => {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
@@ -148,197 +144,279 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
             showAvatarSelector ? " blur-[3px]" : ""
           }`}
         >
-          {/* {error && (
-            <div className="text-red-500 text-center mt-4">{error}</div>
-          )} */}
+          {!leaderboard || leaderboard.length === 0 ? (
+            // <div className=" flex justify-center items-center mt-[30px] mx-[20px]">
+            //  <Skeleton count={18}  baseColor="#202020" highlightColor="#444" containerClassName="flex-1" />
+            // </div>
+            <div className="bg-[#E2EEF60D] w-[342px] h-[933px] mt-[17px] mx-auto">
+              {/* Skeleton for the header */}
+              <div className="flex flex-col items-center mt-4">
+                <Skeleton
+                  width={175}
+                  height={49}
+                  baseColor="#202020"
+                  highlightColor="#444"
+                  className="rounded-[26px]"
+                />
+                <Skeleton
+                  width={140}
+                  height={28}
+                  baseColor="#202020"
+                  highlightColor="#444"
+                  className="rounded-b-[26px] mt-4"
+                />
+                <Skeleton
+                  width={50}
+                  height={50}
+                  baseColor="#202020"
+                  highlightColor="#444"
+                  className="rounded-full mt-4"
+                />
+                <Skeleton
+                  width={150}
+                  height={24}
+                  baseColor="#202020"
+                  highlightColor="#444"
+                  className="mt-4"
+                />
+                <Skeleton
+                  width={274}
+                  height={24}
+                  baseColor="#202020"
+                  highlightColor="#444"
+                  className="mt-2"
+                />
+              </div>
 
-       {!leaderboard || leaderboard.length === 0 ? (
-        //  <MyLoader /> 
-        <div className=" flex justify-center items-center mt-[30px] mx-[20px]">
-         <Skeleton count={18}  baseColor="#202020" highlightColor="#444" containerClassName="flex-1" /> 
-        </div>
-       ) : (
-          <div className="bg-[#E2EEF60D] w-[342px] h-[933px] mt-[17px] mx-auto">
-            <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[175px] h-[49px]  mt-[21px] mx-auto">
-              {/* Avatar and Coin Section */}
-              <div className="flex justify-between items-center w-[225px] h-[49px]">
-                <div className="flex items-center justify-between space-x-14  relative">
-                  <div
-                    className="w-[50px] h-[50px]  flex items-center justify-center cursor-pointer"
-                    onClick={() => setShowAvatarSelector(!showAvatarSelector)}
-                  >
-                   
-                    <img
-                      src={userAvatar || AvatarProfile}
-                      alt="Profile Avatar"
-                      className="-ml-[8px] -mb-[6px]"
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = AvatarProfile;
-                      }}
-                      loading="lazy"
-                    />
-            
-                  </div>
+              {/* Skeleton for table structure */}
+              <div className="w-full mt-6">
+                <table className="table-auto mx-auto md:mx-auto">
+                  <thead>
+                    <tr className="text-center">
+                      {[...Array(4)].map((_, index) => (
+                        <th key={index} className="p-2">
+                          <Skeleton
+                            width={50}
+                            height={24}
+                            baseColor="#202020"
+                            highlightColor="#444"
+                          />
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
 
-                  {/* <div className="flex items-center justify-center">
+                  <tbody>
+                    {[...Array(6)].map((_, index) => (
+                      <tr key={index} className="text-center">
+                        <td className="p-2">
+                          <Skeleton
+                            width={25}
+                            height={25}
+                            baseColor="#202020"
+                            highlightColor="#444"
+                            className="rounded-full"
+                          />
+                        </td>
+                        <td className="p-2">
+                          <Skeleton
+                            width={70}
+                            height={24}
+                            baseColor="#202020"
+                            highlightColor="#444"
+                          />
+                        </td>
+                        <td className="p-2">
+                          <Skeleton
+                            width={70}
+                            height={24}
+                            baseColor="#202020"
+                            highlightColor="#444"
+                          />
+                        </td>
+                        <td className="p-2">
+                          <Skeleton
+                            width={70}
+                            height={24}
+                            baseColor="#202020"
+                            highlightColor="#444"
+                          />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-[#E2EEF60D] w-[342px] h-[933px] mt-[17px] mx-auto">
+              <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[175px] h-[49px]  mt-[21px] mx-auto">
+                {/* Avatar and Coin Section */}
+
+                <div className="flex justify-between items-center w-[225px] h-[49px]">
+                  <div className="flex items-center justify-between space-x-14  relative">
+                    <div
+                      className="w-[50px] h-[50px]  flex items-center justify-center cursor-pointer"
+                      onClick={() => setShowAvatarSelector(!showAvatarSelector)}
+                    >
+                      <img
+                        src={userAvatar || AvatarProfile}
+                        alt="Profile Avatar"
+                        className="-ml-[8px] -mb-[6px]"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = AvatarProfile;
+                        }}
+                        loading="lazy"
+                      />
+                    </div>
+
+                    {/* <div className="flex items-center justify-center">
                     <img src={Coins} alt="coin" />
                     <p className="font-mtn-brighter-medium font-medium text-[12px] text-center leading-[15.6px] text-[#FFFFFF]">
                       R10k
                     </p>
                   </div> */}
-                  <Link
-                    to="/terms-and-conditions"
-                    className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center px-4 items-center mt-[12px] mb-[10px] mr-[10px]"
-                  >
-                    <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
-                      T&C's
-                    </p>
-                  </Link>
+                    <Link
+                      to="/terms-and-conditions"
+                      className="border border-[#FFCB05] rounded-[26px] w-[51px] h-[27px] bg-[#7F806266] flex justify-center px-4 items-center mt-[12px] mb-[10px] mr-[10px]"
+                    >
+                      <p className="font-mtn-brighter-medium font-medium text-[12px] leading-[15.6px] text-center text-[#FFCB05]">
+                        T&C's
+                      </p>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="bg-background w-[140px] h-[28px] rounded-b-[26px] flex items-center justify-center m-auto shadow-box-shadow">
-          
-             <p className="font-mtn-brighter-medium font-medium text-[10px] leading-[13px] text-center text-[#FFFFFF]">
-                @{msisdn}
+              <div className="bg-background w-[140px] h-[28px] rounded-b-[26px] flex items-center justify-center m-auto shadow-box-shadow">
+                <p className="font-mtn-brighter-medium font-medium text-[10px] leading-[13px] text-center text-[#FFFFFF]">
+                  @{msisdn}
+                </p>
+              </div>
+
+              <img src={Trophy} alt="trophy" className="mx-auto mt-[4px]" />
+              <h1 className="font-mtn-brighter-xtra-bold font-extrabold text-[18px] text-center leading-[23.4px] mx-auto text-[#FFFFFF]">
+                Leaderboard
+              </h1>
+
+              <p className="text-[#FFFFFF] mx-auto font-mtn-brighter-regular font-regular text-[18px] w-[274px] leading-[23.4px] text-center mt-[11px]">
+                These are our{" "}
+                <span className="font-mtn-brighter-bold font-bold text-[18px] leading-[23.4px] text-center">
+                  Top Players
+                </span>{" "}
+                and you are currently #{userPosition?.position}
               </p>
-          
-            </div>
 
-            <img src={Trophy} alt="trophy" className="mx-auto mt-[4px]" />
-            <h1 className="font-mtn-brighter-xtra-bold font-extrabold text-[18px] text-center leading-[23.4px] mx-auto text-[#FFFFFF]">
-              Leaderboard
-
-            </h1>
-
-            <p className="text-[#FFFFFF] mx-auto font-mtn-brighter-regular font-regular text-[18px] w-[274px] leading-[23.4px] text-center mt-[11px]">
-           
-                  These are our{" "}
-              <span className="font-mtn-brighter-bold font-bold text-[18px] leading-[23.4px] text-center">
-                Top Players
-              </span>{" "}
-              and you are currently #{userPosition?.position} 
-         
-            </p>
-
-            {/* Table */}
-            <div className="w-full mt-6 ">
-              <table className="table-auto mx-auto md:mx-auto">
-                <thead>
-                  <tr className="text-center">
-                    <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
-                      Rank
-                    </th>
-                    <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
-                      Phone
-                    </th>
-                    <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
-                      Daily Score
-                    </th>
-                    <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
-                      Monthly Score
-                    </th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  {/* {leaderboard.length === 0 ? ( */}
-                  {!leaderboard || leaderboard.length === 0 ? (
-                    <tr>
-                      <td colSpan="4" className="text-center text-white">
-                        {/* <div className="flex items-center justify-center  h-[100%] pt-custom-pt mx-auto">
-                          <Circles color="white" height={50} width={50} />
-                        </div> */}
-                        {/* <Skeleton count={18} /> */}
-                        {/* <Skeleton height={100} /> */}
-                        {/* <MyLoader />  */}
-                        {/* No leaderboard data available. */}
-                      </td>
+              {/* Table */}
+              <div className="w-full mt-6 ">
+                <table className="table-auto mx-auto md:mx-auto">
+                  <thead>
+                    <tr className="text-center">
+                      <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+                        Rank
+                      </th>
+                      <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+                        Phone
+                      </th>
+                      <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+                        Daily Score
+                      </th>
+                      <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+                        Monthly Score
+                      </th>
                     </tr>
-                  ) : (
-                    leaderboard.map((player, index) => {
-                      const rankImage =
-                        player.position === 1
-                          ? Rank1
-                          : player.position === 2
-                          ? Rank2
-                          : player.position === 3
-                          ? Rank3
-                          : player.position === 4
-                          ? Rank4
-                          : player.position === 5
-                          ? Rank5
-                          : player.position === 6
-                          ? Rank6
-                          : null;
+                  </thead>
 
-                      const isTop3 =
-                        player.position === 1 ||
-                        player.position === 2 ||
-                        player.position === 3;
+                  <tbody>
+                    {/* {leaderboard.length === 0 ? ( */}
+                    {!leaderboard || leaderboard.length === 0 ? (
+                      <tr>
+                        <td colSpan="4" className="text-center text-white">
+                          {/* No leaderboard data available. */}
+                        </td>
+                      </tr>
+                    ) : (
+                      leaderboard.map((player, index) => {
+                        const rankImage =
+                          player.position === 1
+                            ? Rank1
+                            : player.position === 2
+                            ? Rank2
+                            : player.position === 3
+                            ? Rank3
+                            : player.position === 4
+                            ? Rank4
+                            : player.position === 5
+                            ? Rank5
+                            : player.position === 6
+                            ? Rank6
+                            : null;
 
-                      return (
-                        <tr
-                          key={index}
-                          className={`text-center ${
-                            isTop3
-                              ? "bg-gradient-to-b from-[#221F20] to-[#000000] shadow-[0px_4px_4px_0px_#00000040] rounded-[25px]"
-                              : ""
-                          }`}
-                        >
-                          <td className="p-2 relative w-[50px] h-[50px] font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
-                            {rankImage ? (
-                              <div className="relative flex justify-center items-center ">
-                                <img
-                                  src={rankImage}
-                                  alt={`Rank ${player.position}`}
-                                  className="w-[30px] h-[25px]"
-                                />
-                                <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-white text-[14px]">
+                        const isTop3 =
+                          player.position === 1 ||
+                          player.position === 2 ||
+                          player.position === 3;
+
+                        return (
+                          <tr
+                            key={index}
+                            className={`text-center ${
+                              isTop3
+                                ? "bg-gradient-to-b from-[#221F20] to-[#000000] shadow-[0px_4px_4px_0px_#00000040] rounded-[25px]"
+                                : ""
+                            }`}
+                          >
+                            <td className="p-2 relative w-[50px] h-[50px] font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+                              {rankImage ? (
+                                <div className="relative flex justify-center items-center ">
+                                  <img
+                                    src={rankImage}
+                                    alt={`Rank ${player.position}`}
+                                    className="w-[30px] h-[25px]"
+                                  />
+                                  <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold text-white text-[14px]">
+                                    {player.position}
+                                  </span>
+                                </div>
+                              ) : (
+                                <span className="font-bold text-white text-[14px]">
                                   {player.position}
                                 </span>
-                              </div>
-                            ) : (
-                              <span className="font-bold text-white text-[14px]">
-                                {player.position}
-                              </span>
-                            )}
-                          </td>
+                              )}
+                            </td>
 
-                          <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
-                            {/* {player.msisdn} */}
-                            {obscureMSISDN(player.msisdn)}
-                          </td>
-                          <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
-                            {player.dailyPoints}
-                          </td>
-                          <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
-                            {player.monthlyPoints}
-                          </td>
-                        </tr>
-                      );
-                    })
-                  )}
-                </tbody>
-              </table>
+                            <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+                              {/* {player.msisdn} */}
+                              {obscureMSISDN(player.msisdn)}
+                            </td>
+                            <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+                              {player.dailyPoints}
+                            </td>
+                            <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+                              {player.monthlyPoints}
+                            </td>
+                          </tr>
+                        );
+                      })
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-       )}
-     
+          )}
         </div>
         <div className="w-full " style={navStyle}>
-        {leaderboard?.length !== 0 && (
-          <div className="flex justify-center mb-[51px] ">
-            <button
-              className="bg-button-gradient mx-auto py-[14px] px-[33px] rounded-[42px] border border-[#00000033] font-mtn-brighter-bold text-[14px] text-black"
-              onClick={handleViewPrizesClick}
-            >
-              View Prizes
-            </button>
-          </div>
-)}
+          {leaderboard?.length !== 0 && (
+            <div className="flex justify-center mb-[51px] ">
+              <button
+                className="bg-button-gradient mx-auto py-[14px] px-[33px] rounded-[42px] border border-[#00000033] font-mtn-brighter-bold text-[14px] text-black"
+                onClick={handleViewPrizesClick}
+              >
+                View Prizes
+              </button>
+            </div>
+          )}
           <div className=" flex justify-center py-8 ">
             <div className="w-full max-w-[336px]  h-[82px] backdrop-blur-sm flex justify-between items-center bg-foot-nav-gradient rounded-b-[60px] pt-[12px] pb-[20px] px-[46px]">
               <Link
@@ -426,14 +504,3 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
 };
 
 export default LeaderboardPage;
-
-
-
-
-
-
-
-
-
-
-

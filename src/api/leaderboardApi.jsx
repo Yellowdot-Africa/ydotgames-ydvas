@@ -143,13 +143,10 @@ export const updateLeaderboardScore = async (auth, msisdn, gameScore) => {
       }
     );
 
-    // Check if the response indicates success
     if (response.data.isSuccessful) {
-      // Optionally display a success message
       // toast.success(response.data.message);
-      return response.data.data; // This will return true
+      return response.data.data; 
     } else {
-      // Handle cases where the response indicates failure
       throw new Error(response.data.message);
     }
     
@@ -161,7 +158,7 @@ export const updateLeaderboardScore = async (auth, msisdn, gameScore) => {
     }
     console.error("Error updating leaderboard score:", error);
 
-    throw error; // Rethrow the error to handle it further up
+    throw error; 
   }
 };
 

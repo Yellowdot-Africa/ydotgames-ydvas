@@ -8,10 +8,6 @@ import { TriviaContext } from "../Context/TriviaContext";
 const ResultPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  // console.log('Score:', score, 'Total Questions:', totalQuestions, 'Statuses:', statuses);
-  // const { score, totalQuestions, statuses = [] } = location.state || {};
-  // const { score, totalQuestions, correctAnswers, incorrectAnswers } =
-  //   location.state;
 
     const { score = 0, totalQuestions = 0, correctAnswers = [], incorrectAnswers = [] } = location.state || {};
 
@@ -20,12 +16,7 @@ const ResultPage = () => {
     useContext(TriviaContext);
   const gameId = location.state?.gameId || selectedGameId;
 
-  // const correctAnswers = statuses.filter(
-  //   (status) => status === "correct"
-  // ).length;
-  // const wrongAnswers = statuses.filter(
-  //   (status) => status === "incorrect"
-  // ).length;
+ 
 
   const handlePlayAgain = () => {
     navigate("/home");
@@ -99,6 +90,9 @@ const ResultPage = () => {
 };
 
 export default ResultPage;
+
+
+
 
 
 
