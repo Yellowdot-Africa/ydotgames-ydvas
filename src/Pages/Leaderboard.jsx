@@ -309,20 +309,20 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
               </p>
 
               {/* Table */}
-              <div className="w-full mt-6 ">
-                <table className="table-auto mx-auto md:mx-auto">
+              <div className="w-full mt-6   ">
+                <table className="table-fixed  mx-auto md:mx-auto">
                   <thead>
                     <tr className="text-center">
-                      <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+                      <th className="p-2 w-12  font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
                         Rank
                       </th>
-                      <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+                      <th className="p-2 w-32 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
                         Phone
                       </th>
-                      <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+                      <th className="p-2 w-24 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
                         Daily Score
                       </th>
-                      <th className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+                      <th className="p-2 w-32  font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
                         Monthly Score
                       </th>
                     </tr>
@@ -367,7 +367,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                                 : ""
                             }`}
                           >
-                            <td className="p-2 relative w-[50px] h-[50px] font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+                            <td className="p-1 relative w-[50px] h-[50px] font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
                               {rankImage ? (
                                 <div className="relative flex justify-center items-center ">
                                   <img
@@ -386,14 +386,14 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                               )}
                             </td>
 
-                            <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+                            <td className="p-1 font-mtn-brighter-medium font-medium text-[14px] w-32 truncate leading-[20.8px] text-[#FFFFFF]">
                               {/* {player.msisdn} */}
                               {obscureMSISDN(player.msisdn)}
                             </td>
-                            <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+                            <td className="p-1 font-mtn-brighter-medium font-medium text-[14px] w-24 truncate leading-[20.8px] text-[#FFFFFF]">
                               {player.dailyPoints}
                             </td>
-                            <td className="p-2 font-mtn-brighter-medium font-medium text-[14px] leading-[20.8px] text-[#FFFFFF]">
+                            <td className="p-1 font-mtn-brighter-medium font-medium text-[14px] w-32 text-ellipsis overflow-hidden leading-[20.8px] text-[#FFFFFF] ">
                               {player.monthlyPoints}
                             </td>
                           </tr>

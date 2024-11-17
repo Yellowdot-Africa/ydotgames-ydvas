@@ -15,9 +15,14 @@ import TempleQuest from "../assets/Images/quest.jpeg";
 import Home from "../assets/Icons/home.png";
 import Leaderboard from "../assets/Icons/leaderboard.png";
 import Profile from "../assets/Icons/profile.png";
+import AuthContext from "../Context/AuthContext";
+
 // import GameContext from "../Context/GameContext";
 import UserContext from "../Context/UserContext";
 import { LeaderboardContext } from "../Context/LeaderboardContext";
+import { Circles } from "react-loader-spinner";
+
+
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -44,6 +49,11 @@ const ProfilePage = () => {
   const [gameScore, setGameScore] = useState(0);
   const [games, setGames] = useState("");
   const [loading, setLoading] = useState("");
+  const { auth } = useContext(AuthContext);
+
+
+
+  
   useEffect(() => {
     const storedAvatar = localStorage.getItem("selectedAvatar");
     if (storedAvatar) {
@@ -331,18 +341,27 @@ const ProfilePage = () => {
     }
   }, [msisdn, gameScore]);
 
- 
+
+  useEffect(() => {
+    if (auth?.token && msisdn) {
+      fetchProfile(msisdn);
+    }
+  }, [auth?.token, msisdn]);
+  
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>
+          <Circles color="black" height={50} width={50} />
+
+    </div>;
   }
   // if (error) return <p>{error}</p>;
 
-  useEffect(() => {
-    if (error) {
-      navigate("/error");
-    }
-  }, [error, navigate]);
+  // useEffect(() => {
+  //   if (error) {
+  //     navigate("/error");
+  //   }
+  // }, [error, navigate]);
 
   return (
     <>
@@ -596,3 +615,6 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
+
+

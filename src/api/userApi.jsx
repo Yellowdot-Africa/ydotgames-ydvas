@@ -53,6 +53,7 @@ export const createSubscriberProfile = async (auth, msisdn, nickname, avatarId) 
       nickname,
       avatarId,
     };
+    console.log("Sending create profile request with:", payload);
 
     const response = await axios.post(
       `${BASE_URL}/CreateSubscriberProfile`,
@@ -65,13 +66,22 @@ export const createSubscriberProfile = async (auth, msisdn, nickname, avatarId) 
       }
     );
 
+    console.log("Create profile response:", response.data);
+
+
     if (response.data.isSuccessful) {
+
+
       return response.data; 
     } else {
       throw new Error(response.data.message); 
     }
   } catch (error) {
+    console.error("Error creating subscriber profile:", error);
+    console.log("showing Error  creating subscriber profile:", error);
+
     if (error.response) {
+     
       console.error("Server error data:", error.response.data);
       console.error("Server error status:", error.response.status);
       console.error("Server error headers:", error.response.headers);
@@ -232,6 +242,10 @@ export const UpdateSubscriberProfile = async (
     throw error; 
   }
 };
+
+
+
+
 
 
 

@@ -1,19 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import AuthContext from "../Context/AuthContext"; 
+import AuthContext from "../Context/AuthContext";
 import { useUserContext } from "../Context/UserContext";
 import { Circles } from "react-loader-spinner";
-
-
-
-
 
 const RedirectPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { setMsisdn  } = useUserContext();
-  const { auth } = useContext(AuthContext); 
+  const { setMsisdn } = useUserContext();
+  const { auth } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -62,17 +58,20 @@ const RedirectPage = () => {
       );
 
       if (response.data.data.State === "Active") {
-       
-        const nickname = msisdn; 
-        const avatarId = 1; 
+        const nickname = msisdn;
+        const avatarId = 1;
 
-       
         // await handleCreateSubscriberProfile(msisdn, nickname, avatarId);
         //         if (auth?.token) {
         //           handleCreateSubscriberProfile(msisdn, nickname, avatarId);
         //         }
         navigate("/");
+        // } else if (response.data.data.State === "Deactivated") {
+        //   setErrorMessage("Your subscription is inactive. Please subscribe to continue.");
+        //   window.location.href = "https://play.mtn.co.za/subscribe/service/10421?gv_id=4539";
       } else {
+        // setErrorMessage("Unable to determine your subscription status. Please contact support.");
+
         setErrorMessage(
           "Your subscription is inactive. Please subscribe to continue."
         );
@@ -80,8 +79,29 @@ const RedirectPage = () => {
           "https://play.mtn.co.za/subscribe/service/10421?gv_id=4539";
       }
     } catch (error) {
-      console.error("Error checking subscription status", error);
-      setErrorMessage("There was an error checking your subscription status.");
+      //   const errorMsg =
+      //   error.response?.data?.msg ||
+      //   "There was an error checking your subscription status.";
+      //   console.error("Error checking subscription status:", errorMsg);
+
+      // setErrorMessage(errorMsg);
+      // setErrorMessage("There was an error checking your subscription status.");
+      if (
+        error.response?.status === 400 &&
+        error.response?.data?.msg === "User is not active in this service"
+      ) {
+        setErrorMessage(
+          "Your subscription is inactive. Please subscribe to continue."
+        );
+        window.location.href =
+          "https://play.mtn.co.za/subscribe/service/10421?gv_id=4539";
+      } else {
+        const errorMsg =
+          error.response?.data?.msg ||
+          "There was an error checking your subscription status.";
+        console.error("Error checking subscription status:", errorMsg);
+        setErrorMessage(errorMsg);
+      }
     } finally {
       setLoading(false);
     }
@@ -110,23 +130,18 @@ const RedirectPage = () => {
 
 export default RedirectPage;
 
-
-
-
-
 // import React, { useEffect, useState, useContext } from "react";
 // import { useLocation, useNavigate } from "react-router-dom";
 // import axios from "axios";
-// import AuthContext from "../Context/AuthContext"; 
+// import AuthContext from "../Context/AuthContext";
 // import { useUserContext } from "../Context/UserContext";
 // import { Circles } from "react-loader-spinner";
-
 
 // const RedirectPage = () => {
 //   const location = useLocation();
 //   const navigate = useNavigate();
 //   const { setMsisdn, handleCreateSubscriberProfile, fetchProfile  } = useUserContext();
-//   const { auth } = useContext(AuthContext); 
+//   const { auth } = useContext(AuthContext);
 //   const [loading, setLoading] = useState(true);
 //   const [errorMessage, setErrorMessage] = useState("");
 
@@ -174,11 +189,11 @@ export default RedirectPage;
 //         { headers: { "Content-Type": "application/json" } }
 //       );
 
-//       console.log("Subscription check response:", response.data); 
+//       console.log("Subscription check response:", response.data);
 //       if (response.data.data.State === "Active") {
-       
+
 //         const existingProfile = await fetchProfile(auth, msisdn);
-//         console.log("Existing profile:", existingProfile); 
+//         console.log("Existing profile:", existingProfile);
 
 //         // if (existingProfile.statusCode === "999") {
 //           if (existingProfile && existingProfile.statusCode === "999") {
@@ -189,10 +204,10 @@ export default RedirectPage;
 
 //         } else {
 
-//         const nickname = msisdn; 
-//         const avatarId = 1; 
+//         const nickname = msisdn;
+//         const avatarId = 1;
 
-//         console.log("Creating new profile..."); 
+//         console.log("Creating new profile...");
 //         // await handleCreateSubscriberProfile(auth, msisdn, nickname, avatarId);
 //                 // if (auth?.token) {
 //                 //   handleCreateSubscriberProfile(msisdn, nickname, avatarId);
@@ -238,7 +253,3 @@ export default RedirectPage;
 // };
 
 // export default RedirectPage;
-
-
-
-

@@ -37,7 +37,6 @@
 
 
 import axios from "axios";
-import { toast } from 'react-toastify'; 
 
 export const getLeaderboardStanding = async (auth, msisdn) => {
   try {
