@@ -211,3 +211,39 @@ export const TriviaProvider = ({ children }) => {
     </TriviaContext.Provider>
   );
 };
+
+
+
+
+
+
+// export const getTriviaGame = async (gameId) => {
+//   const TRIVIA_API_URL = "https://ydotbigcashtrivia.runasp.net/api/Trivia/Games/GetGame/";
+//   const authToken = localStorage.getItem("triviaAuthToken");
+
+//   if (!authToken) {
+//     console.error("Auth token is missing!");
+//     throw new Error("Authentication token is missing");
+//   }
+
+//   try {
+//     console.log("Fetching game with gameId:", gameId);
+//     console.log("Auth Token:", authToken);
+
+//     const response = await axios.get(`${TRIVIA_API_URL}${gameId}`, {
+//       headers: {
+//         Authorization: `Bearer ${authToken}`,
+//       },
+//     });
+//     console.log("Trivia game data:", response.data);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error fetching trivia game:", error.response?.data || error.message);
+//     throw error;
+//   }
+// };
+
+
+
+
+

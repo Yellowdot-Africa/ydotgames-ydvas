@@ -120,49 +120,15 @@ const TriviaGames = () => {
   const [scrollDirection, setScrollDirection] = useState("null");
   const [lastScrollTop, setLastScrollTop] = useState(0);
 
-  // useEffect(() => {
-  //   let lastScrollTop = 0;
-
-  //   const handleScroll = () => {
-  //     const scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-  //     if (scrollTop > lastScrollTop) {
-  //       setScrollDirection("down");
-  //     } else {
-  //       setScrollDirection("up");
-  //     }
-  //     setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
-  //   };
-  //   window.addEventListener("scroll", handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, [lastScrollTop]);
-
-  // const navStyle = {
-  //   position: "fixed",
-  //   bottom: scrollDirection === "down" ? "0px" : "0px",
-  //   left: "50%",
-  //   transform: "translateX(-50%)",
-  //   transition: "bottom 0.5s ease",
-  // };
-
   useEffect(() => {
     fetchTriviaGame(12);
   }, []);
-
 
   useEffect(() => {
     if (error) {
       navigate("/error");
     }
   }, [error, navigate]);
-  
-  // const handleCategoryClick = (gameId) => {
-  //       setSelectedGameId(gameId);
-  //       navigate(`/bigcash-trivia/${gameId}`);
-  //     };
 
   const handleCategoryClick = (categoryId) => {
     setSelectedGameId(categoryId);
@@ -178,8 +144,6 @@ const TriviaGames = () => {
   //   );
   // if (error) return <p>{error}</p>;
 
-
-
   // if (error) {
   //   navigate('/error');
   // }
@@ -188,12 +152,12 @@ const TriviaGames = () => {
     <>
       <div className="flex flex-col items-center  min-h-screen mb-12  bg-[#EFF3F5] p-4 pt-[100px] md:w-[500px] md:mx-auto md:flex-col md:h-[1000px]">
         <h1 className="text-[30px] leading-[36px] font-mtn-brighter-bold font-bold text-center text-gray-800 mb-6">
-          {/* {triviaGame?.name} */}
           Big Cash Trivia
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
-          {triviaGame?.categories && triviaGame.categories.length > 0 ? (
-            triviaGame.categories.map((category) => (
+          {triviaGame?.gameCategories &&
+          triviaGame.gameCategories.length > 0 ? (
+            triviaGame.gameCategories.map((category) => (
               <div
                 key={category.id}
                 className="cursor-pointer bg-white  border rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:scale-105 p-4 text-center"
@@ -205,13 +169,14 @@ const TriviaGames = () => {
               </div>
             ))
           ) : (
-            <p className="flex items-center justify-center font-mtn-brighter-regular font-normal text-[18px]">No categories available</p>
+            <p className="flex items-center justify-center font-mtn-brighter-regular font-normal text-[18px]">
+              No categories available
+            </p>
           )}
         </div>
 
         <div className="w-max mx-auto ">
           <div
-            // style={navStyle}
             className="fixed  mx-auto left-0 right-0 bottom-0 mt-[15px]   backdrop-blur-sm flex justify-between items-center w-[342px] h-[82px] bg-darrk-gradient  rounded-b-[60px] pt-[12px] pb-[20px] px-[46px] "
 
             // className="bottom-0 backdrop-blur-sm mb-[15px] md:mb-[50px]   left-0px flex justify-between items-center w-[90%] h-[82px] mx-auto md:w-[402px] bg-darrk-gradient  rounded-b-[60px] pt-[12px] pb-[20px] px-[46px] "

@@ -76,26 +76,34 @@
 
 
 import axios from "axios";
+import { v4 as uuidv4 } from 'uuid';
+
 
 const TRIVIA_API_URL =
-  "https://ydvassdp.com:4001/api/Trivia/Games/GetGame?gameId=";
+  // "https://ydvassdp.com:4001/api/Trivia/Games/GetGame?gameId=";
+  "https://ydotbigcashtrivia.runasp.net/api/Trivia/Games/GetGame/";
 
 export const getTriviaGame = async (gameId) => {
   try {
-        const authToken = localStorage.getItem("triviaAuthToken");
+    const authToken = localStorage.getItem("triviaAuthToken");
 
+    if (!authToken) {
+      console.error("Auth token is missing!");
+      throw new Error("Authentication token is missing");
+    }
+   
     const response = await axios.get(`${TRIVIA_API_URL}${gameId}`, {
       headers: {
         Authorization: `Bearer ${authToken}`,
       },
     });
+
     return response.data;
   } catch (error) {
     console.error("Error fetching trivia game:", error);
     throw error;
   }
 };
-
 
 export const getTriviaQuestions = async (gameCategoryId) => {
   try {
@@ -104,7 +112,8 @@ export const getTriviaQuestions = async (gameCategoryId) => {
     if (!authToken) throw new Error("Authentication token is missing");
 
     const response = await axios.get(
-      `https://ydvassdp.com:4001/api/Trivia/Questions/GetQuestions?count=10&gameCategoryId=${gameCategoryId}`,
+      // `https://ydvassdp.com:4001/api/Trivia/Questions/GetQuestions?count=10&gameCategoryId=${gameCategoryId}`,
+      `https://ydotbigcashtrivia.runasp.net/api/Trivia/Questions/GetQuestions?count=10&gameCategoryId=${gameCategoryId}`,
       {
         headers: {
           Authorization: `Bearer ${authToken}`,
@@ -119,31 +128,44 @@ export const getTriviaQuestions = async (gameCategoryId) => {
 };
 
 export const submitAnswer = async (msisdn, questionId, submittedAnswer) => {
-    const payload = {
-      msisdn,
-      questionId,
-      submittedAnswer,
-    };
+  const transactionId = uuidv4();
+  const payload = {
+    msisdn,
+    questionId,
+    submittedAnswer,
+    transactionId,
+  };
 
-    try {
-
-        const authToken = localStorage.getItem("triviaAuthToken");
+  try {
+    const authToken = localStorage.getItem("triviaAuthToken");
 
     if (!authToken) throw new Error("Authentication token is missing");
 
-      const response = await axios.post(
-        "https://ydvassdp.com:4001/api/Trivia/Games/SubmitGamePlay",
-        payload,
-        {
-            headers: {
-              Authorization: `Bearer ${authToken}`,
-            },
-          }
-      );
-      return response.data;
-    } catch (error) {
-      console.error("Error submitting answer:", error);
-      throw new Error(`Error submitting answer: ${error.message}`);
+    const response = await axios.post(
+      // "https://ydvassdp.com:4001/api/Trivia/Games/SubmitGamePlay",
+      "https://ydotbigcashtrivia.runasp.net/api/Trivia/Games/SubmitGamePlay",
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error submitting answer:", error);
+    throw new Error(`Error submitting answer: ${error.message}`);
+  }
+};
 
-    }
-  };
+
+
+
+
+
+
+
+
+
+
+

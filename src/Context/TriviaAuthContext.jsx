@@ -10,6 +10,9 @@ export const TriviaAuthProvider = ({ children }) => {
   const [authLoading, setAuthLoading] = useState(true);
   const [authError, setAuthError] = useState(null);
 
+
+ 
+
   const loginTriviaAPI = async () => {
 
 
@@ -19,20 +22,29 @@ export const TriviaAuthProvider = ({ children }) => {
       return;
     }
 
-    
+   
     try {
       const response = await axios.post(
-        "https://ydvassdp.com:4001/api/Trivia/Authorization/Login",
+      
+        "https://ydotbigcashtrivia.runasp.net/api/Trivia/Authorization/Login",
         {
-          username: "trivia_sa",
+          username: "games_ng_bigCash",
           password: "password",
         }
       );
-      const { jwtToken, tokenExpiry } = response.data;
+
+
+      const { jwtToken, tokenExpiry } = response.data.data;
+
+      if (!jwtToken || !tokenExpiry) {
+        throw new Error("Invalid response from login API");
+      }
+
       localStorage.setItem("triviaAuthToken", jwtToken);
       localStorage.setItem("triviaTokenExpiry", tokenExpiry);
   
-      setAuthToken(response.data.jwtToken);
+      // setAuthToken(response.data.jwtToken);
+      setAuthToken(jwtToken);
     } catch (error) {
         setAuthError("Failed to authenticate with Trivia API.");
 
@@ -44,7 +56,11 @@ export const TriviaAuthProvider = ({ children }) => {
 
   useEffect(() => {
     loginTriviaAPI();
+
   }, []);
+
+ 
+
 
   return (
     <TriviaAuthContext.Provider value={{ authToken,authLoading, authError  }}>
