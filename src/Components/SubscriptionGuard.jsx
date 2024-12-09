@@ -47,7 +47,7 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     const checkSubscription = async () => {
       const msisdn = localStorage.getItem("cli");
-      const serviceId = localStorage.getItem("sid") || "7";
+      const serviceId = localStorage.getItem("sid") || "778";
 
       try {
         const response = await axios.post(
