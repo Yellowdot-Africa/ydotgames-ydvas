@@ -17,10 +17,11 @@ import ErrorPage from "./Pages/ErrorPage";
 import TriviaGames from "./Pages/TriviaGames";
 import RedirectPage from "./Pages/RediectPage";
 import ErrorBoundary from "./Pages/ErrorBoundary";
+import { SubscriptionProvider } from "./Context/SubscriptionContext";
+import SubscriptionGuard from "./Components/SubscriptionGuard";
+import SubscriptionExpiredPage from "./Pages/SubscriptionExpiredPage";
 
 const router = createBrowserRouter([
-
- 
   {
     path: "/",
     element: <SplashScreen />,
@@ -43,31 +44,59 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <HomePage />,
+    element: (
+      <SubscriptionGuard>
+        <HomePage />
+      </SubscriptionGuard>
+    ),
   },
   {
     path: "/bigcash-trivia/:categoryId",
-    element: <BigCashTrivia />,
+    element: (
+      <SubscriptionGuard>
+        <BigCashTrivia />
+      </SubscriptionGuard>
+    ),
   },
   {
     path: "/trivia-games",
-    element: <TriviaGames />,
+    element: (
+      <SubscriptionGuard>
+        <TriviaGames />
+      </SubscriptionGuard>
+    ),
   },
   {
     path: "/leaderboard",
-    element: <Leaderboard />,
+    element: (
+      <SubscriptionGuard>
+        <Leaderboard />
+      </SubscriptionGuard>
+    ),
   },
   {
     path: "/user-profile",
-    element: <ProfilePage />,
+    element: (
+      <SubscriptionGuard>
+        <ProfilePage />
+      </SubscriptionGuard>
+    ),
   },
   {
     path: "/prizes",
-    element: <PrizesPage />,
+    element: (
+      <SubscriptionGuard>
+        <PrizesPage />
+      </SubscriptionGuard>
+    ),
   },
   {
     path: "/result-page",
-    element: <ResultPage />,
+    element: (
+      <SubscriptionGuard>
+        <ResultPage />
+      </SubscriptionGuard>
+    ),
   },
   {
     path: "/faq",
@@ -77,6 +106,10 @@ const router = createBrowserRouter([
     path: "/terms-and-conditions",
     element: <TermsAndConditions />,
   },
+  {
+    path: "/subscription-expired",
+    element: <SubscriptionExpiredPage />,
+  },
 ]);
 
 const App = () => {
@@ -84,11 +117,12 @@ const App = () => {
     <>
       <ToastContainer />
       <ErrorBoundary>
-        <RouterProvider router={router} />
+        <SubscriptionProvider>
+          <RouterProvider router={router} />
+        </SubscriptionProvider>
       </ErrorBoundary>
     </>
   );
 };
 
 export default App;
-

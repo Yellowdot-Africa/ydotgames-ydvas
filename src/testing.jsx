@@ -3871,3 +3871,144 @@ export default QuestionScreen;
 
 
   
+// import { useEffect, useRef } from "react";
+// import { checkSubscriptionStatus } from "../api/subscription"; // Your API service
+
+// const useSubscriptionChecker = (msisdn, interval = 60000) => { // Check every 60 seconds
+//   const timerRef = useRef();
+
+//   useEffect(() => {
+//     if (!msisdn) return;
+
+//     const checkStatus = async () => {
+//       const status = await checkSubscriptionStatus(msisdn);
+//       if (!status.isActive) {
+//         // Handle expired subscription
+//         alert("Your subscription has expired. Please renew to continue.");
+//         window.location.href = "/subscribe"; // Redirect to subscription page
+//       }
+//     };
+
+//     // Start polling
+//     timerRef.current = setInterval(checkStatus, interval);
+
+//     return () => clearInterval(timerRef.current); // Cleanup on unmount
+//   }, [msisdn, interval]);
+// };
+
+// export default useSubscriptionChecker;
+
+
+
+
+
+// import React, { useEffect, useContext } from "react";
+// import { checkSubscriptionStatus } from "./api/subscription"; // API call
+// import { AuthContext } from "./Context/AuthContext"; // Context managing msisdn
+// import { useNavigate } from "react-router-dom";
+
+// const App = () => {
+//   const { msisdn } = useContext(AuthContext); // Fetch msisdn from context
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     if (!msisdn) return;
+
+//     const interval = setInterval(async () => {
+//       try {
+//         const response = await checkSubscriptionStatus(msisdn);
+
+//         if (!response.isActive) {
+//           alert("Your subscription has expired. Please renew to continue.");
+//           navigate("/subscribe"); // Redirect user to subscription page
+//         }
+//       } catch (error) {
+//         console.error("Failed to check subscription status:", error);
+//       }
+//     }, 60000); // Check every minute
+
+//     return () => clearInterval(interval); // Cleanup on unmount
+//   }, [msisdn, navigate]);
+
+//   return (
+//     <div>
+//       {/* Your routing and components */}
+//     </div>
+//   );
+// };
+
+// export default App;
+
+
+
+
+
+
+
+// import React, { useContext } from "react";
+// import { SubscriptionContext } from "../Context/SubscriptionContext";
+
+// const PremiumContent = () => {
+//   const { isSubscribed, verifySubscription } = useContext(SubscriptionContext);
+
+//   const handlePlayGame = async () => {
+//     await verifySubscription();
+//     if (!isSubscribed) {
+//       alert("Your subscription has expired. Please renew to continue.");
+//       return;
+//     }
+
+//     // Proceed with the game
+//   };
+
+//   return <button onClick={handlePlayGame}>Play Game</button>;
+// };
+
+
+
+
+// import React, { createContext, useState } from "react";
+// import axios from "axios";
+
+// export const SubscriptionContext = createContext();
+
+// export const SubscriptionProvider = ({ children }) => {
+//   const [isSubscribed, setIsSubscribed] = useState(null); // null indicates no check yet
+//   const [loading, setLoading] = useState(false);
+
+//   const verifySubscription = async () => {
+//     setLoading(true);
+//     try {
+//       const response = await axios.get("/api/check-subscription");
+//       setIsSubscribed(response.data.isSubscribed); // Adjust this based on API response
+//     } catch (error) {
+//       console.error("Subscription check failed", error);
+//       setIsSubscribed(false); // Assume not subscribed if the check fails
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <SubscriptionContext.Provider value={{ isSubscribed, verifySubscription, loading }}>
+//       {children}
+//     </SubscriptionContext.Provider>
+//   );
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../assets/Images/logo.png"; 
+import Logo from "../assets/Images/new-logo.png";
 import { useNavigate } from "react-router-dom";
 
 const SubscriptionPage = () => {

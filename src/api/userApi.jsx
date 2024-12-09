@@ -38,9 +38,12 @@ const BASE_URL = "https://ydotgames.runasp.net/api/YellowdotGames";
 //   }
 // };
 
-
-
-export const createSubscriberProfile = async (auth, msisdn, nickname, avatarId) => {
+export const createSubscriberProfile = async (
+  auth,
+  msisdn,
+  nickname,
+  avatarId
+) => {
   try {
     const token = auth?.token;
 
@@ -68,29 +71,24 @@ export const createSubscriberProfile = async (auth, msisdn, nickname, avatarId) 
 
     console.log("Create profile response:", response.data);
 
-
     if (response.data.isSuccessful) {
-
-
-      return response.data; 
+      return response.data;
     } else {
-      throw new Error(response.data.message); 
+      throw new Error(response.data.message);
     }
   } catch (error) {
     console.error("Error creating subscriber profile:", error);
     console.log("showing Error  creating subscriber profile:", error);
 
     if (error.response) {
-     
       console.error("Server error data:", error.response.data);
       console.error("Server error status:", error.response.status);
       console.error("Server error headers:", error.response.headers);
     }
     console.error("Error creating subscriber profile:", error);
-    throw error; 
+    throw error;
   }
 };
-
 
 // export const getSubscriberProfile = async (auth, msisdn) => {
 //   try {
@@ -137,12 +135,11 @@ export const getSubscriberProfile = async (auth, msisdn) => {
     );
 
     if (response.data.isSuccessful) {
-      // console.log("is Succesful response:", response.data); 
-      return response.data; 
+      // console.log("is Succesful response:", response.data);
+      return response.data;
     } else {
-      throw new Error(response.data.message); 
+      throw new Error(response.data.message);
     }
-
   } catch (error) {
     if (error.response) {
       console.error("Server error data:", error.response.data);
@@ -151,10 +148,9 @@ export const getSubscriberProfile = async (auth, msisdn) => {
     }
     console.error("Error fetching subscriber profile:", error);
 
-    throw error; 
+    throw error;
   }
 };
-
 
 // export const UpdateSubscriberProfile = async (
 //   auth,
@@ -192,9 +188,6 @@ export const getSubscriberProfile = async (auth, msisdn) => {
 //   }
 // };
 
-
-
-
 export const UpdateSubscriberProfile = async (
   auth,
   msisdn,
@@ -226,11 +219,10 @@ export const UpdateSubscriberProfile = async (
     );
 
     if (response.data.isSuccessful) {
-      return response.data; 
+      return response.data;
     } else {
-      throw new Error(response.data.message); 
+      throw new Error(response.data.message);
     }
-    
   } catch (error) {
     if (error.response) {
       console.error("Server error data:", error.response.data);
@@ -238,31 +230,7 @@ export const UpdateSubscriberProfile = async (
       console.error("Server error headers:", error.response.headers);
     }
     console.error("Error updating user profile:", error);
-        
-    throw error; 
+
+    throw error;
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

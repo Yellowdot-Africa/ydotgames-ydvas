@@ -86,6 +86,51 @@ export const UserProvider = ({ children }) => {
   },[]);
 
 
+  // const fetchProfile = useCallback(async (retries = 3, delay = 1000) => {
+  //   setLoading(true);
+  //   setError(null);
+  
+  //   try {
+  //     // Try to fetch the profile
+  //     const profile = await getSubscriberProfile(auth, msisdn);
+  
+  //     if (profile.isSuccessful) {
+  //       console.log("Profile found:", profile.data);
+  //       setUserProfile(profile.data);
+  //     } else {
+  //       throw new Error("Profile not found.");
+  //     }
+  //   } catch (error) {
+  //     if (error.response && error.response.status === 404) {
+  //       console.warn("Profile not found. Creating a new profile...");
+  
+  //       try {
+  //         // Create a new profile
+  //         const createResponse = await handleCreateSubscriberProfile({
+  //           msisdn,
+  //           nickname: msisdn, // Default to msisdn as nickname
+  //           avatarId: 1, // Default avatar ID
+  //         });
+  
+  //         if (createResponse?.isSuccessful) {
+  //           console.log("Profile created successfully:", createResponse.data);
+  //           setUserProfile(createResponse.data);
+  //         } else {
+  //           throw new Error("Failed to create profile.");
+  //         }
+  //       } catch (createError) {
+  //         console.error("Error creating profile:", createError);
+  //         setError("Error creating profile");
+  //       }
+  //     } else {
+  //       console.error("Failed to fetch profile:", error);
+  //       setError("Error fetching profile");
+  //     }
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }, [auth, msisdn, handleCreateSubscriberProfile]);
+  
   
   const fetchProfile = useCallback ( async (retries = 3, delay = 1000) => {
     setLoading(true);
@@ -113,20 +158,22 @@ export const UserProvider = ({ children }) => {
             avatarId: 1
           });
   
-          if (createResponse.isSuccessful) {
+          if (createResponse?.isSuccessful) {
             console.log("Profile created successfully:", createResponse.data);
             setLoading(true);
             setCreateLoading(true);
-            // Wait for a short delay after profile creation to allow server sync
+            setUserProfile(createResponse.data);
+
+            // // Wait for a short delay after profile creation to allow server sync
             // await new Promise(resolve => setTimeout(resolve, delay));
   
-            // Try fetching the profile after creation
+            // // Try fetching the profile after creation
             // const fetchNewProfile = await getSubscriberProfile(auth, msisdn);
             // if (fetchNewProfile.isSuccessful) {
-              // console.log("Fetched new profile:", fetchNewProfile.data);
-              // setUserProfile(fetchNewProfile.data);
+            //   console.log("Fetched new profile:", fetchNewProfile.data);
+            //   setUserProfile(fetchNewProfile.data);
             // } else {
-              // throw new Error("Profile not available yet.");
+            //   throw new Error("Profile not available yet.");
             // }
           } else {
             setError("Failed to create profile: " + createResponse.message);

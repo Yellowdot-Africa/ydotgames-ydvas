@@ -40,6 +40,7 @@ const RedirectPage = () => {
       const decodedCli = atob(cli);
       setMsisdn(decodedCli);
       localStorage.setItem("cli", decodedCli);
+      localStorage.setItem("sid", sid); 
       // console.log("Decoded CLI:", decodedCli);
 
       checkSubscription(decodedCli, sid);
@@ -58,8 +59,12 @@ const RedirectPage = () => {
       );
 
       if (response.data.data.State === "Active") {
-        const nickname = msisdn;
-        const avatarId = 1;
+        localStorage.setItem("isSubscribed", "true");
+
+        localStorage.setItem("lastBillingDate", response.data.data.LastBillingDate);
+        localStorage.setItem("subscriptionDate", response.data.data.SubscriptionDate);
+        // const nickname = msisdn;
+        // const avatarId = 1;
 
         // await handleCreateSubscriberProfile(msisdn, nickname, avatarId);
         //         if (auth?.token) {
@@ -71,6 +76,7 @@ const RedirectPage = () => {
         //   window.location.href = "https://play.mtn.co.za/subscribe/service/10421?gv_id=4539";
       } else {
         // setErrorMessage("Unable to determine your subscription status. Please contact support.");
+        localStorage.setItem("isSubscribed", "false");
 
         setErrorMessage(
           "Your subscription is inactive. Please subscribe to continue."
@@ -113,12 +119,12 @@ const RedirectPage = () => {
         <div className="flex flex-col items-center">
           <Circles color="black" height={50} width={50} />
 
-          <h1 className="text-xl font-semibold mt-4">Redirecting...</h1>
+          <h1 className="text-xl font-semibold font-mtn-brighter-bold  mt-4">Redirecting...</h1>
         </div>
       ) : (
         <div className="text-center">
           {errorMessage ? (
-            <p className="text-red-500 font-medium">{errorMessage}</p>
+            <p className="text-red-500 font-medium font-mtn-brighter-medium">{errorMessage}</p>
           ) : (
             <p className="text-gray-700">Please wait while we redirect you.</p>
           )}
@@ -129,6 +135,8 @@ const RedirectPage = () => {
 };
 
 export default RedirectPage;
+
+
 
 // import React, { useEffect, useState, useContext } from "react";
 // import { useLocation, useNavigate } from "react-router-dom";
@@ -253,3 +261,13 @@ export default RedirectPage;
 // };
 
 // export default RedirectPage;
+
+
+
+
+
+
+
+
+
+
