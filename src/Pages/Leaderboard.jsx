@@ -148,7 +148,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
             // <div className=" flex justify-center items-center mt-[30px] mx-[20px]">
             //  <Skeleton count={18}  baseColor="#202020" highlightColor="#444" containerClassName="flex-1" />
             // </div>
-            <div className="bg-[#E2EEF60D] w-[342px] h-[933px] mt-[17px] mx-auto">
+            <div className="bg-[#E2EEF60D] w-[95%] h-[933px] mt-[17px] mx-auto">
               {/* Skeleton for the header */}
               <div className="flex flex-col items-center mt-4">
                 <Skeleton
@@ -249,7 +249,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
               </div>
             </div>
           ) : (
-            <div className="bg-[#E2EEF60D] w-[342px] h-[933px] mt-[17px] mx-auto">
+            <div className="bg-[#E2EEF60D] w-[95%] h-[933px] mt-[17px] mx-auto">
               <div className="bg-nav-gradient rounded-[26px] text-white flex justify-center items-center w-[175px] h-[49px]  mt-[21px] mx-auto">
                 {/* Avatar and Coin Section */}
 
@@ -393,7 +393,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                             <td className="p-1 font-mtn-brighter-medium font-medium text-[14px] w-24 truncate leading-[20.8px] text-[#FFFFFF]">
                               {player.dailyPoints}
                             </td>
-                            <td className="p-1 font-mtn-brighter-medium font-medium text-[12px] w-32 text-ellipsis overflow-hidden leading-[20.8px] text-[#FFFFFF] ">
+                            <td className="p-1 font-mtn-brighter-medium font-medium text-[14px] w-32 text-ellipsis overflow-hidden leading-[20.8px] text-[#FFFFFF] ">
                               {player.monthlyPoints}
                             </td>
                           </tr>
