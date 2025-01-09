@@ -322,7 +322,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                       <th className="p-2 w-24 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
                         Daily Score
                       </th>
-                      <th className="p-2 w-32  font-mtn-brighter-medium font-medium text-[12px] leading-[18.2px] text-[#FFFFFF]">
+                      <th className="p-2 w-32  font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
                         Monthly Score
                       </th>
                     </tr>
@@ -393,7 +393,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                             <td className="p-1 font-mtn-brighter-medium font-medium text-[14px] w-24 truncate leading-[20.8px] text-[#FFFFFF]">
                               {player.dailyPoints}
                             </td>
-                            <td className="p-1 font-mtn-brighter-medium font-medium text-[14px] w-32 text-ellipsis overflow-hidden leading-[20.8px] text-[#FFFFFF] ">
+                            <td className="p-1 font-mtn-brighter-medium font-medium text-[12px] w-32 text-ellipsis overflow-hidden leading-[20.8px] text-[#FFFFFF] ">
                               {player.monthlyPoints}
                             </td>
                           </tr>
