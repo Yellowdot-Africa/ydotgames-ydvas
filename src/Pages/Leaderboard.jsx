@@ -322,7 +322,7 @@ const LeaderboardPage = ({ subscriberMsisdn }) => {
                       <th className="p-2 w-24 font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
                         Daily Score
                       </th>
-                      <th className="p-2 w-32  font-mtn-brighter-medium font-medium text-[14px] leading-[18.2px] text-[#FFFFFF]">
+                      <th className="p-2 w-32  font-mtn-brighter-medium font-medium text-[12px] leading-[18.2px] text-[#FFFFFF]">
                         Monthly Score
                       </th>
                     </tr>
