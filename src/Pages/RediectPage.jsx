@@ -146,6 +146,7 @@ import axios from "axios";
 import AuthContext from "../Context/AuthContext";
 import { useUserContext } from "../Context/UserContext";
 import { Circles } from "react-loader-spinner";
+import ThresholdModal from "../Components/Modal/ThresholdModal";
 
 const RedirectPage = () => {
   const location = useLocation();
@@ -154,6 +155,13 @@ const RedirectPage = () => {
   const { auth } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  // const [showThresholdModal, setShowThresholdModal] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+
+  // const handleContinue = () => {
+  //   setShowThresholdModal(false);
+  //   initiateAdhocBilling(localStorage.getItem("cli") || "");
+  // };
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -261,7 +269,9 @@ const RedirectPage = () => {
           if (thresholdResponse.data.data === true) {
 
 
-        initiateAdhocBilling(msisdn);
+        // initiateAdhocBilling(msisdn);
+        // setShowThresholdModal(true);
+        setShowPopup(true);
       } else {
 
         navigate("/"); 
@@ -272,9 +282,22 @@ const RedirectPage = () => {
     }
   };
   
-  const initiateAdhocBilling = async (msisdn) => {
+  // const initiateAdhocBilling = async (msisdn) => {
+  //   try {
+  //     const randomRef = Math.floor(1000000000 + Math.random() * 9000000000); 
+  //     const billingUrl = `http://doi.dep.mtn.co.za/service/10852?ext_ref=${randomRef}`;
+  //     window.location.href = billingUrl;
+  //   } catch (error) {
+  //     console.error("Error initiating payment:", error);
+  //     setErrorMessage("Error processing payment. Please try again.");
+  //   }
+  // };
+  
+  
+  const handleContinue = async () => {
+    setShowPopup(false);
     try {
-      const randomRef = Math.floor(1000000000 + Math.random() * 9000000000); 
+      const randomRef = Math.floor(1000000000 + Math.random() * 9000000000);
       const billingUrl = `http://doi.dep.mtn.co.za/service/10852?ext_ref=${randomRef}`;
       window.location.href = billingUrl;
     } catch (error) {
@@ -282,9 +305,6 @@ const RedirectPage = () => {
       setErrorMessage("Error processing payment. Please try again.");
     }
   };
-  
-  
-  
   
   
   return (
@@ -295,20 +315,32 @@ const RedirectPage = () => {
 
           <h1 className="text-xl font-semibold font-mtn-brighter-bold  mt-4">Redirecting...</h1>
         </div>
+      
+
       ) : (
         <div className="text-center">
           {errorMessage ? (
             <p className="text-red-500 font-medium font-mtn-brighter-medium">{errorMessage}</p>
           ) : (
-            <p className="text-gray-700">Please wait while we redirect you.</p>
+            <p className="text-gray-700 font-mtn-brighter-medium">Please wait while we redirect you.</p>
           )}
         </div>
       )}
+
+       <ThresholdModal
+        isOpen={showPopup}
+        onClose={() => setShowPopup(false)}
+        onContinue={handleContinue}
+      />
     </div>
   );
 };
 
 export default RedirectPage;
+
+
+
+
 
 
 

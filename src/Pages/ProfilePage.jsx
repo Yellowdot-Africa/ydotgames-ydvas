@@ -16,11 +16,13 @@ import Home from "../assets/Icons/home.png";
 import Leaderboard from "../assets/Icons/leaderboard.png";
 import Profile from "../assets/Icons/profile.png";
 import AuthContext from "../Context/AuthContext";
+import axios from "axios";
 
 // import GameContext from "../Context/GameContext";
 import UserContext from "../Context/UserContext";
 import { LeaderboardContext } from "../Context/LeaderboardContext";
 import { Circles } from "react-loader-spinner";
+import ThresholdModal from "../Components/Modal/ThresholdModal";
 
 
 
@@ -50,6 +52,8 @@ const ProfilePage = () => {
   const [games, setGames] = useState("");
   const [loading, setLoading] = useState("");
   const { auth } = useContext(AuthContext);
+  const [showThresholdModal, setShowThresholdModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
 
 
@@ -282,6 +286,39 @@ const ProfilePage = () => {
   //   }
   // }, [msisdn, gameScore]);
 
+  const checkUserThreshold = async (msisdn) => {
+    try {
+      const thresholdResponse = await axios.get(
+        `https://ydotgames.runasp.net/api/YellowdotGames/CheckUserThreshold?MSISDN=${msisdn}`
+      );
+
+      if (thresholdResponse.data.data) {
+        // initiateAdhocBilling(msisdn);
+        setShowThresholdModal(true);
+        return false;
+      } else {
+        return true;
+      }
+    } catch (error) {
+      console.error("Error checking threshold:", error);
+      setErrorMessage("Error verifying your access. Please try again.");
+      return false;
+    }
+  };
+
+  const handleContinue = async () => {
+    // setShowPopup(false);
+    setShowThresholdModal(false)
+    try {
+      const randomRef = Math.floor(1000000000 + Math.random() * 9000000000);
+      const billingUrl = `http://doi.dep.mtn.co.za/service/10852?ext_ref=${randomRef}`;
+      window.location.href = billingUrl;
+    } catch (error) {
+      console.error("Error initiating payment:", error);
+      setErrorMessage("Error processing payment. Please try again.");
+    }
+  };
+
   const handleBackToApp = async (gameKey, msisdn) => {
     setIframeSrc("");
     // console.log("Game Key:", gameKey);
@@ -310,6 +347,18 @@ const ProfilePage = () => {
 
     if (gameScore !== undefined && gameScore !== null) {
       // console.log("Stored score outside for bestScore:", gameScore);
+      
+      
+      const isEligible = await checkUserThreshold(msisdn);
+
+      if (!isEligible) {
+        console.warn("User has exceeded the threshold.");
+
+        return;
+      }
+      
+      
+      
       try {
         // console.log("MSISDN before updating leaderboard:", msisdn);
 
@@ -610,6 +659,11 @@ const ProfilePage = () => {
               </button>
             </div>
           )}
+            <ThresholdModal
+        isOpen={showThresholdModal}
+        onClose={() => setShowThresholdModal(false)}
+        onContinue={handleContinue}
+      />
     </>
   );
 };

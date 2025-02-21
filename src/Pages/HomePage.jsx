@@ -34,7 +34,7 @@ import BigCashGame from "../Components/BigCashGame";
 import StarRatings from "../Components/StarRatings";
 import { LeaderboardContext } from "../Context/LeaderboardContext";
 import axios from "axios";
-
+import ThresholdModal from "../Components/Modal/ThresholdModal";
 
 const HomePage = () => {
   const avatars = [Avatar1, Avatar2, Avatar3, Avatar4, Avatar5];
@@ -55,13 +55,16 @@ const HomePage = () => {
   const { leaderboard, fetchLeaderboardStanding } =
     useContext(LeaderboardContext);
   const [error, setError] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(""); 
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const [iframeSrc, setIframeSrc] = useState("");
   const [gameScore, setGameScore] = useState(0);
   const [isLandscape, setIsLandscape] = useState(false);
-const [games, setGames] = useState("");
-const [loading, setLoading] = useState("");
+  const [games, setGames] = useState("");
+  const [loading, setLoading] = useState("");
+  const [showThresholdModal, setShowThresholdModal] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+
   const handleOrientationChange = () => {
     setIsLandscape(window.innerWidth > window.innerHeight);
   };
@@ -317,34 +320,50 @@ const [loading, setLoading] = useState("");
   // }, [msisdn, gameScore]);
 
   const checkUserThreshold = async (msisdn) => {
-  try {
-    const thresholdResponse = await axios.get(
-      `https://ydotgames.runasp.net/api/YellowdotGames/CheckUserThreshold?MSISDN=${msisdn}`
-    );
+    try {
+      const thresholdResponse = await axios.get(
+        `https://ydotgames.runasp.net/api/YellowdotGames/CheckUserThreshold?MSISDN=${msisdn}`
+      );
 
-    if (thresholdResponse.data.data) {
-      initiateAdhocBilling(msisdn);
+      if (thresholdResponse.data.data) {
+        // initiateAdhocBilling(msisdn);
+        setShowThresholdModal(true);
+        return false;
+      } else {
+        return true;
+      }
+    } catch (error) {
+      console.error("Error checking threshold:", error);
+      setErrorMessage("Error verifying your access. Please try again.");
       return false;
-    } else {
-      return true;     }
-  } catch (error) {
-    console.error("Error checking threshold:", error);
-    setErrorMessage("Error verifying your access. Please try again.");
-    return false;
-  }
-};
+    }
+  };
 
-const initiateAdhocBilling = async (msisdn) => {
-  try {
-    const randomRef = Math.floor(1000000000 + Math.random() * 9000000000); // 10-digit random number
-    const billingUrl = `http://doi.dep.mtn.co.za/service/10852?ext_ref=${randomRef}`;
+  // const initiateAdhocBilling = async (msisdn) => {
+  //   try {
+  //     const randomRef = Math.floor(1000000000 + Math.random() * 9000000000); // 10-digit random number
+  //     const billingUrl = `http://doi.dep.mtn.co.za/service/10852?ext_ref=${randomRef}`;
 
-    window.location.href = billingUrl;
-  } catch (error) {
-    console.error("Error initiating payment:", error);
-    setErrorMessage("Error processing payment. Please try again.");
-  }
-};
+  //     window.location.href = billingUrl;
+  //   } catch (error) {
+  //     console.error("Error initiating payment:", error);
+  //     setErrorMessage("Error processing payment. Please try again.");
+  //   }
+  // };
+
+  const handleContinue = async () => {
+    // setShowPopup(false);
+    setShowThresholdModal(false)
+
+    try {
+      const randomRef = Math.floor(1000000000 + Math.random() * 9000000000);
+      const billingUrl = `http://doi.dep.mtn.co.za/service/10852?ext_ref=${randomRef}`;
+      window.location.href = billingUrl;
+    } catch (error) {
+      console.error("Error initiating payment:", error);
+      setErrorMessage("Error processing payment. Please try again.");
+    }
+  };
 
   const handleBackToApp = async (gameKey, msisdn) => {
     setIframeSrc("");
@@ -365,7 +384,6 @@ const initiateAdhocBilling = async (msisdn) => {
       // Handle SkateRush data as a comma-separated string
       parsedData = storedData ? storedData.split(",") : null;
       // parsedData = storedData && storedData.startsWith("{") ? JSON.parse(storedData) : storedData.split(",");
-
     }
 
     // console.log("Parsed Data:", parsedData);
@@ -375,18 +393,15 @@ const initiateAdhocBilling = async (msisdn) => {
     // console.log("Game Score Retrieved:", gameScore);
 
     if (gameScore !== undefined && gameScore !== null) {
-     
       // console.log("Stored score outside for bestScore:", gameScore);
 
       const isEligible = await checkUserThreshold(msisdn);
-      // checkUserThreshold(msisdn);
 
       if (!isEligible) {
-        console.warn("User has exceeded the threshold. Redirecting...");
+        console.warn("User has exceeded the threshold.");
 
-        return; 
+        return;
       }
-    
 
       try {
         // console.log("MSISDN before updating leaderboard:", msisdn);
@@ -421,8 +436,6 @@ const initiateAdhocBilling = async (msisdn) => {
   }, [msisdn, gameScore]);
 
   // console.log(msisdn);
-
-
 
   return (
     <>
@@ -554,7 +567,11 @@ const initiateAdhocBilling = async (msisdn) => {
                       <img src={StarYs} alt="start" />
                     </div>
 
-                    <img src={FPBRating} alt="rating" className="w-8 h-8 pt-[5.87px]" />
+                    <img
+                      src={FPBRating}
+                      alt="rating"
+                      className="w-8 h-8 pt-[5.87px]"
+                    />
 
                     <Link to="#">
                       <button
@@ -589,8 +606,11 @@ const initiateAdhocBilling = async (msisdn) => {
                       <img src={StarYs} alt="start" />
                     </div>
 
-                    <img src={FPBRating} alt="rating" className="w-8 h-8 pt-[5.87px]" />
-
+                    <img
+                      src={FPBRating}
+                      alt="rating"
+                      className="w-8 h-8 pt-[5.87px]"
+                    />
 
                     <Link to="#">
                       <button
@@ -624,7 +644,11 @@ const initiateAdhocBilling = async (msisdn) => {
                       <img src={StarYs} alt="start" />
                       <img src={StarYs} alt="start" />
                     </div>
-                    <img src={FPBRating} alt="rating" className="w-8 h-8 pt-[5.87px]"  />
+                    <img
+                      src={FPBRating}
+                      alt="rating"
+                      className="w-8 h-8 pt-[5.87px]"
+                    />
 
                     <Link to="#">
                       <button
@@ -658,7 +682,11 @@ const initiateAdhocBilling = async (msisdn) => {
                       <img src={StarYs} alt="start" />
                       <img src={StarYs} alt="start" />
                     </div>
-                    <img src={FPBRating} alt="rating" className="w-8 h-8 pt-[5.87px]"  />
+                    <img
+                      src={FPBRating}
+                      alt="rating"
+                      className="w-8 h-8 pt-[5.87px]"
+                    />
 
                     <Link to="#">
                       <button
@@ -799,15 +827,13 @@ const initiateAdhocBilling = async (msisdn) => {
           </button>
         </div>
       )}
+      <ThresholdModal
+        isOpen={showThresholdModal}
+        onClose={() => setShowThresholdModal(false)}
+        onContinue={handleContinue}
+      />
     </>
   );
 };
 
 export default HomePage;
-
-
-
-
-
-
-
